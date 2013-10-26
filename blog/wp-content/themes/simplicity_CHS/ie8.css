@@ -1,0 +1,11 @@
+/****************
+Theme Name: BYMT-free
+Theme URL: http://www.yuxiaoxi.com/2013-08-03-wordpress-theme-bymt.html
+Author: 麦田一根葱
+Author URI: http://www.yuxiaoxi.com
+Version: 1.0.1.3
+****************/
+#wrapper-inner,#header_inner,#menu,#topbar,#index_content,#content,#saybox,#imgbox_content,#footer,#footerlink,.widget{border:1px #ddd solid;behavior: url(ie-css3.htc);}
+#header_inner{ border-bottom:none;}
+#menu{ border-top:none;}
+#index_content li:hover{ background:#FBFBFB;}
