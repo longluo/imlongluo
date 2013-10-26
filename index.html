@@ -1,0 +1,1525 @@
+<!DOCTYPE html>
+<!--[if lt IE 9]>
+<html id="ie8" lang="zh-CN">
+<![endif]-->
+<!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
+<html lang="zh-CN" manifest="cache.manifest">
+<!--<![endif]-->
+<head>
+<meta charset="UTF-8">
+<meta name="Description" content="罗龙（Long Luo）的个人网站。一个18岁的Homeschooler，爱好旅行、摄影和创造。整个世界都是我的学校。自由的身心定能使我成为一个一直朝前行走的行者。" />
+<meta name="keywords" content="罗龙,Long Luo" />
+<meta name="Author" contect="Long Luo" / >
+<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> 
+<meta name="format-detection" content="telephone=no" />
+<link rel="shortcut icon" href="/images/favicon.ico" />
+<link rel="icon" href="/images/favicon.ico" />
+
+<!-- iOS Web App -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-title" content="罗龙" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<link rel="apple-touch-icon-precomposed" href="/images/ios/icon.png" />
+
+<!-- iPhone -->
+<link href="http://dandyweng.qiniudn.com/images/ios/320x460.png"
+      media="(device-width: 320px) and (device-height: 480px)
+         and (-webkit-device-pixel-ratio: 1)"
+      rel="apple-touch-startup-image" />
+
+<!-- iPhone (Retina) -->
+<link href="http://dandyweng.qiniudn.com/images/ios/640x920.png"
+      media="(device-width: 320px) and (device-height: 480px)
+         and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image" />
+
+<!-- iPhone 5 -->
+<link href="http://dandyweng.qiniudn.com/images/ios/640x1096.png"
+      media="(device-width: 320px) and (device-height: 568px)
+         and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image" />
+
+<!-- iPad -->
+<link href="http://dandyweng.qiniudn.com/images/ios/768x1004.png"
+      media="(device-width: 768px) and (device-height: 1024px)
+         and (orientation: portrait)
+         and (-webkit-device-pixel-ratio: 1)"
+      rel="apple-touch-startup-image" />
+<link href="http://dandyweng.qiniudn.com/images/ios/748x1024.png"
+      media="(device-width: 768px) and (device-height: 1024px)
+         and (orientation: landscape)
+         and (-webkit-device-pixel-ratio: 1)"
+      rel="apple-touch-startup-image" />
+
+<!-- iPad (Retina) -->
+<link href="http://dandyweng.qiniudn.com/images/ios/1536x2008.png"
+      media="(device-width: 768px) and (device-height: 1024px)
+         and (orientation: portrait)
+         and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image" />
+<link href="http://dandyweng.qiniudn.com/images/ios/1496x2048.png"
+      media="(device-width: 768px) and (device-height: 1024px)
+         and (orientation: landscape)
+         and (-webkit-device-pixel-ratio: 2)"
+      rel="apple-touch-startup-image" />
+
+<!-- Bootstrap  -->
+<link href="http://dw-resources.qiniudn.com/bootstrap/global.min.css" rel="stylesheet" media="screen" />
+<link href="http://dw-resources.qiniudn.com/bootstrap/responsive.min.css" rel="stylesheet" media="screen" />
+
+<!-- jVectormap -->
+<link href="http://dw-resources.qiniudn.com/map/css/jquery-jvectormap-1.2.2.css" rel="stylesheet" media="screen" />
+<link href="http://fonts.googleapis.com/css?family=Quattrocento+Sans" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://dw-resources.qiniudn.com/js/jquery-1.9.1.min.js"></script>
+
+<!--[if lt IE 9]>
+<script type="text/javascript" src="http://dw-resources.qiniudn.com/js/html5.js"></script> 
+<![endif]-->
+
+<title>罗龙 · Long Luo</title>
+
+<style>
+
+/* = 为节约开发时间，使用了 Bootstrap 框架构建。
+/* = 本页面所用 CSS 代码未压缩或加密，方便大家学习和研究。
+
+/* = Designed and Developed by Dandy Weng
+/* = BY-NC-SA License
+----------------------------------------------- */
+
+
+/* = 通用 Global
+----------------------------------------------- */
+body {
+	background: #e5e5e5 url("http://dw-resources.qiniudn.com/images/patterns/mooning.jpg");
+	overflow-x: hidden;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+img, p {
+	-webkit-touch-callout: none;
+}
+p {
+	font: 500 15px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	cursor: default;
+}
+a:not(.btn) {
+	color: #00699E;
+	-webkit-transition: 300ms;
+	-moz-transition: 300ms;
+	transition: 300ms;
+}
+a:hover:not(.btn),
+a:active:not(.btn) {
+	color: #9E0000;
+	text-decoration: none;
+	-webkit-transform: translateY(-8px);
+	-moz-transform: translateY(-8px);
+	transform: translateY(-8px);
+}
+.padding-huge {
+	padding: 27px;
+}
+.padding-large {
+	padding: 45px;
+}
+.padding-middle {
+	padding: 25px;
+}
+.no-radius {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;	
+}
+p.wo:first-letter {
+	font-size: 115%;
+	padding-right: 1px;	
+}
+.relative {
+	position: relative;
+}
+.button {
+	margin: 20px auto;
+}
+hr.soften {
+	height: 1px;
+	margin: 30px 0;
+	background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+	background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,.1), rgba(0,0,0,0));
+	border: 0;
+}
+/* = 部件 Components
+----------------------------------------------- */
+.nav a {
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	transition: 500ms;
+}
+header {
+	margin-top: 40px;	
+}
+.hero-unit {
+	position: relative;
+	background: url("http://dandyweng.qiniudn.com/images/cover-5.jpg");
+	background-size: cover;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='http://dandyweng.qiniudn.com/images/cover-5.jpg', sizingMethod='scale');
+	-ms-filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/http://dandyweng.qiniudn.comimages/cover-5.jpg', sizingMethod='scale')";
+	color: #fff;
+	height: 480px;	
+	margin-bottom: 0;
+}
+.hero-unit h1 {
+	/* font: 88px Minion,'Optima', "Times New Roman", Times, serif; */
+	text-align: center;
+	text-shadow: 1px 1px 10px black;
+}
+.hero-unit img {
+	max-width: 500px;
+	-webkit-animation: title-in 1s ease-out 0 1 forwards;
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	transition: 500ms;
+
+}
+.hero-unit img:hover {
+	-webkit-transform: translateY(-5px) scale(1.05) rotate(2deg);
+	-moz-transform: translateY(-5px) scale(1.05) rotate(2deg);
+	transform: translateY(-5px) scale(1.05) rotate(2deg);
+}
+.hero-unit .banner-link {
+	position: absolute;
+	right: 5px;
+	bottom: 8px;
+	text-align: right;
+	text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.7);
+	font: 200 12px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+}
+.hero-unit .banner-link a {
+	color: white;
+	color: rgba(255, 255, 255, 0.9);
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	transition: 500ms;
+}
+.hero-unit .banner-link a:hover {
+	color: white;
+}
+.description {
+	position: relative;
+	margin-top: -267px;
+	-webkit-animation: description-in 1s ease-out 0 1 forwards;
+}
+.description h4, 
+.description h5 {
+	cursor: default;
+}
+#loading {
+	position: relative;
+	background: -webkit-gradient( linear, left bottom, left top, color-stop(0.2, rgba(0, 0, 0, 0.8)), color-stop(0.50, rgba(0, 0, 0, 0.7)), color-stop(0.80, rgba(0, 0, 0, 0.6)) );
+	width: 100px;
+	height: 100px;
+	margin: 0px auto 80px;
+	color: #FFF;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	-webkit-box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.35), 1px 1px 50px 8px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.35), 1px 1px 50px 8px rgba(0, 0, 0, 0.4);
+	box-shadow: 0px 1px 5px 3px rgba(0, 0, 0, 0.35), 1px 1px 50px 8px rgba(0, 0, 0, 0.4);
+	-webkit-animation: spinner-in 1s linear 0 1 forwards;
+}
+#loading .spinner {
+	position: absolute;
+	max-width: 80px;
+	left: 10px;
+	top: -15px;
+}
+#loading span {
+	position: absolute;
+	display: block;
+	width: 100%;
+	bottom: 10px;
+	white-space: nowrap;
+	text-shadow: 1px 1px 3px #000;
+	font: 200 12px/2 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;	
+	color: #E5E5E5;
+	cursor: default;
+}
+.shadow {
+	width: 100%;
+	height: 150px;
+	position: absolute;
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0, 0, 0, 0.2)), color-stop(100%,rgba(255, 255, 255, 0)));
+	border-top: 1px solid #e0e0e0;	
+	z-index: -999;
+}
+img.profile {
+	max-width: 100px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	transition: 500ms;
+	
+	-webkit-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 30px 8px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 30px 8px rgba(0, 0, 0, 0.25);
+	box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 30px 8px rgba(0, 0, 0, 0.25);
+}
+img.profile:hover {
+	-webkit-animation: profile-img-hover 1000ms ease-out 100ms infinite forwards;
+}
+img.profile:active {
+	-webkit-animation: profile-img-active 500ms linear 0 infinite forwards;
+}
+img.profile.loading {
+	/* -webkit-animation: profile-img-loading 500ms linear 0 infinite alternate; 这加载动画似乎在某些情况下会一直显示造成困扰，暂时先去掉 */
+}
+#aboutMaps small {
+	color: #969696;
+	font-size: 70%;
+}
+#aboutMaps .modal-header h3 {
+	-webkit-box-reflect: below -7px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));
+}
+.item {
+	max-height: 513px;
+}
+.carousel {
+	margin-bottom: 0;
+}
+#photograph .carousel-inner, 
+#photograph .carousel-inner > .item > img, 
+#photograph .carousel-inner > .item > a > img {
+	-webkit-transition: 500ms;
+	-moz-transition: 500ms;
+	transition: 500ms;		
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	-moz-border-top-left-radius: 6px;	
+	-moz-border-bottom-left-radius: 6px;
+	border-top-left-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+#photograph .carousel-inner:hover {
+	-webkit-filter: grayscale(0.8);
+	-webkit-transform: translateZ(0);
+}
+.carousel-indicators {
+	bottom: 20px;
+	right: 15px;
+	top: auto;
+}
+a.carousel-control:hover,
+a.carousel-control:focus,
+a.carousel-control {
+	color: #FFF;
+}
+.screenshots {
+	margin-top: 3px;
+	margin-left: -40px;
+}
+.screenshot-img {
+	max-width: 475px;
+}
+.iphone-mockup {
+	padding-right: 75px;
+	margin-top: 60px;
+}
+.screenshots .carousel-inner {
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-bottom-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+.ribbon-apple {
+	position: absolute;
+	top: -5px;
+	right: 30px;
+	max-width: 70px;	
+}
+.ipad-news { 
+	max-width: 100%;
+}
+.muiti-contact {
+	font: 400 50px/1.8 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	text-align: center;
+	cursor: default;
+	color: rgba(0, 0, 0, 0.4);
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+	-webkit-user-select: text;
+}
+.hover {
+	color: rgba(0, 0, 0, 0.7);
+	text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.41);
+}
+.fadeout {
+	color: rgba(0, 0, 0, 0.1);
+	text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+.muiti-contact,
+.hover,
+.fadeout,
+email,
+at,
+sns,
+web {
+	-webkit-transition: all .35s linear .2s;
+	-moz-transition: all .35s linear .2s;
+	transition: all .35s linear .2s;
+}
+.sns {
+	margin: 0 auto;
+	max-width: 1040px;
+}
+.sns-container {
+	position: relative;	
+	max-width: 520px;
+	margin: 0 auto;
+}
+
+.sns-icon {
+	position: relative;
+	border-radius: 13px;
+	margin: 0 30px 60px;
+	width: 70px;
+	float: left;
+	
+	-webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
+	-moz-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
+	box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
+ 
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+ 
+	-webkit-border-radius: 13px;
+	-moz-border-radius: 13px;
+	border-radius: 13px;
+	
+	-webkit-filter: blur(0) grayscale(0.2);
+	-webkit-transform: translateZ(0);
+}
+.sns-icon:hover {
+	-webkit-filter: none;
+	-webkit-animation: sns-icon-hover 100ms linear .8s infinite alternate;
+}
+.sns-icon:before {
+	position: absolute;
+	content: ' ';
+	width: 100%;
+	height: 50%;
+	top: 0;
+	left: 0;
+ 
+	-webkit-border-radius: 13px;
+	-moz-border-radius: 13px;
+	border-radius: 13px;
+	
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+ 
+	background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,.1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.7)), color-stop(100%,rgba(255,255,255,.1)));
+	background: linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,.1) 100%);
+}
+.sns-icon:hover:before {
+	height: 0;
+	
+	-webkit-transition: 1s;
+	-moz-transition: 1s;
+	transition: 1s;
+	
+	background: -moz-linear-gradient(top, rgba(255,255,255,0.3) 0%, rgba(255,255,255,.1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.3)), color-stop(100%,rgba(255,255,255,.1)));
+	background: linear-gradient(top, rgba(255,255,255,0.3) 0%,rgba(255,255,255,.1) 100%);}
+
+.sns-icon:after {
+	position: absolute;
+	content: ' ';
+	width: 100%;
+	height: 30px;
+	bottom: -31px;
+	left: 0;
+ 
+	-webkit-border-top-left-radius: 13px;
+	-webkit-border-top-right-radius: 13px;
+	-moz-border-radius-topleft: 13px;
+	-moz-border-radius-topright: 13px;
+	border-top-left-radius: 13px;
+	border-top-right-radius: 13px;
+ 
+	background: -moz-linear-gradient(top, rgba(230,230,230,.3) 0%, rgba(230,230,230,0) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(230,230,230,.3)), color-stop(100%,rgba(230,230,230,0)));
+	background: linear-gradient(top, rgba(230,230,230,.3) 0%,rgba(230,230,230,0) 100%);
+}
+.sns-icon img {
+	-webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, color-stop(30%,rgba(255, 255, 255, 0.0)), color-stop(80%,rgba(255, 255, 255, 0.1)), color-stop(100%,rgba(255, 255, 255, .3)));
+}
+.sns-fadeout {
+	opacity: 0.5;
+	-webkit-filter: blur(5px) grayscale(0.6);
+}
+.ribbon-version {
+	position: absolute;
+	top: -11px;
+	right: -15px;
+	max-width: 150px;	
+}
+.img-responsive {
+	max-width: 350px;
+	-webkit-box-reflect: below -65px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));s
+}
+#about p:not(small) {
+	-webkit-box-reflect: below -13px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));
+}
+a.thumbnail {
+	color: #333;
+	text-decoration: none;
+}
+a.thumbnail:hover {
+	-webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.1),1px 1px 30px 5px rgba(0, 0, 0, 0.2);
+	-moz-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.1),1px 1px 30px 5px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.1),1px 1px 30px 5px rgba(0, 0, 0, 0.2);
+	color: #333;
+
+}
+a.thumbnail img {
+	-webkit-filter: blur(1px) grayscale(0.8);
+	-webkit-transform: translateZ(0);
+	-webkit-transition: .5s;
+	-moz-transition: .5s;
+	transition: .5s;
+	
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+a.thumbnail:hover img {
+	-webkit-filter: none;
+	-webkit-transition: .5s;
+	-moz-transition: .5s;
+	transition: .5s;
+}
+a.thumbnail h3 {
+	font: 400 24.5px/1.0 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	-webkit-box-reflect: below -4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));
+}
+a.thumbnail p {
+	font: 100 12px/1.6 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+}
+a.thumbnail small {
+	font-size: 95%;
+}
+.statusbar {
+	position: relative;
+	height: 20px;
+	width: 100%;
+	background: #212121;
+	overflow: hidden;
+}
+/* = 框架 Panels
+----------------------------------------------- */
+.panel {
+	display: none;
+	background: #FFF url("http://dw-resources.qiniudn.com/images/patterns/white_wall_hash.jpg");
+	padding: 0px;
+	margin-bottom: 120px;
+	color: #333;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;/*
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);
+	-moz-box-shadow: 0 1px 2px rgba(0,0,0, .075);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .075);*/
+	-webkit-animation: panel-in 1s linear 0 1;
+	-webkit-box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, .35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25);
+	-moz-box-shadow:    0px 1px 8px 1.5px rgba(0, 0, 0, .35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25);
+	-ms-box-shadow:     0px 1px 8px 1.5px rgba(0, 0, 0, .35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25);
+	-o-box-shadow:      0px 1px 8px 1.5px rgba(0, 0, 0, .35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25);
+	box-shadow:         0px 1px 8px 1.5px rgba(0, 0, 0, .35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25);
+}
+.panel h1, .panel h3 {
+	cursor: default;
+	background: -webkit-linear-gradient(top, rgba(70, 70, 70, 1) 0%,rgba(111, 111, 111, 1) 50%,rgba(10, 14, 10, 1) 51%,rgba(10, 8, 9, 1) 100%);
+	-webkit-box-reflect: below -7px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.2, transparent), to(rgba(3,3,3,.1)));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	-webkit-transition: .5s;
+	-moz-transition: .5s;
+	transition: .5s;
+}
+.panel h3 {
+	-webkit-box-reflect: below -17px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));
+}
+/*
+.panel h1:hover {
+	background: -webkit-linear-gradient(top, rgba(70, 70, 70, 1) 0%,rgba(111, 111, 111, 1) 70%,rgba(10, 14, 10, 1) 71%,rgba(10, 8, 9, 1) 100%);
+	-webkit-box-reflect: below -2px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));	
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;	
+	-webkit-transform: translateY(-5px);
+	-webkit-transition: .5s;
+	-moz-transition: .5s;
+	transition: .5s;
+}
+*/
+.panel-description {
+	background: rgba(255, 255, 255, 0.80);
+	color: #333;
+	padding: 0px;
+	margin-bottom: 80px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	text-shadow: 1px 1px 2px #FFF;
+	-webkit-box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, 0.25), 0px 20px 70px 8px rgba(0, 0, 0, 0.05); 
+	-moz-box-shadow:    0px 1px 8px 1.5px rgba(0, 0, 0, 0.25), 0px 20px 70px 8px rgba(0, 0, 0, 0.05);
+	-ms-box-shadow:     0px 1px 8px 1.5px rgba(0, 0, 0, 0.25), 0px 20px 70px 8px rgba(0, 0, 0, 0.05);  
+	-o-box-shadow:      0px 1px 8px 1.5px rgba(0, 0, 0, 0.25), 0px 20px 70px 8px rgba(0, 0, 0, 0.05);
+	box-shadow:         0px 1px 8px 1.5px rgba(0, 0, 0, 0.25), 0px 20px 70px 8px rgba(0, 0, 0, 0.05);
+}
+.panel-description h4 {
+	font: 500 18px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+}
+.panel-description h5 {
+	color: rgba(0, 0, 0, 0.6);
+	font: 400 14.5px/1.5 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+}
+.button-text-panel a {
+	position: relative;
+	margin: 10px;
+}
+.block-left {
+	padding: 35px 10px 15px 45px
+}
+.design {
+	padding: 0 5px 15px 45px;
+}
+.programming {
+	padding: 0 20px 10px 0;
+}
+/* = 地图效果 Map Effects
+----------------------------------------------- */
+#map {
+	height: 360px;
+	background: url("http://dandyweng.qiniudn.com/images/map-bg.jpg");
+	background-size: cover;
+	-webkit-border-top-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;	
+	-moz-border-bottom-right-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+	-webkit-box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.24) inset;
+	-moz-box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.24) inset;
+	box-shadow: 1px 1px 8px 3px rgba(0, 0, 0, 0.24) inset;
+}
+#map svg {
+	display: none;	
+	-webkit-animation: map-in 1s linear 0 1;
+	-webkit-border-top-right-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-moz-border-top-right-radius: 6px;	
+	-moz-border-bottom-right-radius: 6px;
+	border-top-right-radius: 6px;
+	border-bottom-right-radius: 6px;
+}
+#map path,
+#map circle {
+	-webkit-transition: all .25s linear;
+	-moz-transition: all .25s linear;
+	transition: all .25s linear;
+}
+
+/* = 字体渲染 Fonts
+----------------------------------------------- */
+/*
+@font-face {
+	font-family: Minion;
+	src: url(/fonts/MinionPro-Semibold.otf);
+}
+*/
+
+/* = IE 8 以下 IE 8 or below
+----------------------------------------------- */
+
+.ie-alert {
+	position: fixed;
+	top: 50px;
+	width: 630px;
+	z-index: 9999;	
+}
+#ie8 .panel-description {
+	background: #FFF url("http://dw-resources.qiniudn.com/images/patterns/white_wall_hash.jpg");	
+}
+#ie8 .hover {
+	color: #000;
+}
+#ie8 .fadeout {
+	color: #CCC;
+}
+
+/* = 响应式 Responsive
+----------------------------------------------- */
+
+@media (min-width: 1200px) {
+	.padding-huge {
+		padding: 65px;
+	}
+	.hero-unit {
+		background-position-y: 55%;
+	}
+	.panel {
+		margin-bottom: 140px;
+	}
+	.panel-description {
+		margin-bottom: 100px;
+	}
+	.description {	
+		margin-top: -245px;
+	}
+	.screenshots {
+		position: absolute;
+		margin-top: -63px;
+		margin-left: -50px;
+		width: 475px;
+	}
+	.screenshot-img {
+		max-width: 475px;
+	}
+	.iphone-mockup {
+		margin-top: 0;
+	}
+	.design {
+		padding: 0 0 25px 45px;
+	}
+	.programming {
+		padding: 0 35px 25px 0;
+	}
+	.ipad-news { 
+		max-width: 585px;
+	}
+	.ribbon-apple {
+		max-width: 80px;	
+	}
+	.sns-container {
+		float: left;
+	}
+	.sns-icon img {
+		-webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, color-stop(10%,rgba(255, 255, 255, 0.0)), color-stop(80%,rgba(255, 255, 255, 0.10)), color-stop(100%,rgba(255, 255, 255, .3)));
+	}
+
+}
+ 
+@media (min-width: 768px) and (max-width: 979px) {
+	h1 {
+		font-size: 28.5px;
+	}
+	p {
+		font: 500 14px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	}
+	.block-left {
+		padding: 15px 5px 10px 35px;
+	}
+	.padding-large {
+		padding: 20px;
+	}
+	.ipad-news {
+		max-width: 500px;
+		margin-left: -140px;
+	}
+	.muiti-contact {
+		font: 400 45px/1.8 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	}
+}
+
+@media (max-width: 979px) {
+	.navbar-fixed-top {
+		margin-bottom: 0;
+	}	
+	.navbar .btn-navbar {
+		position: absolute;
+		right: 10px;	
+	}
+	.collapse.in {
+		margin-top: 45px;
+	}
+	header {
+		margin-top: 0;
+	}
+	.description {
+		margin-top: -265px;
+	}
+	.panel {
+		margin-bottom: 60px;
+		overflow: hidden;
+	}
+	.panel-description {
+		margin-bottom: 60px;
+	}
+	.panel-description h4 {
+		font: 500 17px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	}
+	#map {
+		height: 400px;
+	}
+	.button {
+		margin: 5px auto;
+	}
+	.screenshots {
+		margin-top: 48px;
+		margin-left: -20px;
+	}
+	.iphone-mockup  {
+		height: 500px;
+		max-width: 400px;
+		margin-top: 0;
+	}
+	.ribbon-apple {
+		max-width: 65px;
+	}
+	.ribbon-version {
+		max-width: 120px;
+	}
+}
+
+@media (max-device-width: 1024px) {
+	.sns-icon {
+		-webkit-filter: none;
+	}
+	.sns-icon:hover {
+		-webkit-filter: none;
+	}	
+	.sns-fadeout {
+		-webkit-filter: none;
+		opacity: 0.3;
+	}
+	a.thumbnail img {
+		-webkit-filter: none;
+	}
+	#photograph .carousel-inner:hover {
+		-webkit-filter: grayscale(0.8);
+		-webkit-transform: translateZ(0);
+	}
+}
+
+@media (max-width: 767px) {
+	body {
+		padding-right: 0;
+		padding-left: 0;
+	}
+	h1 {
+		font-size: 32.5px;
+	}
+	.navbar-fixed-top,
+	.navbar-fixed-bottom,
+	.navbar-static-top {
+		margin-right: 0;
+		margin-left: 0;
+	}
+	.hero-unit img {
+		max-width: 100%;
+	}
+	.description {
+		margin-top: -267px;
+	}
+	.block-left {
+		padding: 40px;
+	}
+	article.container {
+		padding-left: 10px;
+		padding-right: 10px;
+	}
+	#map,
+	#map svg {
+		-webkit-border-bottom-left-radius: 6px;
+		-webkit-border-top-right-radius: 0;
+		-moz-border-bottom-left-radius: 6px;	
+		-moz-border-top-right-radius: 0;
+		border-bottom-left-radius: 6px;
+		border-top-right-radius: 0;
+	}
+	#photograph .carousel-inner, 
+	#photograph .carousel-inner > .item > img, 
+	#photograph .carousel-inner > .item > a > img {
+		-webkit-border-top-right-radius: 6px;
+		-webkit-border-bottom-left-radius: 0;
+		-moz-border-top-right-radius: 6px;
+		-moz-border-bottom-left-radius: 0;
+		border-top-right-radius: 6px;
+		border-bottom-left-radius: 0;
+	}
+	.button {
+		margin: 10px auto;
+	}
+	.screenshots {
+		position: relative;
+		margin: 20px auto 0;
+		max-width: 500px;
+	}
+	.design, 
+	.programming {
+		padding: 0 45px 0 45px;
+	}
+	.muiti-contact {
+		font: 400 40px/1.8 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	}
+	.thumbnail {
+		border: none;
+	}
+	.ipad-news {
+		display: none;
+	}
+}
+
+@media (max-width: 620px) {
+	.muiti-contact {
+		font: 400 30px/1.0 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	}
+	.sns-container {
+		max-width: 270px;
+	}	
+	.sns-icon {
+		margin: 0 10px 30px;
+		width: 45px;
+		
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		border-radius: 8px;		
+	}
+	.sns-icon:before {
+		-webkit-border-radius: 8px;
+		-moz-border-radius: 8px;
+		border-radius: 8px;
+	}
+	
+	.sns-icon:hover:before {
+		background: -moz-linear-gradient(top, rgba(255,255,255,0.3) 0%, rgba(255,255,255,.1) 100%);
+		background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.3)), color-stop(100%,rgba(255,255,255,.1)));
+		background: linear-gradient(top, rgba(255,255,255,0.3) 0%,rgba(255,255,255,.1) 100%);
+	}
+	.sns-icon:after {
+		-webkit-border-top-left-radius: 8px;
+		-webkit-border-top-right-radius: 8px;
+		-moz-border-radius-topleft: 8px;
+		-moz-border-radius-topright: 8px;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+	}
+}
+
+@media (max-width: 480px) {
+	.padding-large {
+		padding: 25px;
+	}
+	.hero-unit {
+		background: url("http://dandyweng.qiniudn.com/images/cover-5-mobile.jpg");
+	}
+	.panel {
+		margin-bottom: 35px;
+	}
+	.panel-description {
+		margin-bottom: 35px;
+	}
+	.panel-description h4 {
+		font: 500 15px/1.5 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	}
+	.panel-description h5 {
+		color: rgba(0, 0, 0, 0.7);
+		font: 400 13.5px/1.5 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		text-align: left;
+		margin-top: 20px;
+	}
+	.muiti-contact {
+		font: 400 25px/1.0 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	}
+	.img-responsive {
+		max-width: 100%;
+	}
+
+}
+@media (max-width: 320px){
+	.padding-middle {
+		padding: 15px;
+	}
+	.block-left {
+		padding: 25px;
+	}
+	.hero-unit {
+		padding: 40px 0 60px;
+	}
+	.hero-unit img {
+		max-width: 280px;
+	}
+	hr.soften {
+		margin: 20px 0;
+	}
+	.description {
+		margin-top: -288px;
+	}	
+	article.container {
+		padding-left: 0;
+		padding-right: 0;
+	}
+	.panel, 
+	#map,
+	#map svg, 
+	#photograph .carousel-inner, 
+	#photograph .carousel-inner > .item > img, 
+	#photograph .carousel-inner > .item > a > img {
+		-webkit-border-radius: 0;
+		-moz-border-radius: 0;
+		border-radius: 0;
+	}
+	#map {
+		height: 230px;
+	}
+	.carousel-indicators {
+		display: none;
+	}
+	.design, 
+	.programming {
+		padding: 0 25px 0 25px;
+	}
+	.screenshots {
+		margin: 20px auto 0;
+	}
+	.muiti-contact {
+		font: 400 20px/1.0 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	}	
+}
+
+@media (max-width: 290px){
+	.hero-unit img {
+		max-width: 100%;
+	}
+}
+
+@media -webkit-min-device-pixel-ratio: 2) { 
+
+}
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2), 
+only screen and (   min--moz-device-pixel-ratio: 2), 
+only screen and (     -o-min-device-pixel-ratio: 2/1), 
+only screen and (        min-device-pixel-ratio: 2), 
+only screen and (                min-resolution: 192dpi), 
+only screen and (                min-resolution: 2dppx) { 
+	body {
+		background: #e5e5e5 url("http://dw-resources.qiniudn.com/images/patterns/mooning@2x.jpg");
+		background-size: 400px 400px;
+	}
+	.panel {
+		background: #FFF url("http://dw-resources.qiniudn.com/images/patterns/white_wall_hash@2x.jpg");
+		background-size: 500px 500px;
+	}
+}
+
+/* = 动画 Animations
+----------------------------------------------- */
+
+@-webkit-keyframes title-in {
+	0% {
+		-webkit-transform: translateY(-50px);
+	}
+	80% { 
+		-webkit-transform: translateY(-5px);
+	}
+	90% { 
+		-webkit-transform: translateY(5px);
+	}
+	100% { 
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes description-in {
+	0% {
+		-webkit-transform: translateY(90px);
+	}
+	80% { 
+		-webkit-transform: translateY(5px);
+	}
+	90% { 
+		-webkit-transform: translateY(-5px);
+	}
+	100% { 
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes profile-img-hover {
+	0% {
+		-webkit-transform: rotate(0);
+	}
+	23% { 
+		-webkit-transform: rotate(18deg);
+	}
+	25% { 
+		-webkit-transform: rotate(20deg);
+	}
+	50% { 
+		-webkit-transform: rotate(0);
+	}
+	73% { 
+		-webkit-transform: rotate(-18deg);
+	}
+	75% { 
+		-webkit-transform: rotate(-20deg);
+	}
+	100% { 
+		-webkit-transform: rotate(0);
+	}
+}
+
+@-webkit-keyframes profile-img-active {
+	0% {
+		-webkit-transform: rotate(0);
+	}
+	100% { 
+		-webkit-transform: rotate(365deg);
+	}
+}
+
+@-webkit-keyframes profile-img-loading {
+	0% {
+		-webkit-filter: blur(5px);
+	}
+	100% { 
+		-webkit-filter: blur(1px);
+	}
+}
+
+@-webkit-keyframes spinner-in {
+	0% {
+		-webkit-filter: blur(5px);
+		-webkit-transform: translateY(60px);
+	}
+	100% { 
+		-webkit-filter: none;
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes panel-in {
+	0% {
+		-webkit-filter: grayscale(0.8) blur(5px);
+		-webkit-transform: translateY(80px);
+	}
+	50% {
+		-webkit-filter: grayscale(0.3) blur(3px);
+		-webkit-transform: translateY(60px);
+	}
+	100% { 
+		-webkit-filter: none;
+		-webkit-transform: translateY(0);
+	}
+}
+
+@-webkit-keyframes map-in {
+	0% {
+		-webkit-filter: grayscale(0.8) blur(5px);
+	}
+	50% {
+		-webkit-filter: grayscale(0.3) blur(3px);
+	}
+	100% { 
+		-webkit-filter: none;
+	}
+}
+
+@-webkit-keyframes map-in {
+	0% {
+		-webkit-filter: grayscale(0.8) blur(5px);
+	}
+	100% { 
+		-webkit-filter: none;
+	}
+}
+
+@-webkit-keyframes sns-icon-hover {
+	0% {
+		-webkit-transform: scale(1.1) rotate(3deg) translateX(-2px);
+	}
+	100% { 
+		-webkit-transform: scale(1.1) rotate(-3deg) translateX(2px);
+	}
+}
+
+/* = 伪类 Pseudo
+----------------------------------------------- */
+
+::selection {
+    background:#d3d3d3; 
+    color:#555;
+}
+
+::-moz-selection {
+    background:#d3d3d3; 
+    color:#555;
+}
+
+::-webkit-selection {
+    background:#d3d3d3; 
+    color:#555;
+}
+</style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" onload="completed();" ontouchstart="">
+
+<div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+
+	<div class="nav-collapse collapse">
+        <ul class="nav">
+            <li class="active"><a href="#banner">简述</a></li>
+            <li><a href="#travel">旅行</a></li>
+            <li><a href="#photography">摄影</a></li>
+            <li><a href="#creativity">创造</a></li>
+            <!--
+            <li><a href="#apple">苹果</a></li>
+            -->
+            <li><a href="#contact">联系</a></li>
+            <li><a href="#about">关于</a></li>
+        </ul>
+	</div>
+    
+    <ul class="nav">
+        <li><a href="http://blog.imlongluo.com" target="_blank">博客</a></li>
+        <li><a href="http://www.camarts.cn" target="_blank">作品</a></li>
+        <li><a href="http://weibo.com/dandyweng" target="_blank">微博</a></li>
+    </ul>
+    
+    </div>
+  </div>
+</div>
+
+<!--[if lt IE 9]>
+    <div class="alert alert-block ie-alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4>浏览器版本过低</h4>
+        <br>
+        <p>你知道不？你还在用十年前的浏览器！这个网页上的有很多好看的东西和动画效果都显示不了！</p>
+        <p>建议赶快<a href="http://windows.microsoft.com/zh-cn/internet-explorer/downloads/ie-10/worldwide-languages" target="_blank">升级</a>你的浏览器版本或使用 <a href="http://www.google.com/intl/zh-CN/chrome/browser/" target="_blank">Chrome</a> 或 <a href="http://www.apple.com.cn/safari/" target="_blank">Safari</a> 等高级浏览器。</p>
+    </div>
+<![endif]-->
+
+<header id="banner" class="hero-unit no-radius">
+	<div class="container text-center">
+        <h1><img src="http://dandyweng.qiniudn.com/images/title.png" alt="Dandy Weng"></h1>
+        <!-- <p>网站正在建设中</p> -->
+    </div>
+    <span class="banner-link hidden-phone"><a href="http://www.camarts.cn/archives/1759.html" target="_blank">《尕海小景》</a></span>
+</header>
+
+<div class="shadow"></div>
+
+<article class="container"> 
+
+	<!--  简述 Description  -->
+    <section id="description" class="row description">
+        <div class="span10 offset1 panel-description button-text-panel text-center">
+        	<div class="padding-middle">
+               <img class="profile img-circle loading" src="./images/picture.jpg">
+               <h4>我是翁天信，一个 18 岁的 Homosexual，爱好基佬、基佬和基佬。</h4>
+               <h5>上世纪九十年代中期生于广州。整个世界都是我的学校。学自己之所想所爱。自由的身心定能使我成为一个一直朝前行走的行者。</h5>
+               <hr class="soften">
+               <p><span class="hidden-phone">这是我的个人网站，</span>欢迎访问<a href="http://blog.dandyweng.com" target="_blank">我的博客</a>和<a href="http://www.camarts.cn" target="_blank">摄影网站</a></p>
+               <!--  <p><span class="label label-warning">注意</span> 网站正在更新中，缓存功能已关闭，且页面会出现某些异常，建议稍后再访问</p>  -->
+            </div>
+        </div>
+    </section>
+    
+    <div id="loading" class="text-center">
+    	<img class="spinner" src="http://dandyweng.qiniudn.com/images/spinner.gif">
+    	<span>加载中</span>
+    </div>
+    
+    <!--  旅行 Travel  -->
+
+    <section id="travel" class="row">
+        <div class="span12 panel">
+        	<div class="row">
+            	<div class="span6">
+                	<div class="block-left">
+                        <h1>旅行</h1>
+                        <p class="wo">我是一个爱旅行的人，每年有将近四分之一的时间都在路上。走遍世界周游列国，对我而言并不止于是个梦想而已。</p>
+                        <br>
+                        <p class="wo">我觉得，中国很大，可世界更大。就像你在这个地图上看到的，我 18 岁前就在大半个中国留下了足迹。这个国家就像一台回旋加速器，我环游加速之后就会奔向世界，那时候的我将成为一个新的自己，一种新的元素。</p>
+                        <br>
+                        <a href="#aboutMaps" data-toggle="modal">关于地图数据</a> <span class="muted" style="margin: 10px; cursor: default;"> | </span> <a href="http://travel.dandyweng.com/china/" target="_blank">我的旅行足迹 »</a>
+                        
+                        <!-- Modal -->
+                        <div id="aboutMaps" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h3 id="myModalLabel">关于地图数据</h3>
+                            </div>
+                            
+                            <div class="modal-body">
+                            <p>地图数据来自 <a href="http://www.naturalearthdata.com/" target="_blank">Natural Earth</a></p>
+                            <p>该地图为中华人民共和国地图，并非中国地图，故无台湾。</p>
+                            <p class="text-error">· <small>以中华人民共和国直接统治区域和有效管辖领土为准，若对此有异议，请参考 Wikipedia 中的 <a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD_(%E6%B6%88%E6%AD%A7%E4%B9%89)" target="_blank">中国</a>、<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9C%8B%E5%A4%A7%E9%99%B8" target="_blank">中国大陆</a>、<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD" target="_blank">中华人民共和国</a> 和 <a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B" target="_blank">中华民国</a> 等条目。</small></p>
+                            
+                            <hr class="soften">
+                            
+                            <h4>关于坐标点数据</h4>
+                            <p>地图中以红点标示的为我曾到达过的城市，其中：</p>
+                            <ul>
+                                <li><p>若新到达的城市旁已有相邻的曾到达城市，且经度和（或）纬度相差小于 1° 的，仅标示最先到达的城市；</p></li>
+                                <li><p>2009 年或更早的坐标信息，来源于在 Google 地图 查询中到的该城市坐标，2010 年后的坐标信息来源于使用 iPhone 在当地所拍摄照片时所记录的 GPS 信息；</p></li>         
+                                <li><p>坐标点和其中所标出的到达年份为非完整数据；</p></li> 
+                                <li><p>最后更新时间：2013 年 7 月</p></li>
+							</ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" data-dismiss="modal" aria-hidden="true">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="span6">
+					<div id="map"></div>
+        		</div>
+			</div>
+        </div>
+    </section>
+    
+    <!--  摄影 Photography  -->
+    
+    <section id="photography" class="row">
+   		<div class="span12 panel">
+        	<div class="row">
+                <div class="span8">
+                    <div id="photograph" class="carousel slide">
+                        <ol class="carousel-indicators">
+                            <li data-target="#photograph" data-slide-to="0" class="active"> </li>
+                            <li data-target="#photograph" data-slide-to="1"></li>
+                            <li data-target="#photograph" data-slide-to="2"></li>
+                            <li data-target="#photograph" data-slide-to="3"></li>
+                            <li data-target="#photograph" data-slide-to="4"></li>
+                            <li data-target="#photograph" data-slide-to="5"></li>
+                            <li data-target="#photograph" data-slide-to="6"></li>
+                            <li data-target="#photograph" data-slide-to="7"></li>
+                            <li data-target="#photograph" data-slide-to="8"></li>
+                            <li data-target="#photograph" data-slide-to="9"></li>
+                        </ol>
+                          <!-- Carousel items -->
+                        <div class="carousel-inner">
+                            <div class="active item"><a href="http://www.camarts.cn/archives/549.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-01.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/523.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-02.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/594.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-03.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/532.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-04.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/439.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-05.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/542.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-06.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/638.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-07.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/632.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-08.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/647.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-09.jpg"></a></div>
+                            <div class="item"><a href="http://www.camarts.cn/archives/1453.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-10.jpg"></a></div>
+                        </div>
+                        
+                        <a class="carousel-control left" href="#photograph" data-slide="prev">&lsaquo;</a>
+                        <a class="carousel-control right" href="#photograph" data-slide="next">&rsaquo;</a>
+                    </div>
+                </div>
+                
+                <div class="span4">
+                	<div class="padding-large">
+                        <h1>摄影</h1>
+                        <p class="wo">我爱摄影，尤其是壮美的自然风光。我以为，学富五车不如阅人无数，阅人无数不如行万里路。因为旅行，我爱上了摄影；因为爱上了摄影，我才更热爱旅行。</p>
+                        
+                        <a href="http://www.camarts.cn" target="_blank" class="btn btn-info btn-large button">浏览我的摄影作品</a>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </section>
+    
+    <!--  创造 Creativity  -->
+
+    <section id="creativity" class="row">
+        <div class="span12 panel">
+            <div class="row">
+                <div class="span8">
+                    <!-- Content -->
+                    <div class="row">
+                    	<!--  创造 Creativity  -->
+                        <div class="span8">
+                        	<div class="block-left">
+                                <h1>创造</h1>
+                                <p class="wo">我热爱一切美好的新事物，更喜欢创造。除摄影外，设计和编程应该是我目前最喜欢、且最能发挥我创造力的爱好。一个是大胆的创意，一个是严谨的逻辑，看似矛盾，但对我来说却能很好地融为一体。</p>	
+                            </div>	
+                        </div>
+                        
+                        <!--  设计 Design  -->
+                        <div class="span4">
+                        	<div class="design">
+                                <h3>设计</h3>
+                                <p class="wo">我设计过各种各样的东西：从平面到三维、从人机交互到网络管理系统与标准操作流程，甚至家具和装修……当然，还有我的人生。目前，我发现网页设计是编程和设计的一个很好的结合点，所以我现在非常喜欢制作网站。</p> 
+                            </div>
+                        </div>
+                        
+                        <!--  编程 Programming  -->
+                        <div class="span4">
+                        	<div class="programming">
+                                <h3>编程</h3>
+                                <p class="wo">我从小就对电脑和各类数码产品充满无限的兴趣。七岁学会重装系统，九岁学会组装电脑，12 岁开始对编程感兴趣并开始学习一些脚本语言和 Visual Basic，14 岁开始转向 Web 开发，目前还在不断学习新的编程语言。我喜欢编程，就是因为它赋予我一种严谨而又富有创造性的逻辑思维方式。</p>
+                            </div>
+                        </div>
+                    </div
+                ></div>
+                <div class="span4 relative">
+                    <!-- Carousel -->
+                    <div id="showcase" class="carousel slide screenshots">
+                        <div class="carousel-inner">
+                            <div class="active item"><img src="http://dandyweng.qiniudn.com/images/camarts-screenshot.png" class="screenshot-img"></div>
+                            <div class="item"><img src="http://dandyweng.qiniudn.com/images/camarts-mobile-combined-mockup.png" class="iphone-mockup"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!--  苹果 Apple  -->
+ <!--   
+    <section id="apple" class="row">
+   		<div class="span12 panel relative">
+        	<img class="ribbon-apple" src="http://dandyweng.qiniudn.com/images/ribbon-apple.png">
+        	<div class="row">
+                <div class="span6">
+                	<img class="ipad-news" src="http://dandyweng.qiniudn.com/images/mockedup-news.png">
+                </div>
+                
+                <div class="span6">
+                    <div class="padding-huge">
+                        <h1>Apple</h1>
+                        <p class="wo">我对 Apple 产品的热爱近乎狂热，是一名真正的铁杆果粉。在 Steve Jobs 时代，我拥有近乎全系列的 Apple 产品。Apple 不但蕴含着一种高贵的灵魂，还透射出一种独特的魅力。我通宵排队 14 小时，买到了中国地区的第一台 iPad 2；之后又为了买 iPhone 4S 排队足足 20 小时。后来还被腾讯网评为“超级果粉”第一名。</p>
+                        <br>
+                        <a class="visible-desktop" href="http://www.google.com/hostednews/afp/article/ALeqM5h9IrITObDmUmYjG8_3iAwiPwrwCQ?docId=CNG.ce7c362a719710baba258bff00b37376.721" target="_blank">相关新闻报道 »</a>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </section>
+-->
+    
+    <!--  联系 Contact  -->
+    
+    <section id="contact" class="row">
+    	<div class="span12 panel">
+        	<div class="row">
+                <div class="span12">
+                	<div class="padding-large">
+                    	<h1>联系</h1>
+                        <div class="muiti-contact">
+                            <span class="email"><email data-toggle="tooltip" title="Email">dandyweng</email><at>@</at><sns data-toggle="tooltip" title="社交网络">dandyweng</sns><web data-toggle="tooltip" title="个人网站">.com</web></span>
+                            <!--[if lt IE 9]>
+                            <p class="text-warning">当前浏览器不支持该模块的交互效果，无法动态展示联系方式，建议换用更高级的浏览器。</p>
+                            <p class="text-info">Twitter, Instagram, Path, 新浪微博、腾讯微博和微信的名称为 @dandyweng</p>
+                            <![endif]-->
+                        </div>
+                    </div>
+            	</div>
+                
+                <div class="span12">
+                	<div class="padding-large">
+                    	<div class="sns">
+                            <div class="sns-container">
+                                <a href="http://www.facebook.com/dandyweng" target="_blank"><div id="icon-facebook" class="sns-icon" data-toggle="tooltip" title="Facebook"><img src="http://dandyweng.qiniudn.com/images/sns/facebook.png"></div></a>
+                                <a href="http://twitter.com/dandyweng" target="_blank"><div id="icon-twitter" class="sns-icon" data-toggle="tooltip" title="Twitter"><img src="http://dandyweng.qiniudn.com/images/sns/twitter.png"></div></a>
+                                <a href="http://instagram.com/dandyweng" target="_blank"><div id="icon-instagram" class="sns-icon" data-toggle="tooltip" title="Instagram"><img src="http://dandyweng.qiniudn.com/images/sns/instagram.png"></div></a>
+                                <a href="javascript:;" target="_blank"><div id="icon-path" class="sns-icon" data-toggle="tooltip" title="Path"><img src="http://dandyweng.qiniudn.com/images/sns/path.png"></div></a>
+                            </div>
+                            <div class="sns-container">              
+                                <a href="http://weibo.com/dandyweng" target="_blank"><div id="icon-sinaweibo" class="sns-icon" data-toggle="tooltip" title="新浪微博"><img src="http://dandyweng.qiniudn.com/images/sns/SinaWeibo.png"></div></a>
+                                <a href="http://t.qq.com/dandyweng" target="_blank"><div id="icon-tencentweibo" class="sns-icon" data-toggle="tooltip" title="腾讯微博"><img src="http://dandyweng.qiniudn.com/images/sns/TencentWeibo.png"></div></a>
+                                <a href="javascript:;" target="_blank"><div id="icon-wechat" class="sns-icon" data-toggle="tooltip" title="微信"><img src="http://dandyweng.qiniudn.com/images/sns/wechat.png"></div></a>
+                                <a href="javascript:;" target="_blank"><div id="icon-qq" class="sns-icon" data-toggle="tooltip" title="QQ 暂时保密"><img src="http://dandyweng.qiniudn.com/images/sns/qq.png"></div></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+			</div>
+        </div>
+    </section>
+    
+     <!--  关于 About  -->
+     
+    <section id="about" class="row">
+    	<div class="span12 panel text-center relative">
+       	 	<img class="ribbon-version" src="http://dandyweng.qiniudn.com/images/ribbon-2013.png" alt="2013 版">
+			<div class="padding-large">
+                <h1>关于</h1>
+                <hr class="soften"> 
+                <p>这个网站每年都会被彻底地重新设计和制作一次，以集中展示我的最新设计理念和在过去一年中所学到的 Web 开发知识。</p>
+                <p>今年已经是第四个版本，采用栅格化<a href="http://www.responsinator.com/?url=www.dandyweng.com" target="_blank" title="看看这个网站在不同分辨率下的表现">响应式</a>布局，应用了多种实验性 CSS 元素和大量动画效果，</p>
+                <p>并支持 Retina 高清屏幕和 iOS Web App，还有基于 HTML 5 的离线缓存和 Canvas 绘图等技术。</p>
+                <p><a href="http://blog.dandyweng.com/2013/07/how-my-website-was-created/" target="_blank" title="我的个人网站是怎么做出来的">详情 »</a></p>
+                <a href="http://www.responsinator.com/?url=www.dandyweng.com" target="_blank" title="看看这个网站在不同分辨率下的表现" alt="响应式布局"><img class="img-responsive" src="http://dandyweng.qiniudn.com/images/responsive.png" alt="响应式设计"></a>
+                <p>因开发调试时间有限，无法保证各浏览器的兼容性，建议使用最新版本的 Chrome 或 Mac 版 Safari 浏览。</p>
+                <p>之前的三个版本已经在下方列出，有兴趣的可以看看我在这方面的成长之路。</p>
+			</div>
+            
+            <div class="row">    
+                <div class="span6 offset3">
+                    <ul class="thumbnails">
+                        <li class="span2">
+                            <a class="thumbnail" href="http://www.dandyweng.com/versions/2012" target="_blank">
+                                <img src="http://dandyweng.qiniudn.com/images/2012.png" data-src="http://dandyweng.qiniudn.com/images/2012.png" alt="">
+                                <h3>2012</h3>
+                                <p><small>采用模块化、响应式设计，应用了一些 CSS 动画</small></p>
+                            </a>
+                        </li>                             
+                        
+                        <li class="span2">
+                            <a class="thumbnail" href="http://www.dandyweng.com/versions/2011" target="_blank">
+                                <img src="http://dandyweng.qiniudn.com/images/2011.png" data-src="http://dandyweng.qiniudn.com/images/2011.png" alt="">
+                                <h3>2011</h3>
+                                <p><small>首个 HTML5 网页，开始应用少量 CSS3 特性</small></p>
+                            </a>
+                        </li>   
+                        
+                        <li class="span2">
+                            <a class="thumbnail" href="http://www.dandyweng.com/versions/2010" target="_blank">
+                                <img src="http://dandyweng.qiniudn.com/images/2010.png" data-src="http://dandyweng.qiniudn.com/images/2010.png" alt="">
+                                <h3>2010</h3>
+                                <p><small>我的第一个网站，不解释</small><br><br></p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="span12">
+                	<div class="padding-large" style="padding-top: 0;">
+                        <hr class="soften">
+                        <p>Designed and Developed by Long Luo.</p>
+                        <p>Copyright © 2013 Long Luo. All Rights Reserved.</p> 
+                    </div>              
+                </div>
+       		</div>
+        </div>
+    </section>
+   
+</article>
+
+<script type="text/javascript" src="http://dw-resources.qiniudn.com/bootstrap/scripts.min.js"></script>
+<script type="text/javascript" src="http://dw-resources.qiniudn.com/map/js/jquery-jvectormap-1.2.2.min.js"></script>
+<script type="text/javascript" src="http://dw-resources.qiniudn.com/map/js/jquery-jvectormap-cn-merc-cn.js"></script>
+<script type="text/javascript" src="http://dandyweng.qiniudn.com/js/home.js"></script>
+<p style="text-indent: -9999px;"><script src="http://s9.cnzz.com/stat.php?id=3817169&web_id=3817169" language="JavaScript"></script></p>
+    
+</body>
+</html>
