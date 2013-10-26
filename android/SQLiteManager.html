@@ -1,0 +1,686 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en-gb"><head>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+<meta name="description" content="LongLuo Android Applications">
+<meta name="keywords" content="Android, Android applications, apk, Open Source Software, Downloads, Free Software, sqlite manager, backup, restore, SQLIte data entry, SQLite data editor, SQLite frontend"><title>LongLuo Android Applications</title>
+<link rel="shortcut icon" href="favicon.ico">
+<link href="android.css" media="all" rel="Stylesheet" type="text/css">
+<style type="text/css">
+body
+{
+background: url("images/aaa.png") top left fixed no-repeat;
+}
+</style>
+    <script type="text/javascript" src="http://bcs.duapp.com/databank/js%2Fjquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.lightbox-0.5.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css" media="screen" />
+    <script type="text/javascript">
+    $(function() {
+        $('#gallery a').lightBox();
+    });
+    </script>
+   	<style type="text/css">
+	/* jQuery lightBox plugin - Gallery style */
+	#gallery {
+		padding: 10px;
+		width: 900px;
+	}
+	#gallery ul { list-style: none; }
+	#gallery ul li { display: inline; }
+	#gallery ul img {
+		border: 5px solid #eef3e7;
+		border-width: 5px 5px 20px;
+	}
+	#gallery ul a:hover img {
+		border: 5px solid #91e842;
+		border-width: 5px 5px 20px;
+		color: #91e842;
+	}
+	#gallery ul a:hover { color: #fff; }
+	</style>
+</head>
+<body>
+<div id="AAASuite">
+<div id="AAAPageHeader">
+<h1> LongLuo Android Applications</h1>
+</div>
+<div id="AAASuiteContent">
+<div id="AAAAppContentContainer">
+<div class="AAAAppTopMenu">
+<div style="clear: both;"><a href="index.html">Introduction</a>
+<a href="a41cv.html">a41CV</a>
+<a href="#" class="selected">SQLiteManager</a>
+<a href="aShell.html">aShell</a>
+<a href="aLogViewer.html">aLogViewer</a>
+<a href="myFavoriteApps.html">My Favorite Apps</a>
+<a href="AndroidBooks.html">Android Books</a>
+</div>
+</div>
+<div class="AAAAppContentForm">
+<div class="AAAAppContentHeader"><br>
+</div>
+<div class="AAAAppContentMain">
+<h1>SQLiteManager</h1>
+Google+ <a href="https://plus.google.com/105840930655028161184#communities/101957559100993617727">
+fora for aSQLiteManager</a>
+<p>SQLiteManger is my open source SQLite manager for Android. You can find the latest
+production version on Google Play and be notified when new
+versions is available.</p>
+<p>If you like this app and find it useful you can support it by donating and help keeping it free
+and free of adds ;-)</p>
+<p>If you have wishes for new functionality - send me a mail. Some of the suggestions I see on the comments I receive when the app is rated have been implemented or I might need to ask some questions to understand exactly what is needed.</p>
+<div style="float:left; width:50%;">
+<a href="http://sourceforge.net/donate/index.php?group_id=362274">
+<img src="http://images.sourceforge.net/images/project-support.jpg" width="88" height="32" border="0" alt="Support This Project" /> </a>
+</div>
+<div style="float:left; width:50%;">
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="GHNL85588XVPN">
+<input style="border: border=0;" type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif"  name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+</div>
+<p>
+All comments and request for new functionality are wellcome!
+</p>
+<h2>News</h2>
+<p>13 october 2013 - Version 4.2 of SQLiteManager released on <a href="http://play.google.com/store/apps/details?id=dk.andsen.asqlitemanagerd">Google Play</a>
+as the donate version.</p>
+<ul>
+<li>Now system databases can be opened from recent files</li>
+<li>User defined colours in data grid</li>
+<li>Reset data grid colours to default</li>
+<li>Root file picker works with symbolic links to catalogues</li>
+</ul>
+<p>28 August 2013 - Today SQLiteManager has been downloaded more than 100,000 times (and the
+donate version more than 100 times).</p>
+<p>12 may 2013 - Version 3.6 released on <a href="http://play.google.com/store/apps/details?id=dk.andsen.asqlitemanager">Google Play</a></p>
+<ul>
+<li>New file picker with:
+<ol>
+<li>Show file names, sizes, dates and icons</li>
+<li>Sorting (name, extension, size, date - ascending, descending, ignore case) and 
+filtering of files (e.g. .sqlite;.db) in file picker</li>
+<li>Favorites directories for fast navigation to often visited places</li>
+</ol></li>			
+<li>Now the user dictionary are updated with your words</li>
+<li>CSV export wizards that allows export of user selected fields</li>
+<li>CSV import wizards that allows the user select a CSV file and which column from the CSV file to import into which fields in the current table. </li>
+<li>Bug fixes - I think all reported bugs have been fixed. The support for editing views with on
+update triggers is better but the sloppy handling of field types makes this difficult as it is hard
+to figure out whether or not a field must be hyphenated during comparison.
+Thanks to all of you reporting and helping solve bugs!</li>
+
+</ul>
+<p>4 april 2013 - Now it is possible to translate the app online. I am using the PHP Android String
+Translation Tool (PASTT) so now it is easy to enhance and update the translations.
+To update a translation or stat a new translagetin <a href="http://andsen.dk/bin/aSQLite/">go to the aSQLiteManger translation page!</a>
+</p>
+<p>13 october 2013 - Version 4.2 of aSQLiteManager released on <a href="http://play.google.com/store/apps/details?id=dk.andsen.asqlitemanagerd">Google Play</a>
+as the donate version.
+If you buy this version you will:
+</p>
+<ul>
+<li>Support the development of aSQLiteManger</li>
+<li>Get more frequent updates</li>
+<li>Be among the first to get the new features implemented in aSQLiteManager</li>
+<li>Support editing of system databases on rooted phones</li>
+<li>New file picker with:
+<ol>
+<li>Show file names, sizes, dates and icons</li>
+<li>Sorting (name, extension, size, date - ascending, descending, ignore case) and 
+filtering of files (e.g. .sqlite;.db) in file picker</li>
+<li>Favorites directories for fast navigation to often visited places</li>
+</ol></li>			
+<li>Export wizards that allows export of user selected fields</li>
+<li>Import wizards that allows the user select a CSV file and which column from
+the CSV file to import into which fields in the current table</li>
+<li>Now the user dictionary are updated with your words</li>
+<li>Bug fixes:
+<ol>
+<li>CSV export - nulls and special table names are now handled correctly</li></ol>
+</ul>
+<p>14 March 2013 - Now more than 80,000 downloads of aSQLiteManager
+</p>
+<p>28 february 2013 - Version 3.5.1 of the donate version released on Google Play.
+The donate versions differs from the open source version by:
+</p>
+<ul>
+<li>Better support for small devices</li>
+<li>Bug fixes</li>
+</ul>
+<p>3 february 2013 - A donate version of aSQLiteManager 3.5 released
+If you buy this version you will:
+</p>
+<ul>
+<li>Support the development of aSQLiteManger</li>
+<li>Get more frequent updates</li>
+<li>Be among the first to get the new features implemented in aSQLiteManager</li>
+</ul>
+<p>3 february 2013 - Version 3.5 released on <a href="http://play.google.com/store/apps/details?id=dk.andsen.asqlitemanager">Google Play</a></p>
+<ul>
+<li>Load and extract data from BLOB fields from / to file</li>
+<li>Simple export of data on CSV format from table viewer</li>
+<li>Simple import of data on CSV formatted file from table viewer</li>
+<li>New and more advanced (I know - it don't say much) filter builder to filter data in the TableViewer</li>
+<li>SQL Editor in Query viewer now shrinks to a configurable number of lines when not in focus</li>
+</ul>
+<p>7. january 2012 - Now more than 70,000 downloads of aSQLiteManager</p>
+<p>5. january 2013 - Published a experimental build of aSQLiteManager
+<a href="https://play.google.com/store/apps/details?id=dk.andsen.aspatialite">aSpatiaLiteManager</a>
+on Google Play. If you work with spatial data try it and let me know what you think. In
+aSpatiaLiteManager the Query Viewer allows you to do all the SpatiaLite supported spatial
+queries.</p>
+<p>28. december 2012 - Have created a Google+
+<a href="https://plus.google.com/105840930655028161184#communities/101957559100993617727">
+fora for aSQLiteManager</a>. Here you can get news about aSQLiteManager, ask
+questions and request new features</p>
+<p>24 november 2012 - Version 3.4 released on Google Play</p>
+<ul>
+<li>Default values also works from the record editor when the field is NOT NULL</li>
+<li>Better handling of views with with instead of insert, update and delete triggers</li>
+<li>Special table names now works with the record editor during updates and insert</li>
+<li>Trigger and index definitions now exported when table dumped and database exported</li>
+<li>Now also wrapping of long texts in queries</li>
+<li>Remember path to last new database, last opened database and last opened SQL file</li>
+</ul>
+<p>25 october 2012 - More than 60,000 downloads from GooglePlay</p>
+<p>19 august 2012 - Version 3.3.1 released on Google Market</p>
+<p>I am sory to say it but I introduced a bug in version 3.3. When I made it
+possible to insert text with quotation marks the app no longer could handle
+field names with spaces and field names like "on". This is solved in this
+release. There have also been time for a few extra features / enhancements,
+and a few other bug fixes.</p>
+<ul>
+<li>In record editor table name are moved above the edit field</li>
+<li>In record editor the back button are now ignored to prevent discard of data by
+accident</li>
+<li>Maximal width of fields in data grid can now be configured to wrap long text
+to several lines. If max width is set to 0 (default) long fields will not
+be wrapped</li>
+</ul>
+<p>Currently aSQLiteManager is translated to English, Danish, German, French, Italian, Catalan, Brazilian,
+and Spanish. More translations welcome!
+</p>
+<h2>Known problems</h2>
+<p>If you experience problems with aSQLiteManager please report it from the phone or by sending me a mail.</p>
+<h2 id="example">aSQLiteManager screen dumps!</h2>
+<p>The following screen dumps shows what is possible on the aSQLiteManger. Click on a image to see it
+in full size. This includes images from a not yet released version.</p>
+<div id="gallery">
+    <ul>
+        <li>
+            <a href="images/aSQLM/welcome.png" title="The welcome screen a short info about current version of aSQLiteManager.">
+                <img src="images/aSQLM/welcome_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/main.png" title="aSQLiteManagers main screen from where you can open or create SQLite databases.">
+                <img src="images/aSQLM/main_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/mainMenu.png" title="Press the menu butten to access the menu. From this you can change options, get (very) little help or reset aSQLiteManager.">
+                <img src="images/aSQLM/mainMenu_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/mainOptions.png" title="From the Options menu you can set how many records to scroll when you use PgUp og PgDwn from the data viewer. You can also configure wether or not to save SQL statements in the current database and how manu recently opened databases to store.">
+                <img src="images/aSQLM/mainOptions_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/about.png" title="The about box where you find info about where you can see where to find more info about aSQLiteManager.">
+                <img src="images/aSQLM/about_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/openDatabase.png" title="The file picker used to open databases or SQL scripts">
+                <img src="images/aSQLM/openDatabase_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/recently.png" title="aSQLiteManager stores the recently used databases for quick access to often used tables.">
+                <img src="images/aSQLM/recently_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/databaseViewer.png" title="From the database viewer see all tables, views and indexes. You can also go to the query view - yes by hitting the Query button.">
+                <img src="images/aSQLM/databaseViewer_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/databaseViewerDBInfo.png" title="You can also get information about the current database.">
+                <img src="images/aSQLM/databaseViewerDBInfo_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/tableViewerFields.png" title="Show the fields of a table or a view">
+                <img src="images/aSQLM/tableViewerFields_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/tableViewerSQL.png" title="Show the SQL used to create tables, views and indexes.">
+                <img src="images/aSQLM/tableViewerSQL_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/tableViewerDataColour.png" title="View table content. You can edit a record by hitting 'Edit' in the leftmost column and add records by hitting 'New' at the title row.">
+                <img src="images/aSQLM/tableViewerDataColour_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/tableViewerDump.png" title="Dump the content of a single table to a file with SQL statement enough to recreate table and content.">
+                <img src="images/aSQLM/tableViewerDump_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/copyToClipboard.png" title="From the data grid copy a cells content to the clip board by pressing on the field..">
+                <img src="images/aSQLM/copyToClipboard_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/tableViewerEdit.png" title="Editing or deleting a record. The edit fields in aSQLiteManger Includes checking for 'not null' and set the Android input mode to match the type of the field so that eg. only numbers can be entered in number fields.">
+                <img src="images/aSQLM/tableViewerEdit_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/viewsList.png" title="List of views.">
+                <img src="images/aSQLM/viewsList_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/indexList.png" title="List of indexes.">
+                <img src="images/aSQLM/indexList_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/databaseViewerMenu.png" title="The menu at the database view. From here you can export and restore databases and open SQL files to execute scripts.">
+                <img src="images/aSQLM/databaseViewerMenu_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/openSQLFile.png" title="File picker to open SQL scripts.">
+                <img src="images/aSQLM/openSQLFile_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/dumpTableScript.png" title="A script generated by Dump table">
+                <img src="images/aSQLM/dumpTableScript_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li> 
+        <li>
+            <a href="images/aSQLM/scriptMenu.png" title="The menu from the script screen. Hit run to execute the full script.">
+                <img src="images/aSQLM/scriptMenu_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/scriptSingleLine.png" title="Press one line to execute that line only.">
+                <img src="images/aSQLM/scriptSingleLine_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/scriptError.png" title="Errors are shown in a pop up box.">
+                <img src="images/aSQLM/scriptError_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/queryView.png" title="The Query view from where you can execute any valid SQL and page through the result.">
+                <img src="images/aSQLM/queryView_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/queryViewMenu.png" title="From the menu at the query view you can get help to build your queries, manage transactions, get resent SQL or export the query result to a text file.">
+                <img src="images/aSQLM/queryViewMenu_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/queryBuilderType.png.png" title="Select the type of query to generate. aSQLiteManager can build: Select, Create view, Create table, Drop table, Drop view, Delete from and Insert into statements.
+">
+                <img src="images/aSQLM/queryBuilderType_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/queryBuilderTables.png" title="Select the table to query on">
+                <img src="images/aSQLM/queryBuilderTables_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/queryBuilderFields.png" title="Select filds for the query.">
+                <img src="images/aSQLM/queryBuilderFields_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/queryWithSpaces.png" title="Now aSQLiteManager support tables names and field names with spaces.">
+                <img src="images/aSQLM/queryWithSpaces_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li>
+            <a href="images/aSQLM/queryBuilderResentSQL.png" title="Select resent SQL to execute.">
+                <img src="images/aSQLM/queryBuilderResentSQL_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li> 
+        <li> 
+            <a href="images/aSQLM/queryBuilderTransactions.png" title="Handle transactions (actually SQLites savepoints).">
+                <img src="images/aSQLM/queryBuilderTransactions_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/nestedTransactions.png" title="Transactions can be nested.">
+                <img src="images/aSQLM/nestedTransactions_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/transactionWarning.png" title="You can not leave Query mode while in transaction.">
+                <img src="images/aSQLM/transactionWarning_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+        <li> 
+            <a href="images/aSQLM/queryBuilderQuery.png" title="Executing the query.">
+                <img src="images/aSQLM/queryBuilderQuery_thumb.png" width="120" height="180" alt="" />
+            </a>
+        </li>
+    </ul>
+</div>
+<p>Read more about <a href="http://www.sqlite.org/lang_savepoint.html">SQLites savepoints here</a>.</p>
+<p>And all about the <a href="http://www.sqlite.org/lang.html">SQL understod by SQLite here</a>.</p>
+<h2>Implemented functionality</h2>
+<p>The following functionality has been implemented in the SQLite
+manager (with indication of from which version the
+functionality was introduced):</p>
+<ul>
+<li>Open databases from within aSQLiteManager and from some
+file managers (at least from OI File Manager, in Adao Teams File
+Manager and
+in Simplest File Manager) (1.0)</li>
+<li>List tables, views and indexes (1.0)</li>
+<li>Display data from tables and views (1.0)</li>
+<li>The content of any cell clicked on are copied to the clip
+board (1.0)</li>
+<li>Execute any SQL including 'Drop' / 'Create'
+statements (1.0)</li>
+<li>Store all executed statements in the opened database (in a
+table called aSQLiteManager) (1.0)</li>
+<li>Select SQL history from query form (1.1)</li>
+<li>Begin transaction, Commit and
+Rollback (1.1)</li>
+<li>Export database to SQL script and restore databases from
+script (1.1)</li>
+<li>Export to ASCII file of query results (1.1)</li>
+<li>Configuration of open database without question and reset
+of configuration (1.1)</li>
+<li>Execute SQL scripts, full script or single lines (1.2)</li>
+<li>Better error handeling during export and restore (1.2)</li>
+<li>Data editing form table browser from Edit button at each row (1.2)</li>
+<li>Data entry add record from button on title at data browser (1.2)</li>
+<li>SQLite does not validata data types during data entry. aSQLiteManager translates
+this string into the following types and se this to set input mode (SQLite types
+i parenthesis). The translation is NOT case sensitive:
+<ul>
+<li>STRING(string, text)</li>
+<li>INTEGER(integer)</li>
+<li>FLOAT (real, float, double)</li>
+<li>DATE (date)</li>
+<li>TIME (time)</li>
+<li>DATETIME (datetime)</li>
+<li>BOOLEAN (boolean, bool)</li>
+<li>PHONENO (phoneno)</li>
+<li>BLOB - for the time beeing the aSQLiteManager editor does not handle BLOB fields</li>
+</ul></li>
+<li>Dump table from table view to file named Database.Table.sql- can be loaded by execute file as script (2.0)</li>
+<li>Remember recently opened databases for quick access to often used databases (2.0)</li>
+<li>BLOB fields no longer causes exceptions. But BLOB fields can not be added / altered (2.0)</li>
+<li>SQL now saved in Query view (2.1)</li>
+<li>Now works from aShell (2.2)</li>
+<li>Database info (2.3)</li>
+<li>Support table names and field names with spaces (2.4)</li>
+<li>Fields in the table viewer are now colored based on the type of the field. As SQLite doesn't has
+field type validation the field type can differ from field type given with the create table statement
+(2.4).</li>
+<li>Tables containing BLOB fields can be exported but NOT importet (2.4)</li>
+<li>Now you get a SQL error if you enter invalid data during edithng of records (2.4)</li>
+<li>Backup and restore of tables with BLOB fields (2.5)</li>
+<li>Easy delete of records from the table viewer - press Edit(2.5)</li>
+<li>Backup and restore of tables with BLOB fields (2.5)</li>
+<li>List of implemented functionality on the Help screen (2.5)</li>
+<li>First / last page in table viewer (menu First / Last) (2.6)</li>
+<li>Simple filter option in table viewer (menu Filter) planning to extend this with a filter builder (2.6)</li>
+<li>Editing FK using selections list of FK values (2.7)</li>
+<li>Logging can be turned on / of to collect log data to help me locating bugs (2.7)</li>
+<li>Orientation of main screen can be configured (2.7)</li>
+<li>Tool to create new databases with PK, ASC / DESC, AUTOINCREMENT, not null, unique, default values, foreign keys and check for field type (3.0)</li>
+<li>Easy deletion of tables, views and indexes from lists in database viewer by "long clicking" the table / view / index (3.0)</li>
+<li>Foreign key constraint checking can be turned on (Android default is off) (3.0)</li>
+<li>Now works in landscape mode (3.0)</li>
+<li>Go directly to favourite view in table viewer (Fields or Data) (3.1)</li>
+<li>Configurable font size in data lists (3.1)</li>
+<li>Easy editing of databases located in a "Dropbox" folder (3.1) <del>Doesn't work with DropBox versions > 2.1.7 ;-(</del> Works again with DropBox version 2.2.1 ;-)</li>
+<li>Select where to create a new database using a directory picker – thanks to Malte Heizelmann (3.2)</li>
+<li>You get tips about what is possible in the different parts of the program (3.2)</li>
+<li>Foreign key selection lists now show a string representation of the records not just the FK fields. The field that the foreign key refers to MUST be the primary key in the referenced table (3.2)</li>
+<li>Select where to create a new database using a directory picker – thanks to Malte Heizelmann (3.2)</li>
+<li>You get tips about what is possible in the different parts of the program (3.2)</li>
+<li>Foreign key selection lists now show a string representation of the records not just the FK fields. <li>The field that the foreign key refers to MUST be the primary key in the referenced table (3.2)</li>
+<li>A new CREATE TABLE wizard where entered fields can be edited / deleted (3.3)</li>
+<li>Data entry / editor tool allow insert, update and delete on views with instead of insert, update and delete triggers (3.3)</li>
+<li>Sort data in table viewer by clicking on title of column (3.3)</li>
+<li>Font size in directory and table lists follow the font size of data grids (3.3)</li>
+<li>Check if database exists before trying to open recently opened databases and removes deleted databases from the list (3.3)</li>
+<li>Default values also works from the record editor when the field is NOT NULL (3.4)</li>
+<li>Special table names now works with the record editor during updates and insert (3.4)</li>
+<li>Trigger and index definitions now exported when table dumped and database exported (3.4)</li>
+<li>Wrapping of long texts in queries (3.4)</li>
+<li>Remember path to last new database, last opened database and last opened SQL file (3.4)</li>
+<li>Load and extract data from BLOB fields from / to file (3.5)</li>
+<li>Simple export of data on CSV format from table viewer (3.5)</li>
+<li>Simple import of data on CSV formatted file from table viewer (3.5)</li>
+<li>New and more advanced (I know - it don't say much) filter builder to filter data in the TableViewer (3.5)</li>
+<li>SQL Editor in Query viewer now shrinks to a configurable number of lines when not in focus (3.5)</li>
+<li>File picker sorting, filtering and favorites (3.6 / 4.0 donate)</li>
+<li>Extract / load BLOB data to / from mand file (3.6 / 4.0 donate)</li>
+<li>Export wizards that allows export of user selected fields (3.6 / 4.0 donate)</li>
+<li>Import wizards that allows the user select a CSV file and which column from
+the CSV file to import into which fields in the current table (3.6 / 4.0 donate)</li>
+<li>Import and export of tables with triggers (donate 4.1)</li>
+<li>Better handling of triggers during update with record editor (donate 4.1)</li>
+<li>Now system databases can be opened from recent files (donate 4.2)</li>
+<li>User defined colours in data grid(donate 4.2)</li>
+<li>Reset data grid colours to default(donate 4.2)</li>
+<li>Root file picker works with symbolic links to catalogues(donate 4.2)</li>
+
+</ul>
+<p>Functionality only available in the donate version (with indication of from which version the
+functionality was introduced):</p>
+<ul>
+<li>Support editing of system databases on rooted phones (4.0 donate)</li>
+</ul>
+<h2>Unsorted idea's for the future versions:</h2>
+<ol>
+<li>Better validation on data entry</li>
+<li>Implementation of some of SQLites . commands:
+<ul>
+<li>.import FILE TABLE - import data from file to table</li>
+</ul></li>
+<li>A script editor - with external editor?</li>
+<li>Progress indicator during queries</li>
+<li>Searching</li>
+<li>Select where to save / load exports and dumps</li>
+<li>Create view wizards</li>
+<li>Real DropBox integration</li>
+<li>Google Drive integration</li>
+
+</ol>
+<p>
+Any wishes for coming versions of aSQLiteManager?&nbsp;<a href="mailto:android41cv@gmail.com">Drop me a mail!</a>
+</p>
+<h2>Who is using aSQLiteManager (active installs 24. November 2012)</h2>
+<table border="0">
+<tr><td>United States</td><td>29.01%</td> <td>5,229</td></tr>
+<tr><td>Germany</td><td>6.73%</td> <td>1,210</td></tr>
+<tr><td>Spain</td><td>3.89%</td> <td>699</td></tr>
+<tr><td>United Kingdom</td><td>3.68%</td> <td>661</td></tr>
+<tr><td>Brazil</td><td>3.56%</td> <td>640</td></tr>
+<tr><td>France</td><td>3.30%</td> <td>593</td></tr>
+<tr><td>Italy</td><td>3.09%</td> <td>555</td></tr>
+<tr><td>Thailand</td><td>2.74%</td> <td>493</td></tr>
+<tr><td>Russia</td><td>2.63%</td> <td>472</td></tr>
+<tr><td>Others</td><td>41.31%</td> <td>7,426</td></tr>
+</table>
+<p>When the aSQLiteManager binaries was on SourceForge India was the most downloading country.
+Now India is outside top 10 - I wonder why.</p>
+<h2>Old news</h2>
+<ol>
+<li>
+<p>15 august 2012 - Reached 50,021 user installs from Google Play</p>
+</li>
+<li>
+<p>8 ugust 2012 - Version 3.3 released on Google Market</p>
+<ul>
+<li>A new CREATE TABLE wizard where entered fields can be edited / deleted</li>
+<li>Data entry / editor tool allow insert, update and delete on views with instead of insert, update and delete triggers </li>
+<li>Sort data in table viewer by clicking on title of column</li>
+<li>Font size in directory and table lists follow the font size of data grids</li>
+<li>Now check if database exists before trying to open recently opened databases and removes deleted databases from the list</li>
+<li>Bug fixes:
+<ul>
+<li>Welcome and Tip screens now works with with with change in orientation</li>
+<li>Table definitions shows triggers regardless of case</li>
+<li>Data entry / editor tool now handle strings with quotation marks</li>
+<li>Paging and filter are no longer reset during rotation of device</li>
+</ul>
+</li>
+</ul>
+</li>
+
+<li>
+<p>17 july 2012 - Now more than 45,000 total user installs from Google Market</p>
+</li>
+<li>
+<p>11 june 2012 - Now more than 40,000 total user installs from Google Market</p>
+</li>
+<li>
+30 may 2012 - Version 3.2 released on Google Market
+<ul>
+<li>Select where to create a new database using a directory picker – thanks to Malte Heizelmann</li>
+<li>You get tips about what is possible in the different parts of the program</li>
+<li>Foreign key selection lists now show a string representation of the records not just the FK fields. The field that the foreign key refers to MUST be the primary key in the referenced table</li>
+<li>More checking in create table wizard</li>
+<li>Hopefully back on the French version of Google Play (I had placed an unfinished French translation in a wrong place)</li>
+<li>French translation – thanks to Jean-Luc Rostini + Nicolas Gourdon</li>
+<li>Italian translation – thanks to <a href="https://play.google.com/store/apps/developer?id=Giuseppe+Tumino">Giuseppe Tumino</a></li>
+<li>Catalan translation – thanks to Paco Rivière</li>
+<li>Brazilian translation – thanks to Leandro Lopes</li>
+<li>Spanish translation – thanks to Gonzalo Rodriguez</li>
+<li>Several bug fixes – thanks for reporting!</li>
+</ul>
+</li>
+<li>15 April 2012 - Version 3.1 released
+<ul>
+<li>Get table definitions mowed to option menu and replaced with “New” record button for easier data entry</li>
+<li>Go directly to favourite view in table viewer (Fields or Data)</li>
+<li>Configurable font size in data lists</li>
+<li>Easy editing of databases located in a "Dropbox" folder</li>
+<li>Better database handling</li>
+<li>Bug fixes</li>
+</ul>
+</li>
+<li>25 January 2012 - Version 3.0 released
+<ul>
+<li>A tool to create new databases with PK, ASC / DESC, AUTOINCREMENT, not null, unique, default values, foreign keys and check for field type.</li>
+<li>Easy deletion of tables, views and indexes from lists in database viewer by "long clicking" the table / view / index</li>
+<li>Foreign key constraint checking can be turned on (Android default is off)</li>
+<li>Better database handling hopefully giving fewer errors / force closes</li>
+<li>Now works in landscape mode</li>
+<li>Better testing of databases on opening</li>
+<li>Bug fixes</li>
+</ul>
+</li>
+<li>7 December 2011 - Version 2.7 released
+<ul>
+<li>Bug fixes (including create table problems on Android 3 devices) and a few new features:</li>
+<li>Main screen orientation can be configured</li>
+<li>Editing foreign key fields using selection list based on foreign key values (experimental and must
+be turned on in configuration)</li>
+<li>Logging can be turned on to collect informations about bugs (use aLogViewer and filter for aSQLMan)</li>
+</ul>
+</li>
+<li>18 October 2011 - Version 2.6 released
+<ul>
+<li>Quite a few includes bug fixes and a few new features:</li>
+<li>Main screen now always in portrait</li>
+<li>First / last page in table viewer (menu First / Last)</li>
+<li>Simple filter option tin table viewer (menu Filter) planning to extend this with a filter builder</li>
+</ul>
+</li>
+<li>12 September 2011 - Version 2.5 released.
+<ul>
+<li>Export and restore tables with BLOB fields</li>
+<li>Now records can be deleted (or edited ;-) ) by pressing Edit in the table viewer</li>
+<li>Most of the functions are listed at the Help screen</li>
+<li>Bug fixes</li>
+</ul>
+</li>
+<li>25 August 2011 - Version 2.4 released
+<ul>
+<li>Now support table and field names with spaces</li>
+<li>Colours in table viewers data grid showing the type of the fields (SQLite's dynamic type system)</li>
+<li>Tables with BLOB fields can be exported (but not imported).</li>
+<li>Catch errors on updates and inserts and tell what went wrong</li>
+<li>Quite a few bug fixes</li>
+<li>I can see in the crash reports I get that some of you have problems with
+showing tables with BLOB fields. I can't reproduce that error so please send me more information about
+the problem!</li>
+</ul>
+</li>
+<li>3 August 2011 - Version 2.3 released
+Progress bar during export of databases, New Database info menu in Database viewer. Bug fixes.
+<li>13 July 2011 - Version 2.2 release
+Minor change to be able to work with aShell.</li>
+<li>8 July 2011 - Version 2.1 release
+Quite a few bug fixes and SQL in query builder now saved on exit and reloaded on start.</li>
+<li>12 June 2011 - Version 2.0 Better error handling, remenber recently opened databases and dump of single table to SQL file</li>
+<li>9 June 2011 - aSQLiteManager now available from <a href="http://play.google.com/store/apps/details?id=dk.andsen.asqlitemanager">Google Market</a></li>
+<li>27 May 2011 - The homepage has been updated with a lot of screen dump showing how to use the aSQLiteManger.</li>
+<li>22 May 2011 - Version 1.2.2 released. This version solves the problems with displaying data from
+views. This version also includes a welcome screen with news about current version.</li>
+<li>8 May 2011 - Version 1.2 has been released. This includes scripts and editing of records 
+in table mode (including a preliminary validation).</li>
+<li>19 April 2011 - a β of version 1.2 has been released. This includes scripts and editing
+in table mode. The β is available from the file section at SourceForge</li>
+</ol>
+</div>
+<br>
+</div>
+<div class="AAAAppPrimaryAction">
+<h3>aSQLiteManager is hosted by <img src="http://sflogo.sourceforge.net/sflogo.php?group_id=362274&amp;type=3" alt="SourceForge.net">
+<img style="width: 66px; height: 66px;" alt="QR Code" title="Go to Android Market" src="images/aSQLiteManagerMarket.png"><img src="images/icon.png" alt="Android"></h3>
+</div>
+</div>
+</div>
+<div id="AAASuiteFooter">
+<p>This Andsen page was last updated in october 2013</p>
+</div>
+</div>
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-5934339-3']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+<!-- Place this tag after the last badge tag. -->
+<script type="text/javascript">
+  window.___gcfg = {lang: 'en-GB'};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+
+</body></html>
