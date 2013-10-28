@@ -46,13 +46,11 @@
          and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image" />
 
-
 <!-- iPhone 5 -->
 <link href=""
       media="(device-width: 320px) and (device-height: 568px)
          and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image" />
-
 
 <!-- iPad -->
 <link href="
@@ -78,7 +76,7 @@
          and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image" />
 
-
+	  
 <!-- Bootstrap  -->
 <link href="http://dw-resources.qiniudn.com/bootstrap/global.min.css" rel="stylesheet" type="text/css" media="screen" />
 <link href="http://dw-resources.qiniudn.com/bootstrap/responsive.min.css" rel="stylesheet" type="text/css" media="screen" />
@@ -96,14 +94,14 @@
 
 <style>
 
-/* = 为节约开发时间，使用了 Bootstrap 框架构建。
-/* = 本页面所用 CSS 代码未压缩或加密，方便大家学习和研究。
+/* = 为节约开发时间，使用了 Bootstrap 框架构建。 */
+/* = 本页面所用 CSS 代码未压缩或加密，方便大家学习和研究。 */
 
-/* = Designed and Developed by Long Luo
------------------------------------------------ */
+/* = Designed and Developed by Long Luo  */
+/* ----------------------------------------------- */
 
-/* = 通用 Global
------------------------------------------------ */
+/* = 通用 Global                           */
+/*----------------------------------------------- */
 body {
 	background: #e5e5e5 url("http://bcs.duapp.com/databank/images%2Fpatterns%2Fmooning.jpg");
 	overflow-x: hidden;
@@ -485,7 +483,7 @@ web {
 	max-width: 350px;
 	-webkit-box-reflect: below -65px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));s
 }
-#about p:not(small) {
+#website p:not(small) {
 	-webkit-box-reflect: below -13px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));
 }
 a.thumbnail {
@@ -1199,11 +1197,14 @@ only screen and (                min-resolution: 2dppx) {
         <ul class="nav">
             <li class="active"><a href="#banner">简述</a></li>
             <li><a href="#travel">旅行</a></li>
+			<li><a href="#writing">写作</a></li>
+			<li><a href="#music">音乐</a></li>
             <li><a href="#photography">摄影</a></li>
             <li><a href="#creativity">创造</a></li>
             <li><a href="#apple">苹果</a></li>
             <li><a href="#contact">联系</a></li>
-            <li><a href="#about">关于</a></li>
+			<li><a href="#about">关于我</a></li>
+            <li><a href="#website">网站</a></li>
         </ul>
 	</div>
     
@@ -1230,9 +1231,11 @@ only screen and (                min-resolution: 2dppx) {
 
 <header id="banner" class="hero-unit no-radius">
 	<div class="container text-center">
+		<!--
         <h1>
         <img src="" alt="Long Luo">Long Luo
     	</h1>
+    	-->
         <!-- <p>网站正在建设中</p> -->
     </div>
     <span class="banner-link hidden-phone"><a href="http://www.imlongluo.com" target="_blank"> View </a></span>
@@ -1247,10 +1250,10 @@ only screen and (                min-resolution: 2dppx) {
         <div class="span10 offset1 panel-description button-text-panel text-center">
         	<div class="padding-middle">
                <img class="profile img-circle loading" src="./images/picture.jpg">
-               <h4>I'M Long Luo，A Programmer.</h4>
+               <h3>I'M Long Luo. A programmer.</h3>
                <h5> More ...</h5>
                <hr class="soften">
-               <p><span class="hidden-phone">这是我的个人网站，</span>欢迎访问<a href="./blog/index.php" target="_blank">我的博客</a>和App作品：<a href="./android/android.html" target="_blank">Android App</a> & <a href="./iOS/ios.html" target="_blank">iOS App</a></p>
+               <p><span class="hidden-phone">这是我的个人网站，</span>欢迎访问<a href="./blog/index.php" target="_blank">我的博客</a>和App作品：<a href="./android/android.html" target="_blank">Android App</a>&<a href="./iOS/ios.html" target="_blank">iOS App</a></p>
                <!--  <p><span class="label label-warning">注意</span> 网站正在更新中，缓存功能已关闭，且页面会出现某些异常，建议稍后再访问</p>  -->
             </div>
         </div>
@@ -1311,7 +1314,42 @@ only screen and (                min-resolution: 2dppx) {
 			</div>
         </div>
     </section>
+
+    <!--  写作 Writing  -->
     
+    <section id="writing" class="row">
+   		<div class="span12 panel">
+        	<div class="row">
+                <div class="span8">
+
+                <div class="span4">
+                	<div class="padding-large">
+                        <h1>写作</h1>
+                        <p class="wo">我喜欢写作</p>
+                        <a href="http://www.imlongluo.com/blog" target="_blank" class="btn btn-info btn-large button">我的一些随笔</a>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </section>
+
+
+    <!--  音乐 Music  -->
+    
+    <section id="music" class="row">
+   		<div class="span12 panel">
+        	<div class="row">
+                <div class="span4">
+                	<div class="padding-large">
+                        <h1>音乐</h1>
+                        <p class="wo">我喜欢音乐</p>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </section>
+
+
     <!--  摄影 Photography  -->
     
     <section id="photography" class="row">
@@ -1416,7 +1454,8 @@ only screen and (                min-resolution: 2dppx) {
         </div>
     </section>
     
-    <!--  苹果 Apple  -->  
+    <!--  苹果 Apple  --> 
+	
     <section id="apple" class="row">
    		<div class="span12 panel relative">
         	<img class="ribbon-apple" src="http://bcs.duapp.com/databank/images/ribbon-apple.png">
@@ -1437,6 +1476,28 @@ only screen and (                min-resolution: 2dppx) {
     </section>
 
     
+    <!--  关于我 About  --> 
+	
+    <section id="about" class="row">
+   		<div class="span12 panel relative">
+        	<img class="ribbon-apple" src="http://bcs.duapp.com/databank/images/ribbon-apple.png">
+        	<div class="row">
+                <div class="span6">
+                	<img class="ipad-news" src="http://bcs.duapp.com/databank/images/mockedup-news.png">
+                </div>
+                
+                <div class="span6">
+                    <div class="padding-huge">
+                        <h1>关于我</h1>
+                        <a href="http://www.imlongluo.com/aboutme/index.html" target="_blank" class="btn btn-info btn-large button">点击了解我更多</a>
+                        <br>
+                    </div>
+                </div>
+			</div>
+		</div>
+    </section>
+	
+
     <!--  联系 Contact  -->
     
     <section id="contact" class="row">
@@ -1477,9 +1538,9 @@ only screen and (                min-resolution: 2dppx) {
         </div>
     </section>
     
-     <!--  关于 About  -->
+     <!--  网站 website  -->
 
-    <section id="about" class="row">
+    <section id="website" class="row">
     	<div class="span12 panel text-center relative">
        	 	<img class="ribbon-version" src="http://bcs.duapp.com/databank/images/ribbon-2013.png" alt="2013 版">
 			<div class="padding-large">
@@ -1499,37 +1560,6 @@ only screen and (                min-resolution: 2dppx) {
                 -->
 			</div>
             
-            <!--
-            <div class="row">    
-                <div class="span6 offset3">
-                    <ul class="thumbnails">
-                        <li class="span2">
-                            <a class="thumbnail" href="http://www.dandyweng.com/versions/2012" target="_blank">
-                                <img src="http://dandyweng.qiniudn.com/images/2012.png" data-src="http://dandyweng.qiniudn.com/images/2012.png" alt="">
-                                <h3>2012</h3>
-                                <p><small>采用模块化、响应式设计，应用了一些 CSS 动画</small></p>
-                            </a>
-                        </li>                             
-                        
-                        <li class="span2">
-                            <a class="thumbnail" href="http://www.dandyweng.com/versions/2011" target="_blank">
-                                <img src="http://dandyweng.qiniudn.com/images/2011.png" data-src="http://dandyweng.qiniudn.com/images/2011.png" alt="">
-                                <h3>2011</h3>
-                                <p><small>首个 HTML5 网页，开始应用少量 CSS3 特性</small></p>
-                            </a>
-                        </li>   
-                        
-                        <li class="span2">
-                            <a class="thumbnail" href="http://www.dandyweng.com/versions/2010" target="_blank">
-                                <img src="http://dandyweng.qiniudn.com/images/2010.png" data-src="http://dandyweng.qiniudn.com/images/2010.png" alt="">
-                                <h3>2010</h3>
-                                <p><small>我的第一个网站，不解释</small><br><br></p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                -->
-                
                 <div class="span12">
                 	<div class="padding-large" style="padding-top: 0;">
                         <hr class="soften">
