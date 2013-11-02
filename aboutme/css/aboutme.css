@@ -333,7 +333,7 @@ a:focus {
     transition-delay:         0.5s;
 }
 
-#japan .footnote {
+#work .footnote {
     font-size: 15px;
 }
 
@@ -371,7 +371,7 @@ a:focus {
     width: 900px;
     padding-bottom: 120px;
 
-    background-image: url(http://www.gravatar.com/avatar/318643095c83b914cf80a7f99f247fe6?s=160);
+    background-image: url();
     background-position: bottom right;
     background-repeat: no-repeat;
 }
