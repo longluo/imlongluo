@@ -724,6 +724,6 @@ return array(
 	),
 	'plugin.license_key' => '',
 	'plugin.type' => '',
-	'wordpress.home' => 'http://www.imlongluo.com',
+	'wordpress.home' => 'http://www.imlongluo.com/blog',
 	'pgcache.bad_behavior_path' => '',
 );

@@ -1,16 +1,16 @@
-=== WP-Optimize ===
+﻿=== WP-Optimize ===
 
 Contributors: ruhanirabin
 
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=2732133
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KYFUKEK7NXAZ8
 
-Tags: comments, spam, optimize, database, revisions, users, posts
+Tags: comments, spam, optimize, database, revisions, users, posts, trash, schedule, automatic, clean, phpmyadmin
 
-Requires at least: 2.9
+Requires at least: 3.5
 
-Tested up to: 3.5
+Tested up to: 3.7.1
 
-Stable tag: 0.9.4
+Stable tag: 1.1.2
 
 
 
@@ -22,18 +22,25 @@ This simple but effective plugin allows you to clean up your WordPress database 
 
 
 
-WP-Optimize is a WordPress 2.9++ database cleanup and optimization tool. It doesn't require PhpMyAdmin to optimize your database tables. 
+WP-Optimize is a WordPress 3.xx database cleanup and optimization tool. It doesn't require PhpMyAdmin to optimize your database tables. 
 
-It allows you to remove post revisions, comments in the spam queue, un-approved comments within few clicks. 
+It allows you to remove post revisions, comments in the spam queue, un-approved comments, items in trash within few clicks. 
+
+**Weekly scheduler introduced (EXPERIMENTAL)**
 
 Now Multi-Lingual. 
+
+
+**Are you interested to be a contributed developer of this plugin, use the contact form link below to contact me.**
+
+You will be credited inside the plugin screen and the plugin listing at WordPress.
 
 
 **Requirements:**
 
 
 
-*   WordPress 2.9++
+*   WordPress 3++
 
 *   PHP 5.1.xx
 
@@ -45,7 +52,17 @@ Now Multi-Lingual.
 
 **Translators are welcome to send their Translated Files to be included.**
 
-Contact me at http://wwww.ruhanirabin.com/contact/
+See options inside plugin or contact me via http://www.ruhanirabin.com/contact/
+
+
+
+**WP-Optimize Translators:**
+
+
+
+*   Русский язык - Виталий МакЛауд (Эликсир жизни) - http://www.visbiz.org/
+
+*   正體中文語系檔案由香腸炒魷魚(香腸)翻譯。 - http://sofree.cc
 
 
 
@@ -53,20 +70,27 @@ Contact me at http://wwww.ruhanirabin.com/contact/
 
 
 
-*   Remove the WordPress post revisions
+*   [NEW] Retain/Keep last X number of weeks data - this option keeps the last selected number of weeks data when cleaning up.
 
-*   Remove the WordPress auto draft posts [NEW]
+*   [NEW] Remove all trackbacks and pingbacks (can significantly reduce db size)
 
-*   Remove all the comments in the spam queue
+*   [NEW] Clear Trash Comments and Posts (This will also follow the "Keep X number of weeks data" option if it was selected)
 
-*   Remove all the un-approved comments
+*   [NEW] Enable/Disable weekly schedules of optimization  (This will also follow the "Keep X number of weeks data" option if it was selected) Note: This is an EXPERIMENTAL feature. It may or may not work on all servers.
 
-*   Apply mysql optimize commands on your database tables without phpMyAdmin.
+*   [NEW] Remove the WordPress post revisions (This will also follow the "Keep X number of weeks data" option if it was selected)
 
-*   Display Database table statistics. Shows how much space can be optimzied and how much space has been cleared.
+*   [NEW] Remove the WordPress auto draft posts (This will also follow the "Keep X number of weeks data" option if it was selected)
+
+*   [NEW] Remove all the comments in the spam queue (This will also follow the "Keep X number of weeks data" option if it was selected)
+
+*   [NEW] Remove all the un-approved comments (This will also follow the "Keep X number of weeks data" option if it was selected)
+
+*   Apply MySql optimize commands on your database tables without phpMyAdmin.
+
+*   Display Database table statistics. Shows how much space can be optimized and how much space has been cleared.
 
 *   Visible only to the administrators.
-
 
 
 
@@ -75,11 +99,13 @@ Contact me at http://wwww.ruhanirabin.com/contact/
 
 
 
-*   Everytime you save a new post or pages, WordPress creates a revision of that post or page. If you edit a post 6 times you might have 5 copy of that post as revisions. Imagine if your post or pages are long and big. It is a huge number of bytes thats on your MySQL overhead. Now WP-Optimize allows you to optimize and shrink your posts table by removing not necessary post revisions from the database. As example, if you have a post which is approximately 100KB data and you have 5 revisions of that post, the total space wasted is about 500KB. And if you have 100 posts similar to it, you have 50MB database space wasted.
+*   Every-time you save a new post or pages, WordPress creates a revision of that post or page. If you edit a post 6 times you might have 5 copy of that post as revisions. Imagine if your post or pages are long and big. It is a huge number of bytes that's on your MySQL overhead. Now WP-Optimize allows you to optimize and shrink your posts table by removing not necessary post revisions from the database. As example, if you have a post which is approximately 100KB data and you have 5 revisions of that post, the total space wasted is about 500KB. And if you have 100 posts similar to it, you have 50MB database space wasted.
 
-*   Similar to the scenario described above, there might be thousands of spams and un-approved comments in your comments table, WP-Optimize can clean and remove those in a single click
+*   Similar to the scenario described above, there might be thousands of spam and un-approved comments in your comments table, WP-Optimize can clean and remove those in a single click
 
 *   WP-Optimize reports which database tables have overhead and wasted spaces also it allows you to shrink and get rid of those wasted spaces
+
+*   Automatically cleans database every week and respects the "Keep X number of weeks data" option. 
 
 
 
@@ -102,11 +128,19 @@ Contact me at http://wwww.ruhanirabin.com/contact/
 
 
 
+= Optimization does not have any effect on database / it is not optimizing the database =
+
+
+
+Some of the shared web hosting company does not allow scripts to run OPTIMIZE command via SQL statements. If you are hosted with these web hosts, the optimize action will not be able to optimize your database. Please consult your web hosting company regarding this matter.
+
+
+
 = I am having error - Warning: mysql_num_rows(): supplied argument is not a valid MySQL result resource ...  =
 
 
 
-*   Upgrade/Update your WordPress to at least 3
+*   Upgrade/Update your WordPress to at least 3.5
 
 *   Upgrade/Update your WP-Optimize plugin
 
@@ -122,7 +156,7 @@ Contact me at http://wwww.ruhanirabin.com/contact/
 
 
 
-This is a very primary version of the plugin. So I would recommend you to test it out on your local system.
+This is a very primary version of the plugin. So I would recommend you to test it out on your local system or make a backup of your database (just to be extra careful).
 
 
 
@@ -140,6 +174,52 @@ This is a very primary version of the plugin. So I would recommend you to test i
 
 
 == Changelog ==
+
+= 1.1.2 =
+
+* removed persistent admin bar menu item
+
+* Language ru_RU and zh_TW updated.
+
+
+
+= 1.1.1 =
+
+* Fix Fatal Error.
+
+
+= 1.1.0 =
+
+* Added WP-Optimize to admin menu bar on top. Always accessible.
+
+* Added wp-optimize.pot file for translators (inside ./languages/ folder).
+
+* Last auto optimization timestamp / display
+
+* Fix possible scheduler bug as requested at support forum
+
+* Fix some other codes regarding SQL query parameters
+
+* Ability to keep last X weeks of data, any junk data before that period will be deleted - this option affects both Auto and Manual process. Appreciate time and help from Mikel King (http://mikelking.com/) about this matter.
+
+
+= 1.0.1 =
+
+* Removed auto cleanup of trackbacks or pingbacks.. it's better for people to do it manually.
+
+
+= 0.9.8-beta =
+
+* added beta tag
+
+
+= 0.9.8 =
+
+* Remove all trackbacks and pingbacks (can significantly reduce db size)
+
+* Remove all Trash Comments and Posts
+
+* Enable/Disable weekly schedules of optimization. This is an EXPERIMENTAL feature. It may or may not work on all servers.
 
 
 = 0.9.4 =

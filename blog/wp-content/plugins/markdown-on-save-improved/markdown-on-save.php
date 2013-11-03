@@ -2,7 +2,7 @@
 /*
 Plugin Name: Markdown on Save Improved
 Description: Allows you to compose content in Markdown on a per-item basis from WP admin or mobile/3rd-party apps. The markdown version is stored separately, so you can deactivate this plugin and your posts won't spew out Markdown. Based on <a href="http://wordpress.org/extend/plugins/markdown-osi/">Mark Jaquith's plugin</a>.
-Version: 2.4.2
+Version: 2.4.3
 Author: Matt Wiebe
 Author URI: http://somadesign.ca/
 License: GPL v2
@@ -219,7 +219,7 @@ class SD_Markdown {
 		if ( defined( 'SD_HIDE_MARKDOWN_BOX') && SD_HIDE_MARKDOWN_BOX )
 			return;
 
-		if ( 'side' == $context && in_array( $type, array_keys( get_post_types() ) ) )
+		if ( 'side' == $context && in_array( $type, array_keys( get_post_types() ) ) && post_type_supports( $type, 'markdown-osi' ) )
 			add_meta_box( 'sd-markdown', __( 'Markdown', 'markdown-osi' ), array( $this, 'meta_box' ), $type, 'side', 'high' );
 	}
 
