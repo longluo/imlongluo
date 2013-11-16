@@ -2,14 +2,14 @@
 /*
 Plugin Name: Markdown on Save Improved
 Description: Allows you to compose content in Markdown on a per-item basis from WP admin or mobile/3rd-party apps. The markdown version is stored separately, so you can deactivate this plugin and your posts won't spew out Markdown. Based on <a href="http://wordpress.org/extend/plugins/markdown-osi/">Mark Jaquith's plugin</a>.
-Version: 2.4.3
+Version: 2.4.4
 Author: Matt Wiebe
 Author URI: http://somadesign.ca/
 License: GPL v2
 */
 
 /*
- * Copyright 2011-12 Matt Wiebe. GPL v2, of course.
+ * Copyright 2011-13 Matt Wiebe. GPL v2, of course.
  *
  * This software is forked from the original Markdown on Save plugin (c) Mark Jaquith
  * It uses the Markdown Extra and Markdownify libraries. Copyrights and licenses indicated in said libararies.
@@ -146,8 +146,13 @@ class SD_Markdown {
 		$disable_comment_inserted = ( false !== stripos( $data['post_content'], '<!--no-markdown-->' ) );
 		$do_html_to_markdown = ( $nonced && isset($_POST[self::CONVERT]) );
 		$id = ( isset( $postarr['ID'] ) ) ? $postarr['ID'] : 0;
-
-		$supports = post_type_supports( $postarr['post_type'], 'markdown-osi' );
+		$post_type_to_check = isset( $postarr['post_type'] ) ? $postarr['post_type'] : '';
+		// we need to check the parent of a revision to determine support
+		if ( 'revision' === $post_type_to_check ) {
+			$parent = get_post( $data['post_parent'] );
+			$post_type_to_check = $parent->post_type;
+		}
+		$supports = post_type_supports( $post_type_to_check, 'markdown-osi' );
 
 		// double check in case this is a new xml-rpc post. Disable couldn't be checked.
 		if ( $this->new_api_post )

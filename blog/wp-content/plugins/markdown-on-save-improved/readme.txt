@@ -3,7 +3,7 @@ Contributors: mattwiebe
 Tags: markdown, formatting, mobile
 Requires at least: 3.4
 Tested up to: 3.7.1
-Stable tag: 2.4.3
+Stable tag: 2.4.4
 
 Markdown + WordPress = writing bliss.
 
@@ -64,6 +64,10 @@ Note that you can still disable Markdown formatting with a `<!--no-markdown-->` 
 Just deactivate it. The Markdown version is stored separately, so without the plugin, you'll just revert to editing the HTML version.
 
 == Changelog ==
+
+= 2.4.4 =
+
+* Fix previewing published/scheduled posts
 
 = 2.4.3 =
 
