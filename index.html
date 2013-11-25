@@ -8,10 +8,23 @@
 
 ================================================
 	Copyright (C) Long Luo. All Rights Reserved.
-	Version: 5.12.
+	Version: 5.2.
 -->
 
 <!DOCTYPE html>
+
+<script type="text/javascript">
+	var date = new Date();
+	date.setDate(date.getDate() + 365);　
+	var ratio  = 'ratio=' + window.devicePixelRatio + '; expires=' + date.toGMTString();
+	var screenwidth = 'screenwidth=' + window.screen.width + '; expires=' + date.toGMTString();
+	document.cookie = ratio;
+	document.cookie = screenwidth;
+	if(window.devicePixelRatio > 1){
+		document.location.reload(true);
+	}
+</script>
+
 <!--[if lt IE 9]>
 <html id="ie8" lang="zh-CN">
 <![endif]-->
@@ -612,6 +625,7 @@ a.thumbnail small {
 .programming {
 	padding: 0 20px 10px 0;
 }
+
 /* = 地图效果 Map Effects
 ----------------------------------------------- */
 #map {
@@ -1273,11 +1287,14 @@ only screen and (                min-resolution: 2dppx) {
             	<div class="span6">
                 	<div class="block-left">
                         <h1>旅行</h1>
-                        <p class="wo">我是一个爱旅行的人，去看看这世界的繁华...</p>
-                        <br>
-                        <p class="wo">我觉得，中国很大，可世界更大。</p>
-                        <br>
-                        <a href="#aboutMaps" data-toggle="modal">关于地图数据</a> <span class="muted" style="margin: 10px; cursor: default;"> | </span> <a href="./travel/index.html" target="_blank">我的旅行足迹 »</a>
+                        <p class="wo">What is a journey? A journey is not a trip. It's not a vacation. It's a process. A Discovery. It's a process of self-discovery. </p>
+                        <br />
+                        <p class="wo">A journey brings us face to face with ourselves. A journey shows us not only the world, but how we fit in it. Does the person create the journey or does the journey create the person? The journey is life itself. Where will life take you? </p>
+                        <br />
+                        <p class="wo">如果不去接触未知，我们的感觉将变得迟钝，我们的世界就那么小小的一点儿，就连好奇心也将消失不见。我们的目光将不再放眼远方的地平线，耳朵也听不到那些熟悉的声音。</p>
+                        <br />
+
+                        <a href="#aboutMaps" data-toggle="modal">关于地图数据</a> <span class="muted" style="margin: 10px; cursor: default;"> | </span> <a href="./travel/index.html" target="_blank">Life is a long journey. »</a>
                         
                         <!-- Modal -->
                         <div id="aboutMaps" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -1288,18 +1305,16 @@ only screen and (                min-resolution: 2dppx) {
                             
                             <div class="modal-body">
                             <p>地图数据来自 <a href="http://www.naturalearthdata.com/" target="_blank">Natural Earth</a></p>
-                            <p>该地图为中华人民共和国地图，并非中国地图，故无台湾。</p>
-                            <p class="text-error">· <small>以中华人民共和国直接统治区域和有效管辖领土为准，若对此有异议，请参考 Wikipedia 中的 <a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9B%BD_(%E6%B6%88%E6%AD%A7%E4%B9%89)" target="_blank">中国</a>、<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E5%9C%8B%E5%A4%A7%E9%99%B8" target="_blank">中国大陆</a>、<a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E5%8D%8E%E4%BA%BA%E6%B0%91%E5%85%B1%E5%92%8C%E5%9B%BD" target="_blank">中华人民共和国</a> 和 <a href="http://zh.wikipedia.org/wiki/%E4%B8%AD%E8%8F%AF%E6%B0%91%E5%9C%8B" target="_blank">中华民国</a> 等条目。</small></p>
                             
                             <hr class="soften">
                             
                             <h4>关于坐标点数据</h4>
-                            <p>地图中以红点标示的为我曾到达过的城市，其中：</p>
+                            <p>地图中以红点标示的为曾到达过的地方，其中：</p>
                             <ul>
                                 <li><p>若新到达的城市旁已有相邻的曾到达城市，且经度和（或）纬度相差小于 1° 的，仅标示最先到达的城市；</p></li>
-                                <li><p>2009 年或更早的坐标信息，来源于在 Google 地图 查询中到的该城市坐标，2010 年后的坐标信息来源于使用 iPhone 在当地所拍摄照片时所记录的 GPS 信息；</p></li>         
+                                <li><p>所有坐标信息，均来源于在Google地图查询中到的该城市坐标，</p></li>
                                 <li><p>坐标点和其中所标出的到达年份为非完整数据；</p></li> 
-                                <li><p>最后更新时间：2013 年 7 月</p></li>
+                                <li><p>最后更新时间：2013年11月25日</p></li>
 							</ul>
                             </div>
                             <div class="modal-footer">
@@ -1579,7 +1594,7 @@ only screen and (                min-resolution: 2dppx) {
 <script type="text/javascript" src="http://databank.u.qiniudn.com/bootstrap/scripts.min.js"></script>
 <script type="text/javascript" src="http://databank.u.qiniudn.com/map/js/jquery-jvectormap-1.2.2.min.js"></script>
 <script type="text/javascript" src="http://databank.u.qiniudn.com/map/js/jquery-jvectormap-cn-merc-en.js"></script>
-<script type="text/javascript" src="http://databank.u.qiniudn.com/js/home.js"></script>
+<script type="text/javascript" src="http://databank.u.qiniudn.com/js/home.min.js"></script>
 
 <!-- Baidu Statistics -->
 <script type="text/javascript">
