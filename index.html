@@ -43,7 +43,7 @@
 
 <!-- iOS Web App -->
 <meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-title" content="罗龙" />
+<meta name="apple-mobile-web-app-title" content="Long Luo | 罗龙" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <link rel="apple-touch-icon-precomposed" href="/images/ios/icon.png" />
 
@@ -107,9 +107,6 @@
 
 <style>
 
-/* = 为节约开发时间，使用了 Bootstrap 框架构建。 */
-/* = 本页面所用 CSS 代码未压缩或加密，方便大家学习和研究。 */
-
 /* = Designed and Developed by Long Luo  */
 /* ----------------------------------------------- */
 
@@ -124,8 +121,8 @@ body {
 img, p {
 	-webkit-touch-callout: none;
 }
-p {
-	font: 500 15px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+p, h4 {
+	font: 500 15px/1.8 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
 	cursor: default;
 }
 a:not(.btn) {
@@ -236,8 +233,8 @@ header {
 	margin-top: -267px;
 	-webkit-animation: description-in 1s ease-out 0 1 forwards;
 }
-.description h4, 
-.description h5 {
+.description h3, 
+.description h4 {
 	cursor: default;
 }
 #loading {
@@ -268,7 +265,9 @@ header {
 	bottom: 10px;
 	white-space: nowrap;
 	text-shadow: 1px 1px 3px #000;
-	font: 200 12px/2 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;	
+	font-size: 12px;
+	font-weight: 200;
+	line-height: 2;
 	color: #E5E5E5;
 	cursor: default;
 }
@@ -367,7 +366,7 @@ a.carousel-control {
 	max-width: 100%;
 }
 .muiti-contact {
-	font: 400 50px/1.8 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	font: 400 50px/1.8 'Quattrocento Sans', 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
 	text-align: center;
 	cursor: default;
 	color: rgba(0, 0, 0, 0.4);
@@ -410,9 +409,9 @@ web {
 	width: 70px;
 	float: left;
 	
-	-webkit-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
-	-moz-box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
-	box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.35), inset 0 -1px 0 rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .6);
+	-webkit-box-shadow: 0px 2px 8px 1.5px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	-moz-box-shadow: 0px 2px 8px 1.5px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+	box-shadow: 0px 2px 8px 1.5px rgba(0, 0, 0, 0.3), inset 0 -1px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
  
 	-webkit-transition: 1s;
 	-moz-transition: 1s;
@@ -527,12 +526,15 @@ a.thumbnail:hover img {
 	-moz-transition: .5s;
 	transition: .5s;
 }
-a.thumbnail h3 {
-	font: 400 24.5px/1.0 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+a.thumbnail h4 {
+	font-size: 24.5px;
+	line-height: 1;
 	-webkit-box-reflect: below -4px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.4, transparent), to(rgba(3,3,3,.2)));
 }
 a.thumbnail p {
-	font: 100 12px/1.6 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+	font-size: 12px;
+	font-weight: 100;
+	line-height: 1.6;
 }
 a.thumbnail small {
 	font-size: 95%;
@@ -544,6 +546,42 @@ a.thumbnail small {
 	background: #212121;
 	overflow: hidden;
 }
+#back-to-top {
+	width: 48px;
+	height: 48px;
+	right: 40px;
+	margin: 50px auto 20px;
+	background: white;
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 24px;
+	box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, 0.35), 0px 10px 70px 8px rgba(0, 0, 0, 0.20);
+	cursor: pointer;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-transition: background 300ms;
+	-moz-transition: background 300ms;
+	-ms-transition: background 300ms;
+	-o-transition: background 300ms;
+	transition: background 300ms;
+}
+#back-to-top:hover {
+	background: #9d9d9d;
+	background: rgba(255, 255, 255, 0.6);
+}
+#back-to-top #rocket path {
+	fill: #bbb;
+	-webkit-transition: all 300ms;
+	-moz-transition: all 300ms;
+	-ms-transition: all 300ms;
+	-o-transition: all 300ms;
+	transition: all 300ms;
+}
+#back-to-top:hover #rocket path {
+	fill: rgba(255, 102, 0, 0.76);
+}
+#back-to-top #rocket {
+    margin-top: 7px;
+}
 /* = 框架 Panels
 ----------------------------------------------- */
 .panel {
@@ -554,10 +592,12 @@ a.thumbnail small {
 	color: #333;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
-	border-radius: 6px;/*
+	border-radius: 6px;
+	/*
 	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .075);
 	-moz-box-shadow: 0 1px 2px rgba(0,0,0, .075);
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .075);*/
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .075);
+	*/
 	-webkit-animation: panel-in 1s linear 0 1;
 	-webkit-box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, .35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25);
 	-moz-box-shadow:    0px 1px 8px 1.5px rgba(0, 0, 0, .35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25);
@@ -605,12 +645,13 @@ a.thumbnail small {
 	-o-box-shadow:      0px 1px 8px 1.5px rgba(0, 0, 0, 0.25), 0px 20px 70px 8px rgba(0, 0, 0, 0.05);
 	box-shadow:         0px 1px 8px 1.5px rgba(0, 0, 0, 0.25), 0px 20px 70px 8px rgba(0, 0, 0, 0.05);
 }
-.panel-description h4 {
-	font: 500 18px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+.panel-description h3 {
+	font: 500 18px/1.8 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
 }
-.panel-description h5 {
-	color: rgba(0, 0, 0, 0.6);
-	font: 400 14.5px/1.5 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+.panel-description h4 {
+	color: rgba(0, 0, 0, 0.7);
+	font-size: 14.5px;
+	line-height: 1.5;
 }
 .button-text-panel a {
 	position: relative;
@@ -744,7 +785,8 @@ a.thumbnail small {
 		font-size: 28.5px;
 	}
 	p {
-		font: 500 14px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 14px;
+		line-height: 1.8;
 	}
 	.block-left {
 		padding: 15px 5px 10px 35px;
@@ -757,7 +799,8 @@ a.thumbnail small {
 		margin-left: -140px;
 	}
 	.muiti-contact {
-		font: 400 45px/1.8 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 45px;
+		line-height: 1.8;
 	}
 }
 
@@ -786,7 +829,8 @@ a.thumbnail small {
 		margin-bottom: 60px;
 	}
 	.panel-description h4 {
-		font: 500 17px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 17px;
+		line-height: 1.8;
 	}
 	#map {
 		height: 400px;
@@ -890,7 +934,8 @@ a.thumbnail small {
 		padding: 0 45px 0 45px;
 	}
 	.muiti-contact {
-		font: 400 40px/1.8 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 40px;
+		line-height: 1.8;
 	}
 	.thumbnail {
 		border: none;
@@ -902,7 +947,8 @@ a.thumbnail small {
 
 @media (max-width: 620px) {
 	.muiti-contact {
-		font: 400 30px/1.0 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 30px;
+		line-height: 1;
 	}
 	.sns-container {
 		max-width: 270px;
@@ -950,16 +996,19 @@ a.thumbnail small {
 		margin-bottom: 35px;
 	}
 	.panel-description h4 {
-		font: 500 15px/1.5 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 15px;
+		line-height: 1.5;
 	}
 	.panel-description h5 {
 		color: rgba(0, 0, 0, 0.7);
-		font: 400 13.5px/1.5 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 13.5px;
+		line-height: 1.5;
 		text-align: left;
 		margin-top: 20px;
 	}
 	.muiti-contact {
-		font: 400 25px/1.0 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 25px;
+		line-height: 1;
 	}
 	.img-responsive {
 		max-width: 100%;
@@ -1013,7 +1062,8 @@ a.thumbnail small {
 		margin: 20px auto 0;
 	}
 	.muiti-contact {
-		font: 400 20px/1.0 'Quattrocento Sans','Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
+		font-size: 20px;
+		line-height: 1;
 	}	
 }
 
@@ -1177,20 +1227,17 @@ only screen and (                min-resolution: 2dppx) {
 
 /* = 伪类 Pseudo
 ----------------------------------------------- */
-
-::selection {
-    background:#d3d3d3; 
-    color:#555;
-}
-
-::-moz-selection {
-    background:#d3d3d3; 
-    color:#555;
-}
-
 ::-webkit-selection {
-    background:#d3d3d3; 
-    color:#555;
+    background: #d3d3d3; 
+    color: #555;
+}
+::-moz-selection {
+    background: #d3d3d3; 
+    color: #555;
+}
+::selection {
+    background: #d3d3d3; 
+    color: #555;
 }
 </style>
 </head>
@@ -1237,7 +1284,7 @@ only screen and (                min-resolution: 2dppx) {
     <div class="alert alert-block ie-alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <h4>浏览器版本过低</h4>
-        <br>
+        <br />
         <p>你知道不？你还在用十年前的浏览器！这个网页上的有很多好看的东西和动画效果都显示不了！</p>
         <p>建议赶快<a href="http://windows.microsoft.com/zh-cn/internet-explorer/downloads/ie-10/worldwide-languages" target="_blank">升级</a>你的浏览器版本或使用 <a href="http://www.google.com/intl/zh-CN/chrome/browser/" target="_blank">Chrome</a> 或 <a href="http://www.apple.com.cn/safari/" target="_blank">Safari</a> 等高级浏览器。</p>
     </div>
@@ -1294,7 +1341,7 @@ only screen and (                min-resolution: 2dppx) {
                         <p class="wo">如果不去接触未知，我们的感觉将变得迟钝，我们的世界就那么小小的一点儿，就连好奇心也将消失不见。我们的目光将不再放眼远方的地平线，耳朵也听不到那些熟悉的声音。</p>
                         <br />
 
-                        <a href="#aboutMaps" data-toggle="modal">关于地图数据</a> <span class="muted" style="margin: 10px; cursor: default;"> | </span> <a href="./travel/index.html" target="_blank">Life is a long journey. »</a>
+                        <a href="#aboutMaps" data-toggle="modal">关于地图数据</a> <span class="muted" style="margin: 10px; cursor: default;"> | </span> <a href="./journey/index.html" target="_blank">Life is a long journey. »</a>
                         
                         <!-- Modal -->
                         <div id="aboutMaps" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -1525,7 +1572,9 @@ only screen and (                min-resolution: 2dppx) {
                 	<div class="padding-large">
                     	<h1>联系</h1>
                         <div class="muiti-contact">
-                            <span class="email"><email data-toggle="tooltip" title="Email">Long Luo</email><at>@</at><sns data-toggle="tooltip" title="社交网络">imlongluo</sns><web data-toggle="tooltip" title="个人网站">.com</web></span>
+                            <span class="email">
+								<email data-toggle="tooltip" title="Email">Long Luo</email><at>@</at><sns data-toggle="tooltip" title="社交网络">imlongluo</sns><web data-toggle="tooltip" title="个人网站">.com</web>
+								</span>
                             <!--[if lt IE 9]>
                             <p class="text-warning">当前浏览器不支持该模块的交互效果，无法动态展示联系方式，建议换用更高级的浏览器。</p>
                             <p class="text-info">Twitter, Instagram, Path, 新浪微博、腾讯微博和微信的名称为 @dandyweng</p>
@@ -1583,6 +1632,16 @@ only screen and (                min-resolution: 2dppx) {
                         <hr class="soften">
                         <p>Designed and Developed by Long Luo.</p>
                         <p>Copyright &copy; 2013 Long Luo. All Rights Reserved.</p> 
+                        <div id="back-to-top">
+                            <svg id="rocket" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewbox="0 0 64 64">
+                                <path fill="#CCCCCC" d="M42.057,37.732c0,0,4.139-25.58-9.78-36.207c-0.307-0.233-0.573-0.322-0.802-0.329
+                                c-0.227,0.002-0.493,0.083-0.796,0.311c-13.676,10.31-8.95,35.992-8.95,35.992c-10.18,8-7.703,9.151-1.894,23.262
+                                c1.108,2.693,3.048,2.06,3.926,0.115c0.877-1.943,2.815-6.232,2.815-6.232l11.029,0.128c0,0,2.035,4.334,2.959,6.298
+                                c0.922,1.965,2.877,2.644,3.924-0.024C49.974,47.064,52.423,45.969,42.057,37.732z M31.726,23.155
+                                c-2.546-0.03-4.633-2.118-4.664-4.665c-0.029-2.547,2.012-4.587,4.559-4.558c2.546,0.029,4.634,2.117,4.663,4.664
+                                C36.314,21.143,34.272,23.184,31.726,23.155z"/>
+                            </svg>
+                        </div>
                     </div>              
                 </div>
        		</div>
