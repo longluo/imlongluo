@@ -1,3 +1,14 @@
+﻿
+<script type="text/javascript">
+	var retina = 'retina='+ window.devicePixelRatio +';'+ retina;
+	var screenwidth = 'screenwidth='+ window.screen.width;
+	document.cookie = retina;
+	document.cookie = screenwidth;
+	if(window.devicePixelRatio > 1){
+		document.location.reload(true);
+	}
+</script>
+
 <!DOCTYPE html>
 <!--[if IE]>
 <html id="ie" lang="zh-CN">
@@ -14,7 +25,8 @@
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> 
 <meta name="format-detection" content="telephone=no" />
 <meta name="apple-mobile-web-app-title" content="旅行足迹" />
-<link rel="apple-touch-icon-precomposed" href="./icon.png" />
+
+<link rel="apple-touch-icon-precomposed" href="./images/ios/icon.png" />
 <link rel="shortcut icon" href="./images/favicon.ico" />
 <link rel="icon" href="./images/favicon.ico" />
 
@@ -574,7 +586,7 @@ footer {
 <div id="header-camarts-entry" class="navbar navbar-inverse hide">
     <div class="navbar-inner">
         <div class="container">
-        	<a href="http://www.imlongluo.com/journey/index.html" target="_blank"> »</a>
+        	<a href="http://www.imlongluo.com/blog/" target="_blank">去我的博客网站查看更多作品 »</a>
         </div>
     </div>
 </div>
@@ -582,13 +594,14 @@ footer {
 <header id="header" class="jumbotron jumbotron-shadow">
     <div id="header-text" class="container header-elements">
         <h1 id="title" class="header-elements"><img src="./images/title.png"></h1>
-        <p id="subtitle" class="lead">我是一个爱旅行的人.<br class="visible-desktop"><br>
-        <a id="website-link" href="http://www.imlongluo.com" class="lead-link text-center" target="_blank" title="了解关于我的一切" data-toggle="tooltip" data-placement="bottom">进入我的个人网站 »</a></p>
+        <p id="subtitle" class="lead"> Long Luo's Journey <br class="visible-desktop">
+        旅行...<br>
+        <a id="website-link" href="http://www.imlongluo.com/blog/" class="lead-link text-center" target="_blank" title="了解关于我的一切" data-toggle="tooltip" data-placement="bottom">进入我的个人网站 »</a></p>
 	</div>
-
+	
     <div class="am-container under blur" id="am-container">
 			
-	<span class="montage-copyright">旅行摄影作品随机展示墙 <a href="javascript:;" onclick="javascript:window.location.reload()">刷新页面换一换</a> | <a href="http://www.imlongluo.com" target="_blank">&copy; 2011-2013</a> <a href="http://www.imlongluo.com" target="_blank">Long </a></span>
+	<span class="montage-copyright">旅行摄影作品随机展示墙 <a href="javascript:;" onclick="javascript:window.location.reload()">刷新页面换一换</a> | <a href="http://www.imlongluo.com/blog/" target="_blank">&copy;2005-2013</a> <a href="http://www.imlongluo.com/blog/" target="_blank">Long Luo&reg;</a></span>
     </div>
     <div id="header-shadow" class="shadow"></div>
     <div id="handle" class="hide">
@@ -609,7 +622,7 @@ footer {
             <li class="active">
                 <a id="link-to-china" href="javascript:;" data-toggle="tooltip">China</a>
             </li>
-            <li><a id="link-to-world" href="http://www.imlongluo.com/world/world.html" title="切换到世界地图" pjax-title="旅行足迹" data-toggle="tooltip">World</a></li>
+            <li><a id="link-to-world" href="http://www.imlongluo.com/journey/world.html" title="切换到世界地图" pjax-title="旅行足迹" data-toggle="tooltip">World</a></li>
             <!--
 			<li class="disabled"><a id="link-to-america" href="javascript:;" title="暂未开放" data-toggle="tooltip">美洲</a></li>
             <li class="disabled"><a id="link-to-europe" href="javascript:;" title="暂未开放" data-toggle="tooltip">欧洲</a></li>
@@ -628,13 +641,13 @@ footer {
             	<div class="row">                    
                     <div class="span6 offset3">
                     	<h3 class="text-center">关于地图数据</h3>
-                        <p>地图中以红点标示的为我曾到达过的城市</p>
+                        <p>地图中以红点标示的为我曾到达过的地方</p>
                         <ul>
                         	<li><p>地图数据来自 <a href="http://www.naturalearthdata.com/" target="_blank">Natural Earth</a></p></li>
-                            <li><p>若新到达的城市旁已有相邻的曾到达城市，且经度和（或）纬度相差小于 1° 的，仅标示最先到达的城市；</p></li>
-                            <li><p>所有坐标信息，来源于在 Google 地图查询中到的该城市坐标；</p></li>         
+                            <li><p>所有这些坐标都是我人生的重要经历，正是这些造就了我；</p></li>
+                            <li><p>所有坐标信息，均来源于在 Google 地图查询中到的该地方坐标；</p></li>         
                             <li><p>坐标点和其中所标出的到达年份为非完整数据。</p></li> 
-                            <li><p>最后更新时间：2013年11月26日</p></li>
+                            <li><p>最后更新时间：2013年11月27日</p></li>
                         </ul>
                     </div>                   
                 </div>
@@ -668,7 +681,7 @@ footer {
 </article>
 
 <footer>
-<p>Designed and Developed by Long Luo.</p>
+<p>Designed and Developed By Long Luo.</p>
 <p>Copyright &copy; 2013 Long Luo. All Rights Reserved.</p>
 </footer>
 

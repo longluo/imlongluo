@@ -1,15 +1,18 @@
-<!--
- _____    _____       ___   _____        _   _   _____   _____    _____  
-|  _  \  | ____|     /   | |  _  \      | | | | | ____| |  _  \  | ____| 
-| |_| |  | |__      / /| | | | | |      | |_| | | |__   | |_| |  | |__   
-|  _  /  |  __|    / / | | | | | |      |  _  | |  __|  |  _  /  |  __|  
-| | \ \  | |___   / /  | | | |_| |      | | | | | |___  | | \ \  | |___  
-|_|  \_\ |_____| /_/   |_| |_____/      |_| |_| |_____| |_|  \_\ |_____| 
+﻿<!--
+===================================================================================
+	 _____    _____       ___   _____        _   _   _____   _____    _____  
+	|  _  \  | ____|     /   | |  _  \      | | | | | ____| |  _  \  | ____| 
+	| |_| |  | |__      / /| | | | | |      | |_| | | |__   | |_| |  | |__   
+	|  _  /  |  __|    / / | | | | | |      |  _  | |  __|  |  _  /  |  __|  
+	| | \ \  | |___   / /  | | | |_| |      | | | | | |___  | | \ \  | |___  
+	|_|  \_\ |_____| /_/   |_| |_____/      |_| |_| |_____| |_|  \_\ |_____| 
 
-================================================
-	Copyright (C) Long Luo. All Rights Reserved.
-	Version: 5.21.
+==================================================================================
+	Copyright (C) 2005 - 2013 Long Luo. All Rights Reserved.
+	Version: 5.30.
+	
 -->
+
 
 <!DOCTYPE html>
 
@@ -21,7 +24,7 @@
 	document.cookie = ratio;
 	document.cookie = screenwidth;
 	if(window.devicePixelRatio > 1){
-		document.location.reload(true);
+		window.location.replace('http://www.imlongluo.com')
 	}
 </script>
 
@@ -35,7 +38,7 @@
 <meta charset="UTF-8">
 <meta name="Description" content="罗龙（Long Luo）的个人网站。A Programmer." />
 <meta name="keywords" content="罗龙, Long Luo" />
-<meta name="Author" contect="Long Luo" / >
+<meta name="Author" content="Long Luo" / >
 <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0" /> 
 <meta name="format-detection" content="telephone=no" />
 <link rel="shortcut icon" href="/images/favicon.ico" />
@@ -107,7 +110,7 @@
 
 <style>
 
-/* = Designed and Developed by Long Luo  */
+/* = Designed and Developed By Long Luo  */
 /* ----------------------------------------------- */
 
 /* = 通用 Global                           */
@@ -214,9 +217,9 @@ header {
 	position: absolute;
 	right: 5px;
 	bottom: 8px;
+	font: 200 12px/1.8 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
 	text-align: right;
 	text-shadow: 1px 2px 5px rgba(0, 0, 0, 0.7);
-	font: 200 12px/1.8 'Optima','Songti SC','Verdana','Microsoft Yahei',simsun,serif;
 }
 .hero-unit .banner-link a {
 	color: white;
@@ -1227,6 +1230,34 @@ only screen and (                min-resolution: 2dppx) {
 
 /* = 伪类 Pseudo
 ----------------------------------------------- */
+::-webkit-scrollbar {
+	width: 10px;
+	background: #cacaca url("http://databank.u.qiniudn.com/images/patterns/mooning.jpg");;
+	opacity: .8;	
+	-webkit-transition: .25s;
+}
+::-webkit-scrollbar-button {
+	width: 10px;
+	height: 5px;
+	-webkit-transition: .25s;
+}
+::-webkit-scrollbar-track {
+	background: #cacaca url("http://databank.u.qiniudn.com/images/patterns/mooning.jpg");;
+	/* border: thin solid lightgray; 
+	box-shadow: 0px 0px 3px #dfdfdf inset; */
+	border-radius: 10px;
+	-webkit-transition: .25s;
+}
+::-webkit-scrollbar-thumb {
+	background: #969696;
+	/* border: thin solid gray; */
+	border-radius: 10px;
+	-webkit-transition: .25s;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #7d7d7d;
+	-webkit-transition: .25s;
+}
 ::-webkit-selection {
     background: #d3d3d3; 
     color: #555;
@@ -1245,39 +1276,39 @@ only screen and (                min-resolution: 2dppx) {
 <body data-spy="scroll" data-target=".navbar" onload="completed();" ontouchstart="">
 
 <div id="navbar" class="navbar navbar-inverse navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-
-	<div class="nav-collapse collapse">
-        <ul class="nav">
-            <li class="active"><a href="#banner">简述</a></li>
-            <li><a href="#travel">旅行</a></li>
-			<li><a href="#writing">写作</a></li>
-			<li><a href="#music">音乐</a></li>
-            <li><a href="#photography">摄影</a></li>
-            <li><a href="#creativity">创造</a></li>
-            <li><a href="#apple">苹果</a></li>
-            <li><a href="#contact">联系</a></li>
-			<li><a href="#about">关于我</a></li>
-            <li><a href="#website">网站</a></li>
-        </ul>
-	</div>
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
     
-    <ul class="nav">
-        <li><a href="./blog/index.php" target="_blank">博客</a></li>
-        <li><a href="./android/android.html" target="_blank">Android</a></li>
-		<li><a href="./iOS/ios.html" target="_blank">iOS</a></li>
-        <li><a href="http://weibo.com/uniqueshine" target="_blank">微博</a></li>
-    </ul>
-    
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li class="active"><a href="#banner">简述</a></li>
+                    <li><a href="#travel">旅行</a></li>
+					<!--
+					<li><a href="#writing">写作</a></li>
+					<li><a href="#music">音乐</a></li>
+		            <li><a href="#photography">摄影</a></li>
+					-->
+		            <li><a href="#creativity">创造</a></li>
+		            <li><a href="#apple">苹果</a></li>
+		            <li><a href="#contact">联系</a></li>
+					<li><a href="#about">关于我</a></li>
+		            <li><a href="#website">网站</a></li>
+                </ul>
+            </div>
+        
+            <ul class="nav">
+		        <li><a href="./blog/index.php" target="_blank">博客</a></li>
+		        <li><a href="./android/android.html" target="_blank">Android</a></li>
+				<li><a href="./iOS/ios.html" target="_blank">iOS</a></li>
+		        <li><a href="http://weibo.com/uniqueshine" target="_blank">微博</a></li>
+            </ul>
+        </div>
     </div>
-  </div>
 </div>
 
 <!--[if lt IE 9]>
@@ -1291,7 +1322,7 @@ only screen and (                min-resolution: 2dppx) {
 <![endif]-->
 
 <header id="banner" class="hero-unit no-radius">
-	<div class="container text-center">
+    <div class="container text-center">
 		<!--
         <h1>
         <img src="" alt="Long Luo">Long Luo
@@ -1299,7 +1330,7 @@ only screen and (                min-resolution: 2dppx) {
     	-->
         <!-- <p>网站正在建设中</p> -->
     </div>
-    <span class="banner-link hidden-phone"><a href="http://www.imlongluo.com" target="_blank"> View </a></span>
+    <span class="banner-link hidden-phone"><a href="http://www.imlongluo.com/blog/" target="_blank"> View </a></span>
 </header>
 
 <div class="shadow"></div>
@@ -1307,6 +1338,7 @@ only screen and (                min-resolution: 2dppx) {
 <article class="container"> 
 
 	<!--  简述 Description  -->
+
     <section id="description" class="row description">
         <div class="span10 offset1 panel-description button-text-panel text-center">
         	<div class="padding-middle">
@@ -1326,16 +1358,16 @@ only screen and (                min-resolution: 2dppx) {
     
     <div id="loading" class="text-center">
     	<img class="spinner" src="http://bcs.duapp.com/databank/images%2Fspinner.gif">
-    	<span>加载中</span>
+        <span>加载中</span>
     </div>
     
     <!--  旅行 Travel  -->
 
     <section id="travel" class="row">
         <div class="span12 panel">
-        	<div class="row">
-            	<div class="span6">
-                	<div class="block-left">
+            <div class="row">
+                <div class="span6">
+                    <div class="block-left">
                         <h1>旅行</h1>
                         <p class="wo">What is a journey? A journey is not a trip. It's not a vacation. It's a process. A Discovery. It's a process of self-discovery. </p>
                         <br />
@@ -1361,10 +1393,10 @@ only screen and (                min-resolution: 2dppx) {
                             <h4>关于坐标点数据</h4>
                             <p>地图中以红点标示的为曾到达过的地方，其中：</p>
                             <ul>
-                                <li><p>若新到达的城市旁已有相邻的曾到达城市，且经度和（或）纬度相差小于 1° 的，仅标示最先到达的城市；</p></li>
-                                <li><p>所有坐标信息，均来源于在Google地图查询中到的该城市坐标，</p></li>
-                                <li><p>坐标点和其中所标出的到达年份为非完整数据；</p></li> 
-                                <li><p>最后更新时间：2013年11月25日</p></li>
+                                <li><p>这些地方都是我人生的重要经历，正是这些经历成就了我；</p></li>
+                                <li><p>所有坐标信息，均来源于在Google地图查询中到的该地方坐标；</p></li>
+                                <li><p>世界如此之大，我要体验更多；</p></li> 
+                                <li><p>最后更新时间：2013 年 11 月 27 日</p></li>
 							</ul>
                             </div>
                             <div class="modal-footer">
@@ -1375,14 +1407,15 @@ only screen and (                min-resolution: 2dppx) {
                 </div>
                 
                 <div class="span6">
-					<div id="map"></div>
-        		</div>
-			</div>
+                    <div id="map"></div>
+                </div>
+            </div>
         </div>
     </section>
 
+	<!--   Remove this module.  -->
     <!--  写作 Writing  -->
-    
+    <!--
     <section id="writing" class="row">
    		<div class="span12 panel">
         	<div class="row">
@@ -1398,10 +1431,11 @@ only screen and (                min-resolution: 2dppx) {
 			</div>
 		</div>
     </section>
+	-->
 
-
+	<!--   Remove this module.  -->
     <!--  音乐 Music  -->
-    
+    <!--
     <section id="music" class="row">
    		<div class="span12 panel">
         	<div class="row">
@@ -1414,16 +1448,16 @@ only screen and (                min-resolution: 2dppx) {
 			</div>
 		</div>
     </section>
+	-->
 
-
+	<!--   Remove this module.   -->
     <!--  摄影 Photography  -->
-    
+    <!--
     <section id="photography" class="row">
    		<div class="span12 panel">
         	<div class="row">
                 <div class="span8">
-                
-                <!--
+				
                     <div id="photograph" class="carousel slide">
                         <ol class="carousel-indicators">
                             <li data-target="#photograph" data-slide-to="0" class="active"> </li>
@@ -1437,7 +1471,8 @@ only screen and (                min-resolution: 2dppx) {
                             <li data-target="#photograph" data-slide-to="8"></li>
                             <li data-target="#photograph" data-slide-to="9"></li>
                         </ol>
-                          <!-- Carousel items -->
+                        
+						// Carousel items 
                         <div class="carousel-inner">
                             <div class="active item"><a href="http://www.camarts.cn/archives/549.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://databank.qiniudn.com/images/carousel/carousel-01.jpg"></a></div>
                             <div class="item"><a href="http://www.camarts.cn/archives/523.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-02.jpg"></a></div>
@@ -1451,7 +1486,6 @@ only screen and (                min-resolution: 2dppx) {
                             <div class="item"><a href="http://www.camarts.cn/archives/1453.html" title="在 Camarts™ 中浏览" target="_blank"><img src="http://dandyweng.qiniudn.com/images/carousel/carousel-10.jpg"></a></div>
                             
                         </div>
-                        -->
                         
                         <a class="carousel-control left" href="#photograph" data-slide="prev">&lsaquo;</a>
                         <a class="carousel-control right" href="#photograph" data-slide="next">&rsaquo;</a>
@@ -1469,6 +1503,7 @@ only screen and (                min-resolution: 2dppx) {
 			</div>
 		</div>
     </section>
+	-->
     
     <!--  创造 Creativity  -->
 
@@ -1478,9 +1513,9 @@ only screen and (                min-resolution: 2dppx) {
                 <div class="span8">
                     <!-- Content -->
                     <div class="row">
-                    	<!--  创造 Creativity  -->
+                        <!--  创造 Creativity  -->
                         <div class="span8">
-                        	<div class="block-left">
+                            <div class="block-left">
                                 <h1>创造</h1>
                                 <p class="wo">我热爱一切美好的新事物，喜欢旅行、音乐、运动和编程。</p>	
                             </div>	
@@ -1488,7 +1523,7 @@ only screen and (                min-resolution: 2dppx) {
                         
                         <!--  设计 Design  -->
                         <div class="span4">
-                        	<div class="design">
+                            <div class="design">
                                 <h3>设计</h3>
                                 <p class="wo">目前，发现网页设计是编程和设计的一个很好的结合点，所以我现在非常喜欢制作网站。</p> 
                             </div>
@@ -1496,13 +1531,13 @@ only screen and (                min-resolution: 2dppx) {
                         
                         <!--  编程 Programming  -->
                         <div class="span4">
-                        	<div class="programming">
+                            <div class="programming">
                                 <h3>编程</h3>
                                 <p class="wo">Now I am a programmer.</p>
                             </div>
                         </div>
-                    </div
-                ></div>
+                    </div>
+                </div>
                 <div class="span4 relative">
                     <!-- Carousel -->
                     <div id="showcase" class="carousel slide screenshots">
@@ -1522,12 +1557,12 @@ only screen and (                min-resolution: 2dppx) {
         </div>
     </section>
     
-    <!--  苹果 Apple  --> 
-	
+    <!--  苹果 Apple  -->
+    
     <section id="apple" class="row">
-   		<div class="span12 panel relative">
+        <div class="span12 panel relative">
         	<img class="ribbon-apple" src="http://bcs.duapp.com/databank/images/ribbon-apple.png">
-        	<div class="row">
+            <div class="row">
                 <div class="span6">
                 	<img class="ipad-news" src="http://bcs.duapp.com/databank/images/mockedup-news.png">
                 </div>
@@ -1536,11 +1571,11 @@ only screen and (                min-resolution: 2dppx) {
                     <div class="padding-huge">
                         <h1>Apple</h1>
                         <p class="wo">我对 Apple 产品的热爱近乎狂热，是一名铁杆果粉。</p>
-                        <br>
+                        <br />
                     </div>
                 </div>
-			</div>
-		</div>
+            </div>
+        </div>
     </section>
 
     
@@ -1569,18 +1604,18 @@ only screen and (                min-resolution: 2dppx) {
     <!--  联系 Contact  -->
     
     <section id="contact" class="row">
-    	<div class="span12 panel">
-        	<div class="row">
+        <div class="span12 panel">
+            <div class="row">
                 <div class="span12">
-                	<div class="padding-large">
-                    	<h1>联系</h1>
+                    <div class="padding-large">
+                        <h1>联系</h1>
                         <div class="muiti-contact">
                             <span class="email">
 								<email data-toggle="tooltip" title="Email">Long Luo</email><at>@</at><sns data-toggle="tooltip" title="社交网络">imlongluo</sns><web data-toggle="tooltip" title="个人网站">.com</web>
 								</span>
                             <!--[if lt IE 9]>
                             <p class="text-warning">当前浏览器不支持该模块的交互效果，无法动态展示联系方式，建议换用更高级的浏览器。</p>
-                            <p class="text-info">Twitter, Instagram, Path, 新浪微博、腾讯微博和微信的名称为 @dandyweng</p>
+                            <p class="text-info">Twitter, Instagram, Path, 新浪微博、腾讯微博和 微信的名称为@imlongluo</p>
                             <![endif]-->
                         </div>
                     </div>
@@ -1616,8 +1651,8 @@ only screen and (                min-resolution: 2dppx) {
 			<div class="padding-large">
                 <h1>网站</h1>
                 <hr class="soften"> 
-                <p>这是这个网站的5.0版本，借鉴了互联网很多资源，在此感谢他们。</p>
-                <p>今年已经是第四个版本，采用栅格化<a href="http://www.responsinator.com/?url=www.imlongluo.com" target="_blank" title="看看这个网站在不同分辨率下的表现">响应式</a>布局，应用了多种实验性 CSS 元素和大量动画效果，</p>
+                <p>这是这个网站的6.0版本，借鉴了互联网很多资源，在此感谢他们。</p>
+                <p>今年已经是第六个版本，采用栅格化<a href="http://www.responsinator.com/?url=www.imlongluo.com" target="_blank" title="看看这个网站在不同分辨率下的表现">响应式</a>布局，应用了多种实验性 CSS 元素和大量动画效果，</p>
                 <p>并支持 Retina 高清屏幕和 iOS Web App，还有基于 HTML 5 的离线缓存和 Canvas 绘图等技术。</p>
                 <p><a href="http://www.imlongluo.com/blog/index.php" target="_blank" title="我的个人网站是怎么做出来的">详情 »</a></p>
                 <a href="http://www.responsinator.com/?url=www.imlongluo.com" target="_blank" title="看看这个网站在不同分辨率下的表现" alt="响应式布局">
@@ -1633,8 +1668,8 @@ only screen and (                min-resolution: 2dppx) {
                 <div class="span12">
                 	<div class="padding-large" style="padding-top: 0;">
                         <hr class="soften">
-                        <p>Designed and Developed by Long Luo.</p>
-                        <p>Copyright &copy; 2013 Long Luo. All Rights Reserved.</p> 
+                        <p>Designed and Developed By Long Luo.</p>
+                        <p>Copyright &copy; 2005 - 2013 Long Luo. All Rights Reserved.</p> 
                         <div id="back-to-top">
                             <svg id="rocket" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewbox="0 0 64 64">
                                 <path fill="#CCCCCC" d="M42.057,37.732c0,0,4.139-25.58-9.78-36.207c-0.307-0.233-0.573-0.322-0.802-0.329
