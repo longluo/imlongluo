@@ -8,8 +8,9 @@
 
 =========================================================================================
 
-	Copyright (C) Long Luo. All Rights Reserved.
-	Version: 6.0.
+	Copyright (C) 2005 - 2013 Long Luo. All Rights Reserved.
+	
+	ReleaseNotes: 
 	
 	2013.10.30 23:25
 -->
@@ -44,5 +45,7 @@
 	Version: 5.31
 	2013.11.27 23:53
 		
-	
+-->
+	Version: 6.02
+	2013.11.30 10:39	
 	
