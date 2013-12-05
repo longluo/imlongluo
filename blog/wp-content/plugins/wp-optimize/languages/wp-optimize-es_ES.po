@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: WP-Optimize 1.2\n"
 "POT-Creation-Date: 2013-11-07 11:23+0800\n"
-"PO-Revision-Date: 2013-11-11 05:03-0300\n"
+"PO-Revision-Date: 2013-11-11 05:24-0300\n"
 "Last-Translator: Ruhani Rabin <get@ruhanirabin.com>\n"
 "Language-Team: Ruhani Rabin <get@ruhanirabin.com>\n"
 "MIME-Version: 1.0\n"
@@ -308,7 +308,7 @@ msgstr "Limpieza programada DESHABILITADA"
 
 #: d:\Ruhani\Documents\My Works\wp-optimize_work/wp-optimize-main.php:81
 msgid "Retention enabled and keeping last "
-msgstr "Retencion activa y manteniendo ultima"
+msgstr "Retencion activada y manteniendo ultimas "
 
 #: d:\Ruhani\Documents\My Works\wp-optimize_work/wp-optimize-main.php:84
 #: Works\wp-optimize_work/wp-optimize-settings.php:93
@@ -317,7 +317,7 @@ msgstr " Semanas de datos"
 
 #: d:\Ruhani\Documents\My Works\wp-optimize_work/wp-optimize-main.php:92
 msgid "Retention is disabled"
-msgstr "Retencian desactiva"
+msgstr "Retencion desactivada"
 
 #: d:\Ruhani\Documents\My Works\wp-optimize_work/wp-optimize-main.php:109
 msgid "Current database size : "
@@ -330,7 +330,7 @@ msgstr "Kb."
 
 #: d:\Ruhani\Documents\My Works\wp-optimize_work/wp-optimize-main.php:113
 msgid "You have saved"
-msgstr "Has salvados"
+msgstr "Se Salvaron"
 
 #: d:\Ruhani\Documents\My Works\wp-optimize_work/wp-optimize-main.php:122
 msgid "Current database size"
