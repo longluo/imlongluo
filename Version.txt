@@ -51,5 +51,12 @@
 	
 -->
 	Version: 6.03
-	2013.12.05 21:35		
+	2013.12.05 21:35
+
+-->
+	Version: 6.10
+	2013.12.08 00:08
+	Fix the bug, it's the home.min.js problems, modify the image sources.
+	
+
 	
