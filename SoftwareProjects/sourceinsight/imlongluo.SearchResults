@@ -1,5 +1,178 @@
----- about-maps Matches (4 in 2 files) ----
-Index.html:                        <a href="#about-maps" data-toggle="modal">About Map</a> <span class="muted" style="margin: 10px; cursor: default;"> | </span> <a href="http://www.imlongluo.com/journey/" target="_blank">Life is a long journey. »</a>
-Index.html:                        <div id="about-maps" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-Refer.html:                        <a href="#about-maps" data-toggle="modal">关于地图数据</a> <span class="muted" style="margin: 10px; cursor: default;"> | </span> <a href="http://travel.dandyweng.com/china/" target="_blank">我的旅行足迹 »</a>
-Refer.html:                        <div id="about-maps" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+---- have_posts Matches (183 in 100 files) ----
+Admin-functions.php (blog\wp-content\themes\canvas\functions): 	if ( $query->have_posts() ) {
+Admin-functions.php (blog\wp-content\themes\canvas\functions): 		while( $query->have_posts() ) {
+Aioseop_module_class.php (blog\wp-content\plugins\all-in-one-seo-pack):			while ($posts_query->have_posts() ) {
+All_in_one_seo_pack.php (blog\wp-content\plugins\all-in-one-seo-pack):		if (have_posts()) the_post();
+Archive.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
+Archive.php (blog\wp-content\themes\iconic-one):			while ( have_posts() ) : the_post();
+Archive.php (blog\wp-content\themes\simplicity_chs):        <?php if (have_posts()) : ?>
+Archive.php (blog\wp-content\themes\simplicity_chs):            <?php while (have_posts()) : the_post(); ?>
+Archive.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
+Archive.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Archive.php (blog\wp-content\themes\twentyten):	if ( have_posts() )
+Archive.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
+Archive.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Archive.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
+Archive.php (blog\wp-content\themes\twentytwelve):			while ( have_posts() ) : the_post();
+Author.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
+Author.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
+Author.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
+Author.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Author.php (blog\wp-content\themes\twentyten):	if ( have_posts() )
+Author.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
+Author.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Author.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
+Author.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
+Category.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
+Category.php (blog\wp-content\themes\iconic-one):			while ( have_posts() ) : the_post();
+Category.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
+Category.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Category.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
+Category.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Category.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
+Category.php (blog\wp-content\themes\twentytwelve):			while ( have_posts() ) : the_post();
+Class-wp-media-list-table.php (blog\wp-admin\includes):		return have_posts();
+Class-wp-media-list-table.php (blog\wp-admin\includes):		while ( have_posts() ) : the_post();
+Class-wp-posts-list-table.php (blog\wp-admin\includes):		return have_posts();
+Comments-popup.php (blog\wp-includes\theme-compat):if ( have_posts() ) :
+Comments-popup.php (blog\wp-includes\theme-compat):while( have_posts()) : the_post();
+Default-widgets.php (blog\wp-includes):		if ($r->have_posts()) :
+Default-widgets.php (blog\wp-includes):		<?php while ( $r->have_posts() ) : $r->the_post(); ?>
+Feed-atom.php (blog\wp-includes):	while ( have_posts() ) : the_post();
+Feed-rdf.php (blog\wp-includes):		<?php while (have_posts()): the_post(); ?>
+Feed-rdf.php (blog\wp-includes):<?php rewind_posts(); while (have_posts()): the_post(); ?>
+Feed-rss.php (blog\wp-includes):<?php while (have_posts()) : the_post(); ?>
+Feed-rss2.php (blog\wp-includes):	while( have_posts()) : the_post();
+Front-page.php (blog\wp-content\themes\twentytwelve\page-templates):			<?php while ( have_posts() ) : the_post(); ?>
+Full-width.php (blog\wp-content\themes\iconic-one\page-templates):					<?php while ( have_posts() ) : the_post(); ?>
+Full-width.php (blog\wp-content\themes\twentytwelve\page-templates):			<?php while ( have_posts() ) : the_post(); ?>
+Image.php (blog\wp-content\themes\iconic-one):		<?php while ( have_posts() ) : the_post(); ?>
+Image.php (blog\wp-content\themes\standard):				<?php if ( have_posts() ) { ?>
+Image.php (blog\wp-content\themes\standard):					<?php while ( have_posts() ) { ?>
+Image.php (blog\wp-content\themes\twentyeleven):			<?php while ( have_posts() ) : the_post(); ?>
+Image.php (blog\wp-content\themes\twentytwelve):		<?php while ( have_posts() ) : the_post(); ?>
+Index.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
+Index.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
+Index.php (blog\wp-content\themes\simplicity_chs):		<?php if (have_posts()) : ?>
+Index.php (blog\wp-content\themes\simplicity_chs):		<?php while (have_posts()) : the_post(); ?>
+Index.php (blog\wp-content\themes\standard):				<?php if ( have_posts() ) { ?>
+Index.php (blog\wp-content\themes\standard):					<?php while ( have_posts() ) { ?>
+Index.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
+Index.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Index.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
+Index.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Index.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
+Index.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
+Loop-archive.php (blog\wp-content\themes\canvas):if (have_posts()) { $count = 0;
+Loop-archive.php (blog\wp-content\themes\canvas):	while (have_posts()) { the_post(); $count++;
+Loop-attachment.php (blog\wp-content\themes\twentyten):<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+Loop-blog.php (blog\wp-content\themes\canvas):if ( have_posts() ) { $count = 0;
+Loop-blog.php (blog\wp-content\themes\canvas):	while ( have_posts() ) { the_post(); $count++;
+Loop-magazine.php (blog\wp-content\themes\canvas):if ( have_posts() ) { $count = 0; $column_count_1 = 0; $column_count_2 = 0;
+Loop-magazine.php (blog\wp-content\themes\canvas):	while ( have_posts() ) { the_post(); $count++;
+Loop-page.php (blog\wp-content\themes\twentyten):<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+Loop-portfolio.php (blog\wp-content\themes\canvas):if ( have_posts() ) { $count = 0;
+Loop-portfolio.php (blog\wp-content\themes\canvas):	while ( have_posts() ) { the_post(); $count++;
+Loop-search.php (blog\wp-content\themes\canvas):if (have_posts()) { $count = 0;
+Loop-search.php (blog\wp-content\themes\canvas):	while (have_posts()) { the_post(); $count++;
+Loop-single.php (blog\wp-content\themes\twentyten):<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
+Loop-tumblog.php (blog\wp-content\themes\canvas):if (have_posts()) { $count = 0;
+Loop-tumblog.php (blog\wp-content\themes\canvas):	while (have_posts()) { the_post(); $count++;
+Loop.php (blog\wp-content\themes\canvas):if (have_posts()) { $count = 0;
+Loop.php (blog\wp-content\themes\canvas):	while (have_posts()) { the_post(); $count++;
+Loop.php (blog\wp-content\themes\twentyten):<?php if ( ! have_posts() ) : ?>
+Loop.php (blog\wp-content\themes\twentyten):<?php while ( have_posts() ) : the_post(); ?>
+Nav-menu.php (blog\wp-admin\includes):			if ( ! have_posts() )
+Nav-menu.php (blog\wp-admin\includes):			while ( have_posts() ) {
+Page.php (blog\wp-content\themes\canvas):	if (have_posts()) { $count = 0;
+Page.php (blog\wp-content\themes\canvas):		while (have_posts()) { the_post(); $count++;
+Page.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
+Page.php (blog\wp-content\themes\simplicity_chs):        <?php if (have_posts()) : ?>
+Page.php (blog\wp-content\themes\simplicity_chs):            <?php while (have_posts()) : the_post(); ?>
+Page.php (blog\wp-content\themes\standard):					<?php if ( have_posts() ) { ?>
+Page.php (blog\wp-content\themes\standard):						<?php while ( have_posts() ) {
+Page.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Page.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Page.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
+Plugin.php (blog\wp-content\themes\standard\lib\activity):		if( $popular_posts->have_posts() ) { 
+Plugin.php (blog\wp-content\themes\standard\lib\activity):			while( $popular_posts->have_posts() ) { 
+Plugin.php (blog\wp-content\themes\standard\lib\google-custom-search):		if( $query->have_posts() ) {
+Query.php (blog\wp-includes):function have_posts() {
+Query.php (blog\wp-includes):	return $wp_query->have_posts();
+Query.php (blog\wp-includes):	function have_posts() {
+Readme.txt (blog\wp-content\plugins\wp-postviews):3. Find: `<?php while (have_posts()) : the_post(); ?>`
+Search.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
+Search.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
+Search.php (blog\wp-content\themes\simplicity_chs):        <?php if (have_posts()) : ?>
+Search.php (blog\wp-content\themes\simplicity_chs):            <?php while (have_posts()) : the_post(); ?>
+Search.php (blog\wp-content\themes\standard):					<?php if ( have_posts() ) { ?>
+Search.php (blog\wp-content\themes\standard):						<?php while ( have_posts() ) { ?>
+Search.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
+Search.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Search.php (blog\wp-content\themes\twentyten):<?php if ( have_posts() ) : ?>
+Search.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
+Search.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Search.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
+Search.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
+Showcase.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Showcase.php (blog\wp-content\themes\twentyeleven):					if ( $featured->have_posts() ) :
+Showcase.php (blog\wp-content\themes\twentyeleven):					while ( $featured->have_posts() ) : $featured->the_post();
+Showcase.php (blog\wp-content\themes\twentyeleven):				    	while ( $featured->have_posts() ) : $featured->the_post();
+Showcase.php (blog\wp-content\themes\twentyeleven):					if ( $recent->have_posts() ) : $recent->the_post();
+Showcase.php (blog\wp-content\themes\twentyeleven):					while ( $recent->have_posts() ) : $recent->the_post(); ?>
+Sidebar-page.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Single-portfolio.php (blog\wp-content\themes\canvas):	if ( have_posts() ) { $count = 0;
+Single-portfolio.php (blog\wp-content\themes\canvas):		while ( have_posts() ) { the_post(); $count++;
+Single.php (blog\wp-content\themes\canvas):	if (have_posts()) { $count = 0;
+Single.php (blog\wp-content\themes\canvas):		while (have_posts()) { the_post(); $count++;
+Single.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
+Single.php (blog\wp-content\themes\simplicity_chs):		<?php if (have_posts()) : ?>
+Single.php (blog\wp-content\themes\simplicity_chs):		<?php while (have_posts()) : the_post(); ?>
+Single.php (blog\wp-content\themes\standard):				<?php if ( have_posts() ) { 
+Single.php (blog\wp-content\themes\standard):						while ( have_posts() ) {
+Single.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Single.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Single.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
+Tag.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
+Tag.php (blog\wp-content\themes\iconic-one):			while ( have_posts() ) : the_post();
+Tag.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
+Tag.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
+Tag.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
+Tag.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Tag.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
+Tag.php (blog\wp-content\themes\twentytwelve):			while ( have_posts() ) : the_post();
+Taxonomy-post_format.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
+Taxonomy-post_format.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
+Template-archives.php (blog\wp-content\themes\canvas):                            <?php if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>
+Template-archives.php (blog\wp-content\themes\standard):					<?php if ( have_posts() ) { ?>
+Template-archives.php (blog\wp-content\themes\standard):						<?php while ( have_posts() ) {
+Template-biz.php (blog\wp-content\themes\canvas):	if ( have_posts() ) { $count = 0;
+Template-biz.php (blog\wp-content\themes\canvas):		while ( have_posts() ) { the_post(); $count++;
+Template-contact.php (blog\wp-content\themes\canvas):                <?php if ( have_posts() ) { ?>
+Template-contact.php (blog\wp-content\themes\canvas):                <?php while ( have_posts() ) { the_post(); ?>
+Template-feedback.php (blog\wp-content\themes\canvas):						if ( have_posts() ) {
+Template-feedback.php (blog\wp-content\themes\canvas):							while ( have_posts() ) {
+Template-fullwidth.php (blog\wp-content\themes\standard):				<?php if ( have_posts() ) { ?>
+Template-fullwidth.php (blog\wp-content\themes\standard):					<?php while ( have_posts() ) {
+Template-imagegallery.php (blog\wp-content\themes\canvas):                    <?php if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>				
+Template-sitemap.php (blog\wp-content\themes\canvas):                                <?php while (have_posts()) : the_post(); ?>
+Template-sitemap.php (blog\wp-content\themes\canvas):								while ( $loop->have_posts() ) : $loop->the_post();
+Template-sitemap.php (blog\wp-content\themes\standard):					<?php if ( have_posts() ) { ?>
+Template-sitemap.php (blog\wp-content\themes\standard):						<?php while ( have_posts() ) {
+Template-sitemap.php (blog\wp-content\themes\standard):												if( $query->have_posts() ) {
+Template-sitemap.php (blog\wp-content\themes\standard):													if( $category_query->have_posts() ) {
+Template-sitemap.php (blog\wp-content\themes\standard):														while( $category_query->have_posts() ) {
+Template-timeline.php (blog\wp-content\themes\canvas):                        <?php while ( have_posts() ) { the_post();
+Template-widgets.php (blog\wp-content\themes\canvas):		if ( have_posts() ) { $count = 0;
+Template-widgets.php (blog\wp-content\themes\canvas):			while ( have_posts() ) { the_post(); $count++;
+Test.php (blog\wp-content\plugins\wp-pagenavi):	<?php while ( have_posts() ) : the_post(); ?>
+Theme-actions.php (blog\wp-content\themes\canvas\includes):	if ( $query->have_posts() ) : $count = 0;
+Theme-actions.php (blog\wp-content\themes\canvas\includes):	        while ( $query->have_posts() ) : $query->the_post(); global $post; $shownposts[$count] = $post->ID; $count++;
+Theme-actions.php (blog\wp-content\themes\canvas\includes):		if ( ( ! $slide_query->have_posts() ) ) {
+Theme-actions.php (blog\wp-content\themes\canvas\includes):	       	 if ( $slide_query->have_posts() ) { $count = 0; while ( $slide_query->have_posts() ) { $slide_query->the_post(); $count++;
+Weixin-robot.php (blog\wp-content\plugins\weixin-robot):		if($weixin_robot_query->have_posts()){
+Weixin-robot.php (blog\wp-content\plugins\weixin-robot):			while ($weixin_robot_query->have_posts()) {
+Widget-woo-component.php (blog\wp-content\themes\canvas\includes\widgets):			if ( have_posts() ) { $count = 0;
+Widget-woo-component.php (blog\wp-content\themes\canvas\includes\widgets):				while ( have_posts() ) { the_post(); $count++;
+Widgets.php (blog\wp-content\themes\twentyeleven\inc):		if ( $ephemera->have_posts() ) :
+Widgets.php (blog\wp-content\themes\twentyeleven\inc):			<?php while ( $ephemera->have_posts() ) : $ephemera->the_post(); ?>
