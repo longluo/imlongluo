@@ -58,5 +58,8 @@
 	2013.12.08 00:08
 	Fix the bug, it's the home.min.js problems, modify the image sources.
 	
-
+-->
+	Version: 6.20
+	2013.12.13 
+	
 	
