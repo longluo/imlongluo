@@ -46,8 +46,8 @@ body * {
 	-ms-word-wrap: break-word;
 	margin: 0px; 
 	padding: 0px;
-	font-size: 16px;
-	line-height: 22px;
+	font-size: 14px;
+	line-height: 18px;
 }
 /* Modify end by longluo @2013/12/16. */
 
@@ -199,6 +199,7 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   color: #bfbfbf;
 }
 
+/*
 h1 small {
   font-size: 18px;
 }
@@ -215,7 +216,41 @@ h2 small {
 h6 {
   text-transform: inherit;
 }
+*/
 
+h1 {
+  font-size: 2em;
+}
+
+h1 small {
+  font-size: 1.8em;
+}
+
+h2 {
+  font-size: 1.8em;
+  line-height: 2.2em;
+}
+
+h2 small {
+  font-size: 1.4em;
+}
+
+h3 {
+  font-size: 1.6em;
+}
+
+h4 {
+  font-size: 1.2em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 0.8em;
+  text-transform: inherit;
+}
 
 /*************************************
 	Links
@@ -223,7 +258,9 @@ h6 {
 /* Modify begin by longluo @2013/12/16. for links. */
 a {
 	color: #FA7F42;
+	/*
 	text-decoration: underline;
+	*/
 }
 
 a:visited {
@@ -529,7 +566,7 @@ body {
 
 .post p {
 	margin-bottom: 20px;
-	line-height: 24px;
+	line-height: 22px;
 }
 
 .entry-content img {
