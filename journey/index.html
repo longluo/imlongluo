@@ -10,7 +10,8 @@
 
 ==================================================================================
 	Copyright (C) 2005 - 2013 Long Luo. All Rights Reserved.
-	
+	Version: 3.0
+	Modified by Long Luo @December 23th, 2013 at Shenzhen, China.
 -->
 
 <!--
@@ -611,7 +612,7 @@ footer {
 
 <header id="header" class="jumbotron jumbotron-shadow">
     <div id="header-text" class="container header-elements">
-        <h1 id="title" class="header-elements"><img src="./images/title.png"></h1>
+        <h1 id="title" class="header-elements"><img src="http://databank.u.qiniudn.com/images/title.png"></h1>
         <p id="subtitle" class="lead"> Long Luo's Journey <br class="visible-desktop">
         旅行...<br>
         <a id="website-link" href="http://www.imlongluo.com/blog/" class="lead-link text-center" target="_blank" title="了解关于我的一切" data-toggle="tooltip" data-placement="bottom">进入我的个人网站 »</a></p>
@@ -629,7 +630,7 @@ footer {
 
 <div id="loading" class="text-center">
     <img class="spinner" src="http://databank.u.qiniudn.com/images/spinner.gif">
-    <span>加载中</span>
+    <span>加载中...</span>
 </div>
 
 <article id="content" class="main">	<div class="side-shadow left"></div>
@@ -793,7 +794,7 @@ $('#handle').click(function(){
 */
 
 $.pjax({
-     selector: 'a[href^="http://www.imlongluo.com/journey/index.html"]',
+     selector: 'a[href^="http://www.imlongluo.com/journey/"]',
      container: '#content', //内容替换的容器
      show: 'fade', //展现的动画，支持默认和fade, 可以自定义动画方式，这里为自定义的function即可。
      cache: false, //是否使用缓存
@@ -819,7 +820,7 @@ document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3
 </script>
 
 <!-- CNZZ Statistics -->
-<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000135599'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000135599%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+<p style="text-indent: -9999px;"><script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1000135599'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1000135599%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script></p>
 
 </body>
 </html>

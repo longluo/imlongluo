@@ -342,7 +342,7 @@ a:focus {
     transition-delay:         0.5s;
 }
 
-#work .footnote {
+#single .footnote {
     font-size: 15px;
 }
 
@@ -380,7 +380,7 @@ a:focus {
     width: 900px;
     padding-bottom: 120px;
 
-    background-image: url();
+    background-image: url(http://databank.u.qiniudn.com/image/cat/cat_guibai.jpg);
     background-position: bottom right;
     background-repeat: no-repeat;
 }

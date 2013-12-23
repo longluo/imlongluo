@@ -62,4 +62,7 @@
 	Version: 6.20
 	2013.12.13 
 	
-	
+-->
+	Version: 6.30
+	Fix the home images.
+	2013.12.23 	
