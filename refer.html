@@ -1,5 +1,18 @@
+
 <!DOCTYPE html>
-<!--
+
+<script type="text/javascript">
+	var date = new Date();
+	date.setDate(date.getDate() + 365);　
+	var ratio  = 'ratio=' + window.devicePixelRatio + '; expires=' + date.toGMTString();
+	var screenwidth = 'screenwidth=' + window.screen.width + '; expires=' + date.toGMTString();
+	document.cookie = ratio;
+	document.cookie = screenwidth;
+	if(window.devicePixelRatio > 1){
+		window.location.replace('http://www.dandyweng.com')
+	}
+</script>
+	<!--
  _____    _____       ___   _____        _   _   _____   _____    _____  
 |  _  \  | ____|     /   | |  _  \      | | | | | ____| |  _  \  | ____| 
 | |_| |  | |__      / /| | | | | |      | |_| | | |__   | |_| |  | |__   
@@ -29,7 +42,7 @@
 <html id="ie8" lang="zh-CN">
 <![endif]-->
 <!--[if !(IE 6) | !(IE 7) | !(IE 8)  ]><!-->
-<html lang="zh-CN">
+<html lang="zh-CN" manifest="cache.manifest">
 <!--<![endif]-->
 <head>
 <meta charset="UTF-8">
@@ -82,7 +95,7 @@
          and (orientation: portrait)
          and (-webkit-device-pixel-ratio: 2)"
       rel="apple-touch-startup-image" />
-<link href="http://dandyweng.qiniudn.com/images/ios/1496x2048.png"
+<link href="http://dandyweng.qiniudn.com/images/ios/2048x1496.png"
       media="(device-width: 768px) and (device-height: 1024px)
          and (orientation: landscape)
          and (-webkit-device-pixel-ratio: 2)"
@@ -289,6 +302,7 @@ img.profile {
 }
 img.profile:hover {
 	-webkit-animation: profile-img-hover 1000ms ease-out 100ms infinite forwards;
+	cursor: -webkit-grab;
 }
 img.profile:active {
 	-webkit-animation: profile-img-active 500ms linear 0 infinite forwards;
@@ -1203,6 +1217,34 @@ only screen and (                min-resolution: 2dppx) {
 
 /* = 伪类 Pseudo
 ----------------------------------------------- */
+::-webkit-scrollbar {
+	width: 10px;
+	background: #cacaca url("http://dw-resources.qiniudn.com/images/patterns/mooning.jpg");;
+	opacity: .8;	
+	-webkit-transition: .25s;
+}
+::-webkit-scrollbar-button {
+	width: 10px;
+	height: 5px;
+	-webkit-transition: .25s;
+}
+::-webkit-scrollbar-track {
+	background: #cacaca url("http://dw-resources.qiniudn.com/images/patterns/mooning.jpg");;
+	/* border: thin solid lightgray; 
+	box-shadow: 0px 0px 3px #dfdfdf inset; */
+	border-radius: 10px;
+	-webkit-transition: .25s;
+}
+::-webkit-scrollbar-thumb {
+	background: #969696;
+	/* border: thin solid gray; */
+	border-radius: 10px;
+	-webkit-transition: .25s;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: #7d7d7d;
+	-webkit-transition: .25s;
+}
 ::-webkit-selection {
     background: #d3d3d3; 
     color: #555;
@@ -1447,7 +1489,7 @@ only screen and (                min-resolution: 2dppx) {
                 <div class="span6">
                     <div class="padding-huge">
                         <h1>Apple</h1>
-                        <p class="wo">我对 Apple 产品的热爱近乎狂热，是一名真正的铁杆果粉。在 Steve Jobs 时代，我拥有近乎全系列的 Apple 产品。Apple 不但蕴含着一种高贵的灵魂，还透射出一种独特的魅力。我通宵排队 14 小时，买到了中国地区的第一台 iPad 2；之后又为了买 iPhone 4S 排队足足 20 小时。后来还被腾讯网评为“超级果粉”第一名。</p>
+                        <p class="wo">我对 Apple 产品的热爱近乎狂热，是一名真正的铁杆果粉。在乔布斯时代，我拥有近乎全系列的 Apple 产品。Apple 不但蕴含着一种高贵的灵魂，还透射出一种独特的魅力。我通宵排队 14 小时，买到了中国地区的第一台 iPad 2；之后又为了买 iPhone 4S 排队足足 20 小时。后来还被腾讯网评为“超级果粉”第一名。</p>
                         <br />
                         <a class="visible-desktop" href="http://www.google.com/hostednews/afp/article/ALeqM5h9IrITObDmUmYjG8_3iAwiPwrwCQ?docId=CNG.ce7c362a719710baba258bff00b37376.721" target="_blank">相关新闻报道 »</a>
                     </div>
@@ -1550,7 +1592,7 @@ only screen and (                min-resolution: 2dppx) {
                         <p>谢绝一切商业性摄影、设计或 Web 开发相关工作的邀请，我从不为他人进行创作，与费用无关，望理解。</p>
                         <p><small>感谢 <a href="http://www.qiniu.com/" target="_blank">七牛</a> 赞助提供 CDN 云加速服务</small></p>
                         <p>Designed and Developed by Dandy Weng. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="copyright">BY-NC-SA</a> License.</p>
-                        <p>Copyright © 2010 - 2013 dandyweng.com. All Rights Reserved.</p> 
+                        <p>Copyright © 2010 - 2014 dandyweng.com. All Rights Reserved.</p> 
                         <div id="back-to-top">
                             <svg id="rocket" version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewbox="0 0 64 64">
                                 <path fill="#CCCCCC" d="M42.057,37.732c0,0,4.139-25.58-9.78-36.207c-0.307-0.233-0.573-0.322-0.802-0.329

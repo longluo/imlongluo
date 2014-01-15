@@ -1,213 +1,145 @@
----- have_posts Matches (183 in 100 files) ----
-Admin-functions.php (blog\wp-content\themes\canvas\functions): 	if ( $query->have_posts() ) {
-Admin-functions.php (blog\wp-content\themes\canvas\functions): 		while( $query->have_posts() ) {
-Aioseop_module_class.php (blog\wp-content\plugins\all-in-one-seo-pack):			while ($posts_query->have_posts() ) {
-All_in_one_seo_pack.php (blog\wp-content\plugins\all-in-one-seo-pack):		if (have_posts()) the_post();
-Archive.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
-Archive.php (blog\wp-content\themes\iconic-one):			while ( have_posts() ) : the_post();
-Archive.php (blog\wp-content\themes\simplicity_chs):        <?php if (have_posts()) : ?>
-Archive.php (blog\wp-content\themes\simplicity_chs):            <?php while (have_posts()) : the_post(); ?>
-Archive.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
-Archive.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Archive.php (blog\wp-content\themes\twentyten):	if ( have_posts() )
-Archive.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
-Archive.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Archive.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
-Archive.php (blog\wp-content\themes\twentytwelve):			while ( have_posts() ) : the_post();
-Author.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
-Author.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
-Author.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
-Author.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Author.php (blog\wp-content\themes\twentyten):	if ( have_posts() )
-Author.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
-Author.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Author.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
-Author.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
-Category.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
-Category.php (blog\wp-content\themes\iconic-one):			while ( have_posts() ) : the_post();
-Category.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
-Category.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Category.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
-Category.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Category.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
-Category.php (blog\wp-content\themes\twentytwelve):			while ( have_posts() ) : the_post();
-Class-wp-media-list-table.php (blog\wp-admin\includes):		return have_posts();
-Class-wp-media-list-table.php (blog\wp-admin\includes):		while ( have_posts() ) : the_post();
-Class-wp-posts-list-table.php (blog\wp-admin\includes):		return have_posts();
-Comments-popup.php (blog\wp-includes\theme-compat):if ( have_posts() ) :
-Comments-popup.php (blog\wp-includes\theme-compat):while( have_posts()) : the_post();
-Default-widgets.php (blog\wp-includes):		if ($r->have_posts()) :
-Default-widgets.php (blog\wp-includes):		<?php while ( $r->have_posts() ) : $r->the_post(); ?>
-Feed-atom.php (blog\wp-includes):	while ( have_posts() ) : the_post();
-Feed-rdf.php (blog\wp-includes):		<?php while (have_posts()): the_post(); ?>
-Feed-rdf.php (blog\wp-includes):<?php rewind_posts(); while (have_posts()): the_post(); ?>
-Feed-rss.php (blog\wp-includes):<?php while (have_posts()) : the_post(); ?>
-Feed-rss2.php (blog\wp-includes):	while( have_posts()) : the_post();
-Front-page.php (blog\wp-content\themes\twentytwelve\page-templates):			<?php while ( have_posts() ) : the_post(); ?>
-Full-width.php (blog\wp-content\themes\iconic-one\page-templates):					<?php while ( have_posts() ) : the_post(); ?>
-Full-width.php (blog\wp-content\themes\twentytwelve\page-templates):			<?php while ( have_posts() ) : the_post(); ?>
-Image.php (blog\wp-content\themes\iconic-one):		<?php while ( have_posts() ) : the_post(); ?>
-Image.php (blog\wp-content\themes\standard):				<?php if ( have_posts() ) { ?>
-Image.php (blog\wp-content\themes\standard):					<?php while ( have_posts() ) { ?>
-Image.php (blog\wp-content\themes\twentyeleven):			<?php while ( have_posts() ) : the_post(); ?>
-Image.php (blog\wp-content\themes\twentytwelve):		<?php while ( have_posts() ) : the_post(); ?>
-Index.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
-Index.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
-Index.php (blog\wp-content\themes\simplicity_chs):		<?php if (have_posts()) : ?>
-Index.php (blog\wp-content\themes\simplicity_chs):		<?php while (have_posts()) : the_post(); ?>
-Index.php (blog\wp-content\themes\standard):				<?php if ( have_posts() ) { ?>
-Index.php (blog\wp-content\themes\standard):					<?php while ( have_posts() ) { ?>
-Index.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
-Index.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Index.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
-Index.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Index.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
-Index.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
-Loop-archive.php (blog\wp-content\themes\canvas):if (have_posts()) { $count = 0;
-Loop-archive.php (blog\wp-content\themes\canvas):	while (have_posts()) { the_post(); $count++;
-Loop-attachment.php (blog\wp-content\themes\twentyten):<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-Loop-blog.php (blog\wp-content\themes\canvas):if ( have_posts() ) { $count = 0;
-Loop-blog.php (blog\wp-content\themes\canvas):	while ( have_posts() ) { the_post(); $count++;
-Loop-magazine.php (blog\wp-content\themes\canvas):if ( have_posts() ) { $count = 0; $column_count_1 = 0; $column_count_2 = 0;
-Loop-magazine.php (blog\wp-content\themes\canvas):	while ( have_posts() ) { the_post(); $count++;
-Loop-page.php (blog\wp-content\themes\twentyten):<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-Loop-portfolio.php (blog\wp-content\themes\canvas):if ( have_posts() ) { $count = 0;
-Loop-portfolio.php (blog\wp-content\themes\canvas):	while ( have_posts() ) { the_post(); $count++;
-Loop-search.php (blog\wp-content\themes\canvas):if (have_posts()) { $count = 0;
-Loop-search.php (blog\wp-content\themes\canvas):	while (have_posts()) { the_post(); $count++;
-Loop-single.php (blog\wp-content\themes\twentyten):<?php if ( have_posts() ) while ( have_posts() ) : the_post(); ?>
-Loop-tumblog.php (blog\wp-content\themes\canvas):if (have_posts()) { $count = 0;
-Loop-tumblog.php (blog\wp-content\themes\canvas):	while (have_posts()) { the_post(); $count++;
-Loop.php (blog\wp-content\themes\canvas):if (have_posts()) { $count = 0;
-Loop.php (blog\wp-content\themes\canvas):	while (have_posts()) { the_post(); $count++;
-Loop.php (blog\wp-content\themes\twentyten):<?php if ( ! have_posts() ) : ?>
-Loop.php (blog\wp-content\themes\twentyten):<?php while ( have_posts() ) : the_post(); ?>
-Nav-menu.php (blog\wp-admin\includes):			if ( ! have_posts() )
-Nav-menu.php (blog\wp-admin\includes):			while ( have_posts() ) {
-Page.php (blog\wp-content\themes\canvas):	if (have_posts()) { $count = 0;
-Page.php (blog\wp-content\themes\canvas):		while (have_posts()) { the_post(); $count++;
-Page.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
-Page.php (blog\wp-content\themes\simplicity_chs):        <?php if (have_posts()) : ?>
-Page.php (blog\wp-content\themes\simplicity_chs):            <?php while (have_posts()) : the_post(); ?>
-Page.php (blog\wp-content\themes\standard):					<?php if ( have_posts() ) { ?>
-Page.php (blog\wp-content\themes\standard):						<?php while ( have_posts() ) {
-Page.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Page.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Page.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
-Plugin.php (blog\wp-content\themes\standard\lib\activity):		if( $popular_posts->have_posts() ) { 
-Plugin.php (blog\wp-content\themes\standard\lib\activity):			while( $popular_posts->have_posts() ) { 
-Plugin.php (blog\wp-content\themes\standard\lib\google-custom-search):		if( $query->have_posts() ) {
-Query.php (blog\wp-includes):function have_posts() {
-Query.php (blog\wp-includes):	return $wp_query->have_posts();
-Query.php (blog\wp-includes):	function have_posts() {
-Readme.txt (blog\wp-content\plugins\wp-postviews):3. Find: `<?php while (have_posts()) : the_post(); ?>`
-Search.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
-Search.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
-Search.php (blog\wp-content\themes\simplicity_chs):        <?php if (have_posts()) : ?>
-Search.php (blog\wp-content\themes\simplicity_chs):            <?php while (have_posts()) : the_post(); ?>
-Search.php (blog\wp-content\themes\standard):					<?php if ( have_posts() ) { ?>
-Search.php (blog\wp-content\themes\standard):						<?php while ( have_posts() ) { ?>
-Search.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
-Search.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Search.php (blog\wp-content\themes\twentyten):<?php if ( have_posts() ) : ?>
-Search.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
-Search.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Search.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
-Search.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
-Showcase.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Showcase.php (blog\wp-content\themes\twentyeleven):					if ( $featured->have_posts() ) :
-Showcase.php (blog\wp-content\themes\twentyeleven):					while ( $featured->have_posts() ) : $featured->the_post();
-Showcase.php (blog\wp-content\themes\twentyeleven):				    	while ( $featured->have_posts() ) : $featured->the_post();
-Showcase.php (blog\wp-content\themes\twentyeleven):					if ( $recent->have_posts() ) : $recent->the_post();
-Showcase.php (blog\wp-content\themes\twentyeleven):					while ( $recent->have_posts() ) : $recent->the_post(); ?>
-Sidebar-page.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Single-portfolio.php (blog\wp-content\themes\canvas):	if ( have_posts() ) { $count = 0;
-Single-portfolio.php (blog\wp-content\themes\canvas):		while ( have_posts() ) { the_post(); $count++;
-Single.php (blog\wp-content\themes\canvas):	if (have_posts()) { $count = 0;
-Single.php (blog\wp-content\themes\canvas):		while (have_posts()) { the_post(); $count++;
-Single.php (blog\wp-content\themes\iconic-one):			<?php while ( have_posts() ) : the_post(); ?>
-Single.php (blog\wp-content\themes\simplicity_chs):		<?php if (have_posts()) : ?>
-Single.php (blog\wp-content\themes\simplicity_chs):		<?php while (have_posts()) : the_post(); ?>
-Single.php (blog\wp-content\themes\standard):				<?php if ( have_posts() ) { 
-Single.php (blog\wp-content\themes\standard):						while ( have_posts() ) {
-Single.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Single.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Single.php (blog\wp-content\themes\twentytwelve):			<?php while ( have_posts() ) : the_post(); ?>
-Tag.php (blog\wp-content\themes\iconic-one):		<?php if ( have_posts() ) : ?>
-Tag.php (blog\wp-content\themes\iconic-one):			while ( have_posts() ) : the_post();
-Tag.php (blog\wp-content\themes\twentyeleven):			<?php if ( have_posts() ) : ?>
-Tag.php (blog\wp-content\themes\twentyeleven):				<?php while ( have_posts() ) : the_post(); ?>
-Tag.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
-Tag.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Tag.php (blog\wp-content\themes\twentytwelve):		<?php if ( have_posts() ) : ?>
-Tag.php (blog\wp-content\themes\twentytwelve):			while ( have_posts() ) : the_post();
-Taxonomy-post_format.php (blog\wp-content\themes\twentythirteen):		<?php if ( have_posts() ) : ?>
-Taxonomy-post_format.php (blog\wp-content\themes\twentythirteen):			<?php while ( have_posts() ) : the_post(); ?>
-Template-archives.php (blog\wp-content\themes\canvas):                            <?php if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>
-Template-archives.php (blog\wp-content\themes\standard):					<?php if ( have_posts() ) { ?>
-Template-archives.php (blog\wp-content\themes\standard):						<?php while ( have_posts() ) {
-Template-biz.php (blog\wp-content\themes\canvas):	if ( have_posts() ) { $count = 0;
-Template-biz.php (blog\wp-content\themes\canvas):		while ( have_posts() ) { the_post(); $count++;
-Template-contact.php (blog\wp-content\themes\canvas):                <?php if ( have_posts() ) { ?>
-Template-contact.php (blog\wp-content\themes\canvas):                <?php while ( have_posts() ) { the_post(); ?>
-Template-feedback.php (blog\wp-content\themes\canvas):						if ( have_posts() ) {
-Template-feedback.php (blog\wp-content\themes\canvas):							while ( have_posts() ) {
-Template-fullwidth.php (blog\wp-content\themes\standard):				<?php if ( have_posts() ) { ?>
-Template-fullwidth.php (blog\wp-content\themes\standard):					<?php while ( have_posts() ) {
-Template-imagegallery.php (blog\wp-content\themes\canvas):                    <?php if ( have_posts() ) { while ( have_posts() ) { the_post(); ?>				
-Template-sitemap.php (blog\wp-content\themes\canvas):                                <?php while (have_posts()) : the_post(); ?>
-Template-sitemap.php (blog\wp-content\themes\canvas):								while ( $loop->have_posts() ) : $loop->the_post();
-Template-sitemap.php (blog\wp-content\themes\standard):					<?php if ( have_posts() ) { ?>
-Template-sitemap.php (blog\wp-content\themes\standard):						<?php while ( have_posts() ) {
-Template-sitemap.php (blog\wp-content\themes\standard):												if( $query->have_posts() ) {
-Template-sitemap.php (blog\wp-content\themes\standard):													if( $category_query->have_posts() ) {
-Template-sitemap.php (blog\wp-content\themes\standard):														while( $category_query->have_posts() ) {
-Template-timeline.php (blog\wp-content\themes\canvas):                        <?php while ( have_posts() ) { the_post();
-Template-widgets.php (blog\wp-content\themes\canvas):		if ( have_posts() ) { $count = 0;
-Template-widgets.php (blog\wp-content\themes\canvas):			while ( have_posts() ) { the_post(); $count++;
-Test.php (blog\wp-content\plugins\wp-pagenavi):	<?php while ( have_posts() ) : the_post(); ?>
-Theme-actions.php (blog\wp-content\themes\canvas\includes):	if ( $query->have_posts() ) : $count = 0;
-Theme-actions.php (blog\wp-content\themes\canvas\includes):	        while ( $query->have_posts() ) : $query->the_post(); global $post; $shownposts[$count] = $post->ID; $count++;
-Theme-actions.php (blog\wp-content\themes\canvas\includes):		if ( ( ! $slide_query->have_posts() ) ) {
-Theme-actions.php (blog\wp-content\themes\canvas\includes):	       	 if ( $slide_query->have_posts() ) { $count = 0; while ( $slide_query->have_posts() ) { $slide_query->the_post(); $count++;
-Weixin-robot.php (blog\wp-content\plugins\weixin-robot):		if($weixin_robot_query->have_posts()){
-Weixin-robot.php (blog\wp-content\plugins\weixin-robot):			while ($weixin_robot_query->have_posts()) {
-Widget-woo-component.php (blog\wp-content\themes\canvas\includes\widgets):			if ( have_posts() ) { $count = 0;
-Widget-woo-component.php (blog\wp-content\themes\canvas\includes\widgets):				while ( have_posts() ) { the_post(); $count++;
-Widgets.php (blog\wp-content\themes\twentyeleven\inc):		if ( $ephemera->have_posts() ) :
-Widgets.php (blog\wp-content\themes\twentyeleven\inc):			<?php while ( $ephemera->have_posts() ) : $ephemera->the_post(); ?>
----- body Matches (38 in 12 files) ----
-About.htm (blog\wp-includes\js\tinymce\themes\advanced):<body id="about" style="display: none">
-About.htm (blog\wp-includes\js\tinymce\themes\advanced):</body>
-Aboutme.css (aboutme\css):html, body, div, span, applet, object, iframe,
-Aboutme.css (aboutme\css):body {
-Aboutme.css (aboutme\css):body {
-Addons.php (blog\wp-content\plugins\wp-slimstat\admin\config):$list_addons = maybe_unserialize($response['body']);
-Admin-bar.js (blog\wp-includes\js):			$(document.body).on( mobileEvent+'.wp-mobile-hover', function(e) {
-Admin-bar.js (blog\wp-includes\js):			$('html, body').animate({ scrollTop: 0 }, 'fast');
-Admin-bar.js (blog\wp-includes\js):			distance    = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-Admin-bar.js (blog\wp-includes\js):			if ( d.body && aB ) {
-Admin-bar.js (blog\wp-includes\js):				d.body.appendChild( aB );
-Admin-bar.min.js (blog\wp-includes\js):"undefined"!=typeof jQuery?("undefined"==typeof jQuery.fn.hoverIntent&&!function(a){a.fn.hoverIntent=function(b,c,d){var e={interval:100,sensitivity:7,timeout:0};e="object"==typeof b?a.extend(e,b):a.isFunction(c)?a.extend(e,{over:b,out:c,selector:d}):a.extend(e,{over:b,out:b,selector:c});var f,g,h,i,j=function(a){f=a.pageX,g=a.pageY},k=function(b,c){return c.hoverIntent_t=clearTimeout(c.hoverIntent_t),Math.abs(h-f)+Math.abs(i-g)<e.sensitivity?(a(c).off("mousemove.hoverIntent",j),c.hoverIntent_s=1,e.over.apply(c,[b])):(h=f,i=g,c.hoverIntent_t=setTimeout(function(){k(b,c)},e.interval),void 0)},l=function(a,b){return b.hoverIntent_t=clearTimeout(b.hoverIntent_t),b.hoverIntent_s=0,e.out.apply(b,[a])},m=function(b){var c=jQuery.extend({},b),d=this;d.hoverIntent_t&&(d.hoverIntent_t=clearTimeout(d.hoverIntent_t)),"mouseenter"==b.type?(h=c.pageX,i=c.pageY,a(d).on("mousemove.hoverIntent",j),1!=d.hoverIntent_s&&(d.hoverIntent_t=setTimeout(function(){k(c,d)},e.interval))):(a(d).off("mousemove.hoverIntent",j),1==d.hoverIntent_s&&(d.hoverIntent_t=setTimeout(function(){l(c,d)},e.timeout)))};return this.on({"mouseenter.hoverIntent":m,"mouseleave.hoverIntent":m},e.selector)}}(jQuery),jQuery(document).ready(function(a){var b,c,d,e=a("#wpadminbar"),f=!1;b=function(b,c){var d=a(c),e=d.attr("tabindex");e&&d.attr("tabindex","0").attr("tabindex",e)},c=function(b){e.find("li.menupop").on("click.wp-mobile-hover",function(c){var d=a(this);d.hasClass("hover")||(c.preventDefault(),e.find("li.menupop.hover").removeClass("hover"),d.addClass("hover")),b&&(a("li.menupop").off("click.wp-mobile-hover"),f=!1)})},d=function(){var b=/Mobile\/.+Safari/.test(navigator.userAgent)?"touchstart":"click";a(document.body).on(b+".wp-mobile-hover",function(b){a(b.target).closest("#wpadminbar").length||e.find("li.menupop.hover").removeClass("hover")})},e.removeClass("nojq").removeClass("nojs"),"ontouchstart"in window?(e.on("touchstart",function(){c(!0),f=!0}),d()):/IEMobile\/[1-9]/.test(navigator.userAgent)&&(c()
-Admin-bar.min.js (blog\wp-includes\js):function(){f||a(this).addClass("hover")},out:function(){f||a(this).removeClass("hover")},timeout:180,sensitivity:7,interval:100}),window.location.hash&&window.scrollBy(0,-32),a("#wp-admin-bar-get-shortlink").click(function(b){b.preventDefault(),a(this).addClass("selected").children(".shortlink-input").blur(function(){a(this).parents("#wp-admin-bar-get-shortlink").removeClass("selected")}).focus().select()}),a("#wpadminbar li.menupop > .ab-item").bind("keydown.adminbar",function(c){if(13==c.which){var d=a(c.target),e=d.closest("ab-sub-wrapper");c.stopPropagation(),c.preventDefault(),e.length||(e=a("#wpadminbar .quicklinks")),e.find(".menupop").removeClass("hover"),d.parent().toggleClass("hover"),d.siblings(".ab-sub-wrapper").find(".ab-item").each(b)}}).each(b),a("#wpadminbar .ab-item").bind("keydown.adminbar",function(c){if(27==c.which){var d=a(c.target);c.stopPropagation(),c.preventDefault(),d.closest(".hover").removeClass("hover").children(".ab-item").focus(),d.siblings(".ab-sub-wrapper").find(".ab-item").each(b)}}),a("#wpadminbar").click(function(b){("wpadminbar"==b.target.id||"wp-admin-bar-top-secondary"==b.target.id)&&(b.preventDefault(),a("html, body").animate({scrollTop:0},"fast"))}),a(".screen-reader-shortcut").keydown(function(b){if(13==b.which){var c=a(this).attr("href"),d=navigator.userAgent.toLowerCase();-1!=d.indexOf("applewebkit")&&c&&"#"==c.charAt(0)&&setTimeout(function(){a(c).focus()},100)}}),"sessionStorage"in window&&a("#wp-admin-bar-logout a").click(function(){try{for(var a in sessionStorage)-1!=a.indexOf("wp-autosave-")&&sessionStorage.removeItem(a)}catch(b){}})})):!function(a,b){var c,d=function(a,b,c){a.addEventListener?a.addEventListener(b,c,!1):a.attachEvent&&a.attachEvent("on"+b,function(){return c.call(a,window.event)})},e=new RegExp("\\bhover\\b","g"),f=[],g=new RegExp("\\bselected\\b","g"),h=function(a){for(var b=f.length;b--;)if(f[b]&&a==f[b][1])return f[b][0];return!1},i=function(b){for(var d,i,j,k,l,m,n=[],o=0;b&&b!=c&&b!=a;)"LI"==b.nod
-Admin-bar.min.js (blog\wp-includes\js):&clearTimeout(i),b.className=b.className?b.className.replace(e,"")+" hover":"hover",k=b),b=b.parentNode;if(k&&k.parentNode&&(l=k.parentNode,l&&"UL"==l.nodeName.toUpperCase()))for(d=l.childNodes.length;d--;)m=l.childNodes[d],m!=k&&(m.className=m.className?m.className.replace(g,""):"");for(d=f.length;d--;){for(j=!1,o=n.length;o--;)n[o]==f[d][1]&&(j=!0);j||(f[d][1].className=f[d][1].className?f[d][1].className.replace(e,""):"")}},j=function(b){for(;b&&b!=c&&b!=a;)"LI"==b.nodeName.toUpperCase()&&!function(a){var b=setTimeout(function(){a.className=a.className?a.className.replace(e,""):""},500);f[f.length]=[b,a]}(b),b=b.parentNode},k=function(b){for(var d,e,f,h=b.target||b.srcElement;;){if(!h||h==a||h==c)return;if(h.id&&"wp-admin-bar-get-shortlink"==h.id)break;h=h.parentNode}for(b.preventDefault&&b.preventDefault(),b.returnValue=!1,-1==h.className.indexOf("selected")&&(h.className+=" selected"),d=0,e=h.childNodes.length;e>d;d++)if(f=h.childNodes[d],f.className&&-1!=f.className.indexOf("shortlink-input")){f.focus(),f.select(),f.onblur=function(){h.className=h.className?h.className.replace(g,""):""};break}return!1},l=function(a){var b,c,d,e,f,g;if(!("wpadminbar"!=a.id&&"wp-admin-bar-top-secondary"!=a.id||(b=window.pageYOffset||document.documentElement.scrollTop||document.body.scrollTop||0,1>b)))for(g=b>800?130:100,c=Math.min(12,Math.round(b/g)),d=b>800?Math.round(b/30):Math.round(b/20),e=[],f=0;b;)b-=d,0>b&&(b=0),e.push(b),setTimeout(function(){window.scrollTo(0,e.shift())},f*c),f++};d(b,"load",function(){c=a.getElementById("wpadminbar"),a.body&&c&&(a.body.appendChild(c),c.className&&(c.className=c.className.replace(/nojs/,"")),d(c,"mouseover",function(a){i(a.target||a.srcElement)}),d(c,"mouseout",function(a){j(a.target||a.srcElement)}),d(c,"click",k),d(c,"click",function(a){l(a.target||a.srcElement)}),d(document.getElementById("wp-admin-bar-logout"),"click",function(){if("sessionStorage"in window)try{for(var a in sessionStorage)-1!=a.indexOf("wp-autosave-")&&sessionStorage
-Admin-bar.php (blog\wp-includes):	* html body { margin-top: 28px !important; }
-Admin-footer.php (blog\wp-admin):</body>
-Admin-functions.php (blog\wp-content\themes\canvas\functions):		$data = $response['body'];
-Admin-functions.php (blog\wp-content\themes\canvas\functions):		echo '<style type="text/css">body #login h1 a { background-image:url( ' . esc_url( $logo ) . ' ); height: ' . intval( $dimensions[1] ) . 'px; width: auto; ' . $background_size . ' }</style>';
-Admin-header.php (blog\wp-admin):<body class="wp-admin wp-core-ui no-js <?php echo apply_filters( 'admin_body_class', '' ) . " $admin_body_class"; ?>">
-Admin-header.php (blog\wp-admin):	document.body.className = document.body.className.replace('no-js','js');
-Admin-style.css (blog\wp-content\themes\canvas\functions):body.js #woo_container #woo-nav li.current ul.sub-menu, body.js #woo_container #woo-nav li.current ul.sub-menu li a { margin-left:0; }
-Admin-style.css (blog\wp-content\themes\canvas\functions):body.js #woo_container #woo-nav ul.sub-menu { display: none; margin: 0 1px; }
-Admin-style.css (blog\wp-content\themes\canvas\functions):body.js #woo_container #woo-nav .flyout-menu { z-index: 9998; display: none; position: absolute; left: 190px; margin-top: -35px; width: 150px; background: #FFFFFF; border: 1px solid #EBEBEB; box-shadow: 5px 5px 10px rgba( 0, 0, 0, 0.4 ); }
-Admin-style.css (blog\wp-content\themes\canvas\functions):body.js #woo_container #woo-nav .flyout-menu ul  { border: none; padding:5px 0;}
-Admin-style.css (blog\wp-content\themes\canvas\functions):body.js #woo_container #woo-nav li.open .flyout-menu { display: none; }
-Admin-style.css (blog\wp-content\themes\canvas\functions):body.version-3-4-1 #woo_container .controls input.upload_button, 
-Admin-style.css (blog\wp-content\themes\canvas\functions):body.version-3-4-2 #woo_container .controls input.upload_button { height: 25px; }
-Admin-style.css (blog\wp-content\themes\canvas\functions):body.js .item-order {
-Admin-style.css (blog\wp-content\themes\canvas\functions):html body * span.clear,
-Admin-style.css (blog\wp-content\themes\canvas\functions):html body * div.clear,
-Admin-style.css (blog\wp-content\themes\canvas\functions):html body * li.clear,
-Admin-style.css (blog\wp-content\themes\canvas\functions):html body * dd.clear
-Admin.js (blog\wp-content\plugins\free-cdn):    if (document.body.scrollTop != 0 || document.documentElement.scrollTop != 0){
-Admin.php (blog\wp-content\plugins\w3-total-cache\inc\functions):                'minify.js.combine.body',
+---- woo_footer_left Matches (7 in 2 files) ----
+Footer.php (blog\wp-content\themes\canvas):			<?php woo_footer_left(); ?>
+Theme-actions.php (blog\wp-content\themes\canvas\includes):if ( ! function_exists( 'woo_footer_left' ) ) { 
+Theme-actions.php (blog\wp-content\themes\canvas\includes):function woo_footer_left () {
+Theme-actions.php (blog\wp-content\themes\canvas\includes):	if( isset( $woo_options['woo_footer_left'] ) && $woo_options['woo_footer_left'] == 'true' ) {
+Theme-actions.php (blog\wp-content\themes\canvas\includes):	$html = apply_filters( 'woo_footer_left', $html );
+Theme-actions.php (blog\wp-content\themes\canvas\includes): 	$sections = array( 'woo_filter_post_meta', 'woo_post_inside_after_default', 'woo_post_more', 'woo_footer_left', 'woo_footer_right' );
+---- style.css Matches (139 in 29 files) ----
+Admin-functions.php (blog\wp-content\themes\canvas\functions):		$theme_data = get_theme_data( get_template_directory() . '/style.css' );
+Admin-functions.php (blog\wp-content\themes\canvas\functions):			$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+Admin-interface.php (blog\wp-content\themes\canvas\functions):		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css', '', '5.3.10' );
+Changelog.txt (blog\wp-content\themes\canvas):   style.css - Hide #portfolio .gallery-image as we now insert the image tag to add support for prettyPhoto titles, and don't need the image to display.
+Changelog.txt (blog\wp-content\themes\canvas):   style.css - Add spacing below portfolio thumbnail image, to create breathing room between thumbnail and portfolio item title on the "Portfolio" page template. Add styling for the new portfolio item image gallery layout. Fixed blockquote in IE9. Added list-style to widgets. Updated button styling. Adjusted slider styling to avoid using overflows. Added styling for slider pagination, now that it exists outside of the slideshow container. Added border to portfolio images. General style fixes. Make sure sidebar has clear: both on small-screen devices.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css,
+Changelog.txt (blog\wp-content\themes\canvas):   /includes/theme-actions.php - Fix for IE8 and child themes. Moved layout.less out of style.css and created layout.css which loads separately in the header.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Magazine slider pagination styling fix.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css, layout/layout.css - Removed IE8 responsive support. Portfolio image IE8 fix. Remove Gravity form text styling.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Reformat font-face CSS. Add 'background-size: cover;' to #header. Make sure slideshow pagination displays correctly inside the "Woo - Component" widget. Add minor CSS update for WooSlider compatibility.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Changed slider content to sit below slider for mobile resolutions.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Image scaling IE8 fix for slider images. Fixed nav ul width for mobile resolutions. Image width fix for IE8. Fixed "filter" property for subscribe & connect social icons. Flexslider active pagination color. Removed IE "filter" property from buttons, was causing issues with rounded corners.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Replace a.next and a.prev, in the slider styles, with a.flex-next and a.flex-prev in accordance with FlexSlider V2. Fixed width bug with captioned blog images.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Removed width for gravity forms labels
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Removed "filter" property from #navigation, was giving issues in IE
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Fixed magazine template responsive columns
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Converted layout to be responsive; Default styling updates
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - changed slider title from '#loopedSlider .content h2 a' to '#loopedSlider .content h2' so it works with biz slider without an URL
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - IE7 feedback widget "hasLayout" fix
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - removed absolute positioning from tumblog icon and added float:right; (line 423)
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added styling to float single portfolio item description correctly to the right.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added portfolio-related CSS.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added .nav li.sfHover ul li a.sf-with-ul styling
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added display:none to #loopedslider .slides
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - fixed hover color 
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - adjusted biz slider min-height (line 804-805). 
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added section #0 RESET and #9 BROWSER SPECIFIC. Removed include of reset.css.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added CSS for slider pagination.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added z-index to "next" and "previous" buttons in Magazine template's slider.
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added .woo-pagination styling (section 3.3). Changed #breadcrumbs to .breadcrumbs
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added CSS for optional top navigation (WP Menus) section 2.2.2
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added styling for Subscribe & Connect. Added margin to #post-author. 
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added .author #post-author 
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added active hover for categories on .nav (line 141)
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - updated SEARCH FORM section
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - made style chages to section 3.3 and 3.4 (post navigation and post author)
+Changelog.txt (blog\wp-content\themes\canvas): * /css/effects.css - moved css to style.css and removed file
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added basic styling to .widget_woo_twitter (TWITTER WIDGET)
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added tumblog frontend styles
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added section 8.4
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - removed position:relative from .post .title, .page .title (line 208)
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added .breadcrumb styling
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added 1200px width (section #7)
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added section 3.4 Single Blog Author
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Fixed Gravity forms styling bug
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added styling for Gravity forms
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - .post .post-embed (line 221)
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - New section 8 templates/slider styling
+Changelog.txt (blog\wp-content\themes\canvas): * style.css - added section 4.2 Blog author widget
+Class-wp-theme.php (blog\wp-includes):		$theme_file = $this->stylesheet . '/style.css';
+Class-wp-upgrader.php (blog\wp-admin\includes):		if ( ! file_exists( $working_directory . 'style.css' ) )
+Class-wp-upgrader.php (blog\wp-admin\includes):			return new WP_Error( 'incompatible_archive_theme_no_style', $this->strings['incompatible_archive'], __( 'The theme is missing the <code>style.css</code> stylesheet.' ) );
+Class-wp-upgrader.php (blog\wp-admin\includes):		$info = get_file_data( $working_directory . 'style.css', array( 'Name' => 'Theme Name', 'Template' => 'Template' ) );
+Class-wp-upgrader.php (blog\wp-admin\includes):			return new WP_Error( 'incompatible_archive_theme_no_name', $this->strings['incompatible_archive'], __( "The <code>style.css</code> stylesheet doesn't contain a valid theme header." ) );
+File.php (blog\wp-admin\includes):	'style.css' => __( 'Stylesheet' ),
+File.php (blog\wp-admin\includes):	'editor-style.css' => __( 'Visual Editor Stylesheet' ),
+Free_cdn.php (blog\wp-content\plugins\free-cdn):                    <li><input type="checkbox" %s name="apply[css]" id="applyCss"><label for="applyCss">External CSS includes (<code>&lt;link rel=&quot;stylesheet&quot; tyle=&quot;text/css&quot; href=&quot;<strong>link/to/style.css</strong>&quot; /&gt;</code>)</label></li>
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Fixed styling of typography preview button.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Adds styling for the "static front page" notice banner.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Updated styling of the "Upload" button for WordPress 3.5 compatibility.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Remove Sidebar Manager CSS styles.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Deprecation notices styles.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-interface.php - Bump version number of admin-style.css enqueue to 5.3.10.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Add styling for the PressTrends banner.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added styling for the jquery ui slider.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added styling for the WooDojo banner.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Optimise styling for the "timestamp" field type.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - fixed radio button styling
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Fixed radio button label alignment bug
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions):   admin-style.css - tweaked new options styling to look better with no icon and two line heading
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Options panel left menu positioning fix. Tweak padding on left menu items.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Resolve styling conflict between new theme options interface and the Sidebar Manager.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added basic styling for hiding fly-out menus when not applicable, as well as positioning the fly-out menus.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added styling for "PressTrends" Framework Settings menu icon.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Tweaked CSS of .info on "Buy Themes" screen to add margin-top of 10px. Added styling to reposition the "Upload" button for fields of type "upload_min".
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Updated styling and fonts.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Style the typography preview engine.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Adjusted CSS to display the theme update notifier update notice.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added additional options styling
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Fixed z-index issue in options screen.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - added content builder support
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - fixed position of screenshot
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - added select box styling
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Updated styles for Media Library-driven uploader.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - styling updates for options panel
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Fixed SBM IE styling bugs
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added basic options icons. Tweaked options styling.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - updated styling for typography.
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added styles for string builder
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added CSS for new Sidebar Manager
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added new classes for 'info' options
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * style.css - Added z-index to options wrapper
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Modified typography option
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - removed import reset.css
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - New styling for icons
+Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added new style for error popup
+Functions.php (blog\wp-content\themes\standard):		add_editor_style( 'css/editor-style.css' );
+Functions.php (blog\wp-content\themes\standard):	wp_register_style( 'standard', get_stylesheet_directory_uri() . '/style.css' );
+Functions.php (blog\wp-content\themes\twentyfourteen):	add_editor_style( array( 'css/editor-style.css', twentyfourteen_font_url() ) );
+Gplus-authorship.php (blog\wp-content\plugins\jetpack\modules):			$css = plugins_url( 'gplus-authorship/style.css', __FILE__ );
+Gplus-authorship.php (blog\wp-content\plugins\jetpack\modules):			$css = plugins_url( 'gplus/style.css', __FILE__ );
+Index.html (resume):    <link rel="stylesheet" href="css/style.css">
+LightPlayer_refer.html (android):<link rel="stylesheet" type="text/css" media="all" href="http://www.camarts.cn/wp-content/themes/camarts/style.css" />
+Likes.php (blog\wp-content\plugins\jetpack\modules):			wp_enqueue_style( 'jetpack_likes', plugins_url( 'likes/style.css', __FILE__ ), array(), JETPACK__VERSION );
+Presentations.php (blog\wp-content\plugins\jetpack\modules\shortcodes):		wp_enqueue_style('presentations', $plugin . 'css/style.css');
+Readme.txt (blog\wp-content\plugins\wp-pagenavi):Alternatively, you can uncheck the "Use pagenavi.css?" option from the settings page and add the styles to your theme's style.css file directly.
+Refer.html (android):<link rel="stylesheet" type="text/css" media="all" href="http://www.camarts.cn/wp-content/themes/camarts/style.css" />
+Theme-editor.php (blog\wp-admin):$allowed_files['style.css'] = $style_files['style.css'];
+Theme-editor.php (blog\wp-admin):	$relative_file = 'style.css';
+Theme-editor.php (blog\wp-admin):	$file = $allowed_files['style.css'];
+Theme-editor.php (blog\wp-admin):		if ( 'style.css' == $filename )
+Theme-shortcodes.php (blog\wp-content\themes\canvas\includes):		$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
+Theme.php (blog\wp-includes):	$stylesheet_uri = $stylesheet_dir_uri . '/style.css';
+Theme.php (blog\wp-includes):					'theme_file' => $theme_dir . '/style.css',
+Theme.php (blog\wp-includes):			if ( file_exists( $theme_root . '/' . $dir . '/style.css' ) ) {
+Theme.php (blog\wp-includes):					'theme_file' => $dir . '/style.css',
+Theme.php (blog\wp-includes):					if ( ! file_exists( $theme_root . '/' . $dir . '/' . $sub_dir . '/style.css' ) )
+Theme.php (blog\wp-includes):						'theme_file' => $dir . '/' . $sub_dir . '/style.css',
+Theme.php (blog\wp-includes):						'theme_file' => $dir . '/style.css',
+Theme.php (blog\wp-includes):	if ( get_stylesheet() != WP_DEFAULT_THEME && !file_exists(get_template_directory() . '/style.css') ) {
+Theme.php (blog\wp-includes):	if ( is_child_theme() && ! file_exists( get_stylesheet_directory() . '/style.css' ) ) {
+Theme.php (blog\wp-includes):function add_editor_style( $stylesheet = 'editor-style.css' ) {
+Ui.php (blog\wp-content\plugins\jetpack\modules\gplus-authorship\admin):		wp_enqueue_style( 'gplus', plugins_url( 'style.css', __FILE__ ) );
+Ui.php (blog\wp-content\plugins\jetpack\modules\gplus-authorship\admin):		wp_enqueue_style( 'gplus', plugins_url( 'style.css', __FILE__ ) );
+Update-core.php (blog\wp-admin\includes):		if ( is_dir( WP_CONTENT_DIR . '/themes/twentytwelve' ) && ! file_exists( WP_CONTENT_DIR . '/themes/twentytwelve/style.css' )  ) {
+Upgrade.php (blog\wp-admin\includes):	$files = array('index.php' => 'index.php', 'wp-layout.css' => 'style.css', 'wp-comments.php' => 'comments.php', 'wp-comments-popup.php' => 'comments-popup.php');
+Upgrade.php (blog\wp-admin\includes):	$stylelines = file_get_contents("$site_dir/style.css");
+Upgrade.php (blog\wp-admin\includes):		$f = fopen("$site_dir/style.css", 'w');
+Upgrade.php (blog\wp-admin\includes):	$stylelines = explode("\n", implode('', file("$site_dir/style.css")));
+Upgrade.php (blog\wp-admin\includes):		$f = fopen("$site_dir/style.css", 'w');
+Woo-hooks.class.php (blog\wp-content\themes\canvas\includes\woo-hooks\classes):		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css' );
+Woo-layout.class.php (blog\wp-content\themes\canvas\includes\woo-layout\classes):		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css' );
+Woo-meta.class.php (blog\wp-content\themes\canvas\includes\woo-meta\classes):		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css' );
+Wordpress-post-widget.php (blog\wp-content\plugins\jetpack\modules\widgets):		wp_enqueue_style( 'jetpack_display_posts_widget', plugins_url( 'wordpress-post-widget/style.css' ) );
+Wp-mce-help.php (blog\wp-includes\js\tinymce):	<p><?php _e('WordPress includes a rich HTML editor that works well in all major web browsers used today. However editing HTML is not the same as typing text. Each web page has two major components: the structure, which is the actual HTML code and is produced by the editor as you type, and the display, that is applied to it by the currently selected WordPress theme and is defined in style.css. WordPress is producing valid XHTML 1.0 which means that inserting multiple line breaks (BR tags) after a paragraph would not produce white space on the web page. The BR tags will be removed as invalid by the internal HTML correcting functions.'); ?></p>
+Wp-thread-comment.php (blog\wp-content\plugins\wordpress-thread-comment):			<label><?php _e('Include CSS in style.css','wp-thread-comment'); ?></label>
+Wp-thread-comment.php (blog\wp-content\plugins\wordpress-thread-comment):			<small><?php _e('If you want to use css in style.css, please check this box, then copy above css style to style.css file.(nomally dont checked it)','wp-thread-comment'); ?></small>

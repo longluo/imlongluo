@@ -8,7 +8,7 @@
 
 =========================================================================================
 
-	Copyright (C) 2005 - 2013 Long Luo. All Rights Reserved.
+	Copyright (C) 2005 - 2014 Long Luo. All Rights Reserved.
 	
 	ReleaseNotes: 
 	
@@ -70,4 +70,9 @@
 -->
 	Version: 6.32
 	2013.12.23 PM22:30~23:00	
+
+-->
+	Version: 6.33
+	2014.01.13 PM14:25 ~ 14:30	
+	Change year 2013 to 2014.
 		
