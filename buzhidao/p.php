@@ -1088,6 +1088,7 @@ else
 </table>
 
 <form action="<?php echo $_SERVER[PHP_SELF]."#bottom";?>" method="post">
+
 <!--MySQL数据库连接检测-->
 <table width="100%" cellpadding="3" cellspacing="0" align="center">
 	<tr><th colspan="3" class="th_2">MySQL数据库连接检测</th></tr>
@@ -1118,6 +1119,7 @@ else
   	}
   }
 	?>
+	
 <!--函数检测-->
 <table width="100%" cellpadding="3" cellspacing="0" align="center">
 	<tr><th colspan="3" class="th_4">函数检测</th></tr>
@@ -1137,6 +1139,7 @@ else
   }
   ?>
 </table>
+
 <!--邮件发送检测-->
 <table width="100%" cellpadding="3" cellspacing="0" align="center">
   <tr><th colspan="3" class="th_5">邮件发送检测</th></tr>
@@ -1157,13 +1160,12 @@ else
   ?>
 </table>
 </form>
+
 <a id="bottom"></a>
-
 <div id="footer">
-&copy; 2012 <a href="http://lnmp.org" target="_blank">LNMP一键安装包</a><br />This Prober was based on Yahei Prober.<br />
-<?php $run_time = sprintf('%0.4f', microtime_float() - $time_start);?>
+	Copyright &copy; 2005 - 2014 <a href="http://www.imlongluo.com" target="_blank">Long Luo</a><br />This Prober was based on Yahei Prober.<br />
+	<?php $run_time = sprintf('%0.4f', microtime_float() - $time_start);?>
 Processed in <?php echo $run_time?> seconds. <?php echo memory_usage();?> memory usage.
-
 </div>
 
 </div>
