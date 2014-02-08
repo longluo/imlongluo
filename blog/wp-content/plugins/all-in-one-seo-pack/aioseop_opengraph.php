@@ -78,7 +78,7 @@ if ( !class_exists( 'All_in_One_SEO_Pack_Opengraph' ) ) {
 				"sitename"				=> __( "The Site Name is the name that is used to identify your website.<br /><a href='http://semperplugins.com/documentation/social-meta-module/' target='_blank'>Click here for documentation on this setting</a>", 'all_in_one_seo_pack' ),
 				"hometitle"				=> __( "The Home Title is the Open Graph title for your home page.<br /><a href='http://semperplugins.com/documentation/social-meta-module/' target='_blank'>Click here for documentation on this setting</a>", 'all_in_one_seo_pack' ),
 				"description"			=> __( "The Home Description is the Open Graph description for your home page.<br /><a href='http://semperplugins.com/documentation/social-meta-module/' target='_blank'>Click here for documentation on this setting</a>", 'all_in_one_seo_pack' ),
-				"generate_descriptions"	=> __( "Check this and your Open Graph descriptions will be auto-generated from your excerpt or content.<br /><a href='http://semperplugins.com/documentation/social-meta-module/' target='_blank'>Click here for documentation on this setting</a>", 'all_in_one_seo_pack' ),
+				"generate_descriptions"	=> __( "Check this and your Open Graph descriptions will be auto-generated from your content.<br /><a href='http://semperplugins.com/documentation/social-meta-module/' target='_blank'>Click here for documentation on this setting</a>", 'all_in_one_seo_pack' ),
 				"disable_jetpack"		=> __( "Check this box to disable the Open Graph meta output by the Jetpack plugin.<br /><a href='http://semperplugins.com/documentation/social-meta-module/' target='_blank'>Click here for documentation on this setting</a>", 'all_in_one_seo_pack' ),
 				"defimg"				=> __( "This option lets you choose which image will be displayed by default for the Open Graph image. You may override this on individual posts.<br /><a href='http://semperplugins.com/documentation/social-meta-module/' target='_blank'>Click here for documentation on this setting</a>", 'all_in_one_seo_pack' ),
 				"dimg"					=> __( "This option sets a default image that can be used for the Open Graph image. You can upload an image, select an image from your Media Library or paste the URL of an image here.<br /><a href='http://semperplugins.com/documentation/social-meta-module/' target='_blank'>Click here for documentation on this setting</a>", 'all_in_one_seo_pack' ),
@@ -278,10 +278,12 @@ if ( !class_exists( 'All_in_One_SEO_Pack_Opengraph' ) ) {
 		function add_attributes( $output ) { // avoid having duplicate meta tags
 			if ( !empty( $this->options[ 'aiosp_opengraph_disable_jetpack' ] ) )
 				remove_action( 'wp_head', 'jetpack_og_tags' );
-
-			return $output . 'xmlns="http://www.w3.org/1999/xhtml"
-			      xmlns:og="http://ogp.me/ns#"
-			      xmlns:fb="http://www.facebook.com/2008/fbml"';
+			foreach( Array( 'xmlns="http://www.w3.org/1999/xhtml"', 'xmlns:og="http://ogp.me/ns#"', 'xmlns:fb="http://www.facebook.com/2008/fbml"' ) as $xmlns ) {
+				if ( strpos( $output, $xmlns ) === false ) {
+					$output .= "\n\t$xmlns ";
+				}
+			}
+			return $output;
 		}
 		
 		function add_meta( ) {
@@ -322,7 +324,7 @@ if ( !class_exists( 'All_in_One_SEO_Pack_Opengraph' ) ) {
 				if( empty($sitename) ) $sitename = get_bloginfo('name');
 				
 				if ( empty( $description ) && $first_page && ( !empty( $this->options['aiosp_opengraph_generate_descriptions'] ) ) )
-					$description = $aiosp->trim_excerpt_without_filters( $aiosp->internationalize( $post->post_content ), 1000 );
+					$description = $aiosp->trim_excerpt_without_filters( $aiosp->internationalize( preg_replace( '/\s+/', ' ', $post->post_content ) ), 1000 );
 				
 				if ( empty($description) && $first_page ) $description = get_bloginfo('description');
 			
@@ -354,7 +356,7 @@ if ( !class_exists( 'All_in_One_SEO_Pack_Opengraph' ) ) {
 			} else return;
 			
 			if ( !empty( $description ) )
-				$description = $aiosp->trim_excerpt_without_filters( $aiosp->internationalize( $description ), 1000 );
+				$description = $aiosp->trim_excerpt_without_filters( $aiosp->internationalize( preg_replace( '/\s+/', ' ', $post->post_content ) ), 1000 );
 			
 			/* Data Validation */
 			$title = strip_tags( esc_attr( $title ) );
@@ -472,8 +474,12 @@ if ( !class_exists( 'All_in_One_SEO_Pack_Opengraph' ) ) {
 			);
 			
 			foreach ( $meta as $t => $data )
-				foreach ( $data as $k => $v )
-					if ( !empty( $$k ) ) echo '<meta ' . $tags[$t]['name'] . '="' . $v . '" ' . $tags[$t]['value'] . '="' . $$k . '" />' . "\n";
+				foreach ( $data as $k => $v ) {
+					if ( empty( $$k ) ) $$k = '';
+					$filtered_value = $$k;
+					$filtered_value = apply_filters( $this->prefix . 'meta', $filtered_value, $t, $k );
+					if ( !empty( $filtered_value ) ) echo '<meta ' . $tags[$t]['name'] . '="' . $v . '" ' . $tags[$t]['value'] . '="' . $filtered_value . '" />' . "\n";					
+				}
 		}
 		
 		function do_opengraph( ) {

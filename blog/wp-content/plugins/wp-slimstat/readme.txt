@@ -4,17 +4,17 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: analytics, tracking, reports, analyze, wassup, geolocation, online users, spider, tracker, pageviews, stats, maxmind, statistics, statpress
 Requires at least: 3.8
 Tested up to: 3.8
-Stable tag: 3.5.1
+Stable tag: 3.5.3
 
 == Description ==
-A powerful real-time web analytics plugin for WordPress. Visit our [official site](http://slimstat.getused.to.it/) for more information.
+A powerful real-time web analytics plugin for WordPress. Visit our [official site](http://slimstat.getused.to.it/) for more information, or find us on [GitHub](https://github.com/getusedtoit/wp-slimstat).
 
 = Key Features =
 * Real-time reports
 * Compatible with W3 Total Cache, WP SuperCache and HyperCache
 * The most accurate IP geolocation, browser and platform detection ever seen (courtesy of [MaxMind](http://www.maxmind.com/) and [Browscap](http://browscap.org))
 * Advanced filtering
-* Available in multiple languages: English, Chinese (沐熙工作室), Farsi ([Dean](http://www.mangallery.net)), French (Michael Bastin), German (TechnoViel), Italian, Portuguese, Russian ([Vitaly](http://www.visbiz.org/)), Spanish, Swedish (Per Soderman). Is your language is missing or incomplete? [Contact Us](http://slimstat.getused.to.it/contact-us/) if you would like to share your localization)
+* Available in multiple languages: English, Chinese (沐熙工作室), Farsi ([Dean](http://www.mangallery.net)), French (Michael Bastin, Jean-Michel Venet), German (TechnoViel), Italian, Portuguese, Russian ([Vitaly](http://www.visbiz.org/)), Spanish, Swedish (Per Soderman). Is your language is missing or incomplete? [Contact Us](http://slimstat.getused.to.it/contact-us/) if you would like to share your localization.
 * World Map that works on your mobile device, too (courtesy of [amMap](http://www.ammap.com/)).
 
 = What are people saying about WP SlimStat? =
@@ -269,6 +269,26 @@ foreach ($results...`
 5. **Responsive layout** - Keep an eye on your reports on the go
 
 == Changelog ==
+
+= 3.5.3 =
+* [New] You can finally hide our notices whenever you want and never see them again... until the next update!
+* [Update] Rolled back change that made the DB API use more SQL queries and less memory, since users were complaining about performance
+* [Update] [Browscap](http://browscap.org/) has been updated to version 5022 stable, released on Jan 24, 2014
+* [Update] [SlimScroll](https://github.com/rochal/jQuery-slimScroll) has been updated to version 1.3.2, released on Dec 26, 2013
+* [Update] More Font Icons replaced those ugly PNGs
+* [Fix] CDN Schema changed to HTTPS if site is served over HTTPS (thank you, [samatva](http://wordpress.org/support/topic/installed-tracked-nothing))
+* [Fix] Bug on counter displayed in Edit Posts screen (thank you, [kirksylvester](http://wordpress.org/support/topic/pageviews-column-stats-on-wp-admin-posts-showing-zeros))
+* [Fix] Bug on expanded details not honored by Spy View
+* [Fix] Bug on filtering by IP Address (thank you, [rodak](http://wordpress.org/support/topic/can%C2%B4t-filter-by-ip))
+* [Fix] Bug on filtering Browsers (the new API is still in its infancy, please be kind with the baby!)
+* [Fix] Date range does not include 'future' dates anymore, since it was confusing some users
+* [Fix] Is Empty filter was not working as expected
+* [Fix] Bug on Maintenance > Delete Pageviews Where
+
+= 3.5.2 =
+* [Update] The Reports Library (wp-slimstat-db.php) has been streamlined. Please make sure to update your custom add-ons to use the new structure, or contact us if you need help.
+* [Update] The new DB Library uses 1 more SQL query per report, but much less PHP memory to store the results. You'll notice the difference!
+* [Fix] A snippet of code meant to be part of a future update, sneaked into v3.5.1, breaking the compatibility with WP SlimStat Shortcodes. We apologize for any inconvenience this may have caused.
 
 = 3.5.1 =
 * [Note] We got quite a lot of feedback about the new interface. Thank you for speaking up (yes, I'm looking at you, Romain and dFactory)!

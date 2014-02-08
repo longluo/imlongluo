@@ -8,9 +8,9 @@ Tags: comments, spam, optimize, database, revisions, users, posts, trash, schedu
 
 Requires at least: 3.7
 
-Tested up to: 3.9
+Tested up to: 3.8.1-alpha
 
-Stable tag: 1.5.6
+Stable tag: 1.6.1
 
 
 
@@ -85,6 +85,10 @@ Or you can **Email translations to plugins(at)ruhanirabin.com**
 *   Language id_ID: Nasrulhaq Muiz - http://al-badar.net/
 
 *   Language sl_SI: Tomi Sambrailo - http://www.refuzed.it/
+
+*   Language nb_NO: Simen Eggen - http://www.simeneggen.com
+
+*   Language nl_NL: Mischa ter Smitten - http://blog.tersmitten.nl/
 
 
 
@@ -225,6 +229,20 @@ This is a very primary version of the plugin. So I would recommend you to test i
 
 
 == Changelog ==
+
+= 1.6.1 =
+
+* Fixed - trashed Comments was not clearing out.
+
+* 1 Translation update.
+
+
+
+= 1.5.7 =
+
+* 2 new Translations updates and 2 new languages added.
+
+
 
 = 1.5.6 =
 
