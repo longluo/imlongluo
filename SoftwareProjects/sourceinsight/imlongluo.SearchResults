@@ -1,145 +1,673 @@
----- woo_footer_left Matches (7 in 2 files) ----
-Footer.php (blog\wp-content\themes\canvas):			<?php woo_footer_left(); ?>
-Theme-actions.php (blog\wp-content\themes\canvas\includes):if ( ! function_exists( 'woo_footer_left' ) ) { 
-Theme-actions.php (blog\wp-content\themes\canvas\includes):function woo_footer_left () {
-Theme-actions.php (blog\wp-content\themes\canvas\includes):	if( isset( $woo_options['woo_footer_left'] ) && $woo_options['woo_footer_left'] == 'true' ) {
-Theme-actions.php (blog\wp-content\themes\canvas\includes):	$html = apply_filters( 'woo_footer_left', $html );
-Theme-actions.php (blog\wp-content\themes\canvas\includes): 	$sections = array( 'woo_filter_post_meta', 'woo_post_inside_after_default', 'woo_post_more', 'woo_footer_left', 'woo_footer_right' );
----- style.css Matches (139 in 29 files) ----
-Admin-functions.php (blog\wp-content\themes\canvas\functions):		$theme_data = get_theme_data( get_template_directory() . '/style.css' );
-Admin-functions.php (blog\wp-content\themes\canvas\functions):			$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
-Admin-interface.php (blog\wp-content\themes\canvas\functions):		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css', '', '5.3.10' );
-Changelog.txt (blog\wp-content\themes\canvas):   style.css - Hide #portfolio .gallery-image as we now insert the image tag to add support for prettyPhoto titles, and don't need the image to display.
-Changelog.txt (blog\wp-content\themes\canvas):   style.css - Add spacing below portfolio thumbnail image, to create breathing room between thumbnail and portfolio item title on the "Portfolio" page template. Add styling for the new portfolio item image gallery layout. Fixed blockquote in IE9. Added list-style to widgets. Updated button styling. Adjusted slider styling to avoid using overflows. Added styling for slider pagination, now that it exists outside of the slideshow container. Added border to portfolio images. General style fixes. Make sure sidebar has clear: both on small-screen devices.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css,
-Changelog.txt (blog\wp-content\themes\canvas):   /includes/theme-actions.php - Fix for IE8 and child themes. Moved layout.less out of style.css and created layout.css which loads separately in the header.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Magazine slider pagination styling fix.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css, layout/layout.css - Removed IE8 responsive support. Portfolio image IE8 fix. Remove Gravity form text styling.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Reformat font-face CSS. Add 'background-size: cover;' to #header. Make sure slideshow pagination displays correctly inside the "Woo - Component" widget. Add minor CSS update for WooSlider compatibility.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Changed slider content to sit below slider for mobile resolutions.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Image scaling IE8 fix for slider images. Fixed nav ul width for mobile resolutions. Image width fix for IE8. Fixed "filter" property for subscribe & connect social icons. Flexslider active pagination color. Removed IE "filter" property from buttons, was causing issues with rounded corners.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Replace a.next and a.prev, in the slider styles, with a.flex-next and a.flex-prev in accordance with FlexSlider V2. Fixed width bug with captioned blog images.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Removed width for gravity forms labels
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Removed "filter" property from #navigation, was giving issues in IE
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Fixed magazine template responsive columns
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Converted layout to be responsive; Default styling updates
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - changed slider title from '#loopedSlider .content h2 a' to '#loopedSlider .content h2' so it works with biz slider without an URL
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - IE7 feedback widget "hasLayout" fix
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - removed absolute positioning from tumblog icon and added float:right; (line 423)
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added styling to float single portfolio item description correctly to the right.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added portfolio-related CSS.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added .nav li.sfHover ul li a.sf-with-ul styling
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added display:none to #loopedslider .slides
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - fixed hover color 
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - adjusted biz slider min-height (line 804-805). 
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added section #0 RESET and #9 BROWSER SPECIFIC. Removed include of reset.css.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added CSS for slider pagination.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added z-index to "next" and "previous" buttons in Magazine template's slider.
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added .woo-pagination styling (section 3.3). Changed #breadcrumbs to .breadcrumbs
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added CSS for optional top navigation (WP Menus) section 2.2.2
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added styling for Subscribe & Connect. Added margin to #post-author. 
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added .author #post-author 
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added active hover for categories on .nav (line 141)
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - updated SEARCH FORM section
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - made style chages to section 3.3 and 3.4 (post navigation and post author)
-Changelog.txt (blog\wp-content\themes\canvas): * /css/effects.css - moved css to style.css and removed file
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added basic styling to .widget_woo_twitter (TWITTER WIDGET)
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added tumblog frontend styles
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added section 8.4
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - removed position:relative from .post .title, .page .title (line 208)
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added .breadcrumb styling
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added 1200px width (section #7)
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added section 3.4 Single Blog Author
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Fixed Gravity forms styling bug
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - Added styling for Gravity forms
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - .post .post-embed (line 221)
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - New section 8 templates/slider styling
-Changelog.txt (blog\wp-content\themes\canvas): * style.css - added section 4.2 Blog author widget
-Class-wp-theme.php (blog\wp-includes):		$theme_file = $this->stylesheet . '/style.css';
-Class-wp-upgrader.php (blog\wp-admin\includes):		if ( ! file_exists( $working_directory . 'style.css' ) )
-Class-wp-upgrader.php (blog\wp-admin\includes):			return new WP_Error( 'incompatible_archive_theme_no_style', $this->strings['incompatible_archive'], __( 'The theme is missing the <code>style.css</code> stylesheet.' ) );
-Class-wp-upgrader.php (blog\wp-admin\includes):		$info = get_file_data( $working_directory . 'style.css', array( 'Name' => 'Theme Name', 'Template' => 'Template' ) );
-Class-wp-upgrader.php (blog\wp-admin\includes):			return new WP_Error( 'incompatible_archive_theme_no_name', $this->strings['incompatible_archive'], __( "The <code>style.css</code> stylesheet doesn't contain a valid theme header." ) );
-File.php (blog\wp-admin\includes):	'style.css' => __( 'Stylesheet' ),
-File.php (blog\wp-admin\includes):	'editor-style.css' => __( 'Visual Editor Stylesheet' ),
-Free_cdn.php (blog\wp-content\plugins\free-cdn):                    <li><input type="checkbox" %s name="apply[css]" id="applyCss"><label for="applyCss">External CSS includes (<code>&lt;link rel=&quot;stylesheet&quot; tyle=&quot;text/css&quot; href=&quot;<strong>link/to/style.css</strong>&quot; /&gt;</code>)</label></li>
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Fixed styling of typography preview button.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Adds styling for the "static front page" notice banner.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Updated styling of the "Upload" button for WordPress 3.5 compatibility.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Remove Sidebar Manager CSS styles.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Deprecation notices styles.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-interface.php - Bump version number of admin-style.css enqueue to 5.3.10.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Add styling for the PressTrends banner.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added styling for the jquery ui slider.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added styling for the WooDojo banner.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Optimise styling for the "timestamp" field type.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - fixed radio button styling
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Fixed radio button label alignment bug
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions):   admin-style.css - tweaked new options styling to look better with no icon and two line heading
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Options panel left menu positioning fix. Tweak padding on left menu items.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Resolve styling conflict between new theme options interface and the Sidebar Manager.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added basic styling for hiding fly-out menus when not applicable, as well as positioning the fly-out menus.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added styling for "PressTrends" Framework Settings menu icon.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Tweaked CSS of .info on "Buy Themes" screen to add margin-top of 10px. Added styling to reposition the "Upload" button for fields of type "upload_min".
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Updated styling and fonts.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Style the typography preview engine.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Adjusted CSS to display the theme update notifier update notice.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added additional options styling
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Fixed z-index issue in options screen.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - added content builder support
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - fixed position of screenshot
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - added select box styling
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Updated styles for Media Library-driven uploader.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - styling updates for options panel
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Fixed SBM IE styling bugs
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added basic options icons. Tweaked options styling.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - updated styling for typography.
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added styles for string builder
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added CSS for new Sidebar Manager
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added new classes for 'info' options
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * style.css - Added z-index to options wrapper
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Modified typography option
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - removed import reset.css
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - New styling for icons
-Functions-changelog.txt (blog\wp-content\themes\canvas\functions): * admin-style.css - Added new style for error popup
-Functions.php (blog\wp-content\themes\standard):		add_editor_style( 'css/editor-style.css' );
-Functions.php (blog\wp-content\themes\standard):	wp_register_style( 'standard', get_stylesheet_directory_uri() . '/style.css' );
-Functions.php (blog\wp-content\themes\twentyfourteen):	add_editor_style( array( 'css/editor-style.css', twentyfourteen_font_url() ) );
-Gplus-authorship.php (blog\wp-content\plugins\jetpack\modules):			$css = plugins_url( 'gplus-authorship/style.css', __FILE__ );
-Gplus-authorship.php (blog\wp-content\plugins\jetpack\modules):			$css = plugins_url( 'gplus/style.css', __FILE__ );
-Index.html (resume):    <link rel="stylesheet" href="css/style.css">
-LightPlayer_refer.html (android):<link rel="stylesheet" type="text/css" media="all" href="http://www.camarts.cn/wp-content/themes/camarts/style.css" />
-Likes.php (blog\wp-content\plugins\jetpack\modules):			wp_enqueue_style( 'jetpack_likes', plugins_url( 'likes/style.css', __FILE__ ), array(), JETPACK__VERSION );
-Presentations.php (blog\wp-content\plugins\jetpack\modules\shortcodes):		wp_enqueue_style('presentations', $plugin . 'css/style.css');
-Readme.txt (blog\wp-content\plugins\wp-pagenavi):Alternatively, you can uncheck the "Use pagenavi.css?" option from the settings page and add the styles to your theme's style.css file directly.
-Refer.html (android):<link rel="stylesheet" type="text/css" media="all" href="http://www.camarts.cn/wp-content/themes/camarts/style.css" />
-Theme-editor.php (blog\wp-admin):$allowed_files['style.css'] = $style_files['style.css'];
-Theme-editor.php (blog\wp-admin):	$relative_file = 'style.css';
-Theme-editor.php (blog\wp-admin):	$file = $allowed_files['style.css'];
-Theme-editor.php (blog\wp-admin):		if ( 'style.css' == $filename )
-Theme-shortcodes.php (blog\wp-content\themes\canvas\includes):		$theme_data = get_theme_data( get_stylesheet_directory() . '/style.css' );
-Theme.php (blog\wp-includes):	$stylesheet_uri = $stylesheet_dir_uri . '/style.css';
-Theme.php (blog\wp-includes):					'theme_file' => $theme_dir . '/style.css',
-Theme.php (blog\wp-includes):			if ( file_exists( $theme_root . '/' . $dir . '/style.css' ) ) {
-Theme.php (blog\wp-includes):					'theme_file' => $dir . '/style.css',
-Theme.php (blog\wp-includes):					if ( ! file_exists( $theme_root . '/' . $dir . '/' . $sub_dir . '/style.css' ) )
-Theme.php (blog\wp-includes):						'theme_file' => $dir . '/' . $sub_dir . '/style.css',
-Theme.php (blog\wp-includes):						'theme_file' => $dir . '/style.css',
-Theme.php (blog\wp-includes):	if ( get_stylesheet() != WP_DEFAULT_THEME && !file_exists(get_template_directory() . '/style.css') ) {
-Theme.php (blog\wp-includes):	if ( is_child_theme() && ! file_exists( get_stylesheet_directory() . '/style.css' ) ) {
-Theme.php (blog\wp-includes):function add_editor_style( $stylesheet = 'editor-style.css' ) {
-Ui.php (blog\wp-content\plugins\jetpack\modules\gplus-authorship\admin):		wp_enqueue_style( 'gplus', plugins_url( 'style.css', __FILE__ ) );
-Ui.php (blog\wp-content\plugins\jetpack\modules\gplus-authorship\admin):		wp_enqueue_style( 'gplus', plugins_url( 'style.css', __FILE__ ) );
-Update-core.php (blog\wp-admin\includes):		if ( is_dir( WP_CONTENT_DIR . '/themes/twentytwelve' ) && ! file_exists( WP_CONTENT_DIR . '/themes/twentytwelve/style.css' )  ) {
-Upgrade.php (blog\wp-admin\includes):	$files = array('index.php' => 'index.php', 'wp-layout.css' => 'style.css', 'wp-comments.php' => 'comments.php', 'wp-comments-popup.php' => 'comments-popup.php');
-Upgrade.php (blog\wp-admin\includes):	$stylelines = file_get_contents("$site_dir/style.css");
-Upgrade.php (blog\wp-admin\includes):		$f = fopen("$site_dir/style.css", 'w');
-Upgrade.php (blog\wp-admin\includes):	$stylelines = explode("\n", implode('', file("$site_dir/style.css")));
-Upgrade.php (blog\wp-admin\includes):		$f = fopen("$site_dir/style.css", 'w');
-Woo-hooks.class.php (blog\wp-content\themes\canvas\includes\woo-hooks\classes):		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css' );
-Woo-layout.class.php (blog\wp-content\themes\canvas\includes\woo-layout\classes):		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css' );
-Woo-meta.class.php (blog\wp-content\themes\canvas\includes\woo-meta\classes):		wp_register_style( 'woo-admin-interface', get_template_directory_uri() . '/functions/admin-style.css' );
-Wordpress-post-widget.php (blog\wp-content\plugins\jetpack\modules\widgets):		wp_enqueue_style( 'jetpack_display_posts_widget', plugins_url( 'wordpress-post-widget/style.css' ) );
-Wp-mce-help.php (blog\wp-includes\js\tinymce):	<p><?php _e('WordPress includes a rich HTML editor that works well in all major web browsers used today. However editing HTML is not the same as typing text. Each web page has two major components: the structure, which is the actual HTML code and is produced by the editor as you type, and the display, that is applied to it by the currently selected WordPress theme and is defined in style.css. WordPress is producing valid XHTML 1.0 which means that inserting multiple line breaks (BR tags) after a paragraph would not produce white space on the web page. The BR tags will be removed as invalid by the internal HTML correcting functions.'); ?></p>
-Wp-thread-comment.php (blog\wp-content\plugins\wordpress-thread-comment):			<label><?php _e('Include CSS in style.css','wp-thread-comment'); ?></label>
-Wp-thread-comment.php (blog\wp-content\plugins\wordpress-thread-comment):			<small><?php _e('If you want to use css in style.css, please check this box, then copy above css style to style.css file.(nomally dont checked it)','wp-thread-comment'); ?></small>
+---- copyright Matches (217 in 44 files) ----
+Browscap.php (blog\wp-content\plugins\wp-slimstat\databases):,8=>1,9=>'FreeBSD'),array(3=>7333,6=>'0.9',7=>0,8=>9,9=>'FreeBSD'),array(3=>6700),array(3=>6714),array(3=>7101,9=>'FreeBSD',14=>'false'),array(3=>6206,5=>'Genieo RSS Reader'),array(3=>6863,9=>'BeOS'),array(3=>7331,5=>'Sogou Develop Spider'),array(3=>6864,9=>'IRIX'),array(3=>6864,9=>'HP-UX'),array(3=>6450,5=>'Extreme Picture Finder'),array(3=>6864,9=>'OS/2'),array(3=>6864,9=>'Unix'),array(3=>6856,9=>'HP-UX'),array(3=>6856,9=>'BeOS'),array(3=>6864,9=>'Linux'),array(3=>6864,9=>'BeOS'),array(3=>6864,9=>'RISC OS'),array(3=>7298,5=>'AdsBot-Google-Mobile'),array(3=>7365,5=>'MSNBot-NewsBlogs',6=>1,7=>1),array(3=>7333,6=>'0.9',7=>0,8=>9,9=>'MacPPC'),array(3=>5684),array(3=>7298,5=>'Googlebot-Mobile',16=>'false',17=>'false',18=>'false'),array(3=>6856,9=>'IRIX'),array(3=>6206,5=>'Cocoal.icio.us'),array(3=>6864,9=>'HP-UX'),array(3=>6864,9=>'BeOS'),array(3=>7215,5=>'fantomas multiBlocker browser'),array(3=>7356),array(3=>7298,5=>'Google Enterprise'),array(3=>6217,4=>'HP Secure Web Browser',5=>'HP Secure Web Browser',9=>'OpenVMS',16=>'true',17=>'true',18=>'true',19=>'true',21=>'true',28=>2),array(3=>6863,9=>'BeOS'),array(3=>7333,6=>'2.1',7=>2,8=>1,9=>'Linux'),array(3=>6856,9=>'HP-UX'),array(3=>6864,9=>'IRIX'),array(3=>6859,9=>'BeOS'),array(3=>6209,5=>'Atomic Email Hunter'),array(3=>6856,9=>'AIX'),array(3=>5684),array(3=>6863,9=>'IRIX'),array(3=>6069,5=>'iCopyright Conductor'),array(3=>6069,5=>'copyright sheriff'),array(3=>7027,9=>'SunOS',14=>'false'),array(3=>6856,9=>'BeOS'),array(3=>6863,9=>'HP-UX'),array(3=>6560,5=>'Bookmark search tool'),array(3=>7027,9=>'Linux',14=>'false'),array(3=>6568,9=>'WinCE',25=>'true'),array(3=>6864,9=>'RISC OS'),array(3=>6864,9=>'OS/2'),array(3=>6856,9=>'OS/2'),array(3=>6856,9=>'RISC OS'),array(3=>6863,9=>'Unix'),array(3=>6961,9=>'IRIX'),array(3=>6961,9=>'HP-UX'),array(3=>5684),array(3=>6863,9=>'AIX'),array(3=>7219,5=>'arachnode'),array(3=>6206,5=>'NewsFox'),array(3=>6612,5=>'maxamine.com--robot'),array(3=>6859,9=>'HP-UX'),array(
+Browscap.php (blog\wp-content\plugins\wp-slimstat\databases):1.*; .*HPUX.*\)$@','@^Extreme Picture Finder$@','@^ELinks \(0\.11.*; .*OS/2.*\)$@','@^ELinks \(0\.11.*; .*Unix.*\)$@','@^ELinks \(0\.12.*; .*HPUX.*\)$@','@^ELinks \(0\.12.*; .*BeOS.*\)$@','@^ELinks/0\.11.* \(.*Linux.*\)$@','@^ELinks \(0\.11.*; .*BeOS.*\)$@','@^ELinks \(0\.11.*; .*RISC.*\)$@','@^AdsBot\-Google\-Mobile.*$@','@^MSNBot\-NewsBlogs/1\.0.*$@','@^Links \(0\.9.*; Darwin.*\)$@','@^MOT\-M.*/.* UP\.Browser/.*$@','@^.*Googlebot\-Mobile/2\..*$@','@^ELinks/0\.12.* \(.*IRIX.*\)$@','@^Cocoal\.icio\.us/.* \(.*\).*$@','@^ELinks/0\.11.* \(.*HPUX.*\)$@','@^ELinks/0\.11.* \(.*BeOS.*\)$@','@^multiBlocker browser.*$@','@^Mozilla/3\.0 \(INGRID/.*$@','@^google \(.*Enterprise.*\)$@','@^HP Secure Web Browser$@','@^ELinks/0\.10.* \(.*BeOS.*\)$@','@^Links \(2\.1.*; Linux .*\)$@','@^ELinks/0\.12.* \(.*HPUX.*\)$@','@^ELinks/0\.11.* \(.*IRIX.*\)$@','@^ELinks/0\.13.* \(.*BeOS.*\)$@','@^Atomic_Email_Hunter/.*$@','@^ELinks \(0\.12.*; .*AIX.*\)$@','@^MOT\-1.*/.* UP\.Browser/.*$@','@^ELinks/0\.10.* \(.*IRIX.*\)$@','@^iCopyright Conductor.*$@','@^copyright sheriff \(.*\)$@','@^Opera/9\.00.*\(.*SunOS.*\).*$@','@^ELinks/0\.12.* \(.*BeOS.*\)$@','@^ELinks/0\.10.* \(.*HPUX.*\)$@','@^Bookmark search tool.*$@','@^Opera/9\.00.*\(.*Linux.*\).*$@','@^Opera..*\(.*Windows CE\).*$@','@^ELinks/0\.11.* \(.*RISC.*\)$@','@^ELinks/0\.11.* \(.*OS/2.*\)$@','@^ELinks/0\.12.* \(.*OS/2.*\)$@','@^ELinks/0\.12.* \(.*RISC.*\)$@','@^ELinks/0\.10.* \(.*Unix.*\)$@','@^ELinks \(0\.9.*; .*IRIX.*\)$@','@^ELinks \(0\.9.*; .*HPUX.*\)$@','@^MOT\-V.*/.* UP\.Browser/.*$@','@^ELinks \(0\.10.*; .*AIX.*\)$@','@^http\://arachnode\.net.*$@','@^Mozilla/5\.0 NewsFox/.*$@','@^.*maxamine\.com\-\-robot.*$@','@^ELinks/0\.13.* \(.*HPUX.*\)$@','@^ELinks/0\.13.* \(.*RISC.*\)$@','@^ELinks/0\.13.* \(.*OS/2.*\)$@','@^ELinks \(0\.11.*; .*AIX.*\)$@','@^ELinks/0\.13.* \(.*Unix.*\)$@','@^ELinks/0\.13.* \(.*IRIX.*\)$@','@^ELinks \(0\.9.*; .*BeOS.*\)$@','@^ELinks \(0\.9.*; .*OS/2.*\)$@','@^ELinks \(0\.9.*; .*RISC.*\)$@','@^EL
+Charmap.js (blog\wp-includes\js\tinymce\themes\advanced\js):	['&copy;',    '&#169;',  true, 'copyright sign'],
+Class-simplepie.php (blog\wp-includes):		elseif ($return = $this->get_channel_tags(SIMPLEPIE_NAMESPACE_ATOM_03, 'copyright'))
+Class-simplepie.php (blog\wp-includes):		elseif ($return = $this->get_channel_tags(SIMPLEPIE_NAMESPACE_RSS_20, 'copyright'))
+Custom.css (blog\wp-content\themes\standard):#copyright {
+Custom.css (blog\wp-content\themes\standard):#copyright .hr-group hr {
+Custom.css (blog\wp-content\themes\standard):#copyright .hr-group hr:first-child {
+Custom.css (blog\wp-content\themes\standard):#copyright .hr-group hr:last-child {
+Custom.css (blog\wp-content\themes\standard):#copyright p,#copyright a {
+Custom.css (blog\wp-content\themes\standard):#copyright p {
+Custom.css (blog\wp-content\themes\standard):#copyright a:hover {
+Custom.css (blog\wp-content\themes\standard):	#copyright {
+Custom.css (blog\wp-content\themes\standard):	#copyright .hr-group hr:first-child {
+Documentation.html (buzhidao\phpmyadmin):    <li><a href="Documentation.html#copyright">Copyright</a></li>
+Documentation.html (buzhidao\phpmyadmin):<h2 id="copyright">Copyright</h2>
+Enclosure.php (blog\wp-includes\simplepie):		$this->copyright = $copyright;
+Enclosure.php (blog\wp-includes\simplepie):		if ($this->copyright !== null)
+Enclosure.php (blog\wp-includes\simplepie):			return $this->copyright;
+Footer.php (blog\wp-content\themes\canvas):		<div id="copyright" class="col-left">
+Image.php (blog\wp-admin\includes):		'copyright' => '',
+Image.php (blog\wp-admin\includes):				$meta['copyright'] = trim( $iptc['2#116'][0] );
+Image.php (blog\wp-admin\includes):			$meta['copyright'] = trim( $exif['Copyright'] );
+Image.php (blog\wp-admin\includes):	foreach ( array( 'title', 'caption', 'credit', 'copyright', 'camera', 'iso' ) as $key ) {
+Index.html (journey):.montage-copyright {
+Index.html (journey):.montage-copyright a {
+Index.html (journey):	<span class="montage-copyright">旅行摄影作品随机展示墙 <a href="javascript:;" onclick="javascript:window.location.reload()">刷新页面换一换</a> | <a href="http://www.imlongluo.com/blog/" target="_blank">&copy;2005-2013</a> <a href="http://www.imlongluo.com/blog/" target="_blank">Long Luo&reg;</a></span>
+Item.php (blog\wp-includes\simplepie):			if ($copyright = $this->get_item_tags(SIMPLEPIE_NAMESPACE_MEDIARSS, 'copyright'))
+Item.php (blog\wp-includes\simplepie):			elseif ($copyright = $parent->get_channel_tags(SIMPLEPIE_NAMESPACE_MEDIARSS, 'copyright'))
+Item.php (blog\wp-includes\simplepie):							if (isset($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright']))
+Item.php (blog\wp-includes\simplepie):								if (isset($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['attribs']['']['url']))
+Item.php (blog\wp-includes\simplepie):									$copyright_url = $this->sanitize($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['attribs']['']['url'], SIMPLEPIE_CONSTRUCT_TEXT);
+Item.php (blog\wp-includes\simplepie):								if (isset($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['data']))
+Item.php (blog\wp-includes\simplepie):									$copyright_label = $this->sanitize($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['data'], SIMPLEPIE_CONSTRUCT_TEXT);
+Item.php (blog\wp-includes\simplepie):							elseif (isset($group['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright']))
+Item.php (blog\wp-includes\simplepie):								if (isset($group['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['attribs']['']['url']))
+Item.php (blog\wp-includes\simplepie):									$copyright_url = $this->sanitize($group['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['attribs']['']['url'], SIMPLEPIE_CONSTRUCT_TEXT);
+Item.php (blog\wp-includes\simplepie):								if (isset($group['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['data']))
+Item.php (blog\wp-includes\simplepie):									$copyright_label = $this->sanitize($group['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['data'], SIMPLEPIE_CONSTRUCT_TEXT);
+Item.php (blog\wp-includes\simplepie):						if (isset($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright']))
+Item.php (blog\wp-includes\simplepie):							if (isset($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['attribs']['']['url']))
+Item.php (blog\wp-includes\simplepie):								$copyright_url = $this->sanitize($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['attribs']['']['url'], SIMPLEPIE_CONSTRUCT_TEXT);
+Item.php (blog\wp-includes\simplepie):							if (isset($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['data']))
+Item.php (blog\wp-includes\simplepie):								$copyright_label = $this->sanitize($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['copyright'][0]['data'], SIMPLEPIE_CONSTRUCT_TEXT);
+LGPLv3.txt (blog\wp-content\plugins\syntax-highlighter-and-code-prettifier):   c) For a Combined Work that displays copyright notices during
+LGPLv3.txt (blog\wp-content\plugins\syntax-highlighter-and-code-prettifier):   execution, include the copyright notice for the Library among
+License.txt (blog):This program incorporates work covered by the following copyright and
+License.txt (blog):  We protect your rights with two steps: (1) copyright the software, and
+License.txt (blog):a notice placed by the copyright holder saying it may be distributed
+License.txt (blog):means either the Program or any derivative work under copyright law:
+License.txt (blog):copyright notice and disclaimer of warranty; keep intact all the
+License.txt (blog):    announcement including an appropriate copyright notice and a
+License.txt (blog):original copyright holder who places the Program under this License
+License.txt (blog):the "copyright" line and a pointer to where the full notice is found.
+License.txt (blog):school, if any, to sign a "copyright disclaimer" for the program, if
+License.txt (blog):  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):  We protect your rights with two steps: (1) copyright the software, and
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):a notice placed by the copyright holder saying it may be distributed
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):means either the Program or any derivative work under copyright law:
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):copyright notice and disclaimer of warranty; keep intact all the
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):    announcement including an appropriate copyright notice and a
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):original copyright holder who places the Program under this License
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):the "copyright" line and a pointer to where the full notice is found.
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):school, if any, to sign a "copyright disclaimer" for the program, if
+LICENSE.txt (blog\wp-content\plugins\jetpack\_inc\genericons):  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):  We protect your rights with two steps: (1) copyright the software, and
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):a notice placed by the copyright holder saying it may be distributed
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):means either the Program or any derivative work under copyright law:
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):copyright notice and disclaimer of warranty; keep intact all the
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):    announcement including an appropriate copyright notice and a
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):original copyright holder who places the Program under this License
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):the "copyright" line and a pointer to where the full notice is found.
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):school, if any, to sign a "copyright disclaimer" for the program, if
+LICENSE.txt (blog\wp-content\plugins\wp-slimstat):  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
+License.txt (blog\wp-content\themes\canvas):  We protect your rights with two steps: (1) copyright the software, and
+License.txt (blog\wp-content\themes\canvas):a notice placed by the copyright holder saying it may be distributed
+License.txt (blog\wp-content\themes\canvas):means either the Program or any derivative work under copyright law:
+License.txt (blog\wp-content\themes\canvas):copyright notice and disclaimer of warranty; keep intact all the
+License.txt (blog\wp-content\themes\canvas):    announcement including an appropriate copyright notice and a
+License.txt (blog\wp-content\themes\canvas):original copyright holder who places the Program under this License
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):  We protect your rights with two steps: (1) copyright the software, and
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):a notice placed by the copyright holder saying it may be distributed
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):means either the Program or any derivative work under copyright law:
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):copyright notice and disclaimer of warranty; keep intact all the
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):    announcement including an appropriate copyright notice and a
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):original copyright holder who places the Program under this License
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):the "copyright" line and a pointer to where the full notice is found.
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):school, if any, to sign a "copyright disclaimer" for the program, if
+LICENSE.txt (blog\wp-content\themes\twentyfourteen\genericons):  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
+License.txt (blog\wp-includes\js\plupload):  We protect your rights with two steps: (1) copyright the software, and
+License.txt (blog\wp-includes\js\plupload):a notice placed by the copyright holder saying it may be distributed
+License.txt (blog\wp-includes\js\plupload):means either the Program or any derivative work under copyright law:
+License.txt (blog\wp-includes\js\plupload):copyright notice and disclaimer of warranty; keep intact all the
+License.txt (blog\wp-includes\js\plupload):    announcement including an appropriate copyright notice and a
+License.txt (blog\wp-includes\js\plupload):original copyright holder who places the Program under this License
+License.txt (blog\wp-includes\js\plupload):the "copyright" line and a pointer to where the full notice is found.
+License.txt (blog\wp-includes\js\plupload):school, if any, to sign a "copyright disclaimer" for the program, if
+License.txt (blog\wp-includes\js\plupload):  Yoyodyne, Inc., hereby disclaims all copyright interest in the program
+License.txt (blog\wp-includes\js\swfupload):The above copyright notice and this permission notice shall be included in
+License.txt (blog\wp-includes\js\tinymce):  We protect your rights with a two-step method: (1) we copyright the
+License.txt (blog\wp-includes\js\tinymce):program which contains a notice placed by the copyright holder or
+License.txt (blog\wp-includes\js\tinymce):copyright law: that is to say, a work containing the Library or a
+License.txt (blog\wp-includes\js\tinymce):appropriate copyright notice and disclaimer of warranty; keep intact
+License.txt (blog\wp-includes\js\tinymce):during execution displays copyright notices, you must include the
+License.txt (blog\wp-includes\js\tinymce):copyright notice for the Library among them, as well as a reference
+License.txt (blog\wp-includes\js\tinymce):original copyright holder who places the Library under this License may add
+License.txt (blog\wp-includes\js\tinymce):"copyright" line and a pointer to where the full notice is found.
+License.txt (blog\wp-includes\js\tinymce):school, if any, to sign a "copyright disclaimer" for the library, if
+License.txt (blog\wp-includes\js\tinymce):  Yoyodyne, Inc., hereby disclaims all copyright interest in the
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):   c) For a Combined Work that displays copyright notices during
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):   execution, include the copyright notice for the Library among
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):(1) assert copyright on the software, and (2) offer you this License
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):  "Copyright" also means copyright-like laws that apply to other kinds of
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):in a fashion requiring copyright permission, other than the making of an
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):infringement under applicable copyright law, except executing it on a
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):feature that (1) displays an appropriate copyright notice, and (2)
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):copyright on the Program, and are irrevocable provided the stated
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):rights of fair use or other equivalent, as provided by copyright law.
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):not control copyright.  Those thus making or running the covered works
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):11 of the WIPO copyright treaty adopted on 20 December 1996, or
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):appropriately publish on each copy an appropriate copyright notice;
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):"aggregate" if the compilation and its resulting copyright are not
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):for which you have or can give appropriate copyright permission.
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):add to a covered work, you may (if authorized by the copyright holders of
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):license from a particular copyright holder is reinstated (a)
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):provisionally, unless and until the copyright holder explicitly and
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):finally terminates your license, and (b) permanently, if the copyright
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):  Moreover, your license from a particular copyright holder is
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):reinstated permanently if the copyright holder notifies you of the
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):copyright holder, and you cure the violation prior to 30 days after
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):modify any covered work.  These actions infringe copyright if you do
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):  A "contributor" is a copyright holder who authorizes use under this
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):author or copyright holder as a result of your choosing to follow a
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):the "copyright" line and a pointer to where the full notice is found.
+License.txt (buzhidao\phpmyadmin\libraries\tcpdf):if any, to sign a "copyright disclaimer" for the program, if necessary.
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):  We protect your rights with a two-step method: (1) we copyright the
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):program which contains a notice placed by the copyright holder or
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):copyright law: that is to say, a work containing the Library or a
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):appropriate copyright notice and disclaimer of warranty; keep intact
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):during execution displays copyright notices, you must include the
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):copyright notice for the Library among them, as well as a reference
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):original copyright holder who places the Library under this License may add
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):"copyright" line and a pointer to where the full notice is found.
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):school, if any, to sign a "copyright disclaimer" for the library, if
+LICENSE_LGPL.txt (blog\wp-content\plugins\markdown-on-save-improved\markdownify):  Yoyodyne, Inc., hereby disclaims all copyright interest in the
+LightPlayer_refer.html (android):	<li id="menu-item-113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-113"><a href="http://www.camarts.cn/copyright">版权与转载说明</a></li>
+LightPlayer_refer.html (android):					<footer class="entry-meta">Camarts™ 原创摄影作品，基于 <a href="http://creativecommons.org/licenses/by-nd-nc/1.0/deed.zh_HK" target="_blank" rel="copyright">CC BY-ND-NC 协议</a>授权，转载前请先阅读<a href="http://www.camarts.cn/copyright" rel="copyright">《版权与转载说明》</a>。</footer>
+LightPlayer_refer.html (android):                <li><a href="http://www.camarts.cn/copyright" rel="copyright" data-ajax="true" data-ajax-title="版权">版权与转载说明</a></li>
+LightPlayer_refer.html (android):    <div id="copyright">
+LightPlayer_refer.html (android):                <p><a href="http://www.camarts.cn/copyright" title="查看版权信息" target="_blank" rel="copyright">Copyright © 2011-2014 Camarts™. All Rights Reserved.</a></p>
+LightPlayer_refer.html (android):        <p>所有内容均为 <a href="http://www.dandyweng.com/" title="进入翁天信的个人网站" target="_blank" rel="author">翁天信</a> 原创，并基于 <a href="http://creativecommons.org/licenses/by-nd-nc/1.0/deed.zh_HK" target="_blank" rel="licence">CC BY-ND-NC 协议</a>授权，转载前请先阅读<a href="http://www.camarts.cn/copyright/" rel="copyright">《版权与转载说明》</a>。<br>
+Markdown-extra.php (blog\wp-content\plugins\markdown-on-save-improved\markdown-extra):*	Redistributions of source code must retain the above copyright notice,
+Markdown-extra.php (blog\wp-content\plugins\markdown-on-save-improved\markdown-extra):*	Redistributions in binary form must reproduce the above copyright
+Markdown-extra.php (blog\wp-content\plugins\markdown-on-save-improved\markdown-extra):This software is provided by the copyright holders and contributors "as
+Markdown-extra.php (blog\wp-content\plugins\markdown-on-save-improved\markdown-extra):particular purpose are disclaimed. In no event shall the copyright owner
+Module.audio-video.asf.php (blog\wp-includes\id3):					$thisfile_asf_contentdescriptionobject['copyright']             = substr($ASFHeaderData, $offset, $thisfile_asf_contentdescriptionobject['copyright_length']);
+Module.audio-video.asf.php (blog\wp-includes\id3):					$ASFcommentKeysToCopy = array('title'=>'title', 'author'=>'artist', 'copyright'=>'copyright', 'description'=>'comment', 'rating'=>'rating');
+Module.audio-video.quicktime.php (blog\wp-includes\id3):			$handyatomtranslatorarray['©cpy'] = 'copyright';
+Module.audio-video.quicktime.php (blog\wp-includes\id3):			$handyatomtranslatorarray['cprt'] = 'copyright';        // iTunes 4.0?
+Module.audio-video.riff.php (blog\wp-includes\id3):				$CommentsChunkNames = array('NAME'=>'title', 'author'=>'artist', '(c) '=>'copyright', 'ANNO'=>'comment');
+Module.audio-video.riff.php (blog\wp-includes\id3):				$CommentsChunkNames = array('NAME'=>'title', 'author'=>'artist', '(c) '=>'copyright', 'ANNO'=>'comment');
+Module.audio-video.riff.php (blog\wp-includes\id3):			'ICOP'=>'copyright',
+Module.audio.ac3.php (blog\wp-includes\id3):		$thisfile_ac3_raw_bsi['copyright'] = (bool) $this->readHeaderBSI(1);
+Module.audio.mp3.php (blog\wp-includes\id3):			$thisfile_mpeg_audio['copyright']     = (bool) $thisfile_mpeg_audio['raw']['copyright'];
+Module.audio.mp3.php (blog\wp-includes\id3):		$MPEGrawHeader['copyright']     = (ord($Header4Bytes{3}) & 0x08) >> 3; //     K
+Module.tag.apetag.php (blog\wp-includes\id3):			'copyright',
+Parser.php (blog\wp-includes\simplepie):			if ((end($this->namespace) === SIMPLEPIE_NAMESPACE_ATOM_03 && in_array(end($this->element), array('title', 'tagline', 'copyright', 'info', 'summary', 'content')) && isset($attribs['']['mode']) && $attribs['']['mode'] === 'xml')
+Readme.txt (buzhidao\phpmyadmin\libraries\tcpdf\fonts):Please read the documentation on subfolders for copyright, license and other information.
+Refer.html:                        <p>Designed and Developed by Dandy Weng. <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" target="_blank" rel="copyright">BY-NC-SA</a> License.</p>
+Refer.html (android):	<li id="menu-item-113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-113"><a href="http://www.camarts.cn/copyright">版权与转载说明</a></li>
+Refer.html (android):                <li><a href="http://www.camarts.cn/copyright" rel="copyright" data-ajax="true" data-ajax-title="版权">版权与转载说明</a></li>
+Refer.html (android):    <div id="copyright">
+Refer.html (android):                <p><a href="http://www.camarts.cn/copyright" title="查看版权信息" target="_blank" rel="copyright">Copyright © 2011-2014 Camarts™. All Rights Reserved.</a></p>
+Refer.html (android):        <p>所有内容均为 <a href="http://www.dandyweng.com/" title="进入翁天信的个人网站" target="_blank" rel="author">翁天信</a> 原创，并基于 <a href="http://creativecommons.org/licenses/by-nd-nc/1.0/deed.zh_HK" target="_blank" rel="licence">CC BY-ND-NC 协议</a>授权，转载前请先阅读<a href="http://www.camarts.cn/copyright/" rel="copyright">《版权与转载说明》</a>。<br>
+Refer.html (resume):                <p class="copyright">Designed and Developed by Nemo Tang 唐兹源（唐书源）. Copyright © 2013 All rights reserved.</p>
+Refer_world.html (journey):.montage-copyright {
+Refer_world.html (journey):.montage-copyright a {
+Refer_world.html (journey):	<span class="montage-copyright">������Ӱ��Ʒ���չʾǽ <a href="javascript:;" onclick="javascript:window.location.reload()">ˢ��ҳ�滻һ��</a> | <a href="http://www.camarts.cn/copyright" target="_blank">�0�8 2011-2013</a> <a href="http://www.camarts.cn" target="_blank">Camarts�6�4</a></span>
+Rss.php (blog\wp-includes):	var $_CONTENT_CONSTRUCTS = array('content', 'summary', 'info', 'title', 'tagline', 'copyright');
+Source.php (blog\wp-includes\simplepie):		elseif ($return = $this->get_source_tags(SIMPLEPIE_NAMESPACE_ATOM_03, 'copyright'))
+Source.php (blog\wp-includes\simplepie):		elseif ($return = $this->get_source_tags(SIMPLEPIE_NAMESPACE_RSS_20, 'copyright'))
+SQLiteManager.html (android):	<div id="copyright">
+Style.min.css (blog\wp-content\themes\standard):#copyright {
+Style.min.css (blog\wp-content\themes\standard):#copyright .hr-group hr {
+Style.min.css (blog\wp-content\themes\standard):#copyright .hr-group hr:first-child {
+Style.min.css (blog\wp-content\themes\standard):#copyright .hr-group hr:last-child {
+Style.min.css (blog\wp-content\themes\standard):#copyright p,#copyright a {
+Style.min.css (blog\wp-content\themes\standard):#copyright p {
+Style.min.css (blog\wp-content\themes\standard):#copyright a:hover {
+Style.min.css (blog\wp-content\themes\standard):	#copyright {
+Style.min.css (blog\wp-content\themes\standard):	#copyright .hr-group hr:first-child {
+Styles.css (android\css):#copyright {
+Travel_china_refer.html (journey):.montage-copyright {
+Travel_china_refer.html (journey):.montage-copyright a {
+Travel_china_refer.html (journey):	<span class="montage-copyright">旅行摄影作品随机展示墙 <a href="javascript:;" onclick="javascript:window.location.reload()">刷新页面换一换</a> | <a href="http://www.camarts.cn/copyright" target="_blank">? 2011-2014</a> <a href="http://www.camarts.cn" target="_blank">Camarts?</a></span>
+Travel_world_refer.html (journey):.montage-copyright {
+Travel_world_refer.html (journey):.montage-copyright a {
+Travel_world_refer.html (journey):	<span class="montage-copyright">旅行摄影作品随机展示墙 <a href="javascript:;" onclick="javascript:window.location.reload()">刷新页面换一换</a> | <a href="http://www.camarts.cn/copyright" target="_blank">© 2011-2014</a> <a href="http://www.camarts.cn" target="_blank">Camarts™</a></span>
+Utf8test.txt (buzhidao\phpmyadmin\libraries\tcpdf\cache):  [The copyright for the Thai example is owned by The Computer
+World.html (journey):.montage-copyright {
+World.html (journey):.montage-copyright a {
+World.html (journey):	<span class="montage-copyright">My Works Show Wall <a href="javascript:;" onclick="javascript:window.location.reload()">刷新页面换一换</a> | <a href="http://www.imlongluo.com/blog/" target="_blank">&copy; 2005 - 2013</a> <a href="http://www.imlongluo.com/blog/" target="_blank">Long Luo&reg;</a></span>
+---- credit Matches (30 in 12 files) ----
+A-tags-without-images.html (blog\wp-content\plugins\jetpack\tests\modules\photon\sample-content):<em>The Brits was probably the first anglers to write about salmon on dry fly ! Many angling historian will tell you that it is the Canadian <a title="Dry fly pioneers" href="http://www.fishmadman.com/pages/dry-fly/dry-fly-pioneers/"><strong>Mr. George M. La Branche</strong></a> that was the first angler to write about salmon fishing with dry fly - But as it is with most techniques and styles of salmon fishing it is UK anglers that takes the credit. The color plates of Fraser's flies and the text seen to the right is from a 1919 Farlow catalog, but Farlow had the same series of flies and writing by Mr. Fraser in earlier catalogs <strong>dating back as far as 1909 </strong></em>
+Comments-popup.php (blog\wp-includes\theme-compat):<p class="credit"><?php timer_stop(1); ?> <cite><?php printf(__('Powered by <a href="%s" title="Powered by WordPress, state-of-the-art semantic personal publishing platform"><strong>WordPress</strong></a>'), 'http://wordpress.org/'); ?></cite></p>
+Custom.css (blog\wp-content\themes\standard):.icon-credit-card:before {
+Footer.php (blog\wp-content\themes\canvas):		<div id="credit" class="col-right">
+Footer.php (blog\wp-content\themes\standard):						<div id="credit">
+Image.php (blog\wp-admin\includes):		'credit' => '',
+Image.php (blog\wp-admin\includes):				$meta['credit'] = trim( $iptc['2#110'][0] );
+Image.php (blog\wp-admin\includes):				$meta['credit'] = trim( $iptc['2#080'][0] );
+Image.php (blog\wp-admin\includes):			$meta['credit'] = trim( $exif['Artist'] );
+Image.php (blog\wp-admin\includes):			$meta['credit'] = trim( $exif['Author'] );
+Image.php (blog\wp-admin\includes):	foreach ( array( 'title', 'caption', 'credit', 'copyright', 'camera', 'iso' ) as $key ) {
+Item.php (blog\wp-includes\simplepie):			if ($credits = $this->get_item_tags(SIMPLEPIE_NAMESPACE_MEDIARSS, 'credit'))
+Item.php (blog\wp-includes\simplepie):			elseif ($credits = $parent->get_channel_tags(SIMPLEPIE_NAMESPACE_MEDIARSS, 'credit'))
+Item.php (blog\wp-includes\simplepie):							if (isset($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['credit']))
+Item.php (blog\wp-includes\simplepie):								foreach ($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['credit'] as $credit)
+Item.php (blog\wp-includes\simplepie):							elseif (isset($group['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['credit']))
+Item.php (blog\wp-includes\simplepie):								foreach ($group['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['credit'] as $credit)
+Item.php (blog\wp-includes\simplepie):						if (isset($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['credit']))
+Item.php (blog\wp-includes\simplepie):							foreach ($content['child'][SIMPLEPIE_NAMESPACE_MEDIARSS]['credit'] as $credit)
+License.txt (blog):  Wherever third party code has been used, credit has been given in the code's
+Rtl.css (blog\wp-content\themes\standard):#sub-floor #credit {
+Rtl.css (blog\wp-content\themes\standard):#sub-floor #credit {
+Style.css (blog\wp-content\themes\canvas):#footer #credit img {
+Style.css (blog\wp-content\themes\canvas):#footer #credit span {
+Style.css (blog\wp-content\themes\standard):#sub-floor #credit {
+Style.css (blog\wp-content\themes\standard):#sub-floor #credit a {
+Style.css (blog\wp-content\themes\standard):#sub-floor #credit a:hover {
+Style.css (blog\wp-content\themes\standard):	#sub-floor #credit {
+Style.css (blog\wp-content\themes\standard):	#footer #credit {
+Style.min.css (blog\wp-content\themes\standard):.icon-credit-card:before {
+---- printf Matches (441 in 157 files) ----
+404.php (blog\wp-content\themes\standard):							<p><?php _e( 'The specified address does not contain a page or blog post at this time', 'standard' ); ?>. <a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php printf( esc_attr__( '%s', 'standard' ), 'Page Not Found' ); ?>"><?php _e( 'Click here to return home.', 'standard' ); ?></a></p>
+About.php (blog\wp-admin):<h1><?php printf( __( 'Welcome to WordPress&nbsp;%s' ), $display_version ); ?></h1>
+About.php (blog\wp-admin):<div class="about-text"><?php printf( __( 'Thank you for updating to WordPress %s, the most beautiful WordPress&nbsp;yet.' ), $display_version ); ?></div>
+About.php (blog\wp-admin):<div class="wp-badge"><?php printf( __( 'Version %s' ), $display_version ); ?></div>
+About.php (blog\wp-admin):			<p><?php printf( __( 'To change your color scheme later, just <a href="%1$s">visit your profile</a>.' ), get_edit_profile_url( get_current_user_id() ) ); ?></p>
+Admin-backup.php (blog\wp-content\themes\canvas\functions):				<label for="woothemes-import-file"><?php printf( __( 'Upload File: (Maximum Size: %s)', 'woothemes' ), ini_get( 'post_max_size' ) ); ?></label>
+Admin.php (blog\wp-content\plugins\akismet):	<h2 class="ak-header"><?php printf( __( 'Akismet <a href="%s" class="add-new-h2">Stats</a>' ), $stats_link ); ?></h2>
+Admin.php (blog\wp-content\plugins\akismet):							<p class="need-key description"><?php printf( __('You must enter a valid Akismet API key here. If you need an API key, you can <a href="%s">create one here</a>'), '#' );?></p>
+Admin.php (blog\wp-content\plugins\akismet):							<p class="description"><?php printf( __('You can confirm that Akismet.com is up by <a href="%s" target="_blank">clicking here</a>.'), 'http://status.automattic.com/9931/136079/Akismet-API' ); ?></p>
+Admin.php (blog\wp-content\plugins\akismet):	<div id="akismet-warning" class="updated fade"><p><strong><?php _e('Akismet is almost ready.');?></strong> <?php printf( __( 'You must <a href="%1$s">enter your Akismet API key</a> for it to work.' ), $config_link );?></p></div><?php
+Admin.php (blog\wp-content\plugins\akismet):						printf( translate( 'For more information:' ) . ' <a href="%s">%s</a>' , 'https://akismet.com/errors/'.$alert['code'], 'https://akismet.com/errors/'.$alert['code'] );?>
+Admin.php (blog\wp-content\themes\canvas\includes\woo-hooks\screens):				<span class="framework"><?php printf( __( 'Version %s', 'woothemes' ), $this->version ); ?></span>
+Admin.php (blog\wp-content\themes\canvas\includes\woo-layout\screens):				<span class="framework"><?php printf( __( 'Version %s', 'woothemes' ), $this->version ); ?></span>
+Admin.php (blog\wp-content\themes\canvas\includes\woo-meta\screens):				<span class="framework"><?php printf( __( 'Version %s', 'woothemes' ), $this->version ); ?></span>
+Ajax-actions.php (blog\wp-admin\includes):		printf( $_POST['post_type'] == 'page' ? __( 'Saving is disabled: %s is currently editing this page.' ) : __( 'Saving is disabled: %s is currently editing this post.' ),	esc_html( $last_user_name ) );
+Archive.php (blog\wp-content\themes\twentyfourteen):							printf( __( 'Daily Archives: %s', 'twentyfourteen' ), get_the_date() );
+Archive.php (blog\wp-content\themes\twentyfourteen):							printf( __( 'Monthly Archives: %s', 'twentyfourteen' ), get_the_date( _x( 'F Y', 'monthly archives date format', 'twentyfourteen' ) ) );
+Archive.php (blog\wp-content\themes\twentyfourteen):							printf( __( 'Yearly Archives: %s', 'twentyfourteen' ), get_the_date( _x( 'Y', 'yearly archives date format', 'twentyfourteen' ) ) );
+Author.php (blog\wp-content\themes\twentyfourteen):						printf( __( 'All posts by %s', 'twentyfourteen' ), get_the_author() );
+Back-compat.php (blog\wp-content\themes\twentyfourteen\inc):	printf( '<div class="error"><p>%s</p></div>', $message );
+Buy.php (blog\wp-content\plugins\w3-total-cache\inc\options\edd):    <span class="description"><?php printf(__('Please enter the license key you receive after purchase %s.', 'w3-total-cache'),
+Category.php (blog\wp-content\themes\twentyfourteen):				<h1 class="archive-title"><?php printf( __( 'Category Archives: %s', 'twentyfourteen' ), single_cat_title( '', false ) ); ?></h1>
+Category.php (blog\wp-content\themes\twentyfourteen):						printf( '<div class="taxonomy-description">%s</div>', $term_description );
+Changelog.php (buzhidao\phpmyadmin):    printf(__('The %s file is not available on this system, please visit www.phpmyadmin.net for more information.'), $filename);
+Class-wp-comments-list-table.php (blog\wp-admin\includes):		printf( __( 'Submitted on <a href="%1$s">%2$s at %3$s</a>' ), $comment_url,
+Class-wp-comments-list-table.php (blog\wp-admin\includes):			printf( ' | '.__( 'In reply to <a href="%1$s">%2$s</a>.' ), $parent_link, $name );
+Class-wp-customize-control.php (blog\wp-includes):				printf(
+Class-wp-editor.php (blog\wp-includes):		printf($the_editor, $content);
+Class-wp-editor.php (blog\wp-includes):			<div id="wp-fullscreen-count"><?php printf( __( 'Word count: %s' ), '<span class="word-count">0</span>' ); ?></div>
+Class-wp-filesystem-base.php (blog\wp-admin\includes):			printf( "\n" . __('Looking for %1$s in %2$s') . "<br/>\n", $folder, $base );
+Class-wp-filesystem-base.php (blog\wp-admin\includes):					printf( "\n" . __('Changing to %s') . "<br/>\n", $newdir );
+Class-wp-filesystem-base.php (blog\wp-admin\includes):				printf( "\n" . __('Found %s') . "<br/>\n",  $base . $last_path );
+Class-wp-list-table.php (blog\wp-admin\includes):			printf( "<option %s value='%s'>%s</option>\n",
+Class-wp-list-table.php (blog\wp-admin\includes):		printf( "<script type='text/javascript'>list_args = %s;</script>\n", json_encode( $args ) );
+Class-wp-media-list-table.php (blog\wp-admin\includes):			printf( '<a href="%s">%s</a>',
+Class-wp-ms-sites-list-table.php (blog\wp-admin\includes):							<label class="screen-reader-text" for="blog_<?php echo $blog['blog_id']; ?>"><?php printf( __( 'Select %s' ), $blogname ); ?></label>
+Class-wp-posts-list-table.php (blog\wp-admin\includes):				<label class="screen-reader-text" for="cb-select-<?php the_ID(); ?>"><?php printf( __( 'Select %s' ), $title ); ?></label>
+Class-wp-posts-list-table.php (blog\wp-admin\includes):				printf( '<a href="%s">%s</a>',
+Class-wp-theme-install-list-table.php (blog\wp-admin\includes):		<div class="theme-author"><?php printf( __( 'By %s' ), $author ); ?></div>
+Class-wp-theme-install-list-table.php (blog\wp-admin\includes):			<span class="theme-by"><?php printf( __( 'By %s' ), $author ); ?></span>
+Class-wp-themes-list-table.php (blog\wp-admin\includes):				printf( __( 'You only have one theme enabled for this site right now. Visit the Network Admin to <a href="%1$s">enable</a> or <a href="%2$s">install</a> more themes.' ), network_admin_url( 'site-themes.php?id=' . $GLOBALS['blog_id'] ), network_admin_url( 'theme-install.php' ) );
+Class-wp-themes-list-table.php (blog\wp-admin\includes):				printf( __( 'You only have one theme enabled for this site right now. Visit the Network Admin to <a href="%1$s">enable</a> more themes.' ), network_admin_url( 'site-themes.php?id=' . $GLOBALS['blog_id'] ) );
+Class-wp-themes-list-table.php (blog\wp-admin\includes):				printf( __( 'You only have one theme installed right now. Live a little! You can choose from over 1,000 free themes in the WordPress.org Theme Directory at any time: just click on the <a href="%s">Install Themes</a> tab above.' ), admin_url( 'theme-install.php' ) );
+Class-wp-themes-list-table.php (blog\wp-admin\includes):		printf( __( 'Only the current theme is available to you. Contact the %s administrator for information about accessing additional themes.' ), get_site_option( 'site_name' ) );
+Class-wp-themes-list-table.php (blog\wp-admin\includes):			<div class="theme-author"><?php printf( __( 'By %s' ), $author ); ?></div>
+Class-wp-themes-list-table.php (blog\wp-admin\includes):					printf( ' <p class="howto">' . __( 'This <a href="%1$s">child theme</a> requires its parent theme, %2$s.' ) . '</p>',
+Class-wp-themes-list-table.php (blog\wp-admin\includes):		printf( "<script type='text/javascript'>var theme_list_args = %s;</script>\n", json_encode( $args ) );
+Class-wp-upgrader-skins.php (blog\wp-admin\includes):		printf( '<h4>' . $this->upgrader->strings['skin_before_update_header'] . ' <span class="spinner waiting-' . $this->upgrader->update_current . '"></span></h4>',  $title, $this->upgrader->update_current, $this->upgrader->update_count);
+Class-wp-upgrader-skins.php (blog\wp-admin\includes):		printf( '<h4>' . __( 'Updating translations for %1$s (%2$s)&#8230;' ) . '</h4>', $name, $this->language_update->language );
+Class.jetpack.php (blog\wp-content\plugins\jetpack):						<p class="submit"><?php printf( '<a id="jp-survey-button" class="button-primary" target="_blank" href="%1$s">%2$s</a>', 'http://jetpack.me/survey/?rel=' . JETPACK__VERSION, __( 'Take Survey', 'jetpack' ) ); ?></p>
+Class.jetpack.php (blog\wp-content\plugins\jetpack):							$( '#news-sub' ).html( '<?php printf(
+Class.jetpack.php (blog\wp-content\plugins\jetpack):							$( '#news-sub' ).html( '<?php printf(
+Class.jetpack.php (blog\wp-content\plugins\jetpack):				printf( __( 'Configure %s', 'jetpack' ), $module['name'] );
+Class.jetpack.php (blog\wp-content\plugins\jetpack):			printf( '%s: %s', $xml->getErrorCode(), $xml->getErrorMessage() );
+Class.jetpack.php (blog\wp-content\plugins\jetpack):			printf( '%s: %s', $xml->getErrorCode(), $xml->getErrorMessage() );
+Class.jetpack.php (blog\wp-content\plugins\jetpack):						<p><?php printf( __( 'Your <code>%1$s</code> option is set up as <strong>%2$s</strong>, but your WordPress.com connection lists it as <strong>%3$s</strong>!', 'jetpack' ), $key, (string) get_option( $key ), $value ); ?></p>
+Comics.php (blog\wp-content\plugins\jetpack\modules\custom-post-types):			printf( _n( 'Post converted.', '%s posts converted', $_GET['post_type_changed'], 'jetpack' ), number_format_i18n( $_GET['post_type_changed'] ) );
+Comment-template.php (blog\wp-includes):		printf( $replytext, $author );
+Comment-template.php (blog\wp-includes):			<?php printf( __( '<cite class="fn">%s</cite> <span class="says">says:</span>' ), get_comment_author_link() ); ?>
+Comment-template.php (blog\wp-includes):				printf( __( '%1$s at %2$s' ), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '&nbsp;&nbsp;', '' );
+Comment-template.php (blog\wp-includes):						<?php printf( __( '%s <span class="says">says:</span>' ), sprintf( '<b class="fn">%s</b>', get_comment_author_link() ) ); ?>
+Comment-template.php (blog\wp-includes):								<?php printf( _x( '%1$s at %2$s', '1: date, 2: time' ), get_comment_date(), get_comment_time() ); ?>
+Comments-popup.php (blog\wp-includes\theme-compat):     <title><?php printf(__('%1$s - Comments on %2$s'), get_option('blogname'), the_title('','',false)); ?></title>
+Comments-popup.php (blog\wp-includes\theme-compat):<p><?php printf(__('The <abbr title="Universal Resource Locator">URL</abbr> to TrackBack this entry is: <em>%s</em>'), get_trackback_url()); ?></p>
+Comments-popup.php (blog\wp-includes\theme-compat):	<p><cite><?php comment_type(); ?> <?php printf(__('by %1$s &#8212; %2$s @ <a href="#comment-%3$s">%4$s</a>'), get_comment_author_link(), get_comment_date(), get_comment_ID(), get_comment_time()); ?></cite></p>
+Comments-popup.php (blog\wp-includes\theme-compat):<p><?php printf(__('Line and paragraph breaks automatic, e-mail address never displayed, <acronym title="Hypertext Markup Language">HTML</acronym> allowed: <code>%s</code>'), allowed_tags()); ?></p>
+Comments-popup.php (blog\wp-includes\theme-compat):	<p><?php printf(__('Logged in as <a href="%1$s">%2$s</a>. <a href="%3$s" title="Log out of this account">Log out &raquo;</a>'), get_edit_user_link(), $user_identity, wp_logout_url(get_permalink())); ?></p>
+Comments-popup.php (blog\wp-includes\theme-compat):<p class="credit"><?php timer_stop(1); ?> <cite><?php printf(__('Powered by <a href="%s" title="Powered by WordPress, state-of-the-art semantic personal publishing platform"><strong>WordPress</strong></a>'), 'http://wordpress.org/'); ?></cite></p>
+Comments.php (blog\wp-content\plugins\jetpack\modules\comments):<title><?php printf( __( 'Submitting Comment%s', 'jetpack' ), '&hellip;' ); ?></title>
+Comments.php (blog\wp-content\plugins\jetpack\modules\comments):        <h1><?php printf( __( 'Submitting Comment%s', 'jetpack' ), '<span id="ellipsis" class="hidden">&hellip;</span>' ); ?></h1>
+Comments.php (blog\wp-content\themes\canvas):		 	<h3 id="comments-title"><?php printf( _n( 'One Response to %2$s', '%1$s Responses to %2$s', get_comments_number(), 'woothemes' ), number_format_i18n( get_comments_number() ), '<em>' . get_the_title() . '</em>' ); ?></h3>
+Comments.php (blog\wp-content\themes\twentyfourteen):			printf( _n( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'twentyfourteen' ),
+Comments.php (blog\wp-includes\theme-compat):	<h3 id="comments"><?php	printf( _n( 'One Response to %2$s', '%1$s Responses to %2$s', get_comments_number() ),
+Comments.php (blog\wp-includes\theme-compat):<p><?php printf(__('You must be <a href="%s">logged in</a> to post a comment.'), wp_login_url( get_permalink() )); ?></p>
+Comments.php (blog\wp-includes\theme-compat):<p><?php printf(__('Logged in as <a href="%1$s">%2$s</a>.'), get_edit_user_link(), $user_identity); ?> <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php esc_attr_e('Log out of this account'); ?>"><?php _e('Log out &raquo;'); ?></a></p>
+Comments.php (blog\wp-includes\theme-compat):<!--<p><small><?php printf(__('<strong>XHTML:</strong> You can use these tags: <code>%s</code>'), allowed_tags()); ?></small></p>-->
+Config-options.php (blog\wp-content\plugins\jetpack\modules\after-the-deadline):   <p><?php printf( __( '<a href="%s">Learn more</a> about these options.', 'jetpack' ), 'http://support.wordpress.com/proofreading/' );
+Config-options.php (blog\wp-content\plugins\jetpack\modules\after-the-deadline):   <p><?php printf(
+Content-gallery.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):					<p class="gallery-info"><em><?php printf( _n( 'This gallery contains <a %1$s>%2$s photo</a>.', 'This gallery contains <a %1$s>%2$s photos</a>.', $total_images, 'jetpack' ),
+Content-none.php (blog\wp-content\themes\twentyfourteen):	<p><?php printf( __( 'Ready to publish your first post? <a href="%1$s">Get started here</a>.', 'twentyfourteen' ), admin_url( 'post-new.php' ) ); ?></p>
+Content.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):							<?php printf( __( '%s', 'jetpack' ), get_the_author() ); ?>
+Credits.php (blog\wp-admin):<h1><?php printf( __( 'Welcome to WordPress %s' ), $display_version ); ?></h1>
+Credits.php (blog\wp-admin):<div class="about-text"><?php printf( __( 'Thank you for updating to WordPress %s, the most beautiful WordPress&nbsp;yet.' ), $display_version ); ?></div>
+Credits.php (blog\wp-admin):<div class="wp-badge"><?php printf( __( 'Version %s' ), $display_version ); ?></div>
+Credits.php (blog\wp-admin):<p class="clear"><?php printf( __( 'Want to see your name in lights on this page? <a href="%s">Get involved in WordPress</a>.' ),
+Custom-background.php (blog\wp-admin):<p><?php printf( __( 'Background updated. <a href="%s">Visit your site</a> to see how it looks.' ), home_url( '/' ) ); ?></p>
+Custom-css.php (blog\wp-content\plugins\jetpack\modules\custom-css):					printf(
+Custom-css.php (blog\wp-content\plugins\jetpack\modules\custom-css):					<p><?php printf( __( 'The default content width for the %s theme is %d pixels.', 'jetpack' ), $current_theme, intval( $GLOBALS['content_width'] ) ); ?></p>
+Custom-css.php (blog\wp-content\plugins\jetpack\modules\custom-css):								<?php printf( __( 'Replace <a href="%s">theme\'s CSS</a> <b>(Advanced)</b>', 'jetpack' ), apply_filters( 'safecss_theme_stylesheet_url', get_stylesheet_uri() ) ); ?>
+Custom-header.php (blog\wp-admin):<p><?php printf( __( 'Header updated. <a href="%s">Visit your site</a> to see how it looks.' ), home_url( '/' ) ); ?></p>
+Custom-header.php (blog\wp-admin):		printf( __( 'Images of exactly <strong>%1$d &times; %2$d pixels</strong> will be used as-is.' ) . '<br />', get_theme_support( 'custom-header', 'width' ), get_theme_support( 'custom-header', 'height' ) );
+Custom-header.php (blog\wp-admin):			printf( __( 'Images should be at least <strong>%1$d pixels</strong> wide.' ) . ' ', get_theme_support( 'custom-header', 'width' ) );
+Custom-header.php (blog\wp-admin):			printf( __( 'Images should be at least <strong>%1$d pixels</strong> tall.' ) . ' ', get_theme_support( 'custom-header', 'height' ) );
+Custom-header.php (blog\wp-admin):			printf( __( 'Suggested width is <strong>%1$d pixels</strong>.' ) . ' ', get_theme_support( 'custom-header', 'width' ) );
+Custom-header.php (blog\wp-admin):			printf( __( 'Suggested height is <strong>%1$d pixels</strong>.' ) . ' ', get_theme_support( 'custom-header', 'height' ) );
+Dashboard.php (blog\wp-admin\includes):			printf( '<li class="%1$s-count"><a href="edit.php?post_type=%1$s">%2$s</a></li>', $post_type, $text );
+Dashboard.php (blog\wp-admin\includes):	<p><?php printf( __( 'WordPress %1$s running %2$s theme.' ), get_bloginfo( 'version', 'display' ), $theme_name ); ?></p>
+Dashboard.php (blog\wp-admin\includes):				<?php printf( /* translators: 1: comment author, 2: post link, 3: notification if the comment is pending */__( 'From %1$s on %2$s%3$s' ),
+Dashboard.php (blog\wp-admin\includes):			<h4 class="comment-meta"><?php printf( _x( '%1$s on %2$s', 'dashboard' ), "<strong>$type</strong>", $comment_post_link." ".$comment_link ); ?></h4>
+Dashboard.php (blog\wp-admin\includes):			printf(
+Dashboard.php (blog\wp-admin\includes):			printf(
+Dashboard.php (blog\wp-admin\includes):			<p class="hide-if-no-customize"><?php printf( __( 'or, <a href="%s">change your theme completely</a>' ), admin_url( 'themes.php' ) ); ?></p>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-edit-page">' . __( 'Edit your front page' ) . '</a>', get_edit_post_link( get_option( 'page_on_front' ) ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-add-page">' . __( 'Add additional pages' ) . '</a>', admin_url( 'post-new.php?post_type=page' ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-edit-page">' . __( 'Edit your front page' ) . '</a>', get_edit_post_link( get_option( 'page_on_front' ) ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-add-page">' . __( 'Add additional pages' ) . '</a>', admin_url( 'post-new.php?post_type=page' ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-write-blog">' . __( 'Add a blog post' ) . '</a>', admin_url( 'post-new.php' ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-write-blog">' . __( 'Write your first blog post' ) . '</a>', admin_url( 'post-new.php' ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-add-page">' . __( 'Add an About page' ) . '</a>', admin_url( 'post-new.php?post_type=page' ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-view-site">' . __( 'View your site' ) . '</a>', home_url( '/' ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<div class="welcome-icon welcome-widgets-menus">' . __( 'Manage <a href="%1$s">widgets</a> or <a href="%2$s">menus</a>' ) . '</div>', admin_url( 'widgets.php' ), admin_url( 'nav-menus.php' ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-comments">' . __( 'Turn comments on or off' ) . '</a>', admin_url( 'options-discussion.php' ) ); ?></li>
+Dashboard.php (blog\wp-admin\includes):			<li><?php printf( '<a href="%s" class="welcome-icon welcome-learn-more">' . __( 'Learn more about getting started' ) . '</a>', __( 'http://codex.wordpress.org/First_Steps_With_WordPress' ) ); ?></li>
+Db_search.php (buzhidao\phpmyadmin):            <td> <a name="delete_search" href="<?php echo $delete_result_path; ?>" onclick="deleteResult('<?php echo $delete_result_path ?>' , ' <?php printf(__('Delete the matches for the %s table?'), htmlspecialchars($each_table)); ?>','<?php echo ($GLOBALS['cfg']['AjaxEnable']); ?>');return false;" ><?php echo __('Delete') ?></a>   </td>
+Display_export.lib.php (buzhidao\phpmyadmin\libraries):            printf(__('Exporting tables from "%s" database'), htmlspecialchars($db));
+Display_export.lib.php (buzhidao\phpmyadmin\libraries):            printf(__('Exporting rows from "%s" table'), htmlspecialchars($table));
+Display_import.lib.php (buzhidao\phpmyadmin\libraries):                printf(__('Importing into the database "%s"'), htmlspecialchars($db));
+Display_import.lib.php (buzhidao\phpmyadmin\libraries):                printf(__('Importing into the table "%s"'), htmlspecialchars($table));
+Display_import.lib.php (buzhidao\phpmyadmin\libraries):            printf(__('File may be compressed (%s) or uncompressed.'), implode(", ", $compressions));
+Edit-form-advanced.php (blog\wp-admin):	<td id="wp-word-count"><?php printf( __( 'Word count: %s' ), '<span class="word-count">0</span>' ); ?></td>
+Edit-form-advanced.php (blog\wp-admin):			printf(__('Last edited by %1$s on %2$s at %3$s'), esc_html( $last_user->display_name ), mysql2date(get_option('date_format'), $post->post_modified), mysql2date(get_option('time_format'), $post->post_modified));
+Edit-form-advanced.php (blog\wp-admin):			printf(__('Last edited on %1$s at %2$s'), mysql2date(get_option('date_format'), $post->post_modified), mysql2date(get_option('time_format'), $post->post_modified));
+Edit-form-comment.php (blog\wp-admin):			printf( __( 'E-mail (%s):' ), get_comment_author_email_link( __( 'send e-mail' ), '', '' ) );
+Edit-form-comment.php (blog\wp-admin):			printf( __( 'URL (%s):' ), apply_filters( 'get_comment_author_link', $link ) );
+Edit-form-comment.php (blog\wp-admin):<span id="timestamp"><?php printf($stamp, $date); ?></span>&nbsp;<a href="#edit_timestamp" class="edit-timestamp hide-if-no-js"><?php _e('Edit') ?></a>
+Edit-tags.php (blog\wp-admin):	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( wp_unslash($_REQUEST['s']) ) ); ?>
+Edit-tags.php (blog\wp-admin):<p><?php printf(__('<strong>Note:</strong><br />Deleting a category does not delete the posts in that category. Instead, posts that were only assigned to the deleted category are set to the category <strong>%s</strong>.'), apply_filters('the_category', get_cat_name(get_option('default_category')))) ?></p>
+Edit-tags.php (blog\wp-admin):<p><?php printf(__('Categories can be selectively converted to tags using the <a href="%s">category to tag converter</a>.'), 'import.php') ?></p>
+Edit-tags.php (blog\wp-admin):<p><?php printf(__('Tags can be selectively converted to categories using the <a href="%s">tag to category converter</a>.'), 'import.php') ;?></p>
+Edit.php (blog\wp-admin):	printf( ' <span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', get_search_query() );
+Enum_editor.php (buzhidao\phpmyadmin):            <h3><?php printf(__('Values for the column "%s"'), htmlspecialchars($_GET['field'])); ?></h3>
+Extensions.php (blog\wp-content\plugins\w3-total-cache\inc\options):        printf(__('Extension support is always %s','w3-total-cache'), '<span class="w3tc-enabled">' . __('enabled', 'w3-total-cache') . '</span>.' )
+Featured-content.php (blog\wp-content\plugins\jetpack\modules\theme-tools):		printf( __( 'The settings for Featured Content have <a href="%s">moved to Appearance &rarr; Customize</a>.', 'jetpack' ), admin_url( 'customize.php?#accordion-section-featured_content' ) );
+Feed-atom-comments.php (blog\wp-includes):			printf( ent2ncr( __( 'Comments on %s' ) ), get_the_title_rss() );
+Feed-atom-comments.php (blog\wp-includes):			printf( ent2ncr( __( 'Comments for %1$s searching on %2$s' ) ), get_bloginfo_rss( 'name' ), get_search_query() );
+Feed-atom-comments.php (blog\wp-includes):			printf( ent2ncr( __( 'Comments for %s' ) ), get_bloginfo_rss( 'name' ) . get_wp_title_rss() );
+Feed-atom-comments.php (blog\wp-includes):				printf(ent2ncr(__('Comment on %1$s by %2$s')), $title, get_comment_author_rss());
+Feed-atom-comments.php (blog\wp-includes):				printf(ent2ncr(__('By: %s')), get_comment_author_rss());
+Feed-rss2-comments.php (blog\wp-includes):			printf( ent2ncr( __( 'Comments on: %s' ) ), get_the_title_rss() );
+Feed-rss2-comments.php (blog\wp-includes):			printf( ent2ncr( __( 'Comments for %1$s searching on %2$s' ) ), get_bloginfo_rss( 'name' ), get_search_query() );
+Feed-rss2-comments.php (blog\wp-includes):			printf( ent2ncr( __( 'Comments for %s' ) ), get_bloginfo_rss( 'name' ) . get_wp_title_rss() );
+Feed-rss2-comments.php (blog\wp-includes):				printf(ent2ncr(__('Comment on %1$s by %2$s')), $title, get_comment_author_rss());
+Feed-rss2-comments.php (blog\wp-includes):				printf(ent2ncr(__('By: %s')), get_comment_author_rss());
+Footer.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):		<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'jetpack' ) ); ?>" title="<?php esc_attr_e( 'Semantic Personal Publishing Platform', 'minileven' , 'jetpack'); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'minileven' , 'jetpack'), 'WordPress' ); ?></a>
+Footer.php (blog\wp-content\themes\standard):								<?php printf( __( '&copy; %1$s %2$s &mdash; %3$s &mdash; %4$s by %5$s', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '">' . get_bloginfo( 'name' ) . '</a>', '<a href="' . get_permalink( get_page_by_path( 'privacy-policy' )->ID ) . '">Privacy Policy</a>', '<a href="' . $standard_url . '" target="_blank">Standard</a>', '<a href="' . $eightbit_url . '" target="_blank">8BIT</a>' ); ?>
+Footer.php (blog\wp-content\themes\standard):								<?php printf( __( '&copy; %1$s %2$s ', 'standard' ), , date( 'Y' ), '<a href="' . home_url() . '" target="_blank"> Long Luo </a>' ); ?>
+Footer.php (blog\wp-content\themes\twentyfourteen):				<a href="<?php echo esc_url( __( 'http://wordpress.org/', 'twentyfourteen' ) ); ?>"><?php printf( __( 'Proudly powered by %s', 'twentyfourteen' ), 'WordPress' ); ?></a>
+Footer.php (blog\wp-includes\theme-compat):		<?php printf(__('%1$s is proudly powered by %2$s'), get_bloginfo('name'),
+Footer.php (blog\wp-includes\theme-compat):		<br /><?php printf(__('%1$s and %2$s.'), '<a href="' . get_bloginfo('rss2_url') . '">' . __('Entries (RSS)') . '</a>', '<a href="' . get_bloginfo('comments_rss2_url') . '">' . __('Comments (RSS)') . '</a>'); ?>
+Footer.php (blog\wp-includes\theme-compat):		<!-- <?php printf(__('%d queries. %s seconds.'), get_num_queries(), timer_stop(0, 3)); ?> -->
+Freedoms.php (blog\wp-admin):<h1><?php printf( __( 'Welcome to WordPress %s' ), $display_version ); ?></h1>
+Freedoms.php (blog\wp-admin):<div class="about-text"><?php printf( __( 'Thank you for updating to WordPress %s, the most beautiful WordPress&nbsp;yet.' ), $display_version ); ?></div>
+Freedoms.php (blog\wp-admin):<div class="wp-badge"><?php printf( __( 'Version %s' ), $display_version ); ?></div>
+Freedoms.php (blog\wp-admin):<p class="about-description"><?php printf( __( 'WordPress is Free and open source software, built by a distributed community of mostly volunteer developers from around the world. WordPress comes with some awesome, worldview-changing rights courtesy of its <a href="%s">license</a>, the GPL.' ), 'http://wordpress.org/about/license/' ); ?></p>
+Freedoms.php (blog\wp-admin):<p><?php printf( __( 'WordPress grows when people like you tell their friends about it, and the thousands of businesses and services that are built on and around WordPress share that fact with their users. We&#8217;re flattered every time someone spreads the good word, just make sure to <a href="%s">check out our trademark guidelines</a> first.' ), 'http://wordpressfoundation.org/trademark-policy/' ); ?></p>
+Freedoms.php (blog\wp-admin):printf( __( 'Every plugin and theme in WordPress.org&#8217;s directory is 100%% GPL or a similarly free and compatible license, so you can feel safe finding <a href="%1$s">plugins</a> and <a href="%2$s">themes</a> there. If you get a plugin or theme from another source, make sure to <a href="%3$s">ask them if it&#8217;s GPL</a> first. If they don&#8217;t respect the WordPress license, we don&#8217;t recommend them.' ), $plugins_url, $themes_url, 'http://wordpress.org/about/license/' ); ?></p>
+Free_cdn.php (blog\wp-content\plugins\free-cdn):            printf('
+Free_cdn.php (blog\wp-content\plugins\free-cdn):                printf('TOTAL: %s URL\'s to be rewritten', count($this->debug_result));
+Functions.php (blog\wp-content\themes\standard):							<span class="date"><a href="<?php echo get_comment_link(); ?>" title="<?php esc_attr_e( 'Permalink', 'standard'); ?>"><?php printf( __( '%1$s at %2$s', '_s' ), get_comment_date( get_option( 'date_format' ) ), get_comment_time( get_option( 'time_format' ) ) ); ?></a></span>
+Functions.php (blog\wp-content\themes\twentyfourteen):	printf( '<a href="%1$s" rel="attachment">%2$s</a>',
+Functions.php (blog\wp-content\themes\twentyfourteen):					<?php printf( _n( '%d Article', '%d Articles', $post_count, 'twentyfourteen' ), $post_count ); ?>
+General.php (blog\wp-content\plugins\w3-total-cache\inc\options):                            <span class="description"><?php printf(__('Please enter the license key provided you received after %s.', 'w3-total-cache'), '<a class="button-buy-plugin" href="' . EDD_W3EDGE_STORE_URL_PLUGIN .'">' . __('upgrading', 'w3-total-cache') . '</a>')?></span>
+GenesisAdmin.php (blog\wp-content\plugins\w3-total-cache\extensions):        printf(__('The Genesis Framework extension is currently %s ', 'w3-total-cache'),
+GenesisAdmin.php (blog\wp-content\plugins\w3-total-cache\extensions):            printf(__('and caching via <strong>%s</strong>', 'w3-total-cahe'),$config->get_string('fragmentcache.engine'));
+Grunion-form-view.php (blog\wp-content\plugins\jetpack\modules\contact-form):			<p><?php printf(
+Grunion-form-view.php (blog\wp-content\plugins\jetpack\modules\contact-form):			<p><?php printf(
+Header.inc.php (buzhidao\phpmyadmin\libraries):                printf($item,
+Header.inc.php (buzhidao\phpmyadmin\libraries):                    printf($item,
+Header.inc.php (buzhidao\phpmyadmin\libraries):                        printf($item,
+Image-edit.php (blog\wp-admin\includes):		<p><?php printf( __('Original dimensions %s'), $meta['width'] . '&times;' . $meta['height'] ); ?></p>
+Image.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):							printf( __( '<span class="entry-gallery">&laquo; <a href="%1$s" title="Back to %2$s" rel="gallery">Back to Gallery</a></span>', 'jetpack' ),
+Image.php (blog\wp-content\themes\standard):											<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php printf( esc_attr__( 'Permalink to %s', 'standard' ), the_title_attribute( 'echo=0' ) ); ?>"><span class="the-time updated"><?php the_time( get_option( 'date_format' ) ); ?></span></a>
+Import.php (blog\wp-admin):	<div class="error"><p><strong><?php _e('ERROR:')?></strong> <?php printf( __('The <strong>%s</strong> importer is invalid or is not installed.'), esc_html( $_GET['invalid'] ) ); ?></p></div>
+Index.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):							<?php printf( __( 'Daily Archives: %s', 'jetpack' ), '<span>' . get_the_date() . '</span>' ); ?>
+Index.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):							<?php printf( __( 'Monthly Archives: %s', 'jetpack' ), '<span>' . get_the_date( 'F Y' ) . '</span>' ); ?>
+Index.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):							<?php printf( __( 'Yearly Archives: %s', 'jetpack' ), '<span>' . get_the_date( 'Y' ) . '</span>' ); ?>
+Index.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):							<?php printf( __( 'Posted in %s', 'jetpack' ), '<span>' . single_cat_title( '', false ) . '</span>' ); ?>
+Index.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):							<?php printf( __( 'Tagged with %s', 'jetpack' ), '<span>' . single_tag_title( '', false ) . '</span>' ); ?>
+Index.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):							<?php printf( __( 'Posted by', 'jetpack' ), '<span>' . get_the_author() . '</span>' ); ?>
+Index.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven):					<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'jetpack' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+Install.php (blog\wp-admin):<p><?php printf( __( 'Welcome to the famous five minute WordPress installation process! You may want to browse the <a href="%s">ReadMe documentation</a> at your leisure. Otherwise, just fill in the information below and you&#8217;ll be on your way to using the most extendable and powerful personal publishing platform in the world.' ), '../readme.html' ); ?></p>
+Legacy.php (blog\wp-content\plugins\akismet):<p><?php printf(__('Akismet has caught <strong>%1$s spam</strong> for you since you first installed it.'), number_format_i18n($count) ); ?></p>
+Legacy.php (blog\wp-content\plugins\akismet):<?php printf(__('There are currently %1$s comments identified as spam.'), $spam_count); ?>&nbsp; &nbsp; <input type="submit" class="button delete" name="Submit" value="<?php _e('Delete all'); ?>" />
+Legacy.php (blog\wp-content\plugins\akismet):<?php printf(__('There are currently %1$s comments identified as spam.'), $spam_count); ?>&nbsp; &nbsp; <input type="submit" name="Submit" class="button" value="<?php echo attribute_escape(__('Delete all')); ?>" />
+License.php (buzhidao\phpmyadmin):    printf(__('The %s file is not available on this system, please visit www.phpmyadmin.net for more information.'), $filename);
+Link-manager.php (blog\wp-admin):	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( wp_unslash($_REQUEST['s']) ) ); ?>
+Link-manager.php (blog\wp-admin):	printf(_n('%s link deleted.', '%s links deleted', $deleted), $deleted);
+List.php (blog\wp-content\plugins\w3-total-cache\inc\options\extensions):        <span class="displaying-num"><?php printf( translate_nooped_plural( _n_noop('%s extension', '%s extensions'), sizeof($extensions), 'w3-total-cache' ), sizeof($extensions) ); ?></span>
+List.php (blog\wp-content\plugins\w3-total-cache\inc\options\extensions):                <label class="screen-reader-text" for="checkbox_<?php echo $cb_id?>"><?php printf(__('Select %s'), $meta['name']) ?></label>
+List.php (blog\wp-content\plugins\w3-total-cache\inc\options\extensions):                        <span class="description"><?php printf(__('Requirements: %s', 'w3-total-cache'), apply_filters("w3tc_extension_requirements-{$extension}", $meta['requirements'])) ?></span>
+List.php (blog\wp-content\plugins\w3-total-cache\inc\options\extensions):                    <?php printf(__('Version %s', 'w3-total-cache'), $meta['version'])?> | <?php printf(__('By %s', 'w3-total-cache'), sprintf('<a href="%s" title="' . __('Visit author homepage') . '">%s</a>', $meta['author uri'], $meta['author'])) ?>  | <a href="<?php esc_attr_e($meta['extension uri']) ?>" title="<?php esc_attr_e('Visit extension site', 'w3-total-cache') ?>"><?php _e('Visit extension site', 'w3-total-cache')?></a>
+List.php (blog\wp-content\plugins\w3-total-cache\inc\options\extensions):                    <?php $this->checkbox_admin_extensions("extensions.configuration_sealed", $extension); ?> <?php printf(__('Apply the %s settings to the entire network.', 'w3-total-cache'), $meta['name']); ?></label>
+List.php (blog\wp-content\plugins\w3-total-cache\inc\options\extensions):        <span class="displaying-num"><?php printf( translate_nooped_plural( _n_noop('%s extension', '%s extensions'), sizeof($extensions), 'w3-total-cache' ), sizeof($extensions) ); ?></span>
+Loop-image.php (blog\wp-content\themes\standard):			<a class="thumbnail-link fademe" href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( '%s', 'standard' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_post_thumbnail( 'post-format-image' );	?></a>
+Loop-image.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-time updated">' . __( 'Posted on %1$s', 'standard' ) . '</span>', get_the_time( get_option( 'date_format' ) ) ); ?>
+Loop-image.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-category">' . __( 'In %1$s', 'standard' ) . '</span>', $category_list ); ?>
+Loop-image.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-tags">' . __( '%1$s', 'standard' ) . '</span>', $tag_list ); ?>
+Loop-link.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-time updated">' . __( 'Posted on %1$s', 'standard' ) . '</span>', get_the_time( get_option( 'date_format' ) ) ); ?>
+Loop-link.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-category">' . __( 'In %1$s', 'standard' ) . '</span>', $category_list ); ?>
+Loop-link.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-tags">' . __( '%1$s', 'standard' ) . '</span>', $tag_list ); ?>
+Loop-quote.php (blog\wp-content\themes\standard):					<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php printf( esc_attr__( '%s', 'standard' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_title(); ?></a>
+Loop-quote.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-time updated">' . __( 'Posted on %1$s', 'standard' ) . '</span>', get_the_time( get_option( 'date_format' ) ) ); ?>
+Loop-quote.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-category">' . __( 'In %1$s', 'standard' ) . '</span>', $category_list ); ?>
+Loop-quote.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-tags">' . __( '%1$s', 'standard' ) . '</span>', $tag_list ); ?>
+Loop-status.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-time updated">' . __( 'Posted on %1$s', 'standard' ) . '</span>', get_the_time( get_option( 'date_format' ) ) ); ?>
+Loop-status.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-category">' . __( 'In %1$s', 'standard' ) . '</span>', $category_list ); ?>
+Loop-status.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-tags">' . __( '%1$s', 'standard' ) . '</span>', $tag_list ); ?>
+Loop-video.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-time updated">' . __( 'Posted on %1$s', 'standard' ) . '</span>', get_the_time( get_option( 'date_format' ) ) ); ?>
+Loop-video.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-category">' . __( 'In %1$s', 'standard' ) . '</span>', $category_list ); ?>
+Loop-video.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-tags">' . __( '%1$s', 'standard' ) . '</span>', $tag_list ); ?>
+Loop.php (blog\wp-content\themes\standard):					<a class="thumbnail-link fademe" href="<?php the_permalink(); ?>" title="<?php printf( esc_attr__( '%s', 'standard' ), the_title_attribute( 'echo=0' ) ); ?>">
+Loop.php (blog\wp-content\themes\standard):						<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php printf( esc_attr__( '%s', 'standard' ), the_title_attribute( 'echo=0' ) ); ?>"><?php the_title(); ?></a>
+Loop.php (blog\wp-content\themes\standard):					<a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php printf( esc_attr__( '%s', 'standard' ), the_title_attribute( 'echo=0' ) ); ?>"><span class="the-time updated"><?php the_time( get_option( 'date_format' ) ); ?></span></a>
+Loop.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-category">' . __( 'In %1$s', 'standard' ) . '</span>', $category_list ); ?>
+Loop.php (blog\wp-content\themes\standard):					<?php printf( '<span class="the-tags">' . __( '%1$s', 'standard' ) . '</span>', $tag_list ); ?>
+Markdown-on-save.php (blog\wp-content\plugins\markdown-on-save-improved):		printf( '<p><label><input type="checkbox" name="%s" /> %s</label></p>', self::CONVERT, __('Convert HTML to Markdown (experimental)', 'markdown-osi') );
+Media-template.php (blog\wp-includes):			<h3 class="upload-instructions"><?php printf( __('The web browser on your device cannot be used to upload files. You may be able to use the <a href="%s">native app for your device</a> instead.'), 'http://wordpress.org/mobile/' ); ?></h3>
+Media-template.php (blog\wp-includes):					printf( __( 'Maximum upload file size: %d%s.' ), esc_html($upload_size_unit), esc_html($byte_sizes[$u]) );
+Media-template.php (blog\wp-includes):					<p class="big-file-warning"><?php printf( __( 'Your browser has some limitations uploading large files with the multi-file uploader. Please use the <a href="%1$s" target="%2$s">browser uploader</a> for files over 100MB.' ),
+Media.php (blog\wp-admin\includes):<span class="max-upload-size"><?php printf( __( 'Maximum upload file size: %d%s.' ), esc_html($upload_size_unit), esc_html($sizes[$u]) ); ?></span>
+Media.php (blog\wp-admin\includes):	<?php printf( __( 'You are using the multi-file uploader. Problems? Try the <a href="%1$s" target="%2$s">browser uploader</a> instead.' ), $browser_uploader, '_blank' ); ?>
+Media.php (blog\wp-admin\includes):	printf( __( 'Scale images to match the large size selected in %1$simage options%2$s (%3$d &times; %4$d).' ), $a, $end, (int) get_option( 'large_size_w', '1024' ), (int) get_option( 'large_size_h', '1024' ) );
+Meta-boxes.php (blog\wp-admin\includes):		printf( __( 'Revisions: %s' ), '<b>' . number_format_i18n( $args['args']['revisions_count'] ) . '+</b>' );
+Meta-boxes.php (blog\wp-admin\includes):		printf( __( 'Revisions: %s' ), '<b>' . number_format_i18n( $args['args']['revisions_count'] ) . '</b>' );
+Meta-boxes.php (blog\wp-admin\includes):	<?php printf($stamp, $date); ?></span>
+Meta-boxes.php (blog\wp-admin\includes):		<span id="timestamp"><?php printf($stamp, $date); ?></span>
+Meta-boxes.php (blog\wp-admin\includes):							printf( __( '+ %s' ), $tax->labels->add_new_item );
+Meta-boxes.php (blog\wp-admin\includes):	<label for="ping_status" class="selectit"><input name="ping_status" type="checkbox" id="ping_status" value="open" <?php checked($post->ping_status, 'open'); ?> /> <?php printf( __( 'Allow <a href="%s" target="_blank">trackbacks and pingbacks</a> on this page.' ), __( 'http://codex.wordpress.org/Introduction_to_Blogging#Managing_Comments' ) ); ?></label>
+Minileven.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'We have apps for <a href="%s">iOS (iPhone, iPad, iPod Touch)</a>, <a href="%s">Android</a>, <a href="%s">BlackBerry</a>, <a href="%s">Windows Phone</a>, and <a href="%s">more</a>!', 'jetpack' ), 'http://ios.wordpress.org/', 'http://android.wordpress.org/', 'http://blackberry.wordpress.org/', 'http://windowsphone.wordpress.org/', 'http://wordpress.org/extend/mobile/' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( _x( 'To check your backups, see any security alerts, or check your VaultPress Vitality, visit your %s.', 'Visit your _VaultPress_dashboard_.', 'jetpack' ), '<a href="https://dashboard.vaultpress.com/">' . esc_html__( 'VaultPress dashboard', 'jetpack' ) . '</a>' ); ?></a></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( _x( 'View %s.', 'View _Plans_&_Pricing_. (VaultPress)', 'jetpack' ), '<a href="' . $vaultpress_url . '">' . esc_html__( 'Plans & Pricing', 'jetpack' ) . '</a>' ); ?></a></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'You can <a href="%s">view your stats dashboard here</a>.', 'jetpack' ), admin_url( 'admin.php?page=stats' ) ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'Manage your <a href="%s">Publicize settings</a>.', 'jetpack' ), menu_page_url( 'sharing', false ) ); ?>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'You can view your notifications in the Toolbar and <a href="%s">on WordPress.com</a>.', 'jetpack' ), 'http://wordpress.com/#!/notifications/' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( esc_html__( '%s is a powerful markup language for writing complex mathematical equations, formulas, etc.', 'jetpack' ), '<a href="http://www.latex-project.org/" target="_blank"><img src="//s0.wp.com/latex.php?latex=%5CLaTeX&amp;bg=transparent&amp;fg=000&amp;s=-1" alt="LaTeX logo" title="LaTeX" style="vertical-align: -25%" /></a>' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( esc_html__( 'Jetpack combines the power of %s and the simplicity of WordPress to give you the ultimate in math blogging platforms.', 'jetpack' ), '<img src="//s0.wp.com/latex.php?latex=%5CLaTeX&amp;bg=transparent&amp;fg=000&amp;s=-1" alt="LaTeX logo" title="LaTeX" style="vertical-align: -25%" />' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( esc_html__( '%s is a powerful markup language for writing complex mathematical equations, formulas, etc.', 'jetpack' ), '<a href="http://www.latex-project.org/" target="_blank"><img src="//s0.wp.com/latex.php?latex=%5CLaTeX&amp;bg=transparent&amp;fg=000&amp;s=-1" alt="LaTeX logo" title="LaTeX" style="vertical-align: -25%" /></a>' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'Use <code>$latex your latex code here$</code> or <code>[latex]your latex code here[/latex]</code> to include %s in your posts and comments. There are <a href="%s" target="_blank">all sorts of options</a> available.', 'jetpack' ), '<img src="//s0.wp.com/latex.php?latex=%5CLaTeX&amp;bg=transparent&amp;fg=000&amp;s=-1" alt="LaTeX logo" title="LaTeX" style="vertical-align: -25%" />', 'http://support.wordpress.com/latex/' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):		<p><?php printf( __( 'To configure your sharing settings, go to the Settings &rarr; <a href="%s">Sharing</a> menu.', 'jetpack' ), 'options-general.php?page=sharing' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'Full details can be found on the <a href="%s">Sharing support page</a>. This video also gives a swish run-down of how to use the Sharing feature. Watch it in HD for extra snazz!', 'jetpack' ), 'http://support.wordpress.com/sharing/' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( "The <a href='%s'>After&nbsp;the&nbsp;Deadline</a> Proofreading service improves your writing by using artificial intelligence to find your errors and offer smart suggestions.", 'jetpack' ), 'http://www.afterthedeadline.com/' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'After the Deadline provides a number of <a href="%s">customization options</a>, which you can edit in your profile.', 'jetpack' ), esc_url( get_edit_profile_url( get_current_user_id() ) ) . '#atd' ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php esc_html_e( 'Each of these widgets has a number of customization options.', 'jetpack' ); ?>  <?php printf( __( 'To use the widgets, go to Appearance &#8594; <a href="%s">Widgets</a>. Drag them into one of your sidebars and configure away.', 'jetpack' ), admin_url( 'widgets.php' ) ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):		printf( '<p>' . __( 'To use the Subscriptions widget, go to Appearance &#8594; <a href="%s">Widgets</a>. Drag the widget labeled &#8220;Blog Subscriptions (Jetpack)&#8221; into one of your sidebars and configure away.', 'jetpack' ) . '</p>', admin_url( 'widgets.php' ) );
+Module-info.php (blog\wp-content\plugins\jetpack\modules):		printf( '<p>' . __( 'You can also make changes to your Subscription settings at the bottom of the <a href="%s">Discussion Settings</a> page.', 'jetpack' ) . '</p>', admin_url( 'options-discussion.php#jetpack-subscriptions-settings' ) );
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf(
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'To use the CSS editor, go to Appearance &#8594; <a href="%s">Edit CSS</a>.', 'jetpack' ), admin_url( 'themes.php?page=editcss' ) ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):				<p><?php printf( __( 'There is an update available for your theme. You may wish to check if this update adds Infinite Scroll support by visiting the <a href="%s">WordPress Updates</a> page.', 'jetpack' ), esc_url( admin_url( 'update-core.php' ) ) ); ?></p>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'Manage your Post By Email address from your <a href="%s">profile settings</a>.', 'jetpack' ), esc_url( get_edit_profile_url( get_current_user_id() ) . '#post-by-email' ) ); ?>
+Module-info.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'When adding a gallery to your post, you now have the option to select a layout style for your images. We\'ve added support for Rectangular, Square, and Circular galleries. By default, galleries will continue to display using the standard thumbnail grid layout. To make the rectangular layout the default for all of your site\'s galleries, head over to <a href="%s">Settings &rarr; Media</a> and check the box next to "Display all your gallery pictures in a cool mosaic."', 'jetpack' ), admin_url( 'options-media.php' ) ); ?></p>
+Ms-delete-site.php (blog\wp-admin):	<p><?php printf( __( 'If you do not want to use your %s site any more, you can delete it using the form below. When you click <strong>Delete My Site Permanently</strong> you will be sent an email with a link in it. Click on this link to delete your site.'), $current_site->site_name); ?></p>
+Ms-delete-site.php (blog\wp-admin):		<p><input id="confirmdelete" type="checkbox" name="confirmdelete" value="1" /> <label for="confirmdelete"><strong><?php printf( __( "I'm sure I want to permanently disable my site, and I am aware I can never get it back or use %s again." ), is_subdomain_install() ? $blog->domain : $blog->domain . $blog->path ); ?></strong></label></p>
+Ms.php (blog\wp-admin\includes):	<strong><?php printf( __( 'Used: %1$s%% of %2$s' ), number_format( $percent_used ), $space ); ?></strong>
+Nav-menu.php (blog\wp-admin\includes):							<?php printf( __('Original: %s'), '<a href="' . esc_attr( $item->url ) . '">' . esc_html( $original_title ) . '</a>' ); ?>
+Nav-menus.php (blog\wp-admin):								<option value="0"><?php printf( '&mdash; %s &mdash;', esc_html__( 'Select a Menu' ) ); ?></option>
+Nav-menus.php (blog\wp-admin):			<?php printf( __( 'Edit your menu below, or <a href="%s">create a new menu</a>.' ), esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => 0 ), admin_url( 'nav-menus.php' ) ) ) ); ?>
+Nav-menus.php (blog\wp-admin):								printf( ' (%1$s%2$s)',
+Nav-menus.php (blog\wp-admin):				<?php printf( __( 'or <a href="%s">create a new menu</a>.' ), esc_url( add_query_arg( array( 'action' => 'edit', 'menu' => 0 ), admin_url( 'nav-menus.php' ) ) ) ); ?>
+Nav-menus.php (blog\wp-admin):									<dd class="checkbox-input"><input type="checkbox"<?php checked( $auto_add ); ?> name="auto-add-pages" id="auto-add-pages" value="1" /> <label for="auto-add-pages"><?php printf( __('Automatically add new top-level pages to this menu' ), esc_url( admin_url( 'edit.php?post_type=page' ) ) ); ?></label></dd>
+Nav-menus.php (blog\wp-admin):											<span class="theme-location-set"> <?php printf( __( "(Currently set to: %s)" ), wp_get_nav_menu_object( $menu_locations[ $location ] )->name ); ?> </span>
+Navigation.php (buzhidao\phpmyadmin):                    printf($href_left, $element_counter, PMA_generate_common_url());
+Navigation.php (buzhidao\phpmyadmin):                    printf($img_minus, $element_counter);
+Navigation.php (buzhidao\phpmyadmin):                    printf($href_left, $element_counter, $common_url_query);
+Navigation.php (buzhidao\phpmyadmin):                    printf($img_plus, $element_counter);
+Navigation.php (buzhidao\phpmyadmin):                    printf($href_left, $element_counter, $common_url_query);
+Navigation.php (buzhidao\phpmyadmin):                    printf($img_plus, $element_counter);
+Navigation.php (buzhidao\phpmyadmin):                    printf($href_left, $element_counter,
+Navigation.php (buzhidao\phpmyadmin):                    printf($img_minus, $element_counter);
+Navigation.php (buzhidao\phpmyadmin):                printf($href_left, $element_counter,
+Navigation.php (buzhidao\phpmyadmin):                printf($img_minus, $element_counter);
+Navigation.php (buzhidao\phpmyadmin):                printf($href_left, $element_counter, $common_url_query);
+Navigation.php (buzhidao\phpmyadmin):                printf($img_plus, $element_counter);
+Network.php (blog\wp-admin):				<td><?php printf( _x( 'like <code>site1.%1$s</code> and <code>site2.%1$s</code>', 'subdomain examples' ), $hostname ); ?></td>
+Network.php (blog\wp-admin):				<td><?php printf( _x( 'like <code>%1$s/site1</code> and <code>%1$s/site2</code>', 'subdirectory examples' ), $hostname ); ?></td>
+Network.php (blog\wp-admin):		<p><?php printf( __( 'We recommend you change your siteurl to <code>%1$s</code> before enabling the network feature. It will still be possible to visit your site using the <code>www</code> prefix with an address like <code>%2$s</code> but any links will not have the <code>www</code> prefix.' ), substr( $hostname, 4 ), $hostname ); ?></p>
+Network.php (blog\wp-admin):					<?php printf( __( 'The internet address of your network will be <code>%s</code>.' ), $hostname ); ?>
+Network.php (blog\wp-admin):					<?php printf( __( 'The internet address of your network will be <code>%s</code>.' ), $hostname ); ?>
+Network.php (blog\wp-admin):				printf( __( '<strong>Caution:</strong> We recommend you back up your existing <code>wp-config.php</code> and <code>%s</code> files.' ), '.htaccess' );
+Network.php (blog\wp-admin):				printf( __( '<strong>Caution:</strong> We recommend you back up your existing <code>wp-config.php</code> and <code>%s</code> files.' ), 'web.config' );
+Network.php (blog\wp-admin):			<li><p><?php printf( __( 'Add the following to your <code>wp-config.php</code> file in <code>%s</code> <strong>above</strong> the line reading <code>/* That&#8217;s all, stop editing! Happy blogging. */</code>:' ), $location_of_wp_config ); ?></p>
+Network.php (blog\wp-admin):		<li><p><?php printf( __( 'Add the following to your <code>web.config</code> file in <code>%s</code>, replacing other WordPress rules:' ), $home_path ); ?></p>
+Network.php (blog\wp-admin):		<li><p><?php printf( __( 'Add the following to your <code>.htaccess</code> file in <code>%s</code>, replacing other WordPress rules:' ), $home_path ); ?></p>
+Network.php (blog\wp-admin):		<p><?php printf( __( 'Once you complete these steps, your network is enabled and configured. You will have to log in again.') ); ?> <a href="<?php echo esc_url( site_url( 'wp-login.php' ) ); ?>"><?php _e( 'Log In' ); ?></a></p>
+Nova.php (blog\wp-content\plugins\jetpack\modules\custom-post-types):			printf( '<div class="updated"><p>%s</p></div>', __('Menu Items re-ordered.', 'nova' ) );
+Options-discussion.php (blog\wp-admin):<?php printf( __('Automatically close comments on articles older than %s days'), '</label><label for="close_comments_days_old"><input name="close_comments_days_old" type="number" min="0" step="1" id="close_comments_days_old" value="' . esc_attr(get_option('close_comments_days_old')) . '" class="small-text" />'); ?>
+Options-discussion.php (blog\wp-admin):printf( __('Enable threaded (nested) comments %s levels deep'), $thread_comments_depth );
+Options-discussion.php (blog\wp-admin):printf( __('Break comments into pages with %1$s top level comments per page and the %2$s page displayed by default'), '</label><label for="comments_per_page"><input name="comments_per_page" type="number" step="1" min="0" id="comments_per_page" value="' . esc_attr(get_option('comments_per_page')) . '" class="small-text" />', $default_comments_page );
+Options-discussion.php (blog\wp-admin):printf( __('Comments should be displayed with the %s comments at the top of each page'), $comment_order );
+Options-discussion.php (blog\wp-admin):<p><label for="comment_max_links"><?php printf(__('Hold a comment in the queue if it contains %s or more links. (A common characteristic of comment spam is a large number of hyperlinks.)'), '<input name="comment_max_links" type="number" step="1" min="0" id="comment_max_links" value="' . esc_attr(get_option('comment_max_links')) . '" class="small-text" />' ); ?></label></p>
+Options-general.php (blog\wp-admin):<p><?php printf( __('There is a pending change of the admin e-mail to <code>%1$s</code>. <a href="%2$s">Cancel</a>'), esc_html( $new_admin_email ), esc_url( admin_url( 'options.php?dismiss=new_admin_email' ) ) ); ?></p>
+Options-general.php (blog\wp-admin):	<span id="utc-time"><?php printf(__('<abbr title="Coordinated Universal Time">UTC</abbr> time is <code>%s</code>'), date_i18n($timezone_format, false, 'gmt')); ?></span>
+Options-general.php (blog\wp-admin):	<span id="local-time"><?php printf(__('Local time is <code>%1$s</code>'), date_i18n($timezone_format)); ?></span>
+Options-general.php (blog\wp-admin):			printf( $message, date_i18n(get_option('date_format') . ' ' . get_option('time_format'), $tr['ts'] + ($tz_offset - $tr['offset']) ) );
+Options-permalink.php (blog\wp-admin):printf( __('If you like, you may enter custom structures for your category and tag <abbr title="Universal Resource Locator">URL</abbr>s here. For example, using <code>topics</code> as your category base would make your category links like <code>http://example.org/%stopics/uncategorized/</code>. If you leave these blank the defaults will be used.'), $suffix ); ?></p>
+Options-reading.php (blog\wp-admin):		<?php printf( __( 'A <a href="%s">static page</a> (select below)' ), 'edit.php?post_type=page' ); ?>
+Options-reading.php (blog\wp-admin):	<li><label for="page_on_front"><?php printf( __( 'Front page: %s' ), wp_dropdown_pages( array( 'name' => 'page_on_front', 'echo' => 0, 'show_option_none' => __( '&mdash; Select &mdash;' ), 'option_none_value' => '0', 'selected' => get_option( 'page_on_front' ) ) ) ); ?></label></li>
+Options-reading.php (blog\wp-admin):	<li><label for="page_for_posts"><?php printf( __( 'Posts page: %s' ), wp_dropdown_pages( array( 'name' => 'page_for_posts', 'echo' => 0, 'show_option_none' => __( '&mdash; Select &mdash;' ), 'option_none_value' => '0', 'selected' => get_option( 'page_for_posts' ) ) ) ); ?></label></li>
+Options-writing.php (blog\wp-admin):<p><?php printf(__('To post to WordPress by e-mail you must set up a secret e-mail account with POP3 access. Any mail received at this address will be posted, so it&#8217;s a good idea to keep this address very secret. Here are three random strings you could use: <kbd>%s</kbd>, <kbd>%s</kbd>, <kbd>%s</kbd>.'), wp_generate_password(8, false), wp_generate_password(8, false), wp_generate_password(8, false)) ?></p>
+Options-writing.php (blog\wp-admin):	<p><?php printf(__('WordPress is not notifying any <a href="http://codex.wordpress.org/Update_Services">Update Services</a> because of your site&#8217;s <a href="%s">visibility settings</a>.'), 'options-reading.php'); ?></p>
+Plugin-install.php (blog\wp-admin\includes):	<p><?php printf( __( 'Plugins extend and expand the functionality of WordPress. You may automatically install plugins from the <a href="%1$s">WordPress Plugin Directory</a> or upload a plugin in .zip format via <a href="%2$s">this page</a>.' ), 'http://wordpress.org/plugins/', self_admin_url( 'plugin-install.php?tab=upload' ) ); ?></p>
+Plugin-install.php (blog\wp-admin\includes):							printf( __('%s ago'), human_time_diff(strtotime($api->last_updated)) ) ?></span></li>
+Plugin-install.php (blog\wp-admin\includes):			<li><strong><?php _e('Requires WordPress Version:') ?></strong> <?php printf(__('%s or higher'), $api->requires) ?></li>
+Plugin-install.php (blog\wp-admin\includes):			<li><strong><?php _e('Downloaded:') ?></strong> <?php printf(_n('%s time', '%s times', $api->downloaded), number_format_i18n($api->downloaded)) ?></li>
+Plugin-install.php (blog\wp-admin\includes):		<small><?php printf(_n('(based on %s rating)', '(based on %s ratings)', $api->num_ratings), number_format_i18n($api->num_ratings)); ?></small>
+Plugins.php (blog\wp-admin):		<div id="message" class="updated"><p><?php printf( __('Plugin could not be deleted due to an error: %s'), $delete_result->get_error_message() ); ?></p></div>
+Plugins.php (blog\wp-admin):	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( $s ) ); ?>
+Post-by-email.php (blog\wp-content\plugins\jetpack\modules):						<?php printf(
+Post.php (blog\wp-admin\includes):				printf( ' ' . __( 'If you take over, %s will be blocked from continuing to edit.' ), esc_html( $user->display_name ) );
+Postviews-options.php (blog\wp-content\plugins\wp-postviews):						printf(__('Setting Key \'%s\' has been deleted.', 'wp-postviews'), "<strong><em>{$setting}</em></strong>");
+Postviews-options.php (blog\wp-content\plugins\wp-postviews):						printf(__('Error deleting Setting Key \'%s\'.', 'wp-postviews'), "<strong><em>{$setting}</em></strong>");
+Postviews-options.php (blog\wp-content\plugins\wp-postviews):						printf(__('Post Meta Key \'%s\' has been deleted.', 'wp-postviews'), "<strong><em>{$postmeta}</em></strong>");
+Postviews-options.php (blog\wp-content\plugins\wp-postviews):						printf(__('Error deleting Post Meta Key \'%s\'.', 'wp-postviews'), "<strong><em>{$postmeta}</em></strong>");
+Press-this.php (blog\wp-admin):									<?php printf( __( '+ %s' ), $tax->labels->add_new_item ); ?>
+Publicize-jetpack.php (blog\wp-content\plugins\jetpack\modules\publicize):					<p><?php printf(
+Publicize-jetpack.php (blog\wp-content\plugins\jetpack\modules\publicize):				<p><?php printf( __( 'Error code: %s', 'jetpack' ), esc_html( stripslashes( $code ) ) ); ?></p>
+Publicize-jetpack.php (blog\wp-content\plugins\jetpack\modules\publicize):			<p><?php printf(
+Publicize-jetpack.php (blog\wp-content\plugins\jetpack\modules\publicize):				<p><?php printf(
+Publicize-jetpack.php (blog\wp-content\plugins\jetpack\modules\publicize):			<p><?php printf(
+Readmill.php (blog\wp-content\plugins\jetpack\modules\widgets):		<p><?php printf( __( "Just enter the URL to your book, make sure it's a PDF or EPUB file, and you are ready to go. For more help, head to <a href='%s'>the Readmill WordPress Widget support page</a>.", 'jetpack' ), 'http://en.support.wordpress.com/widgets/readmill/' ); ?></p>
+Repair.php (blog\wp-admin\maint):			printf( __( 'The %s table is okay.' ), "<code>$table</code>" );
+Repair.php (blog\wp-admin\maint):			printf( __( 'The %1$s table is not okay. It is reporting the following error: %2$s. WordPress will attempt to repair this table&hellip;' ) , "<code>$table</code>", "<code>$check->Msg_text</code>" );
+Repair.php (blog\wp-admin\maint):				printf( __( 'Successfully repaired the %s table.' ), "<code>$table</code>" );
+Repair.php (blog\wp-admin\maint):				printf( __( 'The %s table is already optimized.' ), "<code>$table</code>" );
+Repair.php (blog\wp-admin\maint):					printf( __( 'Successfully optimized the %s table.' ), "<code>$table</code>" );
+Repair.php (blog\wp-admin\maint):					printf( __( 'Failed to optimize the %1$s table. Error: %2$s' ), "<code>$table</code>", "<code>$check->Msg_text</code>" );
+Repair.php (blog\wp-admin\maint):		printf( '<p>' . __('Some database problems could not be repaired. Please copy-and-paste the following list of errors to the <a href="%s">WordPress support forums</a> to get additional assistance.') . '</p>', __( 'http://wordpress.org/support/forum/how-to-and-troubleshooting' ) );
+Revision.php (blog\wp-admin):					<span class="byline"><?php printf( __( 'Autosave by %s' ),
+Revision.php (blog\wp-admin):					<span class="byline"><?php printf( __( 'Current Revision by %s' ),
+Revision.php (blog\wp-admin):					<span class="byline"><?php printf( __( 'Revision by %s' ),
+Rss.php (blog\wp-includes):			printf(
+Search.php (blog\wp-content\themes\twentyfourteen):				<h1 class="page-title"><?php printf( __( 'Search Results for: %s', 'twentyfourteen' ), get_search_query() ); ?></h1>
+Server_privileges.php (buzhidao\phpmyadmin):                        printf($link_edit, urlencode($host['User']), urlencode($host['Host']), '', '');
+Server_privileges.php (buzhidao\phpmyadmin):                        printf($link_export, urlencode($host['User']), urlencode($host['Host']), (isset($initial) ? $initial : ''));
+Server_privileges.php (buzhidao\phpmyadmin):                    printf($link_edit, htmlspecialchars(urlencode($username)),
+Server_privileges.php (buzhidao\phpmyadmin):                        printf($link_revoke, htmlspecialchars(urlencode($username)),
+Server_privileges.php (buzhidao\phpmyadmin):                printf($link_edit, urlencode($current_user),
+Settings.php (blog\wp-admin\network):				<label><input type="checkbox" id="upload_space_check_disabled" name="upload_space_check_disabled" value="0"<?php checked( get_site_option( 'upload_space_check_disabled' ), 0 ) ?>/> <?php printf( __( 'Limit total size of files uploaded to %s MB' ), '</label><label><input name="blog_upload_space" type="number" min="0" style="width: 100px" id="blog_upload_space" value="' . esc_attr( get_site_option('blog_upload_space', 100) ) . '" />' ); ?></label><br />
+Settings.php (blog\wp-admin\network):				<td><?php printf( _x( '%s KB', 'File size in kilobytes' ), '<input name="fileupload_maxk" type="number" min="0" style="width: 100px" id="fileupload_maxk" value="' . esc_attr( get_site_option( 'fileupload_maxk', 300 ) ) . '" />' ); ?></td>
+Sharing-sources.php (blog\wp-content\plugins\jetpack\modules\sharedaddy): 	<div class="response-sub"><?php printf( __( 'You have shared this post with %s', 'jetpack' ), esc_html( $target_email ) ); ?></div>
+shBrushBash.js (blog\wp-content\plugins\syntax-highlighter-and-code-prettifier\scripts):					'printenv printf ps pushd pwd quota quotacheck quotactl ram rcp read readonly renice ' +
+shBrushCpp.js (blog\wp-content\plugins\syntax-highlighter-and-code-prettifier\scripts):					'fwrite getc getchar gets perror printf putc putchar puts remove ' +
+shBrushPerl.js (blog\wp-content\plugins\syntax-highlighter-and-code-prettifier\scripts):		'oct open opendir ord pack pipe pop pos print printf prototype push ' + 
+Sidebar.php (blog\wp-includes\theme-compat):			<p><?php printf(__('You are currently browsing the archives for the %s category.'), single_cat_title('', false)); ?></p>
+Sidebar.php (blog\wp-includes\theme-compat):			<p><?php printf(__('You are currently browsing the <a href="%1$s/">%2$s</a> blog archives for the day %3$s.'), get_bloginfo('url'), get_bloginfo('name'), get_the_time(__('l, F jS, Y'))); ?></p>
+Sidebar.php (blog\wp-includes\theme-compat):			<p><?php printf(__('You are currently browsing the <a href="%1$s/">%2$s</a> blog archives for %3$s.'), get_bloginfo('url'), get_bloginfo('name'), get_the_time(__('F, Y'))); ?></p>
+Sidebar.php (blog\wp-includes\theme-compat):			<p><?php printf(__('You are currently browsing the <a href="%1$s/">%2$s</a> blog archives for the year %3$s.'), get_bloginfo('url'), get_bloginfo('name'), get_the_time('Y')); ?></p>
+Sidebar.php (blog\wp-includes\theme-compat):			<p><?php printf(__('You have searched the <a href="%1$s/">%2$s</a> blog archives for <strong>&#8216;%3$s&#8217;</strong>. If you are unable to find anything in these search results, you can try one of these links.'), get_bloginfo('url'), get_bloginfo('name'), esc_html( get_search_query() ) ); ?></p>
+Sidebar.php (blog\wp-includes\theme-compat):			<p><?php printf(__('You are currently browsing the <a href="%1$s/">%2$s</a> blog archives.'), get_bloginfo('url'), get_bloginfo('name')); ?></p>
+Sites.php (blog\wp-admin\network):	printf( '<span class="subtitle">' . __( 'Search results for &#8220;%s&#8221;' ) . '</span>', esc_html( $s ) );
+Sql.php (buzhidao\phpmyadmin):                printf(__('Problems with indexes of table `%s`'), $tbl_name);
+Stats.php (blog\wp-content\plugins\jetpack\modules):		<p><?php printf( __( 'Visit <a href="%s">Site Stats</a> to see your stats.', 'jetpack' ), esc_url( menu_page_url( 'stats', false ) ) ); ?></p>
+Stats.php (blog\wp-content\plugins\jetpack\modules):				<p><?php printf(
+Stats.php (blog\wp-content\plugins\jetpack\modules):	<p><?php printf( __( 'We were unable to get your stats just now. Please reload this page to try again. If this error persists, please <a href="%1$s">contact support</a>. In your report please include the information below.', 'jetpack' ), 'http://support.wordpress.com/contact/?jetpack=needs-service' ); ?></p>
+Subscriptions.php (blog\wp-content\plugins\jetpack\modules):			printf( '<div class="error inline"><p>' . __( '%s: %s', 'jetpack' ) . '</p></div>', esc_html( $subs_fetch['code'] ), esc_html( $subs_fetch['message'] ) );
+Tag.php (blog\wp-content\themes\twentyfourteen):				<h1 class="archive-title"><?php printf( __( 'Tag Archives: %s', 'twentyfourteen' ), single_tag_title( '', false ) ); ?></h1>
+Tag.php (blog\wp-content\themes\twentyfourteen):						printf( '<div class="taxonomy-description">%s</div>', $term_description );
+Tbl_operations.php (buzhidao\phpmyadmin):        printf(__('Partition %s'), $html_select);
+Tbl_properties.inc.php (buzhidao\phpmyadmin\libraries):<h3><?php printf(__('Values for the column "%s"'), isset($row['Field']) ? htmlspecialchars($row['Field']) : ""); ?></h3>
+Tbl_tracking.php (buzhidao\phpmyadmin):    printf(__('Show %s with dates from %s to %s by user %s %s'), $str1, $str2, $str3, $str4, $str5);
+Tbl_tracking.php (buzhidao\phpmyadmin):    printf(__('Show %s with dates from %s to %s by user %s %s'), $str1, $str2, $str3, $str4, $str5);
+Tbl_tracking.php (buzhidao\phpmyadmin):            <legend><?php printf(__('Deactivate tracking for %s.%s'), htmlspecialchars($GLOBALS['db']), htmlspecialchars($GLOBALS['table'])); ?></legend>
+Tbl_tracking.php (buzhidao\phpmyadmin):            <legend><?php printf(__('Activate tracking for %s.%s'), htmlspecialchars($GLOBALS['db']), htmlspecialchars($GLOBALS['table'])); ?></legend>
+Tbl_tracking.php (buzhidao\phpmyadmin):    <legend><?php printf(__('Create version %s of %s.%s'), ($last_version + 1), htmlspecialchars($GLOBALS['db']), htmlspecialchars($GLOBALS['table'])); ?></legend>
+Template-tags.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven\inc):						printf( __( '%1$s on %2$s', 'jetpack' ),
+Template-tags.php (blog\wp-content\plugins\jetpack\modules\minileven\theme\pub\minileven\inc):	printf( __( '<span class="entry-date"><a href="%1$s" title="%2$s" rel="bookmark"><time datetime="%3$s" pubdate>%4$s</time></a></span>', 'jetpack' ),
+Template-tags.php (blog\wp-content\themes\twentyfourteen\inc):	printf( '<span class="entry-date"><a href="%1$s" rel="bookmark"><time class="entry-date" datetime="%2$s">%3$s</time></a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="%4$s" rel="author">%5$s</a></span></span>',
+Template.php (blog\wp-admin\includes):	<div class="trash-undo-inside"><?php printf(__('Comment by %s moved to the trash.'), '<strong></strong>'); ?> <span class="undo untrash"><a href="#"><?php _e('Undo'); ?></a></span></div>
+Template.php (blog\wp-admin\includes):	<div class="spam-undo-inside"><?php printf(__('Comment by %s marked as spam.'), '<strong></strong>'); ?> <span class="undo unspam"><a href="#"><?php _e('Undo'); ?></a></span></div>
+Template.php (blog\wp-admin\includes):	printf( __( '%1$s %2$s, %3$s @ %4$s : %5$s' ), $month, $day, $year, $hour, $minute );
+Template.php (blog\wp-admin\includes):<label for="upload"><?php _e( 'Choose a file from your computer:' ); ?></label> (<?php printf( __('Maximum size: %s' ), $size ); ?>)
+Template.php (blog\wp-admin\includes):	printf('<div id="%s-sortables" class="meta-box-sortables">', htmlspecialchars($context));
+Theme-actions.php (blog\wp-content\themes\canvas\includes):	<h4><?php printf( esc_attr__( 'About %s', 'woothemes' ), get_the_author_meta( 'display_name', $author_id ) ); ?></h4>
+Theme-actions.php (blog\wp-content\themes\canvas\includes):			<?php printf( __( 'View all posts by %s <span class="meta-nav">&rarr;</span>', 'woothemes' ), get_the_author_meta( 'display_name', $author_id ) ); ?>
+Theme-actions.php (blog\wp-content\themes\canvas\includes):printf( '<div class="post-meta">%s</div>' . "\n", apply_filters( 'woo_filter_post_meta', $post_info ) );
+Theme-actions.php (blog\wp-content\themes\canvas\includes):	printf( '<div class="post-utility">%s</div>' . "\n", apply_filters( 'woo_post_inside_after_default', $post_info ) );
+Theme-editor.php (blog\wp-admin):	<p class="howto"><?php printf( __( 'This child theme inherits templates from a parent theme, %s.' ), '<a href="' . self_admin_url('theme-editor.php?theme=' . urlencode( $theme->get_template() ) ) . '">' . $theme->parent()->display('Name') . '</a>' ); ?></p>
+Themes.php (blog\wp-admin):		<div id="message2" class="updated"><p><?php printf( __( 'Settings saved and theme activated. <a href="%s">Visit site</a>' ), home_url( '/' ) ); ?></p></div>
+Themes.php (blog\wp-admin):<div id="message2" class="updated"><p><?php printf( __( 'New theme activated. <a href="%s">Visit site</a>' ), home_url( '/' ) ); ?></p></div><?php
+Themes.php (blog\wp-admin):	<div class="theme-author"><?php printf( __( 'By %s' ), $theme['author'] ); ?></div>
+Themes.php (blog\wp-admin):	<div class="theme-author"><?php printf( __( 'By %s' ), '{{{ data.author }}}' ); ?></div>
+Themes.php (blog\wp-admin):				<h3 class="theme-name">{{{ data.name }}}<span class="theme-version"><?php printf( __( 'Version: %s' ), '{{{ data.version }}}' ); ?></span></h3>
+Themes.php (blog\wp-admin):				<h4 class="theme-author"><?php printf( __( 'By %s' ), '{{{ data.authorAndUri }}}' ); ?></h4>
+Themes.php (blog\wp-admin):					<p class="parent-theme"><?php printf( __( 'This is a child theme of %s.' ), '<strong>{{{ data.parent }}}</strong>' ); ?></p>
+Themes.php (blog\wp-admin\network):	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( $s ) ); ?>
+Tools.php (blog\wp-admin):    <p><?php printf( __('If you want to convert your categories to tags (or vice versa), use the <a href="%s">Categories and Tags Converter</a> available from the Import screen.'), 'import.php' ); ?></p>
+TotalCache.php (blog\wp-content\plugins\w3-total-cache\lib\w3\plugin):                        printf("%s: %s\n", $key, $value);
+Ui.php (blog\wp-content\plugins\jetpack\modules\publicize):			<p><?php printf( __( 'You have successfully connected your blog with your %s account.', 'jetpack' ), Publicize::get_service_label( $service_name ) ); ?></p>
+Ui.php (blog\wp-content\plugins\jetpack\modules\publicize):				<p><?php printf( __( 'There was a problem connecting to %s. Please disconnect and try again.', 'jetpack' ), Publicize::get_service_label( $service_name ) ); ?></p>
+Ui.php (blog\wp-content\plugins\jetpack\modules\publicize):				var defaultMessage = $.trim( '<?php printf( $default_prefix, 'url' ); printf( $default_message, '$("#title").val()', 'url' ); printf( $default_suffix, 'url' ); ?>' );
+Update-core.php (blog\wp-admin):<p><?php printf( __( '<strong>Please Note:</strong> Any customizations you have made to theme files will be lost. Please consider using <a href="%s">child themes</a> for modifications.' ), __( 'http://codex.wordpress.org/Child_Themes' ) ); ?></p>
+Update-core.php (blog\wp-admin):	printf( __('Last checked on %1$s at %2$s.'), date_i18n( get_option( 'date_format' ) ), date_i18n( get_option( 'time_format' ) ) );
+Update.php (blog\wp-admin\includes):			printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a>.'), $plugin_name, esc_url($details_url), esc_attr($plugin_name), $r->new_version );
+Update.php (blog\wp-admin\includes):			printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a>. <em>Automatic update is unavailable for this plugin.</em>'), $plugin_name, esc_url($details_url), esc_attr($plugin_name), $r->new_version );
+Update.php (blog\wp-admin\includes):			printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a> or <a href="%5$s">update now</a>.'), $plugin_name, esc_url($details_url), esc_attr($plugin_name), $r->new_version, wp_nonce_url( self_admin_url('update.php?action=upgrade-plugin&plugin=') . $file, 'upgrade-plugin_' . $file) );
+Update.php (blog\wp-admin\includes):		printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a>.'), $theme['Name'], esc_url($details_url), esc_attr($theme['Name']), $r->new_version );
+Update.php (blog\wp-admin\includes):		printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a>. <em>Automatic update is unavailable for this theme.</em>'), $theme['Name'], esc_url($details_url), esc_attr($theme['Name']), $r['new_version'] );
+Update.php (blog\wp-admin\includes):		printf( __('There is a new version of %1$s available. <a href="%2$s" class="thickbox" title="%3$s">View version %4$s details</a> or <a href="%5$s">update now</a>.'), $theme['Name'], esc_url($details_url), esc_attr($theme['Name']), $r['new_version'], wp_nonce_url( self_admin_url('update.php?action=upgrade-theme&theme=') . $theme_key, 'upgrade-theme_' . $theme_key) );
+Upgrade.php (blog\wp-admin):		printf( __('You cannot update because <a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a> requires PHP version %2$s or higher and MySQL version %3$s or higher. You are running PHP version %4$s and MySQL version %5$s.'), $wp_version, $required_php_version, $required_mysql_version, $php_version, $mysql_version );
+Upgrade.php (blog\wp-admin):		printf( __('You cannot update because <a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a> requires PHP version %2$s or higher. You are running version %3$s.'), $wp_version, $required_php_version, $php_version );
+Upgrade.php (blog\wp-admin):		printf( __('You cannot update because <a href="http://codex.wordpress.org/Version_%1$s">WordPress %1$s</a> requires MySQL version %2$s or higher. You are running version %3$s.'), $wp_version, $required_mysql_version, $mysql_version );
+Upgrade.php (blog\wp-admin):<?php printf( __( '%s queries' ), $wpdb->num_queries ); ?>
+Upgrade.php (blog\wp-admin):<?php printf( __( '%s seconds' ), timer_stop( 0 ) ); ?>
+Upload.php (blog\wp-admin):	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', get_search_query() ); ?>
+User-edit.php (blog\wp-admin):	<p><?php printf( __('There is a pending change of your e-mail to <code>%1$s</code>. <a href="%2$s">Cancel</a>'), $new_email['newemail'], esc_url( self_admin_url( 'profile.php?dismiss=' . $current_user->ID . '_new_email' ) ) ); ?></p>
+User.php (blog\wp-admin\includes):	printf( '<a href="%s">' . __('Yes, take me to my profile page') . '</a> | ', get_edit_profile_url( get_current_user_id() ) . '#password' );
+User.php (blog\wp-admin\includes):	printf( '<a href="%s" id="default-password-nag-no">' . __('No thanks, do not remind me again') . '</a>', '?default_password_nag=0' );
+Users.php (blog\wp-admin):	printf( '<span class="subtitle">' . __('Search results for &#8220;%s&#8221;') . '</span>', esc_html( $usersearch ) ); ?>
+Users.php (blog\wp-admin\network):				<br /><fieldset><p><legend><?php printf( __( "What should be done with posts owned by <em>%s</em>?" ), $delete_user->user_login ); ?></legend></p>
+Users.php (blog\wp-admin\network):							<li><?php printf( __( 'Site: %s' ), $user_site ); ?></li>
+Users.php (blog\wp-admin\network):	printf( '<span class="subtitle">' . __( 'Search results for &#8220;%s&#8221;' ) . '</span>', esc_html( $usersearch ) );
+Videopress.php (blog\wp-content\plugins\jetpack\modules\videopress):								<?php printf( __( '<a href="%s">Click here</a> to refresh this list.', 'jetpack' ), esc_url( $refresh_url ) ); ?>
+Videopress.php (blog\wp-content\plugins\jetpack\modules\videopress):				<p><?php printf( __( 'Use the form below to upload a video to your VideoPress Library. The following video formats are supported: %s. Maximum upload file size is %d%s.', 'jetpack' ), esc_html( $formats ), esc_html( $upload_size_unit ), esc_html( $byte_sizes[ $u ] ) ); ?></p>
+Widget-conditions.php (blog\wp-content\plugins\jetpack\modules\widget-visibility):					<?php printf( _x( '%s if:', 'placeholder: dropdown menu to select widget visibility; hide if or show if', 'jetpack' ), '<select name="conditions[action]"><option value="show" ' . selected( $conditions['action'], 'show', false ) . '>' . esc_html_x( 'Show', 'Used in the "%s if:" translation for the widget visibility dropdown', 'jetpack' ) . '</option><option value="hide" ' . selected( $conditions['action'], 'hide', false ) . '>' . esc_html_x( 'Hide', 'Used in the "%s if:" translation for the widget visibility dropdown', 'jetpack' ) . '</option></select>' ); ?>
+Widget-woo-subscribe.php (blog\wp-content\themes\canvas\includes\widgets):		<p><em><?php printf( __( 'Setup this widget in your <a href="%s">options panel</a> under <strong>Subscribe &amp; Connect</strong>', 'woothemes' ), admin_url( 'admin.php?page=woothemes' ) ); ?></em>.</p>
+Widget.php (blog\wp-content\plugins\akismet):		<a href="http://akismet.com" target="_blank" title=""><?php printf( _n( '<strong class="count">%1$s spam</strong> blocked by <strong>Akismet</strong>', '<strong class="count">%1$s spam</strong> blocked by <strong>Akismet</strong>', $count ), number_format_i18n( $count ) ); ?></a>
+Widgets.php (blog\wp-admin):	<h3><?php printf( __( 'Widget %s' ), $name ); ?></h3>
+Widgets.php (blog\wp-content\themes\twentyfourteen\inc):								printf( _n( 'This gallery contains <a href="%1$s" rel="bookmark">%2$s photo</a>.', 'This gallery contains <a href="%1$s" rel="bookmark">%2$s photos</a>.', $total_images, 'twentyfourteen' ),
+Widgets.php (blog\wp-content\themes\twentyfourteen\inc):								printf( '<span class="entry-date"><a href="%1$s" rel="bookmark"><time class="entry-date" datetime="%2$s">%3$s</time></a></span> <span class="byline"><span class="author vcard"><a class="url fn n" href="%4$s" rel="author">%5$s</a></span></span>',
+Widgets.php (blog\wp-content\themes\twentyfourteen\inc):			<a class="post-format-archive-link" href="<?php echo esc_url( get_post_format_link( $format ) ); ?>"><?php printf( __( 'More %s <span class="meta-nav">&rarr;</span>', 'twentyfourteen' ), $this->format_strings[ $format ] ); ?></a>
+Wp-activate.php (blog):					printf( __('Your account has been activated. You may now <a href="%1$s">log in</a> to the site using your chosen username of &#8220;%2$s&#8221;. Please check your email inbox at %3$s for your password and login instructions. If you do not receive an email, please check your junk or spam folder. If you still do not receive an email within an hour, you can <a href="%4$s">reset your password</a>.'), network_site_url( 'wp-login.php', 'login' ), $signup->user_login, $signup->user_email, wp_lostpassword_url() );
+Wp-activate.php (blog):					printf( __('Your site at <a href="%1$s">%2$s</a> is active. You may now log in to your site using your chosen username of &#8220;%3$s&#8221;. Please check your email inbox at %4$s for your password and login instructions. If you do not receive an email, please check your junk or spam folder. If you still do not receive an email within an hour, you can <a href="%5$s">reset your password</a>.'), 'http://' . $signup->domain, $signup->domain, $signup->user_login, $signup->user_email, wp_lostpassword_url() );
+Wp-activate.php (blog):				<p class="view"><?php printf( __('Your account is now activated. <a href="%1$s">View your site</a> or <a href="%2$s">Log in</a>'), $url, $url . 'wp-login.php' ); ?></p>
+Wp-activate.php (blog):				<p class="view"><?php printf( __('Your account is now activated. <a href="%1$s">Log in</a> or go back to the <a href="%2$s">homepage</a>.' ), network_site_url('wp-login.php', 'login'), network_home_url() ); ?></p>
+Wp-links-opml.php (blog):		<title><?php printf( __('Links for %s'), esc_attr(get_bloginfo('name', 'display')) ); ?></title>
+Wp-login.php (blog):	<p id="backtoblog"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php esc_attr_e( 'Are you lost?' ); ?>"><?php printf( __( '&larr; Back to %s' ), get_bloginfo( 'title', 'display' ) ); ?></a></p>
+Wp-mce-help.php (blog\wp-includes\js\tinymce):	<p><?php printf(__('TinyMCE is a platform independent web based Javascript HTML WYSIWYG editor released as Open Source under %sLGPL</a>	by Moxiecode Systems AB. It has the ability to convert HTML TEXTAREA fields or other HTML elements to editor instances.'), '<a href="'.home_url('/wp-includes/js/tinymce/license.txt').'" target="_blank" title="'.esc_attr__('GNU Library General Public License').'">'); ?></p>
+Wp-optimize-credits.php (blog\wp-content\plugins\wp-optimize):                <b><?php printf( __( 'Update %s', 'wp-optimize' ), $item->get_date('j F Y | g:i a') ); ?></b>
+Wp-signup.php (blog):	<p><?php printf( __( 'Welcome back, %s. By filling out the form below, you can <strong>add another site to your account</strong>. There is no limit to the number of sites you can have, so create to your heart&#8217;s content, but write responsibly!' ), $current_user->display_name ) ?></p>
+Wp-signup.php (blog):	<h2><?php printf( __( 'The site %s is yours.' ), "<a href='http://{$domain}{$path}'>{$blog_title}</a>" ) ?></h2>
+Wp-signup.php (blog):		<?php printf( __( '<a href="http://%1$s">http://%2$s</a> is your new site. <a href="%3$s">Log in</a> as &#8220;%4$s&#8221; using your existing password.' ), $domain.$path, $domain.$path, "http://" . $domain.$path . "wp-login.php", $user_name ) ?>
+Wp-signup.php (blog):	<h2><?php printf( __( 'Get your own %s account in seconds' ), get_current_site()->site_name ) ?></h2>
+Wp-signup.php (blog):	<h2><?php printf( __( '%s is your new username' ), $user_name) ?></h2>
+Wp-signup.php (blog):	<p><?php printf( __( 'Check your inbox at <strong>%s</strong> and click the link given.' ), $user_email ); ?></p>
+Wp-signup.php (blog):	<h2><?php printf( __( 'Congratulations! Your new site, %s, is almost ready.' ), "<a href='http://{$domain}{$path}'>{$blog_title}</a>" ) ?></h2>
+Wp-signup.php (blog):	<p><?php printf( __( 'Check your inbox at <strong>%s</strong> and click the link given.' ),  $user_email) ?></p>
+Wp-signup.php (blog):			<li><?php printf( __( 'Have you entered your email correctly? You have entered %s, if it&#8217;s incorrect, you will not receive your email.' ), $user_email ) ?></li>
+Wp-signup.php (blog):					printf( '<p><em>' . __( 'The site you were looking for, <strong>%s</strong>, does not exist, but you can create it now!' ) . '</em></p>', $newblog );
+Wp-signup.php (blog):					printf( '<p><em>' . __( 'The site you were looking for, <strong>%s</strong>, does not exist.' ) . '</em></p>', $newblog );

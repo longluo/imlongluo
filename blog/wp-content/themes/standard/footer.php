@@ -62,7 +62,7 @@
 								//<?php printf( __( '&copy; %1$s %2$s &mdash; %3$s &mdash; %4$s by %5$s', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '">' . get_bloginfo( 'name' ) . '</a>', '<a href="' . get_permalink( get_page_by_path( 'privacy-policy' )->ID ) . '">Privacy Policy</a>', '<a href="' . $standard_url . '" target="_blank">Standard</a>', '<a href="' . $eightbit_url . '" target="_blank">8BIT</a>' ); ?>
 								<?php printf( __( '&copy; %1$s %2$s &mdash; %3$s &mdash; %4$s by %5$s', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '">' . get_bloginfo( 'name' ) . '</a>', '<a href="' . get_permalink( get_page_by_path( 'privacy-policy' )->ID ) . '">Privacy Policy</a>', '<a href="' . $standard_url . '" target="_blank">Standard</a>', '<a href="' . $eightbit_url . '" target="_blank">8BIT</a>' ); ?>
 							<?php } else { ?>
-								<?php printf( __( '&copy; %1$s %2$s ', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '" target="_blank"> Long Luo </a>' ); ?>
+								<?php printf( __( 'Copyright &copy; 2005 &mdash; %1$s %2$s', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '" target="_blank"> Long Luo </a>' ); ?>
 							<?php } // end if/else ?>
 
 						</div><!-- /#credits -->
