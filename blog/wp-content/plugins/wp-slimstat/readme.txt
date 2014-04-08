@@ -3,11 +3,11 @@ Contributors: coolmann
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BNJR5EZNY3W38
 Tags: analytics, tracking, reports, analyze, wassup, geolocation, online users, spider, tracker, pageviews, stats, maxmind, statistics, statpress
 Requires at least: 3.8
-Tested up to: 3.8
-Stable tag: 3.5.3
+Tested up to: 3.8.1
+Stable tag: 3.5.6
 
 == Description ==
-A powerful real-time web analytics plugin for WordPress. Visit our [official site](http://slimstat.getused.to.it/) for more information, or find us on [GitHub](https://github.com/getusedtoit/wp-slimstat).
+The most accurate real-time statistics plugin for WordPress. Visit our [official site](http://slimstat.getused.to.it/) for more information, or find us on [GitHub](https://github.com/getusedtoit/wp-slimstat) (psst, we have Flattr enabled, there: star our project to donate).
 
 = Key Features =
 * Real-time reports
@@ -24,16 +24,16 @@ A powerful real-time web analytics plugin for WordPress. Visit our [official sit
 * Read all the [reviews](http://wordpress.org/support/view/plugin-reviews/wp-slimstat) and feel free to post your own
 
 = Requirements =
-* WordPress 3.8+ (it may not work on *large* multisite environments)
+* WordPress 3.8+
 * PHP 5.3+
 * MySQL 5.0.3+
 * At least 5 MB of free web space
 * At least 5 MB of free DB space
-* At least 10 Mb of free memory for the tracker
-* IE9+ or any browser supporting HTML5
+* At least 25 Mb of free PHP memory for the tracker
+* IE9+ or any browser supporting HTML5, to access the reports
 
 = Premium Add-ons =
-Visit [our website](http://slimstat.getused.to.it/addons/) for an updated list of available extensions.
+Visit [our website](http://slimstat.getused.to.it/addons/) for a list of available extensions.
 
 = Free Add-ons =
 * [WP SlimStat Dashboard Widgets](http://wordpress.org/extend/plugins/wp-slimstat-dashboard-widgets) adds the most important reports right on your WordPress Dashboard
@@ -66,8 +66,11 @@ Go to SlimStat > Settings > General and set Tracking Mode to Javascript. Don't f
 Also, if you're using W3 Total Cache, make sure to exclude wp-slimstat.js from the minifier: our code is already minified, and it looks like W3TC breaks something when it tries to minify it again.
 
 = My screen goes blank when trying to access the reports / after installing WP SlimStat =
-Go to SlimStat > Settings > Maintenance and click on the No Panic Button. If that doesn't help,
+Go to SlimStat > Settings > Maintenance and click the NO PANIC Button. If that doesn't help,
 [increase the amount of memory](http://codex.wordpress.org/Editing_wp-config.php#Increasing_memory_allocated_to_PHP) allocated to PHP.
+
+= Reports look all messy and not styled =
+Go to SlimStat > Settings > Maintenance and click the NO PANIC Button. If that doesn't help, make sure you don't have AdBlock installed and active in your browser. For some reason, that plugin doesn't like WP SlimStat.
 
 = When trying to access any of options screens, I get the following error: You do not have sufficient permissions to access this page. =
 You were playing with the plugin's permission settings, weren't you? But don't worry, there's a secret passage that will allow you to unlock your access. Create a new WordPress admin user named `slimstatadmin`. Then log into your WordPress admin area with the new user and... voila: you can now access WP SlimStat's settings again. Update your users' permissions and then get rid of this newly created user.
@@ -212,20 +215,18 @@ Yes, you can. WP SlimStat offers two ways of displaying its reports on your webs
 
 Please download and install [WP SlimStat Shortcodes](http://wordpress.org/extend/plugins/wp-slimstat-shortcodes/) to enable shortcode support in WP SlimStat.
 
-*Using the API*
-
 You will need to edit your template and add something like this where you want your metrics to appear:
 
 `// Load WP SlimStat DB, the API library exposing all the reports
 require_once(WP_PLUGIN_DIR.'/wp-slimstat/admin/view/wp-slimstat-db.php');
 
 // Initialize the API. You can pass a filter in the options, i.e. show only hits by people who where using Firefox (any version) *and* visiting 'posts':
-wp_slimstat_db::init('browser contains Firefox|content_type equals post');
+wp_slimstat_db::init('browser contains Firefox&&&content_type equals post');
 
 // Use the appropriate method to display your stats
 echo wp_slimstat_db::count_records('1=1', '*', false);`
 
-You can list more than one filter by using the pipe char | to separate them (which is evaluated as AND among the filters).
+You can list more than one filter by using &&& to separate them (which is evaluated as AND among the filters). Please read [these FAQs](http://wordpress.org/plugins/wp-slimstat-shortcodes/faq/) for more information on how to combine filters.
 
 *Available methods*
 
@@ -250,25 +251,67 @@ You can list more than one filter by using the pipe char | to separate them (whi
 
 Recent Posts: 
 
-`wp_slimstat_db::init('content_type equals post|visit_id');
+`wp_slimstat_db::init('content_type equals post');
 $results = wp_slimstat_db::get_recent('t1.resource');
 foreach ($results...`
 
 Top Languages last month:
 
-`wp_slimstat_db::init('month equals '.date('n', strtotime('-1 month')));
+`wp_slimstat_db::init('month equals last month');
 $results = wp_slimstat_db::get_popular('t1.language');
 foreach ($results...`
 
 == Screenshots ==
 
 1. **Overview** - Your website traffic at a glance
-2. **Right Now** - A real-time view of your visitors' whereabouts 
+2. **Activity Log** - A real-time view of your visitors' whereabouts 
 3. **Settings** - Plenty of options to customize the plugin's behavior
 4. **Interactive World Map** - See where your visitors are coming from
 5. **Responsive layout** - Keep an eye on your reports on the go
 
 == Changelog ==
+
+= 3.5.6 =
+* [Note] Do you have WP MU and would like to get reports for your entire (small) network? We're finally working on something that might make you happy :)
+* [Update] Purge functionality now works with different timezones 
+* [Update] Added indexes, foreign keys and other constraints to our tables, in order to improve performance (thank you, Morgan)
+* [Update] [Browscap](http://browscap.org/) has been updated to version 5024, released on March 2, 2014
+* [Update] WP SlimStat now works on network installs of *any* size. And yes, you can network activate it without worrying about timeouts or perfomance issues!
+* [Fix] Originating IP addresses were not being "anonymized" (thank you, [carbeck](http://wordpress.org/support/topic/still-problems-with-ip-obfuscation-on-my-32-bit-server))
+* [Fix] Width of column in Edit Posts (thank you, [27pchrisl](https://github.com/getusedtoit/wp-slimstat/pull/2))
+* [Fix] XSS Vulnerability (exploitable only in rare circumstances and on site with very little pageviews) in Overview (thank you, [lnxg33k](https://github.com/getusedtoit/wp-slimstat/issues/3))
+* [Fix] When a site in a network (MU) environment was deleted, WP SlimStat's tables weren't removed
+* [Fix] In a Network (MU) environment, WP SlimStat's tables were being created even if the plugin was NOT network activated
+* [Fix] A conflict with some unknown plugin causing all the users to be mistaken for spammers (thank you, [iinnovations](http://wordpress.org/support/topic/stats-lost-after-apache2-reload))
+* [Fix] Missing space in SQL query was the cause of empty reports in some cases (thank you, [psn](http://wordpress.org/support/topic/no-data-for-certain-boxes))
+* [Fix] Warning on undefined index when trying to create a new blog in a MU environment (thank you, [Sam Brodie](http://wordpress.org/support/topic/undefined-index-error-in-version))
+* [Fix] Bug in displaying more days than necessary for some months, in the chart
+* [Fix] Filtering by IP Address was not working with our Firewall Fix add-on
+* [Fix] Natural language date ranges were being calculated based on UTC, not the blog's timezone (thank you, [haheute](http://wordpress.org/support/topic/pageviews-per-day-not-working))
+
+= 3.5.5 =
+* [Note] Our partnership with HackerNinja.com ended a few days ago, we wish them all the best for their business!
+* [New] The new DB API supports natural language dates: day equals today, year equals this year, etc. This brings the [Shortcodes](http://wordpress.org/plugins/wp-slimstat-shortcodes/) add-on to a whole new level of flexibility!
+* [Update] Right Now has been renamed Activity Log
+* [Fix] We can't believe nobody had noticed a bug in calculating the bounce rate value. Numbers were way off! (thank you, Rob)
+* [Fix] User Overview add-on had some problems with sorting by certain columns
+* [Fix] Filters were not being reset when multiple shortcodes were being used on the same page (thank you, [joachimcarrein](http://wordpress.org/support/topic/filters-remembered))
+* [Fix] Pageviews in the Edit Posts panel were not being properly calculated (thank you, [Aljoscha](http://wordpress.org/support/topic/updated-to-354-no-statistics))
+* [Fix] The Add-Ons page was not working as expected.
+
+= 3.5.4 =
+* [Note] Update your free and premium add-ons to the latest version available!
+* [New] When Convert IP Addresses is enabled, hostnames are shown along with IP addresses, not instead of (thank you, Simas)
+* [New] Added a new switch to turn 'Debug Mode' on (under Settings > Advanced) 
+* [New] Consolidated report functions to use the new DB API filter format
+* [Update] [Browscap](http://browscap.org/) has been updated to version 5023, released on Feb 2, 2014
+* [Fix] Various bugs related to date filters
+* [Fix] Layout of our modal window (ip lookup) was being overwritten by other plugins (thank you, [charlieusa](http://wordpress.org/support/topic/infosniper-popup-displays-map-in-narrow-panel))
+* [Fix] Compatibility issue with WP SlimStat Shortcodes and 'strtotime' filter (our DB API is growing!)
+* [Fix] Close button had disappeared from modal window (ip lookup service)
+* [Fix] Added Seychelles to the list of known Countries
+* [Fix] Bug in displaying the correct time range with some timezones
+* [Fix] Removed 'Save Options' button on Maintenance page
 
 = 3.5.3 =
 * [New] You can finally hide our notices whenever you want and never see them again... until the next update!
@@ -285,104 +328,6 @@ foreach ($results...`
 * [Fix] Is Empty filter was not working as expected
 * [Fix] Bug on Maintenance > Delete Pageviews Where
 
-= 3.5.2 =
-* [Update] The Reports Library (wp-slimstat-db.php) has been streamlined. Please make sure to update your custom add-ons to use the new structure, or contact us if you need help.
-* [Update] The new DB Library uses 1 more SQL query per report, but much less PHP memory to store the results. You'll notice the difference!
-* [Fix] A snippet of code meant to be part of a future update, sneaked into v3.5.1, breaking the compatibility with WP SlimStat Shortcodes. We apologize for any inconvenience this may have caused.
-
-= 3.5.1 =
-* [Note] We got quite a lot of feedback about the new interface. Thank you for speaking up (yes, I'm looking at you, Romain and dFactory)!
-* [Note] Please make sure to clear your browser cache, if your reports look all messy and broken!
-* [New] You can now reload the World Map without reloading the entire page.
-* [Update] Colors now adapt to the admin color scheme currently active (thank you, [dFactory](http://wordpress.org/support/topic/v35-oh-man)).
-* [Update] Added new responsive layout for very large screens (width > 1440px).
-* [Update] Say hi to our own Icon Font Set, which replaces all the png icons we were using before (courtesy of [Fontello](http://fontello.com/), thank you, [dFactory](http://wordpress.org/support/topic/v35-oh-man)).
-* [Update] A new World Flags icon set makes things look even more consistent
-* [Update] Chart Tooltips are back!
-* [Update] RTL Support is being added to the CSS
-* [Update] FAQs have been updated to match the new Settings screens.
-* [Update] [flot](https://github.com/flot/flot) plotting library updated to version 0.8.2 stable
-* [Fix] The Add-ons Settings page was not rendering properly (thank you, Alexander et al.).
-* [Fix] The author filter was not working properly (thank you, [advertisingtech](http://wordpress.org/support/topic/author-filter-1))
-* [Fix] Bug with the new Currently Online report (it was honiring date filters, which was sort of confusing).
-* [Fix] Bug affecting tooltips in Firefox.
-* [Fix] Bug affecting database indexes (thank you, [frequencycast](http://wordpress.org/support/topic/ip-address-labelling-plug-in-stopped-working))
-* [Fix] Bug affecting SlimScroll in Firefox (thank you, [Gerard ter Beke](http://wordpress.org/support/topic/scrolling-activity-log-in-firefox-does-not-work-in-v35)).
-* [Fix] Conflict with another plugin related to the logout button (thank you, [GusRuss89](http://wordpress.org/support/topic/logout-button-conflicts-with-wp-slimstat))
-* [Fix] Bug on masking IP Addresses on 32-bit systems, which apparently hadn't been fixed in 3.5 (thank you, carbeck)
-
-= 3.5 =
-* [Note] Please make sure to clear your browser cache, if your reports look all messy and broken!
-* [New] A polished and fully responsive interface, optimized for the new WordPress 3.8 admin layout. If you're still using WP 3.7 or earlier, you may want to stick to version 3.4.3. 
-* [New] Implemented *Slim*Scroll (what else? hehe) by [Piotr Rochala](http://rocha.la).
-* [New] Added qTip 2 to handle tooltips and contextual help.
-* [New] Added two new reports: who's currently online (registered users), and top language families (thank you, Vitaly)
-* [New] Now you can track 'fake' pageviews (if events are not enough for you)
-* [New] Pagination has been added to most reports: now you will not miss anything!
-* [Update] The 'Latest News' ribbon is now only displayed within the report screens, and it disappears automatically after 5 minutes.
-* [Update] [Browscap](http://browscap.co/) has been updated to version 5021-b9, released on Dec 8, 2013
-* [Updade] Most add-ons have been updated to use the new look and feel, icons, etc.
-* [Update] All the Settings screens have been reorganized and redesigned (and are now fully responsive!). We replaced the old "for geeks only" descriptions with new ones, easier to understand.
-* [Update] The plugin's source code is being consolidated and reorganized. You reports will now load faster than ever!
-* [Update] By default, Javascript Mode (or Tracking Mode, in v3.5) is now enabled
-* [Update] Added new icon for Windows 8.1
-* [Update] MaxMind / Geolocation database updated to December 2013
-* [Fix] Bug on masking IP Addresses on 32-bit systems (thank you, Per)
-
-= 3.4.3 =
-* [Fix] Bug in parsing the data returned by Alexa (new Rankings report) was causing some reports to disappear (thank you, [pepe](http://wordpress.org/support/topic/php-warnings-in-rankings-box))
-* [Fix] A few PHP notices (thank you, [supriyos](http://wordpress.org/support/topic/errors-after-upgrading-to-342))
-* [Fix] Bug in masking local IP addresses (thank you, [carbeck](http://wordpress.org/support/topic/1272552550-1))
-
-= 3.4.2 =
-* [New] Three new reports give you detailed information about your rankings (Google, Facebook, Alexa), your content and your site's security.
-* [Update] Complete Russian Localization (thank you, Vitaly!)
-* [Update] Top Browsers now groups browsers by name, if the user agent string is not enabled/displayed (thank you, Vitaly)
-* [Update] Much improved language detection and localization (thank you, Vitaly)
-* [Update] By default only admins can now see the stats (minimum capability to view: activate_plugins). 
-* [Update] Removed unused languages from the dictionary (who is using operating systems in Herero, Igbo, Hiri Motu, Church Slavic anyway?) 
-* [Update] Optimized code to manage the plugin's options (removed unnecessary db interactions)
-* [Update] World Map ([AmMap](http://www.ammap.com/download/)) updated to version 3.7
-* [Update] MaxMind / Geolocation database updated to November 2013
-* [Update] Consolidated reports and improved performance on Overview tab
-* [Fix] Bug in converting some IP addresses to long integers (thank you, [tkleinsteuber](http://wordpress.org/support/topic/wrong-geolocation-for-rfc-1918-private-ip-ranges))
-* [Fix] Some PHP warnings about undefined variables
-
-= 3.4.1 =
-* [New] Report to visualize top Outbound Links and Downloads (thank you, [bobinoz](http://wordpress.org/support/topic/tracking-outbound-links-1))
-* [New] Purge data by user agent (thank you, [GermanKiwi](http://wordpress.org/support/topic/purge-data-based-on-user-agent))
-* [New] Import/Export all your settings in a text file. Go to Settings > Maintenance and give it a try! (thank you, [Mike](http://wordpress.org/support/topic/feature-request-save-out-settings))
-* [Update] Cosmetic updates to the interface
-* [Update] Right Now Extended is now set to 'No' by default
-* [Fix] Filters were not being reset if API was invoked more than once on the same page (thank you, [PV-Patrick](http://wordpress.org/support/topic/api-calls-in-the_loop))
-* [Fix] Compatibility issues with User Overview (thank you, Thorsten)
-* [Fix] Bug affecting the data recorded when URLs were using non-ASCII characters (thank you, [dimitrios1988](http://wordpress.org/support/topic/stats-now-showing-in-non-ascii-characters))
-* [Fix] Compatibility issues with Export to Excel
-* [Fix] Bug related to the new HTTP POST-based Filtering system
-* [Fix] Issue with French localization encoding (thank you [whoaloic](http://wordpress.org/support/topic/foreign-language-encoding-issue))
-* [Fix] Elaborated on how to use multiple filters with the API (thank you, [Statistiker](http://wordpress.org/support/topic/filter-most-popular-posts))
-
-= 3.4 =
-* [Note] We can't believe we're already crossing the 600,000 downloads mark! To celebrate this accomplishment, we're working on a brand new website! Stay tuned.
-* [New] Local IP Addresses are now marked as such (thank you, [Thorsten](http://wordpress.org/support/topic/wrong-geolocation-for-rfc-1918-private-ip-ranges))
-* [Update] SlimStat's filters have been reimplemented to use HTTP POST requests, in order to avoid issues with very long URIs (thank you, John)
-* [Update] You can now restrict access to the configuration screens by specifying the minimum capability required (default: activate_plugins)
-* [Update] Localization files have consolidated and are now easier to manage. Send us your localization!
-* [Fix] Clicking on report titles doesn't collapse the box anymore (thank you, psn)
-* [Fix] Minor fixes to the Javascript used on admin pages
-* [Fix] Restored compatibility with the plugin Dashboard Widgets
-
-= 3.3.6 =
-* [New] Since you've asked, we added a datepicker to the filters
-* [Update] MaxMind / Geolocation database updated to October 2013
-* [Fix] We had some issues with our repository, which made WP SlimStat unavailable for a while. Sorry for the inconvenience.
-
-= 3.3.5 =
-* [Note] Our add-on [Export To Excel](http://slimstat.getused.to.it/addons/wp-slimstat-export-to-excel/) can now export the tabular data that makes up the charts (thank you, [consensus](http://wordpress.org/support/topic/graph-export))
-* [New] Now all the charts include comparison data for both metrics
-* [Fix] A javascript variable name conflict introduced in version 3.3.4 was affecting some advanced functionality (thank you, [Nanowisdoms](http://wordpress.org/support/topic/expand-details-option-not-working-in-334))
-* [Fix] A pretty unique combination of settings was affecting the way the Spy View data was being listed (thank you, [Nanowisdoms](http://wordpress.org/support/topic/live-visitor-as-in-currently-still-on-the-site-view))
-
 == Distinguished Users ==
 
 * [Vitaly](http://www.visbiz.org/) - Volunteered quite a lot of time for QA and testing, and provided the complete Russian localization
@@ -397,6 +342,7 @@ Beauzartes,
 [Caigo](http://www.blumannaro.net),
 [Christian Coppini](http://www.coppini.me),
 Dave Johnson,
+[David Leudolph](https://flattr.com/profile/daevu),
 [Dennis Kowallek](http://www.adopt-a-plant.com),
 [Damian](http://wipeoutmedia.com),
 [Edward Koon](http://www.fidosysop.org),
@@ -409,7 +355,8 @@ Hal Smith,
 [Hans Schantz](http://www.aetherczar.com),
 Hajrudin Mulabecirovic,
 [Herman Peet](http://www.hermanpeet.nl),
-John Montano, 
+John Montano,
+Kitty Cooper,
 [La casetta delle pesche](http://www.lacasettadellepesche.it),
 Mobile Lingo Inc,
 [Mobilize Mail](http://blog.mobilizemail.com),
@@ -417,6 +364,7 @@ Mora Systems,
 Motionart Inc,
 Neil Robinson,
 [Ovidiu](http://pacura.ru/),
+Rocco Ammon,
 [Sahin Eksioglu](http://www.alternatifblog.com),
 [Saill White](http://saillwhite.com),
 [Sarah Parks](http://drawingsecretsrevealed.com),
