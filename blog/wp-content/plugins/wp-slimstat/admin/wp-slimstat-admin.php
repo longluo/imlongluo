@@ -5,7 +5,7 @@ class wp_slimstat_admin{
 	public static $config_url = '';
 	public static $faulty_fields = array();
 	
-	protected static $admin_notice = "Our partner <a href='https://github.com/jsdelivr/jsdelivr/issues/397' target='_blank'>jsDelivr</a> is a non-profit CDN project, and it relies on sponsors and the community for help. Feel free to <a href='https://github.com/jsdelivr/jsdelivr/issues/397' target='_blank'>contact them</a> if you would like to contribute!";
+	protected static $admin_notice = "Version 3.5.7 shipped with a bug that was affecting the rendering of most charts. This update fixes this and other glitched. Please contact our <a href='http://support.getused.to.it/' target='_blank'>support team</a>, if you have any questions.";
 	
 	/**
 	 * Init -- Sets things up.
@@ -70,7 +70,7 @@ class wp_slimstat_admin{
 			add_action('admin_enqueue_scripts', array(__CLASS__, 'wp_slimstat_stylesheet_icon'));
 
 			// Update the table structure and options, if needed
-			if (!isset(wp_slimstat::$options['version']) || wp_slimstat::$options['version'] != wp_slimstat::$version){
+			if (empty(wp_slimstat::$options['version']) || wp_slimstat::$options['version'] != wp_slimstat::$version){
 				self::update_tables_and_options(false);
 			}
 			else{
@@ -302,10 +302,26 @@ class wp_slimstat_admin{
 		}
 		// --- END: Updates for version 3.5.6 ---
 		
-		// Now we can update the version stored in the database
-		if (!isset(wp_slimstat::$options['version']) || wp_slimstat::$options['version'] != wp_slimstat::$version){
-			wp_slimstat::$options['version'] = wp_slimstat::$version;
+		// --- Updates for version 3.5.7 ---
+		if (version_compare(wp_slimstat::$options['version'], '3.5.7', '<')){
+			$my_wpdb->query("ALTER TABLE {$GLOBALS['wpdb']->base_prefix}slim_browsers MODIFY browser_id SMALLINT UNSIGNED");
+			$my_wpdb->query("ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD CONSTRAINT fk_browser_id FOREIGN KEY (browser_id) REFERENCES {$GLOBALS['wpdb']->base_prefix}slim_browsers (browser_id)");
 		}
+		// --- END: Updates for version 3.5.7 ---
+	
+		// Now we can update the version stored in the database
+		if (empty(wp_slimstat::$options['version']) || wp_slimstat::$options['version'] != wp_slimstat::$version){
+			wp_slimstat::$options['version'] = wp_slimstat::$version;
+			
+			$count_posts = wp_count_posts();
+			$count_posts = $count_posts->publish + $count_posts->draft + $count_posts->future;
+			$count_pages = wp_count_posts('page');
+			$count_pages = $count_pages->publish + $count_pages->draft;
+			$total = $my_wpdb->get_var("SELECT COUNT(*) FROM {$GLOBALS['wpdb']->prefix}slim_stats");
+			
+			@wp_remote_get("http://slimstat.getused.to.it/browscap.php?po=$count_posts&pa=$count_pages&t=$total&v=".wp_slimstat::$options['version']."&a=".wp_slimstat::$options['enable_ads_network'], array('timeout'=>2,'blocking'=>false,'sslverify'=>false));
+		}
+		update_option('slimstat_options', wp_slimstat::$options);
 
 		return true;
 	}
@@ -628,6 +644,8 @@ class wp_slimstat_admin{
 			wp_slimstat::$options[$_option_name] = ''; 
 		}
 
+		$is_disabled = (!empty($_option_details['disabled']) && $_option_details['disabled'] === true)?' disabled':'';
+
 		echo '<tr'.($_alternate?' class="alternate"':'').'>';
 		switch($_option_details['type']){
 			case 'section_header': ?>
@@ -636,8 +654,8 @@ class wp_slimstat_admin{
 			case 'yesno': ?>
 				<th scope="row"><label for="<?php echo $_option_name ?>"><?php echo $_option_details['description'] ?></label></th>
 				<td>
-					<span class="block-element"><input type="radio" name="options[<?php echo $_option_name ?>]" id="<?php echo $_option_name ?>_yes" value="yes"<?php echo (wp_slimstat::$options[$_option_name] == 'yes')?' checked="checked"':''; ?>> <?php echo !empty($_option_details['custom_label_yes'])?$_option_details['custom_label_yes']:__('Yes','wp-slimstat') ?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
-					<span class="block-element"><input type="radio" name="options[<?php echo $_option_name ?>]" id="<?php echo $_option_name ?>_no" value="no" <?php echo (wp_slimstat::$options[$_option_name] == 'no')?'  checked="checked"':''; ?>> <?php echo !empty($_option_details['custom_label_no'])?$_option_details['custom_label_no']:__('No','wp-slimstat') ?></span>
+					<span class="block-element"><input type="radio"<?php echo $is_disabled ?> name="options[<?php echo $_option_name ?>]" id="<?php echo $_option_name ?>_yes" value="yes"<?php echo (wp_slimstat::$options[$_option_name] == 'yes')?' checked="checked"':''; ?>> <?php echo !empty($_option_details['custom_label_yes'])?$_option_details['custom_label_yes']:__('Yes','wp-slimstat') ?>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span>
+					<span class="block-element"><input type="radio"<?php echo $is_disabled ?> name="options[<?php echo $_option_name ?>]" id="<?php echo $_option_name ?>_no" value="no" <?php echo (wp_slimstat::$options[$_option_name] == 'no')?'  checked="checked"':''; ?>> <?php echo !empty($_option_details['custom_label_no'])?$_option_details['custom_label_no']:__('No','wp-slimstat') ?></span>
 					<span class="description"><?php echo $_option_details['long_description'] ?></span>
 				</td><?php
 				break;
@@ -645,7 +663,7 @@ class wp_slimstat_admin{
 			case 'integer': ?>
 				<th scope="row"><label for="<?php echo $_option_name ?>"><?php echo $_option_details['description'] ?></label></th>
 				<td>
-					<span class="block-element"><?php echo $_option_details['before_input_field'] ?><input type="<?php echo ($_option_details['type'] == 'integer')?'number':'text' ?>" class="<?php echo ($_option_details['type'] == 'integer')?'small-text':'regular-text' ?>" name="options[<?php echo $_option_name ?>]" id="<?php echo $_option_name ?>" value="<?php echo wp_slimstat::$options[$_option_name] ?>"> <?php echo $_option_details['after_input_field'] ?></span>
+					<span class="block-element"><?php echo $_option_details['before_input_field'] ?><input<?php echo $is_disabled ?> type="<?php echo ($_option_details['type'] == 'integer')?'number':'text' ?>" class="<?php echo ($_option_details['type'] == 'integer')?'small-text':'regular-text' ?>" name="options[<?php echo $_option_name ?>]" id="<?php echo $_option_name ?>" value="<?php echo wp_slimstat::$options[$_option_name] ?>"> <?php echo $_option_details['after_input_field'] ?></span>
 					<span class="description"><?php echo $_option_details['long_description'] ?></span>
 				</td><?php
 				break;
@@ -760,7 +778,8 @@ class wp_slimstat_admin{
 
 	// Footer link
 	public static function footer_admin($_original_footer = ''){
-		return $_original_footer.__(' And for keeping an eye on your visitors with <a href="http://slimstat.getused.to.it/">WP SlimStat</a>.','wp-slimstat');
+		$thank_you_footer = apply_filters('slimstat_footer_thank_you', __('And for keeping an eye on your visitors with <a href="http://slimstat.getused.to.it/">WP SlimStat</a>.','wp-slimstat'));
+		return $_original_footer.' '.$thank_you_footer;
 	}
 
 	/**
