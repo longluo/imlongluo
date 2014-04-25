@@ -3,7 +3,7 @@
 Plugin Name: WP SlimStat
 Plugin URI: http://wordpress.org/plugins/wp-slimstat/
 Description: The most accurate real-time statistics plugin for WordPress
-Version: 3.5.8
+Version: 3.6
 Author: Camu
 Author URI: http://slimstat.getused.to.it/
 */
@@ -11,7 +11,7 @@ Author URI: http://slimstat.getused.to.it/
 if (!empty(wp_slimstat::$options)) return true;
 
 class wp_slimstat{
-	public static $version = '3.5.8';
+	public static $version = '3.6';
 	public static $options = array();
 	
 	public static $wpdb = '';
@@ -134,7 +134,6 @@ class wp_slimstat{
 				$lt = localtime();
 				if (!empty($timezone)) date_default_timezone_set('UTC');
 				self::$stat['dt'] = mktime($lt[2], $lt[1], $lt[0], $lt[4]+1, $lt[3], $lt[5]+1900);
-
 				self::insert_row(self::$stat, $GLOBALS['wpdb']->prefix.'slim_outbound');
 
 				do_action('slimstat_track_success_outbound', self::$stat);
@@ -999,8 +998,10 @@ class wp_slimstat{
 			update_option('slimstat_visit_id', self::$stat['visit_id']);
 
 			$is_set_cookie = apply_filters('slimstat_set_visit_cookie', true);
-			if ($is_set_cookie)
+			if ($is_set_cookie){
 				@setcookie('slimstat_tracking_code', self::$stat['visit_id'].'.'.md5(self::$stat['visit_id'].self::$options['secret']), time()+self::$options['session_duration'], COOKIEPATH);
+			}
+
 		}
 		elseif ($identifier > 0){
 			self::$stat['visit_id'] = $identifier;
@@ -1129,9 +1130,9 @@ class wp_slimstat{
 			'ip_lookup_service' => 'http://www.infosniper.net/?ip_address=',
 			'custom_css' => '',
 			'enable_ads_network' => 'null',
-			
-			// Misc
-			'enable_hacker_ninja' => 'no'
+
+			// Network-wide Settings
+			'locked_options' => ''
 		);
 
 		return $options;
@@ -1206,7 +1207,7 @@ class wp_slimstat{
 	public static function wp_slimstat_enqueue_tracking_script(){
 		if (self::$options['enable_cdn'] == 'yes'){
 			$schema = is_ssl()?'https':'http';
-			wp_register_script('wp_slimstat', $schema.'://cdn.jsdelivr.net/wp-slimstat/'.self::$options['version'].'/wp-slimstat.js', array(), null, true);
+			wp_register_script('wp_slimstat', $schema.'://cdn.jsdelivr.net/wp-slimstat/'.self::$version.'/wp-slimstat.js', array(), null, true);
 		}
 		else{
 			wp_register_script('wp_slimstat', plugins_url('/wp-slimstat.js', __FILE__), array(), null, true);

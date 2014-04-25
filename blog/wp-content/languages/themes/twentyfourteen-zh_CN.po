@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Twenty Fourteen 1.0\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tags/twentyfourteen\n"
-"POT-Creation-Date: 2013-12-12 05:25:07+00:00\n"
-"PO-Revision-Date: 2013-12-13 06:50-0000\n"
+"POT-Creation-Date: 2014-03-18 19:16:26+00:00\n"
+"PO-Revision-Date: 2014-04-17 14:22-0000\n"
 "Last-Translator: Jimmy Xu <me@jimmyxu.org>\n"
 "Language-Team: WordPress China\n"
 "Language: zh_CN\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.5.7\n"
+"X-Generator: Poedit 1.6.4\n"
 
 #: 404.php:17
 msgid "Not Found"
@@ -87,19 +87,19 @@ msgstr "、"
 
 #: content-aside.php:37 content-audio.php:37 content-gallery.php:37
 #: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:180
+#: content-video.php:37 content.php:38 inc/widgets.php:185
 msgid "Leave a comment"
 msgstr "发表回复"
 
 #: content-aside.php:37 content-audio.php:37 content-gallery.php:37
 #: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:180
+#: content-video.php:37 content.php:38 inc/widgets.php:185
 msgid "1 Comment"
 msgstr "1条评论"
 
 #: content-aside.php:37 content-audio.php:37 content-gallery.php:37
 #: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:180
+#: content-video.php:37 content.php:38 inc/widgets.php:185
 msgid "% Comments"
 msgstr "%条评论"
 
@@ -112,7 +112,7 @@ msgstr "编辑"
 
 #: content-aside.php:46 content-audio.php:46 content-gallery.php:46
 #: content-image.php:46 content-link.php:46 content-quote.php:46
-#: content-video.php:46 content.php:54 inc/widgets.php:113 inc/widgets.php:158
+#: content-video.php:46 content.php:54 inc/widgets.php:118 inc/widgets.php:163
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "继续阅读 <span class=\"meta-nav\">&rarr;</span>"
 
@@ -143,7 +143,6 @@ msgid ""
 "searching can help."
 msgstr "我们可能无法找到您需要的内容。或许搜索功能可以帮到您。"
 
-#. #-#-#-#-#  twentyfourteen.pot (Twenty Fourteen 1.0)  #-#-#-#-#
 #. Author URI of the plugin/theme
 #: footer.php:21
 msgid "http://wordpress.org/"
@@ -245,11 +244,11 @@ msgstr "站点标题颜色"
 msgid "Display Site Title &amp; Tagline"
 msgstr "显示站点标题与副标题"
 
-#: inc/customizer.php:35 inc/featured-content.php:408
+#: inc/customizer.php:35 inc/featured-content.php:411
 msgid "Featured Content"
 msgstr "特色内容"
 
-#: inc/customizer.php:36
+#: inc/customizer.php:36 inc/featured-content.php:412
 msgid ""
 "Use a <a href=\"%1$s\">tag</a> to feature your posts. If no posts match the "
 "tag, <a href=\"%2$s\">sticky posts</a> will be displayed instead."
@@ -257,37 +256,42 @@ msgstr ""
 "使用<a href=\"%1$s\">标签</a>来选出特色内容。如果标签未匹配任何文章，<a href="
 "\"%2$s\">置顶文章</a>会被显示。"
 
-#: inc/customizer.php:47
+#: inc/customizer.php:37 inc/customizer.php:104 inc/featured-content.php:413
+#: inc/featured-content.php:422 inc/featured-content.php:482
+msgctxt "featured content default tag slug"
+msgid "featured"
+msgstr "特色"
+
+#: inc/customizer.php:50
 msgid "Layout"
 msgstr "布局"
 
-#: inc/customizer.php:51
+#: inc/customizer.php:54
 msgid "Grid"
 msgstr "网格"
 
-#: inc/customizer.php:52
+#: inc/customizer.php:55
 msgid "Slider"
 msgstr "滑块"
 
-#. #-#-#-#-#  twentyfourteen.pot (Twenty Fourteen 1.0)  #-#-#-#-#
 #. Theme Name of the plugin/theme
-#: inc/customizer.php:98
+#: inc/customizer.php:101
 msgid "Twenty Fourteen"
 msgstr "Twenty Fourteen"
 
-#: inc/customizer.php:101
+#: inc/customizer.php:104
 msgid ""
 "The home page features your choice of up to 6 posts prominently displayed in "
-"a grid or slider, controlled by the <a href=\"%1$s\">featured</a> tag; you "
-"can change the tag and layout in <a href=\"%2$s\">Appearance &rarr; "
-"Customize</a>. If no posts match the tag, <a href=\"%3$s\">sticky posts</a> "
-"will be displayed instead."
+"a grid or slider, controlled a <a href=\"%1$s\">tag</a>; you can change the "
+"tag and layout in <a href=\"%2$s\">Appearance &rarr; Customize</a>. If no "
+"posts match the tag, <a href=\"%3$s\">sticky posts</a> will be displayed "
+"instead."
 msgstr ""
-"主页会于网格或滑块中突出显示您选择的最多6篇特色文章，可通过<a href=\"%1$s"
-"\">featured</a>标签控制，您也可在 <a href=\"%2$s\">“外观”&rarr;“自定义”</a>屏"
-"幕中修改。如果标签未匹配任何文章，<a href=\"%2$s\">置顶文章</a>会被显示。"
+"主页会于网格或滑块中突出显示您选择的最多6篇特色文章，通过一<a href=\"%1$s\">"
+"标签</a>控制。您可在 <a href=\"%2$s\">“外观”&rarr;“自定义”</a>屏幕中修改标签"
+"和样式。如果标签未匹配任何文章，<a href=\"%2$s\">置顶文章</a>会被显示。"
 
-#: inc/customizer.php:102
+#: inc/customizer.php:105
 msgid ""
 "Enhance your site design by using <a href=\"%s\">Featured Images</a> for "
 "posts you&rsquo;d like to stand out (also known as post thumbnails). This "
@@ -299,7 +303,7 @@ msgstr ""
 "图），这可让您将图片关联到文章，而无需在文章中插入该图片。Twenty Fourteen在文"
 "章与页面的标题之上显示特色图片，也会在主页的特色内容区显示。"
 
-#: inc/customizer.php:103
+#: inc/customizer.php:106
 msgid ""
 "For an in-depth tutorial, and more tips and tricks, visit the <a href=\"%s"
 "\">Twenty Fourteen documentation</a>."
@@ -307,20 +311,11 @@ msgstr ""
 "要查阅详细教程和更多提示与技巧，请访问<a href=\"%s\">Twenty Fourteen文档</"
 "a>。"
 
-#: inc/featured-content.php:409
-msgid ""
-"Use the <a href=\"%1$s\">\"featured\" tag</a> to feature your posts. You can "
-"change this to a tag of your choice; if no posts match the tag, <a href="
-"\"%2$s\">sticky posts</a> will be displayed instead."
-msgstr ""
-"使用<a href=\"%1$s\">“featured”标签</a>来选出特色内容。如果标签未匹配任何文"
-"章，<a href=\"%2$s\">置顶文章</a>会被显示。"
-
-#: inc/featured-content.php:428
+#: inc/featured-content.php:434
 msgid "Tag Name"
 msgstr "标签名"
 
-#: inc/featured-content.php:433
+#: inc/featured-content.php:439
 msgid "Don&rsquo;t display tag on front end."
 msgstr "不在前端显示标签"
 
@@ -363,8 +358,8 @@ msgstr "Twenty Fourteen Ephemera"
 #: inc/widgets.php:46
 msgid ""
 "Use this widget to list your recent Aside, Quote, Video, Audio, Image, "
-"Gallery, and Link posts"
-msgstr "使用此挂件来列出您最近的旁白、引用、视频、音频、图片、画廊和链接文章"
+"Gallery, and Link posts."
+msgstr "使用此挂件来列出您最近的旁白、引用、视频、音频、图片、画廊和链接文章。"
 
 #: inc/widgets.php:53 taxonomy-post_format.php:30
 msgid "Asides"
@@ -394,25 +389,25 @@ msgstr "链接"
 msgid "Galleries"
 msgstr "画廊"
 
-#: inc/widgets.php:148
+#: inc/widgets.php:153
 msgid "This gallery contains <a href=\"%1$s\" rel=\"bookmark\">%2$s photo</a>."
 msgid_plural ""
 "This gallery contains <a href=\"%1$s\" rel=\"bookmark\">%2$s photos</a>."
 msgstr[0] "此画廊包含<a href=\"%1$s\" rel=\"bookmark\">%2$s张图片</a>。"
 
-#: inc/widgets.php:189
+#: inc/widgets.php:194
 msgid "More %s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "更多%s <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/widgets.php:236
+#: inc/widgets.php:242
 msgid "Title:"
 msgstr "标题："
 
-#: inc/widgets.php:239
+#: inc/widgets.php:245
 msgid "Number of posts to show:"
 msgstr "显示文章的数目："
 
-#: inc/widgets.php:242
+#: inc/widgets.php:248
 msgid "Post format to show:"
 msgstr "显示文章的格式："
 
@@ -453,3 +448,11 @@ msgstr "贡献者页面"
 #. Template Name of the plugin/theme
 msgid "Full Width Page"
 msgstr "全宽页面"
+
+#~ msgid ""
+#~ "Use the <a href=\"%1$s\">\"featured\" tag</a> to feature your posts. You "
+#~ "can change this to a tag of your choice; if no posts match the tag, <a "
+#~ "href=\"%2$s\">sticky posts</a> will be displayed instead."
+#~ msgstr ""
+#~ "使用<a href=\"%1$s\">“featured”标签</a>来选出特色内容。如果标签未匹配任何"
+#~ "文章，<a href=\"%2$s\">置顶文章</a>会被显示。"

@@ -3,11 +3,13 @@
 Plugin Name: WP-Optimize
 Plugin URI: http://www.ruhanirabin.com/wp-optimize/
 Description: This plugin helps you to keep your database clean by removing post revisions and spams in a blaze. Additionally it allows you to run optimize command on your WordPress core tables (use with caution).
-Version: 1.6.2
+Version: 1.7.4
 Author: Ruhani Rabin
 Author URI: http://www.ruhanirabin.com
+Text Domain: wp-optimize
+Domain Path: /languages
 
-    Copyright 2013  Ruhani Rabin  (email : get@ruhanirabin.com)
+    Copyright 2009-2014  Ruhani Rabin  (email : get@ruhanirabin.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -37,7 +39,7 @@ if ('wp-optimize.php' == basename($_SERVER['SCRIPT_FILENAME']))
 global $current_user;
 
 if (! defined('WPO_VERSION'))
-    define('WPO_VERSION', '1.6.2');
+    define('WPO_VERSION', '1.7.4');
 
 if (! defined('WPO_PLUGIN_MAIN_PATH'))
 	define('WPO_PLUGIN_MAIN_PATH', plugin_dir_path( __FILE__ ));
@@ -49,6 +51,7 @@ if ( file_exists(WPO_PLUGIN_MAIN_PATH . 'wp-optimize-common.php')) {
 	die ('Functions File is missing!');
 	}
 
+   
 register_activation_hook(__FILE__,'wpo_admin_actions');
 register_deactivation_hook(__FILE__,'wpo_admin_actions_remove');
 
@@ -61,14 +64,13 @@ function wp_optimize_textdomain() {
 }
 
 function wp_optimize_menu(){
-    //include 'wp-optimize-admin.php';
 	include_once( 'wp-optimize-admin.php' );
 }
 
 function wpo_admin_bar() {
 	global $wp_admin_bar;
 
-	//Add a link called 'My Link'...
+	//Add a link called at the top admin bar
 	$wp_admin_bar->add_node(array(
 		'id'    => 'wp-optimize',
 		'title' => 'WP-Optimize',
@@ -77,18 +79,13 @@ function wpo_admin_bar() {
 
 }
 
-// add this link only if admin and option is enabled
-if (get_option( OPTION_NAME_ENABLE_ADMIN_MENU, 'false' ) == 'true' ){
-	if (is_admin()) {
-		add_action( 'wp_before_admin_bar_render', 'wpo_admin_bar' );
-	}
-}
-
 
 // Add settings link on plugin page
 function wpo_plugin_settings_link($links) {
-  $settings_link = '<a href="admin.php?page=WP-Optimize&tab=wp_optimize_settings">Settings</a>';
-  $optimize_link = '<a href="admin.php?page=WP-Optimize">Optimizer</a>';
+  //$settings_link = '<a href="admin.php?page=WP-Optimize&tab=wp_optimize_settings">Settings</a>';
+  //$optimize_link = '<a href="admin.php?page=WP-Optimize">Optimizer</a>';
+  $settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=WP-Optimize&tab=wp_optimize_settings' ) ) . '">' . __( 'Settings', 'wp-optimize' ) . '</a>';
+  $optimize_link = '<a href="' . esc_url( admin_url( 'admin.php?page=WP-Optimize' ) ) . '">' . __( 'Optimizer', 'wp-optimize' ) . '</a>';
   array_unshift($links, $settings_link);
   array_unshift($links, $optimize_link);
   return $links;
@@ -107,6 +104,10 @@ function wpo_admin_actions()
 		} else {
 			add_submenu_page("index.php", "WP-Optimize", "WP-Optimize", "manage_options", "WP-Optimize", "wp_optimize_menu", plugin_dir_url( __FILE__ ).'wpo.png');
 		} // end if addmetabox
+        if (get_option( OPTION_NAME_ENABLE_ADMIN_MENU, 'false' ) == 'true' ){
+        		add_action( 'wp_before_admin_bar_render', 'wpo_admin_bar' );
+        }        
+        
 		wpo_PluginOptionsSetDefaults();
 		wpo_cron_activate();
 	}
@@ -168,12 +169,7 @@ add_filter('cron_schedules', 'wpo_cron_update_sched');
 // scheduler functions to update schedulers
 // possible problem found at support request
 // http://wordpress.org/support/topic/bug-found-in-scheduler-code
-/* function wpo_cron_update_sched( $schedules ) {
-	return array(
-		'weekly' => array('interval' => 60*60*24*7, 'display' => 'Once Weekly'),
-		'otherweekly' => array('interval' => 60*60*24*14, 'display' => 'Once Every Other Week'),
-	);
-} */
+
 function wpo_cron_update_sched( $schedules ) {
 	$schedules['wpo_weekly'] = array('interval' => 60*60*24*7, 'display' => 'Once Weekly');
 	$schedules['wpo_otherweekly'] = array('interval' => 60*60*24*14, 'display' => 'Once Every Other Week');
@@ -189,5 +185,6 @@ function wpo_admin_actions_remove()
 	wpo_removeOptions();
 }
 add_action('admin_menu', 'wpo_admin_actions');
+
 
 ?>
