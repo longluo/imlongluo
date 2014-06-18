@@ -52,6 +52,7 @@ switch ($config_tabs[$current_tab-1]){
 			
 			'views_functionality_header' => array('description' => __('Functionality','wp-slimstat'), 'type' => 'section_header'),
 			'async_load' => array('description' => __('Asynchronous Views','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Load all the reports dynamically. It makes the reports render faster, but it increases the load on your server.','wp-slimstat')),
+			'use_slimscroll' => array('description' => __('SlimScroll','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Enable SlimScroll, a slick jQuery library that replaces the built-in browser scrollbar.','wp-slimstat')),
 			'expand_details' => array('description' => __('Expand Details','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Expand each row's details by default, insted of on mousehover.",'wp-slimstat')),
 			'rows_to_show' => array('description' => __('Rows to Display','wp-slimstat'), 'type' => 'integer', 'long_description' => __('Specify the number of items in each report.','wp-slimstat')),
 			
@@ -128,7 +129,7 @@ switch ($config_tabs[$current_tab-1]){
 	case __('Permissions','wp-slimstat'):
 		$options_on_this_page = array(
 			'permissions_reports_header' => array('description' => __('Reports','wp-slimstat'), 'type' => 'section_header'),
-			'restrict_authors_view' => array('description' => __('Restrict Authors','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Enable this option if you want your authours to only see stats related to their own content.','wp-slimstat')),
+			'restrict_authors_view' => array('description' => __('Restrict Authors','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Enable this option if you want your authors to only see stats related to their own content.','wp-slimstat')),
 			'capability_can_view' => array('description' => __('Capability','wp-slimstat'), 'type' => 'text', 'long_description' => __("Specify the minimum <a href='http://codex.wordpress.org/Roles_and_Capabilities' target='_new'>capability</a> needed to access the reports (default: <code>activate_plugins</code>). If this field is empty, <strong>all your users</strong> (including subscribers) will have access to the reports, unless a 'Read access' whitelist has been specified here below. In this case, the list has precedence over the capability.",'wp-slimstat')),
 			'can_view' => array('description' => __('Whitelist','wp-slimstat'), 'type' => 'textarea', 'long_description' => __("List all the users who should have access to the reports, separated by commas. Administrators are implicitly allowed, so you don't need to list them in here. Usernames are case sensitive.",'wp-slimstat'), 'skip_update' => true),
 			
@@ -203,6 +204,10 @@ switch ($config_tabs[$current_tab-1]){
 		}
 		break;
 	case __('Advanced','wp-slimstat'):
+		$this_domain = parse_url(get_bloginfo('url'));
+		$encoded_ci = 'YTo0OntzOjEyOiJjb250ZW50X3R5cGUiO3M6ODoiZXh0ZXJuYWwiO3M6ODoiY2F0ZWdvcnkiO3M6MDoiIjtzOjEwOiJjb250ZW50X2lkIjtpOjA7czo2OiJhdXRob3IiO3M6MTM6ImV4dGVybmFsLXBhZ2UiO30=';
+		$encoded_ci = $encoded_ci.'.'.md5($encoded_ci.wp_slimstat::$options['secret']);
+
 		$options_on_this_page = array(
 			'advanced_tracker_header' => array('description' => __('Tracker','wp-slimstat'), 'type' => 'section_header'),
 			'detect_smoothing' => array('description' => __('Detect Smoothing','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Detect if your visitors' browsers support anti-aliasing (font smoothing). This option required Spy Mode to be enabled.",'wp-slimstat')),
@@ -212,11 +217,23 @@ switch ($config_tabs[$current_tab-1]){
 			'enable_cdn' => array('description' => __('Enable CDN','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Use <a href='http://www.jsdelivr.com/' target='_blank'>JSDelivr</a>'s CDN, by serving our tracking code from their fast and reliable network (free service).",'wp-slimstat')),
 			'extensions_to_track' => array('description' => __('Extensions to Track','wp-slimstat'), 'type' => 'textarea', 'long_description' => __("List all the file extensions that you want to be treated as Downloads. Please note that links pointing to external resources (i.e. PDFs on a different website) are considered Downloads and not Outbound Links (and tracked as such), if their extension matches one of the ones listed here below.",'wp-slimstat')),
 
+			'advanced_external_pages_header' => array('description' => __('External Pages','wp-slimstat'), 'type' => 'section_header'),
+			'external_pages_script' => array('type' => 'static', 'description' => __('Add the following code to all the non-WP pages you want to track','wp-slimstat'), 'long_description' => '&lt;script type="text/javascript"&gt;
+/* &lt;![CDATA[ */
+var SlimStatParams = {
+	ajaxurl: "'.admin_url('admin-ajax.php').'",
+	ci: "'.$encoded_ci.'",
+	extensions_to_track: "'.wp_slimstat::$options['extensions_to_track'].'"
+};
+/* ]]&gt; */
+&lt;/script&gt;
+&lt;script type="text/javascript" src="http://cdn.jsdelivr.net/wp-slimstat/'.wp_slimstat::$version.'/wp-slimstat.js"&gt;&lt;/script&gt;'),
+
 			'advanced_misc_header' => array('description' => __('Miscellaneous','wp-slimstat'), 'type' => 'section_header'),
 			'show_sql_debug' => array('description' => __('Debug Mode','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Display the SQL queries used to retrieve the data.','wp-slimstat')),
 			'ip_lookup_service' => array('description' => __('IP Lookup','wp-slimstat'), 'type' => 'text', 'long_description' => __('Customize the Geolocation service to be used in the reports.','wp-slimstat')),
 			'custom_css' => array('description' => __('Custom CSS','wp-slimstat'), 'type' => 'textarea', 'long_description' => __("Paste here your custom stylesheet to personalize the way your reports look. <a href='http://wordpress.org/plugins/wp-slimstat/faq/' target='_blank'>Check the FAQ</a> for more information on how to use this setting.",'wp-slimstat')),
-			'enable_ads_network' => array('description' => __('Enable UAN','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Send anonymous data about unknown user agents to our server for analysis. This allows us to contribute to the <a href='http://browscap.org/' target='_blank'>BrowsCap opensource project</a>, and improve the accuracy of WP SlimStat's browser detection functionality.",'wp-slimstat'))
+			'enable_ads_network' => array('description' => __('Enable UAN','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Send anonymous data about user agents to our server for analysis. This allows us to contribute to the <a href='http://browscap.org/' target='_blank'>BrowsCap opensource project</a>, and improve the accuracy of WP SlimStat's browser detection functionality. It also enables our transparent ads network. No worries, your site will not be affected in any way. The income is completely invested in making WP SlimStat a better product, as you can see from our <a href='http://wordpress.org/support/plugin/wp-slimstat' target='_blank'>FREE PREMIUM support service</a> that most of our users love.",'wp-slimstat'))
 		);
 		break;
 	case __('Maintenance','wp-slimstat'):

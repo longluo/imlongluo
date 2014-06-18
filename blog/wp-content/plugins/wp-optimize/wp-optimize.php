@@ -3,12 +3,14 @@
 Plugin Name: WP-Optimize
 Plugin URI: http://www.ruhanirabin.com/wp-optimize/
 Description: This plugin helps you to keep your database clean by removing post revisions and spams in a blaze. Additionally it allows you to run optimize command on your WordPress core tables (use with caution).
-Version: 1.7.4
+Version: 1.8.6
 Author: Ruhani Rabin
-Author URI: http://www.ruhanirabin.com
+Author URI: https://github.com/ruhanirabin/WP-Optimize
 Text Domain: wp-optimize
 Domain Path: /languages
-
+Git URI: https://github.com/ruhanirabin/wp-optimize
+GitHub Plugin URI: https://github.com/ruhanirabin/wp-optimize
+GitHub Branch: master
     Copyright 2009-2014  Ruhani Rabin  (email : get@ruhanirabin.com)
 
     This program is free software; you can redistribute it and/or modify
@@ -26,25 +28,32 @@ Domain Path: /languages
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+
 # ---------------------------------------- #
 # Find and replace version info in all files
 # ---------------------------------------- #
 
-# ---------------------------------- #
+# --------------------------------------- #
 # prevent file from being accessed directly
-# ---------------------------------- #
-if ('wp-optimize.php' == basename($_SERVER['SCRIPT_FILENAME']))
-	die ('Please do not access this file directly. Thanks!');
-
+# --------------------------------------- #
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}	
+	
 global $current_user;
 
+error_reporting( error_reporting() & ~E_NOTICE );
+
 if (! defined('WPO_VERSION'))
-    define('WPO_VERSION', '1.7.4');
+    define('WPO_VERSION', '1.8.6');
 
 if (! defined('WPO_PLUGIN_MAIN_PATH'))
 	define('WPO_PLUGIN_MAIN_PATH', plugin_dir_path( __FILE__ ));
 
-if ( file_exists(WPO_PLUGIN_MAIN_PATH . 'wp-optimize-common.php')) {
+if (! defined('WPO_PAYPAL'))
+	define('WPO_PAYPAL', 'https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=LTCMF6JDX94QS');
+
+	if ( file_exists(WPO_PLUGIN_MAIN_PATH . 'wp-optimize-common.php')) {
     require_once (WPO_PLUGIN_MAIN_PATH . 'wp-optimize-common.php');
     
     } else {
@@ -82,7 +91,6 @@ function wpo_admin_bar() {
 
 // Add settings link on plugin page
 function wpo_plugin_settings_link($links) {
-  //$settings_link = '<a href="admin.php?page=WP-Optimize&tab=wp_optimize_settings">Settings</a>';
   //$optimize_link = '<a href="admin.php?page=WP-Optimize">Optimizer</a>';
   $settings_link = '<a href="' . esc_url( admin_url( 'admin.php?page=WP-Optimize&tab=wp_optimize_settings' ) ) . '">' . __( 'Settings', 'wp-optimize' ) . '</a>';
   $optimize_link = '<a href="' . esc_url( admin_url( 'admin.php?page=WP-Optimize' ) ) . '">' . __( 'Optimizer', 'wp-optimize' ) . '</a>';
@@ -103,12 +111,13 @@ function wpo_admin_actions()
 			add_menu_page("WP-Optimize", "WP-Optimize", "manage_options", "WP-Optimize", "wp_optimize_menu", plugin_dir_url( __FILE__ ).'wpo.png');
 		} else {
 			add_submenu_page("index.php", "WP-Optimize", "WP-Optimize", "manage_options", "WP-Optimize", "wp_optimize_menu", plugin_dir_url( __FILE__ ).'wpo.png');
-		} // end if addmetabox
+		} // end if addmeta box
         if (get_option( OPTION_NAME_ENABLE_ADMIN_MENU, 'false' ) == 'true' ){
         		add_action( 'wp_before_admin_bar_render', 'wpo_admin_bar' );
         }        
         
-		wpo_PluginOptionsSetDefaults();
+		wpo_detectDBType();
+        wpo_PluginOptionsSetDefaults();
 		wpo_cron_activate();
 	}
 }
@@ -186,5 +195,17 @@ function wpo_admin_actions_remove()
 }
 add_action('admin_menu', 'wpo_admin_actions');
 
+/* function wpo_admin_styles() {
+    wp_register_style( 'wpo_admin_stylesheet', plugins_url( '/css/wpo_admin.css', __FILE__ ) );
+    wp_enqueue_style( 'wpo_admin_stylesheet' );
+}
+add_action( 'admin_enqueue_scripts', 'wpo_admin_styles' ); */
+
+
+function wpo_admin_register_head() {
+    $style_url = plugins_url( '/css/wpo_admin.css', __FILE__ ) ;
+    echo "<link rel='stylesheet' type='text/css' href='".$style_url."' />\n";
+}
+add_action('admin_head', 'wpo_admin_register_head');
 
 ?>

@@ -1,28 +1,19 @@
 <?php
 
-if ('wp-optimize-common.php' == basename($_SERVER['SCRIPT_FILENAME']))
-	die ('Please do not access this file directly. Thanks!');
+# --------------------------------------- #
+# prevent file from being accessed directly
+# --------------------------------------- #
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 // common functions
 if (! defined('WPO_PLUGIN_MAIN_PATH'))
 	define('WPO_PLUGIN_MAIN_PATH', plugin_dir_path( __FILE__ ));
             
-if (! defined('WPO_PLUGIN_PATH'))
-	define('WPO_PLUGIN_PATH', plugin_dir_url( __FILE__ ));
+if (! defined('WPO_PLUGIN_URL'))
+	define('WPO_PLUGIN_URL', plugin_dir_url( __FILE__ ));
 	
-if (! defined('WP_CONTENT_DIR'))
-    define('WP_CONTENT_DIR', ABSPATH . 'wp-content');
-
-// TODO: Need to remove the two options below because this can return wrong path
-if (! defined('WP_CONTENT_URL'))
-    define('WP_CONTENT_URL', get_option('siteurl') . '/wp-content');
-
-if (! defined('WP_ADMIN_URL'))
-    define('WP_ADMIN_URL', get_option('siteurl') . '/wp-admin');
-
-if (! defined('WP_PLUGIN_DIR'))
-    define('WP_PLUGIN_DIR', WP_CONTENT_DIR . '/plugins');
-
 if (! defined('OPTION_NAME_SCHEDULE'))
     define('OPTION_NAME_SCHEDULE', 'wp-optimize-schedule');	
 
@@ -44,6 +35,30 @@ if (! defined('OPTION_NAME_ENABLE_ADMIN_MENU'))
 if (! defined('OPTION_NAME_TOTAL_CLEANED'))
     define('OPTION_NAME_TOTAL_CLEANED', 'wp-optimize-total-cleaned');
 	
+
+/**
+ * wpo_detectDBType()
+ * 
+ * @return void
+ */
+function wpo_detectDBType() {
+
+	global $wpdb;
+    //global $table_prefix;
+	$tablestype = $wpdb->get_results("SHOW TABLE STATUS WHERE Name = '$wpdb->options'");
+	foreach($tablestype as  $tabletype) {
+		$table_engine = $tabletype->Engine;
+	}	
+	
+	$wpo_table_type = strtolower(strval($table_engine));
+	
+if (! defined('WPO_TABLE_TYPE'))      
+        define( WPO_TABLE_TYPE,$wpo_table_type);
+
+return $wpo_table_type;
+       
+}
+
 /*
  * function wpo_getRetainInfo()
  * 
@@ -95,25 +110,10 @@ function wpo_debugLog($message) {
  */
 function wpo_headerImage(){
 	
-	$text = '<img src="'.WPO_PLUGIN_PATH.'/wp-optimize.png" border="0" alt="WP-Optimize" title="WP-Optimize" width="310px"/><br />';
-    //$text .= '<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.ruhanirabin.com%2Fwp-optimize%2F&amp;layout=standard&amp;show_faces=true&amp;width=450&amp;action=like&amp;font=lucida+grande&amp;colorscheme=light&amp;height=80" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:26px;" allowTransparency="true"></iframe>'
-	$text .='<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.ruhanirabin.com%2Fwp-optimize%2F&amp;width=400&amp;height=46&amp;colorscheme=light&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;send=true&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:400px; height:46px;" allowTransparency="true"></iframe>';
+	$text = '<img src="'.WPO_PLUGIN_URL.'/wp-optimize.png" border="0" alt="WP-Optimize" title="WP-Optimize" width="310px" height="auto"/><br />';
+
+	$text .='<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.ruhanirabin.com%2Fwp-optimize%2F&amp;width=310&amp;height=46&amp;colorscheme=light&amp;layout=standard&amp;action=like&amp;show_faces=false&amp;send=true&amp;" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:310px; height:46px;" allowTransparency="true"></iframe>';
 	echo $text;
-	$total_cleaned = get_option(OPTION_NAME_TOTAL_CLEANED);
-    $total_cleaned_num = floatval($total_cleaned);
-    
-    if ($total_cleaned_num  > 0){
-        echo '<h3>';
-        _e('Total clean up overall','wp-optimize');
-        echo ': ';
-        echo '<font color="green">';
-        //echo $total_cleaned.' '.__('Kb', 'wp-optimize');
-        echo wpo_format_size($total_cleaned);
-        echo '</font>';
-        echo '</h3>';
-        echo '<br />';
-        
-    }    
 	
 }
 
@@ -242,6 +242,9 @@ function wpo_cron_action() {
             }
 			
 		//db optimize part - optimize
+        // disble optimization if innoDB
+        if (WPO_TABLE_TYPE != 'innodb'){
+
         if ($this_options['optimize'] == 'true'){            
     
             $db_tables = $wpdb->get_results('SHOW TABLES',ARRAY_A);
@@ -257,12 +260,13 @@ function wpo_cron_action() {
     		list($part1, $part2) = wpo_getCurrentDBSize();
      
             update_option( OPTION_NAME_LAST_OPT, $thisdate );
-            wpo_updateTotalCleaned($part2);
+            wpo_updateTotalCleaned(strval($part2));
             wpo_debugLog('Updating options with value +'.$part2);
 
         } // endif $this_options['optimize'] 
+        } //end if if (WPO_TABLE_TYPE != 'innodb'){
 		
-	}	
+	}	// end if ( get_option(OPTION_NAME_SCHEDULE) == 'true')
 }	
 
 /*
@@ -333,8 +337,14 @@ function wpo_PluginOptionsSetDefaults() {
 } 
 
 
-### Function: Format Bytes Into KB/MB
-if(!function_exists('wpo_format_size')) {
+/**
+ * wpo_format_size()
+ * Function: Format Bytes Into KB/MB
+ * @param mixed $rawSize
+ * @return
+ */
+  if(!function_exists('wpo_format_size')) {
+
 	function wpo_format_size($rawSize) {
 		if($rawSize / 1073741824 > 1)
 			return number_format_i18n($rawSize/1048576, 1) . ' '.__('Gb', 'wp-optimize');
@@ -376,7 +386,7 @@ function wpo_getCurrentDBSize(){
 	
 	$total_size = $data_usage + $index_usage;
 	return array (wpo_format_size($total_size), wpo_format_size($total_gain));
-    $wpdb->flush();
+    //$wpdb->flush();
 	}
  // end of function wpo_getCurrentDBSize
 
@@ -641,7 +651,7 @@ function wpo_getInfo($cleanupType){
             $sql .= ';';			
             $comments = $wpdb->get_var( $sql );
             if(!$comments == NULL || !$comments == 0){
-              $message .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$comments.' '.__('spam comments found', 'wp-optimize').' | <a href="edit-comments.php?comment_status=spam">'.' '.__('Review Spams', 'wp-optimize').'</a>';
+              $message .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$comments.' '.__('spam comments found', 'wp-optimize').' | <a href="edit-comments.php?comment_status=spam">'.' '.__('Review', 'wp-optimize').'</a>';
             } else
               $message .='&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.__('No spam comments found', 'wp-optimize');
               
@@ -672,7 +682,7 @@ function wpo_getInfo($cleanupType){
             $sql .= ';';
 			$comments = $wpdb->get_var( $sql );
             if(!$comments == NULL || !$comments == 0){
-              $message .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$comments.' '.__('unapproved comments found', 'wp-optimize').' | <a href="edit-comments.php?comment_status=moderated">'.' '.__('Review Unapproved Comments', 'wp-optimize').'</a>';;
+              $message .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.$comments.' '.__('unapproved comments found', 'wp-optimize').' | <a href="edit-comments.php?comment_status=moderated">'.' '.__('Review', 'wp-optimize').'</a>';;
             } else
               $message .= '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'.__('No unapproved comments found', 'wp-optimize');
 
