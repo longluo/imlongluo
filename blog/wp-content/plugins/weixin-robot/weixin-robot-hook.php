@@ -65,6 +65,7 @@ function weixin_robot_create_table() {
 		  `province` varchar(255) NOT NULL,
 		  `language` varchar(255) NOT NULL,
 		  `headimgurl` varchar(255) NOT NULL,
+		  `unionid` varchar(30) NOT NULL,
 		  `last_update` int(10) NOT NULL,
 		  PRIMARY KEY  (`id`),
 		  UNIQUE KEY `weixin_openid` (`openid`)
@@ -101,7 +102,7 @@ function weixin_robot_create_table() {
 
 	if($wpdb->get_var("show tables like '$wpdb->weixin_custom_replies'") != $wpdb->weixin_custom_replies) {
 		$sql = "
-		CREATE TABLE IF NOT EXISTS " . $wpdb->weixin_custom_replies . " (
+		CREATE TABLE IF NOT EXISTS `{$wpdb->weixin_custom_replies}` (
 			`id` bigint(20) NOT NULL AUTO_INCREMENT,
 			`keyword` varchar(255)  NOT NULL,
 			`match` varchar(10)  NOT NULL DEFAULT 'full',
@@ -119,7 +120,7 @@ function weixin_robot_create_table() {
 
 	if($wpdb->get_var("show tables like '$wpdb->weixin_qrcodes'") != $wpdb->weixin_qrcodes) {
 		$sql = "
-		CREATE TABLE IF NOT EXISTS " . $wpdb->weixin_qrcodes . " (
+		CREATE TABLE IF NOT EXISTS  `{$wpdb->weixin_qrcodes}` (
 			`id` bigint(20) NOT NULL AUTO_INCREMENT,
 			`scene` int(6)  NOT NULL,
 			`name` varchar(255)  NOT NULL,
@@ -271,7 +272,7 @@ function weixin_robot_get_custom_keywords($match='full'){
 	$weixin_custom_keywords = get_transient('weixin_custom_keywords_'.$match);
 
 	if($weixin_custom_keywords === false){
-		$sql = "SELECT keyword,reply,type FROM $wpdb->weixin_custom_replies WHERE {$wpdb->weixin_custom_replies}.match = '{$match}' AND status = 1";
+		$sql = "SELECT keyword,reply,type FROM $wpdb->weixin_custom_replies WHERE `match` = '{$match}' AND status = 1";
 		$weixin_custom_original_keywords = $wpdb->get_results($sql,OBJECT_K);
 		
 		$weixin_custom_keywords = array(); 

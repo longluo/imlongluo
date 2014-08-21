@@ -23,18 +23,18 @@ class wp_slimstat_reports extends wp_slimstat_admin{
 	 */
 	public static function init(){
 		self::$screen_names = array(
-			1 => __('Activity Log','wp-slimstat'),
+			1 => __('Real-Time Log','wp-slimstat'),
 			2 => __('Overview','wp-slimstat'),
-			3 => __('Visitors','wp-slimstat'),
-			4 => __('Content','wp-slimstat'),
+			3 => __('Audience','wp-slimstat'),
+			4 => __('Site Analysis','wp-slimstat'),
 			5 => __('Traffic Sources','wp-slimstat'),
-			6 => __('World Map','wp-slimstat'),
+			6 => __('Map Overlay','wp-slimstat'),
 			7 => __('Custom Reports','wp-slimstat')
 		);
 
 		self::$all_reports_titles = array(
 			'slim_p1_01' => __('Pageviews (chart)','wp-slimstat'),
-			'slim_p1_02' => __('About WP SlimStat','wp-slimstat'),
+			'slim_p1_02' => __('About Slimstat','wp-slimstat'),
 			'slim_p1_03' => __('At a Glance','wp-slimstat'),
 			'slim_p1_04' => __('Currently Online','wp-slimstat'),
 			'slim_p1_05' => __('Spy View','wp-slimstat'),
@@ -94,7 +94,7 @@ class wp_slimstat_reports extends wp_slimstat_admin{
 			'slim_p4_18' => __('Top Authors','wp-slimstat'),
 			'slim_p4_19' => __('Top Tags','wp-slimstat'),
 			'slim_p4_20' => __('Recent Downloads','wp-slimstat'),
-			'slim_p4_21' => __('Top Outbound Links and Downloads','wp-slimstat'),
+			'slim_p4_21' => __('Top OutLinks and Downloads','wp-slimstat'),
 			'slim_p4_22' => __('Your Website','wp-slimstat'),
 			'slim_p6_01' => __('World Map','wp-slimstat'),
 			'slim_p7_02' => __('At A Glance','wp-slimstat')
@@ -399,6 +399,14 @@ class wp_slimstat_reports extends wp_slimstat_admin{
 
 		self::report_pagination($_id, $count_page_results, count($all_results));
 		$is_expanded = (wp_slimstat::$options['expand_details'] == 'yes')?' expanded':'';
+
+		// Traffic sources: display pageviews with no referrer
+		if ($_column == 'referer'){
+			$count_all = wp_slimstat_db::count_records();
+			$count_no_referer = wp_slimstat_db::count_records('(t1.referer IS NULL OR t1.referer = "")');
+			$percentage = number_format(sprintf("%01.2f", (100*$count_no_referer/$count_all)), 2, wp_slimstat_db::$formats['decimal'], wp_slimstat_db::$formats['thousand']);
+			echo "<p>Direct Access <span>$percentage%</span> <b class='slimstat-row-details$is_expanded'>Hits: $count_no_referer</b></p>";
+		}
 
 		for($i=0;$i<$count_page_results;$i++){
 			$row_details = $percentage = '';
@@ -732,7 +740,7 @@ class wp_slimstat_reports extends wp_slimstat_admin{
 		$count_non_zero = count(array_filter($_chart_data['current']['first_metric']));
 		?>
 
-		<p><?php self::inline_help(__('A request to load a single HTML file. WP SlimStat logs a "pageview" each time the tracking code is executed.','wp-slimstat'));
+		<p><?php self::inline_help(__('A request to load a single HTML file. Slimstat logs a "pageview" each time the tracking code is executed.','wp-slimstat'));
 			_e('Pageviews', 'wp-slimstat'); ?> <span><?php echo number_format($_current_pageviews, 0, wp_slimstat_db::$formats['decimal'], wp_slimstat_db::$formats['thousand']) ?></span></p>
 		<p><?php self::inline_help(__('How many pages have been visited on average during the current period.','wp-slimstat'));
 			_e('Average Pageviews', 'wp-slimstat') ?> <span><?php echo number_format(($count_non_zero > 0)?intval($_current_pageviews/$count_non_zero):0, 0, wp_slimstat_db::$formats['decimal'], wp_slimstat_db::$formats['thousand']) ?></span></p>
@@ -834,7 +842,7 @@ class wp_slimstat_reports extends wp_slimstat_admin{
 		$new_visitors = wp_slimstat_db::count_records_having('visit_id > 0', 'ip', 'COUNT(visit_id) = 1');
 		$new_visitors_rate = ($total_human_hits > 0)?sprintf("%01.2f", (100*$new_visitors/$total_human_hits)):0;
 		if (intval($new_visitors_rate) > 99) $new_visitors_rate = '100'; ?>		
-		<p><?php self::inline_help(__('A request to load a single HTML file. WP SlimStat logs a "pageview" each time the tracking code is executed.','wp-slimstat')) ?>
+		<p><?php self::inline_help(__('A request to load a single HTML file. Slimstat logs a "pageview" each time the tracking code is executed.','wp-slimstat')) ?>
 			<?php _e('Pageviews', 'wp-slimstat') ?> <span><?php echo number_format($_current_pageviews, 0, wp_slimstat_db::$formats['decimal'], wp_slimstat_db::$formats['thousand']) ?></span></p>
 		<p><?php self::inline_help(__('A referrer (or referring site) is the site that a visitor previously visited before following a link to your site.','wp-slimstat')) ?>
 			<?php _e('Unique Referrers', 'wp-slimstat') ?> <span><?php echo number_format(wp_slimstat_db::count_records("t1.domain <> '{$_SERVER['SERVER_NAME']}' AND t1.domain <> ''", 't1.domain'), 0, wp_slimstat_db::$formats['decimal'], wp_slimstat_db::$formats['thousand']) ?></span></p>
@@ -1050,7 +1058,7 @@ class wp_slimstat_reports extends wp_slimstat_admin{
 		if (!$is_ajax && (in_array($_report_id, self::$hidden_reports) || wp_slimstat::$options['async_load'] == 'yes')) return; 
 
 		// Some boxes need extra information
-		if (in_array($_report_id, array('slim_p1_03', 'slim_p1_08', 'slim_p1_13', 'slim_p1_17', 'slim_p2_03', 'slim_p2_04', 'slim_p2_05', 'slim_p2_06', 'slim_p2_18', 'slim_p2_19', 'slim_p2_10', 'slim_p3_02', 'slim_p3_04'))){
+		if (in_array($_report_id, array('slim_p1_03', 'slim_p1_08', 'slim_p1_10', 'slim_p1_13', 'slim_p1_17', 'slim_p2_03', 'slim_p2_04', 'slim_p2_05', 'slim_p2_06', 'slim_p2_18', 'slim_p2_19', 'slim_p2_10', 'slim_p3_02', 'slim_p3_04', 'slim_p3_05'))){
 			$current_pageviews = wp_slimstat_db::count_records();
 		}
 
@@ -1108,7 +1116,7 @@ class wp_slimstat_reports extends wp_slimstat_admin{
 				$self_domain = parse_url(site_url());
 				$self_domain = $self_domain['host'];
 				//self::show_results('popular_complete', $_report_id, 'domain', array('total_for_percentage' => wp_slimstat_db::count_records('t1.referer <> ""'), 'custom_where' => 't1.domain <> "'.$self_domain.'" AND t1.domain <> ""'));
-				self::show_results('popular', $_report_id, 'referer', array('total_for_percentage' => wp_slimstat_db::count_records('t1.referer <> ""'), 'custom_where' => 't1.domain <> "'.$self_domain.'" AND t1.domain <> ""'));
+				self::show_results('popular', $_report_id, 'referer', array('total_for_percentage' => $current_pageviews, 'custom_where' => 't1.domain <> "'.$self_domain.'" AND t1.domain <> ""'));
 				break;
 			case 'slim_p1_11':
 				// self::show_results('popular_complete', $_report_id, 'user', array('total_for_percentage' => wp_slimstat_db::count_records('t1.user <> ""')));
