@@ -2,7 +2,7 @@
 $(document).ready(function() {
     $.simpleWeather({
         location: 'Shenzhen, CN',
-        woeid: '',
+        woeid: '2161853',
         unit: 'c',
         success: function(weather) {
             html = '<h2><i class="icon-'+weather.code+'"></i> '+weather.temp+'&deg;'+weather.units.temp+'</h2>';
