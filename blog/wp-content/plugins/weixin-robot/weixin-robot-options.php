@@ -73,7 +73,7 @@ function weixin_robot_auth_page() {
 	?>
 	<div class="wrap">
 		<h2>微信机器人高级版</h2>
-		<p>升级到高级版可以享受自定义回复，数据统计，服务号的全接口支持，积分系统，第三方微信服务等功能。<br />你可以点击<a href="http://wpjam.net/item/weixin-robot-advanced/">购买微信机器人高级版</a>，也可以联系 QQ 11497107 购买，然后输入授权代码。</p>
+		<p>升级到高级版可以享受自定义回复，数据统计，服务号的全接口支持，积分系统，第三方微信服务等功能。<br />你可以点击<a href="http://blog.wpjam.com/project/weixin-robot-advanced/">购买微信机器人高级版</a>，也可以联系 QQ 11497107 购买，然后输入授权代码。</p>
 		<!--<p>你还没有授权域名，点击这里：<a href="http://wpjam.net/wp-admin/admin.php?page=orders&domain_limit=1&product_id=56" class="button">授权域名</a></p>-->
 		<form method="post" action="<?php echo admin_url('admin.php?page='.$plugin_page); ?>" enctype="multipart/form-data" id="form">
 			<input type="text" id="wpjam_net_domain_check_56" name="wpjam_net_domain_check_56" value="" class="regular-text" />
@@ -97,7 +97,7 @@ function weixin_robot_get_option_labels(){
     if($plugin_page == 'weixin-robot'){
     	$basic_section_fields = array(
 			'weixin_token'					=> array('title'=>'微信 Token',		'type'=>'text'),
-			'weixin_default'				=> array('title'=>'默认缩略图',		'type'=>'text'),
+			'weixin_default'				=> array('title'=>'默认缩略图',		'type'=>'image'),
 			'weixin_keyword_allow_length'	=> array('title'=>'搜索关键字最大长度','type'=>'text',		'description'=>'一个汉字算两个字节，一个英文单词算两个字节，空格不算，搜索多个关键字可以用空格分开！'),
 			'weixin_count'					=> array('title'=>'返回结果最大条数',	'type'=>'text',		'description'=>'微信接口最多支持返回10个。'), 
 			'weixin_disable_search'			=> array('title'=>'关闭搜索',			'type'=>'checkbox',	'description'=>'关闭搜索，则只有定义在自定义回复和内置回复的关键字有效，不会去搜索博客文章。'), 
@@ -111,7 +111,7 @@ function weixin_robot_get_option_labels(){
 		);
 
 	    $third_party_section_fields = array(
-			'weixin_3rd_url'				=> array('title'=>'第三方微信平台链接',	'type'=>'text',		'description'=>'推荐使用<a href="http://weixin.digirepub.com/">微信共和</a>！'),
+			'weixin_3rd_url'				=> array('title'=>'第三方微信平台链接',	'type'=>'url',		'description'=>'推荐使用<a href="http://weixin.digirepub.com/">微信共和</a>！'),
 			'weixin_3rd_token'				=> array('title'=>'第三方微信平台 Token',	'type'=>'text',		'description'=>''),
 			'weixin_3rd_search'				=> array('title'=>'第三方微信平台搜索',	'type'=>'checkbox',	'description'=>'所有在WordPress找不到内容的关键词都提交到第三方微信平台处理。')
 		);
