@@ -10,36 +10,36 @@
 */
 
 body {
-    padding: 45px 25px;
-    font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    background: #1192d3;
+  padding: 45px 25px;
+  font: 13px 'Open Sans', "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  background: #1192d3;
 }
 
 @font-face {
     font-family: 'weather';
-    src: url('http://databank.u.qiniudn.com/weather%2Fassets%2Fartill_clean_icons-webfont.eot');
-    src: url('http://databank.u.qiniudn.com/weather%2Fassets%2Fartill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
-    url('http://databank.u.qiniudn.com/weather%2Fassets%2Fartill_clean_icons-webfont.woff') format('woff'),
-    url('http://databank.u.qiniudn.com/weather%2Fassets%2Fartill_clean_icons-webfont.ttf') format('truetype'),
-    url('https://http://databank.u.qiniudn.com/weather%2Fassets%2Fartill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot');
+    src: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.eot?#iefix') format('embedded-opentype'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.woff') format('woff'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.ttf') format('truetype'),
+         url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/93/artill_clean_icons-webfont.svg#artill_clean_weather_iconsRg') format('svg');
     font-weight: normal;
     font-style: normal;
 }
 
 #weather {
-    width: 500px;
-    margin: 0px auto;
-    text-align: center;
-    text-transform: uppercase;
+  width: 500px;
+  margin: 0px auto;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 i {
-    color: #fff;
-    font-family: weather;
-    font-size: 150px;
-    font-weight: normal;
-    font-style: normal;
-    line-height: 1.0;
+  color: #fff;
+  font-family: weather;
+  font-size: 150px;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1.0;
 }
 
 .icon-0:before { content: ":"; }
@@ -92,38 +92,38 @@ i {
 .icon-47:before { content: "S"; }
 
 #weather h2 {
-    margin: 0 0 8px;
-    color: #fff;
-    font-size: 100px;
-    font-weight: 300;
-    text-align: center;
-    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: 100px;
+  font-weight: 300;
+  text-align: center;
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 }
 
 #weather ul {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #weather li {
-    background: #fff;
-    background: rgba(255,255,255,0.90);
-    padding: 20px;
-    display: inline-block;
-    border-radius: 5px;
+  background: #fff;
+  background: rgba(255,255,255,0.90);
+  padding: 20px;
+  display: inline-block;
+  border-radius: 5px;
 }
 
 #weather .currently {
-    margin: 0 20px;
+  margin: 0 20px;
 }
 
 button {
-    display: block;
-    margin: 15px auto;
-    width: 140px;
-    padding: 5px;
-    background: transparent;
-    color: #fff;
-    border: 0;
-    border-radius: 5px;
+  display: block;
+  margin: 15px auto;
+  width: 140px;
+  padding: 5px;
+  background: transparent;
+  color: #fff;
+  border: 0;
+  border-radius: 5px;
 }

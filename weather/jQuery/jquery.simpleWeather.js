@@ -39,7 +39,7 @@
                 weather = {},
                 forecast,
                 compass = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW', 'N'],
-                image404 = "https://s.yimg.com/os/mit/media/m/weather/images/icons/l/44d-100567.png";
+                image404 = "http://databank.u.qiniudn.com/weather%2Fimg%2F404.png";
 
             weather.title = result.item.title;
             weather.temp = result.item.condition.temp;
