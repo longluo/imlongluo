@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1,user-scalable=no" />
-    <meta name="keywords" content="Yahoo Weather,Weather,天气,Long Luo,罗龙" />
-    <meta name="description" content="一个天气预报程序, By Long Luo" />
-    <link rel="stylesheet" href="css/default.css">
-    <!--<link rel="stylesheet" href="css/jquery.mobile.min.css">-->
-    <script src="jQuery/jquery.min.js"></script>
-    <!--<script src="jQuery/jquery.mobile.min.js"></script>-->
-    <script src="jQuery/jquery.simpleWeather.js"></script>
-    <script src="js/weather.js"></script>
-    <script src="js/moment.min.js"></script>
-    <script language="javascript" type="text/javascript" src="ShareSDK/ShareSDK.js"></script>
-    <title>The Weather By Long Luo</title>
+<head>
+    <title>ShareSDK for JS Sample</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <script language="javascript" type="text/javascript" src="ShareSDK.js"></script>
     <script language="javascript" type="text/javascript">
         function init()
         {
@@ -117,7 +108,7 @@
                 "text" : "测试的文字",
                 "imageUrl" : "http://img0.bdstatic.com/img/image/shouye/tangwei.jpg",
                 "title" : "测试的标题",
-                "titleUrl" : "http://imlongluo.com/weather",
+                "titleUrl" : "http://sharesdk.cn",
                 "description" : "测试的描述",
                 "site" : "ShareSDK",
                 "siteUrl" : "http://sharesdk.cn",
@@ -132,60 +123,16 @@
         }
 
     </script>
+
 </head>
-
 <body onload="init()" style="text-align: center">
-
-<div id="weather"></div>
-
-<button class="js-geolocation" type="button">使用你的当前位置</button>
-
-<!--<input type="button" value="授权" onclick="authBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>-->
-<!--<input type="button" value="是否授权" onclick="hasAuthBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>-->
-<!--<input type="button" value="获取用户信息" onclick="userInfoBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>-->
-
-<!--<input type="button" value="分享内容" onclick="shareContentClickHandler()" style="width: 70px; height: 50px;" /><br /><br/>-->
-
-<!--<input type="button" value="一键分享内容" onclick="oneKeyShareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>-->
-
-<input type="button" value="显示分享菜单" onclick="showShareMenuClickHandler()" style="width: 90px; height: 50px;" /><br /><br/>
-
-<!--<input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>-->
-
-<div class="footer">
-    <p style="text-align:center;">
-        Copyright &copy; 2014 Long Luo. All rights reserved.
-    </p>
-</div>
-
-<!-- Baidu Statistics -->
-<div style="display:none;">
-<script type="text/javascript" >
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb4c6c0df76415ca14358f56e0f957de1' type='text/javascript'%3E%3C/script%3E"));
-</script>
-</div>
-
-<!--<div data-role="page">-->
-    <!--<div data-role="header">-->
-        <!--<h1>Weather </h1>-->
-    <!--</div>-->
-
-    <!--<div data-role="content">-->
-        <!--<div id="weather"></div>-->
-        <!--<button class="js-geolocation" style="display: none;">Use Your Location</button>-->
-    <!--</div>-->
-
-    <!--<div data-role="footer">-->
-        <!--<h5>Copyright &copy; 2014 Long Luo. All rights reserved.</h5>-->
-    <!--</div>-->
-
-    <!--<!-- Baidu Statistics -->
-    <!--<script type="text/javascript">-->
-        <!--var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");-->
-        <!--document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb4c6c0df76415ca14358f56e0f957de1' type='text/javascript'%3E%3C/script%3E"));-->
-    <!--</script>-->
-<!--</div>-->
-
+    <br/><br/>
+    <input type="button" value="授权" onclick="authBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="是否授权" onclick="hasAuthBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="获取用户信息" onclick="userInfoBtnClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="分享内容" onclick="shareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="一键分享内容" onclick="oneKeyShareContentClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="显示分享菜单" onclick="showShareMenuClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
+    <input type="button" value="显示分享界面" onclick="showShareViewClickHandler()" style="width: 200px; height: 30px;" /><br /><br/>
 </body>
 </html>
