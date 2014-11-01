@@ -217,7 +217,7 @@ class wp_slimstat_reports {
 
 		// Default text for the inline help associated to the chart
 		self::$chart_tooltip = '<strong>'.__('Chart controls','wp-slimstat').'</strong><ul><li>'.__('Use your mouse wheel to zoom in and out','wp-slimstat').'</li><li>'.__('While zooming in, drag the chart to move to a different area','wp-slimstat').'</li><li>'.__('Double click on an empty region to reset the zoom level','wp-slimstat').'</li>';
-		self::$chart_tooltip .= empty(wp_slimstat_db::$filters_normalized['date']['day'])?'<li>'.__('Click on a data point to display the activity chart for each hour of that day','wp-slimstat').'</li>':'';
+		// self::$chart_tooltip .= empty(wp_slimstat_db::$filters_normalized['date']['day'])?'<li>'.__('Click on a data point to display the activity chart for each hour of that day','wp-slimstat').'</li>':'';
 	}
 	// end init
 	
@@ -265,11 +265,12 @@ class wp_slimstat_reports {
 			}
 		}
 		if (!empty($filters_html)){
-			$filters_html = "<ul class='slimstat-filter-list'>$filters_html</ul>";
+			$filters_html = "<ul class='slimstat-filter-list'>$filters_html</ul><a href='#' id='slimstat-save-current-filters' class='slimstat-filter-action-button button-secondary' data-saved-label='".__('Coming Soon','wp-slimstat')."'>".__('Save','wp-slimstat')."</a>";
 		}
 		if(count($filters_dropdown) > 1){
-			$filters_html .= '<a href="'.self::fs_url().'" id="slimstat-remove-all-filters" class="button-secondary">'.__('Reset All','wp-slimstat').'</a>';
+			$filters_html .= '<a href="'.self::fs_url().'" id="slimstat-remove-all-filters" class="button-secondary slimstat-filter-action-button">'.__('Reset All','wp-slimstat').'</a>';
 		}
+		$filters_html .= '';
 
 		return ($filters_html != "<span class='filters-title'>".__('Current filters:','wp-slimstat').'</span> ')?$filters_html:'';
 	}

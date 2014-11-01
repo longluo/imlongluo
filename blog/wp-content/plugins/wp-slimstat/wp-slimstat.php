@@ -3,7 +3,7 @@
 Plugin Name: WP Slimstat
 Plugin URI: http://wordpress.org/plugins/wp-slimstat/
 Description: The leading web analytics plugin for WordPress
-Version: 3.7.3
+Version: 3.7.5
 Author: Camu
 Author URI: http://slimstat.getused.to.it/
 */
@@ -11,7 +11,7 @@ Author URI: http://slimstat.getused.to.it/
 if (!empty(wp_slimstat::$options)) return true;
 
 class wp_slimstat{
-	public static $version = '3.7.3';
+	public static $version = '3.7.5';
 	public static $options = array();
 
 	public static $wpdb = '';
@@ -29,7 +29,7 @@ class wp_slimstat{
 	public static function init(){
 
 		// Load all the settings
-		self::$options = is_network_admin()?get_site_option('slimstat_options', array()):get_option('slimstat_options', array());
+		self::$options = (is_network_admin() && (empty($_GET['page']) || strpos($_GET['page'], 'wp-slim-view') === false))?get_site_option('slimstat_options', array()):get_option('slimstat_options', array());
 		self::$options = array_merge(self::init_options(), self::$options);
 
 		// Allow third party tools to edit the options
@@ -269,7 +269,7 @@ class wp_slimstat{
 		}
 
 		// User's IP address
-		list(self::$stat['ip'], $long_other_ip) = self::_get_ip2long_remote_ip();
+		list(self::$stat['ip'], self::$stat['other_ip']) = self::_get_ip2long_remote_ip();
 		if (empty(self::$stat['ip'])){
 			self::$stat['id'] = -203;
 			return $_argument;
@@ -330,7 +330,7 @@ class wp_slimstat{
 			$long_ip_to_ignore = ip2long($ip_to_ignore);
 			$long_mask = bindec( str_pad('', $mask, '1') . str_pad('', 32-$mask, '0') );
 			$long_masked_user_ip = self::$stat['ip'] & $long_mask;
-			$long_masked_other_ip = $long_other_ip & $long_mask;
+			$long_masked_other_ip = self::$stat['other_ip'] & $long_mask;
 			$long_masked_ip_to_ignore = $long_ip_to_ignore & $long_mask;
 			if ($long_masked_user_ip == $long_masked_ip_to_ignore || $long_masked_other_ip == $long_masked_ip_to_ignore){
 				self::$stat['id'] = -204;
@@ -345,7 +345,7 @@ class wp_slimstat{
 		// Anonymize IP Address?
 		if (self::$options['anonymize_ip'] == 'yes'){
 			self::$stat['ip'] = self::$stat['ip']&4294967040;
-			$long_other_ip = $long_other_ip&4294967040;
+			self::$stat['other_ip'] = self::$stat['other_ip']&4294967040;
 		}
 
 		// Is this country blacklisted?
@@ -405,8 +405,8 @@ class wp_slimstat{
 
 		// Because PHP's integer type is signed, and many IP addresses will result in negative integers on 32-bit architectures, we need to use the "%u" formatter
 		self::$stat['ip'] = sprintf("%u", self::$stat['ip']);
-		if (!empty($long_other_ip) && $long_other_ip != self::$stat['ip']){
-			self::$stat['other_ip'] = sprintf("%u", $long_other_ip);
+		if (!empty(self::$stat['other_ip']) && self::$stat['other_ip'] != self::$stat['ip']){
+			self::$stat['other_ip'] = sprintf("%u", self::$stat['other_ip']);
 		}
 
 		// Now let's save this information in the database
@@ -1070,7 +1070,7 @@ class wp_slimstat{
 	 */
 	public static function init_options(){
 		$val_yes = 'yes'; $val_no = 'no';
-		if (is_network_admin()){
+		if (is_network_admin() && (empty($_GET['page']) || strpos($_GET['page'], 'wp-slim-view') === false)){
 			$val_yes = $val_no = 'null';
 		}
 
@@ -1293,21 +1293,16 @@ class wp_slimstat{
 		self::$options['capability_can_view'] = empty(self::$options['capability_can_view'])?'read':self::$options['capability_can_view'];
 
 		if (empty(self::$options['can_view']) || strpos(self::$options['can_view'], $GLOBALS['current_user']->user_login) !== false || current_user_can('manage_options')){
-			$slimstat_view_url = $slimstat_config_url = 'admin.php';
-			if (self::$options['use_separate_menu'] != 'yes'){
-				$slimstat_view_url = $slimstat_config_url = 'options.php';
-			}
-
-			$slimstat_view_url = get_site_url($GLOBALS['blog_id'], "/wp-admin/$slimstat_view_url?page=");
-			$slimstat_config_url = get_site_url($GLOBALS['blog_id'], "/wp-admin/$slimstat_config_url?page=wp-slim-config");
+			$slimstat_view_url = get_admin_url($GLOBALS['blog_id'], "admin.php?page=");
+			$slimstat_config_url = get_admin_url($GLOBALS['blog_id'], "admin.php?page=wp-slim-config");
 			
-			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-header', 'title' => 'Slimstat', 'href' => "{$slimstat_view_url}1"));
-			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel1', 'href' => "{$slimstat_view_url}wp-slim-view-1", 'parent' => 'slimstat-header', 'title' => __('Activity Log', 'wp-slimstat')));
+			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-header', 'title' => 'Slimstat', 'href' => "{$slimstat_view_url}wp-slim-view-1"));
+			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel1', 'href' => "{$slimstat_view_url}wp-slim-view-1", 'parent' => 'slimstat-header', 'title' => __('Real-Time Log', 'wp-slimstat')));
 			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel2', 'href' => "{$slimstat_view_url}wp-slim-view-2", 'parent' => 'slimstat-header', 'title' => __('Overview', 'wp-slimstat')));
-			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel3', 'href' => "{$slimstat_view_url}wp-slim-view-3", 'parent' => 'slimstat-header', 'title' => __('Visitors', 'wp-slimstat')));
-			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel4', 'href' => "{$slimstat_view_url}wp-slim-view-4", 'parent' => 'slimstat-header', 'title' => __('Content', 'wp-slimstat')));
+			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel3', 'href' => "{$slimstat_view_url}wp-slim-view-3", 'parent' => 'slimstat-header', 'title' => __('Audience', 'wp-slimstat')));
+			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel4', 'href' => "{$slimstat_view_url}wp-slim-view-4", 'parent' => 'slimstat-header', 'title' => __('Site Analysis', 'wp-slimstat')));
 			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel5', 'href' => "{$slimstat_view_url}wp-slim-view-5", 'parent' => 'slimstat-header', 'title' => __('Traffic Sources', 'wp-slimstat')));
-			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel6', 'href' => "{$slimstat_view_url}wp-slim-view-6", 'parent' => 'slimstat-header', 'title' => __('World Map', 'wp-slimstat')));
+			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel6', 'href' => "{$slimstat_view_url}wp-slim-view-6", 'parent' => 'slimstat-header', 'title' => __('Map Overlay', 'wp-slimstat')));
 			if (has_action('wp_slimstat_custom_report')) $GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel7', 'href' => "{$slimstat_view_url}wp-slim-view-7", 'parent' => 'slimstat-header', 'title' => __('Custom Reports', 'wp-slimstat')));
 			$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-panel8', 'href' => "{$slimstat_view_url}wp-slim-addons", 'parent' => 'slimstat-header', 'title' => __('Add-ons', 'wp-slimstat')));
 			
