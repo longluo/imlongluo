@@ -12,11 +12,9 @@ class wp_slimstat_admin{
 	 */
 	public static function init(){
 		if ((wp_slimstat::$options['enable_ads_network'] == 'yes' || wp_slimstat::$options['enable_ads_network'] == 'no')){
-			self::$admin_notice = "The security of our users' data is our top priority, and for this reason we tightened our SQL queries and made our encryption key harder to guess. If you are using a caching plugin, please <strong>flush its cache</strong> so that the tracking code can be regenerated with the new key. Also, if you are using Slimstat to track external websites, please make sure to replace the tracking code with the new one available under Settings > Advanced. As usual, feel free to contact us if you have any questions.";
+			self::$admin_notice = "The team who manages the WordPress Plugin Repository notified us that since the <a href='http://dev.maxmind.com/geoip/legacy/geolite/' target='_blank'>MaxMind GeoLite library</a> used by Slimstat to geolocate visitors is released under the Creative Commons BY-SA 3.0 license, it violates the repository guidelines, and cannot be bundled with the plugin any longer. We were required to remove the code and alter the plugin so that this functionality becomes optional. We apologize for the inconvenience. However, the only immediate consequence is that your visitors' country will not be identified; everything else will still work as usual. You can download the geolocation DB as a <a href='http://slimstat.getused.to.it/downloads/get-country/' target='_blank'>separate add-on</a> on our store, free of charge. Don't forget to enter your license key in the corresponding field under Slimstat > Add-ons, to receive free updates!";
 
-			// 3.9.7 self::$admin_notice = "The wait is over: our heatmap add-on is finally available <a href='http://slimstat.getused.to.it/downloads/heatmap/' target='_blank'>on our store</a>. We would like to thank all our users who helped us shape this initial release. Go grab your own copy today! PS: have you noticed those new add-on overview videos on our website?";
-			// 3.9.8 self::$admin_notice = "We've been working on the documentation for Slimstat. Now you can find <a href='https://slimstat.freshdesk.com/support/solutions' target='_blank'>detailed information</a> about all the actions and filters available in our source code. Developers, use them to build your own custom add-ons! We are also adding video tours of our add-ons, and organizing the source code to make it easier to read and understand.";
-			// 3.9.9 self::$admin_notice = "Happy birthday, Slimstat. Nine years ago version 0.8.7 was released to the public, starting the unbelievable journey that has taken us here today. We would like to thank all the 25,000 users who appreciate and support our work in many great ways. We wouldn't have more than 1.3 million downloads, 700 5-star reviews, 16 add-ons, video tutorials, etc... if it weren't for you!";
+			// 3.9.9 self::$admin_notice = "Happy birthday, Slimstat. Nine years ago version 0.8.7 was released to the public, starting the unbelievable journey that has taken us here today. We would like to thank all the 25,000 users who appreciate and support our work in many great ways. We wouldn't have more than 1.3 million downloads, 4.8 out of 5 overall rating, 16 add-ons, video tutorials, etc... if it weren't for you!";
 		}
 		else {
 			self::$admin_notice = "
@@ -614,7 +612,16 @@ class wp_slimstat_admin{
 	 * Adds a new column header to the Posts panel (to show the number of pageviews for each post)
 	 */
 	public static function add_column_header($_columns){
-		$_columns['wp-slimstat'] = '<span class="slimstat-icon" title="'.__('Pageviews in the last 365 days','wp-slimstat').'"></span>';
+		if (wp_slimstat::$options['posts_column_day_interval'] == 0){
+			wp_slimstat::$options['posts_column_day_interval'] = 30;
+		}
+
+		if (wp_slimstat::$options['posts_column_pageviews'] == 'yes'){
+			$_columns['wp-slimstat'] = '<span class="slimstat-icon" title="'.__('Pageviews in the last '.wp_slimstat::$options['posts_column_day_interval'].' days','wp-slimstat').'"></span>';
+		}
+		else{
+			$_columns['wp-slimstat'] = '<span class="slimstat-icon" title="'.__('Unique IPs in the last '.wp_slimstat::$options['posts_column_day_interval'].' days','wp-slimstat').'"></span>';
+		}
 		return $_columns;
 	}
 	// end add_comment_column_header
@@ -627,12 +634,22 @@ class wp_slimstat_admin{
 
 		include_once(dirname(__FILE__).'/view/wp-slimstat-reports.php');
 		wp_slimstat_reports::init();
-		
+
+		if (wp_slimstat::$options['posts_column_day_interval'] == 0){
+			wp_slimstat::$options['posts_column_day_interval'] = 30;
+		}
+
 		$parsed_permalink = parse_url( get_permalink($_post_id) );
 		$parsed_permalink = $parsed_permalink['path'].(!empty($parsed_permalink['query'])?'?'.$parsed_permalink['query']:'');
-		wp_slimstat_db::init('resource contains '.$parsed_permalink.'&&&hour equals 0&&&day equals '.date_i18n('d').'&&&month equals '.date_i18n('m').'&&&year equals '.date_i18n('Y').'&&&interval equals 365&&&interval_direction equals minus');
-		$count = wp_slimstat_db::count_records();
-		echo '<a href="'.wp_slimstat_reports::fs_url("resource contains $parsed_permalink&&&day equals ".date_i18n('d').'&&&month equals '.date_i18n('m').'&&&year equals '.date_i18n('Y').'&&&interval equals 365&&&interval_direction equals minus').'">'.$count.'</a>';
+		wp_slimstat_db::init('resource contains '.$parsed_permalink.'&&&hour equals 0&&&day equals '.date_i18n('d').'&&&month equals '.date_i18n('m').'&&&year equals '.date_i18n('Y').'&&&interval equals '.wp_slimstat::$options['posts_column_day_interval'].'&&&interval_direction equals minus');
+
+		if (wp_slimstat::$options['posts_column_pageviews'] == 'yes'){
+			$count = wp_slimstat_db::count_records();
+		}
+		else{
+			$count = wp_slimstat_db::count_records('1=1', 't1.ip');
+		}
+		echo '<a href="'.wp_slimstat_reports::fs_url("resource contains $parsed_permalink&&&day equals ".date_i18n('d').'&&&month equals '.date_i18n('m').'&&&year equals '.date_i18n('Y').'&&&interval equals '.wp_slimstat::$options['posts_column_day_interval'].'&&interval_direction equals minus').'">'.$count.'</a>';
 	}
 	// end add_column
 

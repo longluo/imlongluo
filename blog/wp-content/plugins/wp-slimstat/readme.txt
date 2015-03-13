@@ -4,10 +4,10 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: analytics, tracking, reports, analyze, wassup, geolocation, online users, spider, tracker, pageviews, stats, maxmind, statistics, statpress
 Requires at least: 3.8
 Tested up to: 4.2
-Stable tag: 3.9.6
+Stable tag: 3.9.8
 
 == Description ==
-Visit our [website](http://slimstat.getused.to.it/) for more information and to [watch our introductory videos](http://slimstat.getused.to.it/features/video-tutorials/).
+[youtube https://www.youtube.com/watch?v=iJCtjxArq4U]
 
 = Key Features =
 * Real-time activity log, server latency, heatmaps, email reports, export data to Excel, and much more
@@ -15,6 +15,14 @@ Visit our [website](http://slimstat.getused.to.it/) for more information and to 
 * Accurate IP geolocation, browser and platform detection (courtesy of [MaxMind](http://www.maxmind.com/) and [Browscap](http://browscap.org))
 * Available in multiple languages: English, Chinese (沐熙工作室), Farsi ([Dean](http://www.mangallery.net)), French (Michael Bastin, Jean-Michel Venet, Yves Pouplard, Henrick Kac), German (TechnoViel), Italian, Japanese (h_a_l_f), Portuguese, Russian ([Vitaly](http://www.visbiz.org/)), Spanish ([WebHostingHub](http://www.webhostinghub.com/)), Swedish (Per Soderman). Is your language missing or incomplete? [Contact Us](http://support.getused.to.it/) if you would like to share your localization.
 * World Map that works on your mobile device, too (courtesy of [amMap](http://www.ammap.com/)).
+
+= Track countries by IP Address =
+Starting from Slimstat 3.9.8, we removed the functionality that allows the tracker to identify a visitor's country based on his IP address.
+The team who manages the WordPress Plugin Repository notified us that since the [MaxMind GeoLite library](http://dev.maxmind.com/geoip/legacy/geolite/)
+used by our plugin to geolocate visitors is released under the Creative Commons BY-SA 3.0 license, it violates the repository guidelines, and cannot
+be bundled with the code. We were required to remove it and alter the plugin so that this functionality becomes optional. By default, your visitors' country
+will be set to Unknown. You can download the geolocation DB as a [separate add-on](http://slimstat.getused.to.it/downloads/get-country/) on our website, free of charge,
+to restore this feature. Don't forget to enter your license key in the corresponding field under Slimstat > Add-ons, to receive free updates!
 
 = What are people saying about Slimstat? =
 * One of the 15+ Cool Free SEO Plugins for WordPress - [udesign](http://www.pixeldetail.com/wordpress/free-seo-plugins-for-wordpress/)
@@ -62,6 +70,19 @@ Our knowledge base is available on our [support center](https://slimstat.freshde
 5. **Responsive layout** - Keep an eye on your reports on the go
 
 == Changelog ==
+
+= 3.9.8 =
+* [Note] The team who manages the WordPress Plugin Repository notified us that since the [MaxMind GeoLite library](http://dev.maxmind.com/geoip/legacy/geolite/) used by Slimstat to geolocate visitors is released under the Creative Commons BY-SA 3.0 license, it violates the repository guidelines, and cannot be bundled with the plugin. We were required to remove the code and alter the plugin so that this functionality becomes optional. We apologize for the inconvenience. However, the only immediate consequence is that your visitors' country will not be identified; everything else will still work as usual. You can download the geolocation DB as a [separate add-on](http://slimstat.getused.to.it/downloads/get-country/) on our store, free of charge. Don't forget to enter your license key in the corresponding field under Slimstat > Add-ons, to receive free updates!
+* [New] A few new options under Slimstat > Settings > General tab > WordPress Integration section, allow you to have more control over the information displayed in the Posts admin screen (thank you, Brad).
+
+= 3.9.7 =
+* [Note] The uninstall routine now deletes the archive table (wp_slim_stats_archive) along with all the other tables (thank you, KalleL)
+* [New] Some users who are using our "track external sites" feature, were getting an error saying that no 'Access-Control-Allow-Origin' header was present on the requested resource. We've added a new option under Settings > Advanced that allows you to specify what domains to allow. Please refer to [this page](http://www.w3.org/TR/cors/#security) for more information about the security implications of allowing an external domain to submit AJAX requests to your server.
+* [New] Added debugging information (most recent tracker error code) under Slimstat > Settings > Maintenance tab > Debugging. This information is useful to troubleshoot issues with the tracker. Please include it when sending a support request.
+* [Fix] The option to delete pageviews based on given filters (Settings > Maintenance > Data Maintenance) was not working as expected (thank you, [kentahayashi](https://wordpress.org/support/topic/cant-delete-pageviews-on-version-396))
+* [Fix] The uninstall script was not deleting all the tables as expected (thank you, [KalleL](https://wordpress.org/support/topic/unable-to-uninstall-wp-slimstat-from-db))
+* [Fix] We've implemented [Marc-Alexandre's new recommendations](http://blog.sucuri.net/2015/02/security-advisory-wp-slimstat-3-9-5-and-lower.html) to further tighten up our SQL queries.
+* [Fix] The new encryption key was affecting the way external sites could be tracked. You can now track non-WP sites again: please make sure to copy and paste the new tracking code (Settings > Advanced) right before your closing BODY tag at the end of your pages.
 
 = 3.9.6 =
 * [Note] The security of our users' data is our top priority, and for this reason we tightened our SQL queries and made our encryption key harder to guess. If you are using a caching plugin, please flush its cache so that the tracking code can be regenerated with the new key. Also, if you are using Slimstat to track external websites, please make sure to replace the tracking code with the new one available under Settings > Advanced. As usual, feel free to contact us if you have any questions.
