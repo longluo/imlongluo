@@ -11,7 +11,9 @@ class wp_slimstat_admin{
 	 */
 	public static function init(){
 		if ((wp_slimstat::$options['enable_ads_network'] == 'yes' || wp_slimstat::$options['enable_ads_network'] == 'no')){
-			self::$admin_notice = "Performance, performance, performance. This has been our mantra in the last few weeks. The new database API introduced in version 4 allowed us to clean up our code and reveal little hidden paths that lead to code perfection. <a href='https://wordpress.org/support/view/plugin-reviews/wp-slimstat#postform' target='_blank'>Let us know</a> if you notice any difference in the amount of time needed to generate your reports.";
+			self::$admin_notice = "Last time we asked our users to send us suggestions on what they would like us to focus on. Fabian came up with a great idea: free premium add-ons for reviewing Slimstat. We liked it so much that we decided to extend it to all our users: write a review and get a $50 coupon (to be used on our store). Just follow these three easy steps: [1] send us your website URL so that we can approve your request; [2] write a review and leave it online for at least two weeks; [3] send us a link to your review and earn a $50 discount code. What are you waiting for?";
+			// The WordPress Translation Team contacted us to let us know that Slimstat has been imported into <a href='https://translate.wordpress.org/projects/wp-plugins/wp-slimstat' target='_blank'>translate.wordpress.org</a>. We are adapting the source code and moving the localization files within our folder structure, to comply with their new guidelines. It looks like it will now be much easier for our users to contribute, and help Slimstat speak many new languages. <a href='https://translate.wordpress.org/projects/wp-plugins/wp-slimstat/stable' target='_blank'>Go take a look</a> and get a $50 coupon to spend on our store for each localization you contribute.
+
 			self::$admin_notice .= '<br/><br/><a id="slimstat-hide-admin-notice" href="#" class="button-secondary">Got it, thanks</a>';
 		}
 		else {
@@ -69,11 +71,11 @@ class wp_slimstat_admin{
 		self::$config_url = 'admin.php?page=wp-slim-config&amp;tab=';
 
 		// Load language files
-		load_plugin_textdomain('wp-slimstat', WP_PLUGIN_DIR .'/wp-slimstat/admin/lang', '/wp-slimstat/admin/lang');
+		load_plugin_textdomain('wp-slimstat', WP_PLUGIN_DIR .'/wp-slimstat/languages', '/wp-slimstat/languages');
 
 		// If a localization does not exist, use English
 		if (!isset($l10n['wp-slimstat'])){
-			load_textdomain('wp-slimstat', WP_PLUGIN_DIR .'/wp-slimstat/admin/lang/wp-slimstat-en_US.mo');
+			load_textdomain('wp-slimstat', WP_PLUGIN_DIR .'/wp-slimstat/languages/wp-slimstat-en_US.mo');
 		}
 
 		// WPMU - New blog created
@@ -122,8 +124,8 @@ class wp_slimstat_admin{
 			add_action('admin_enqueue_scripts', array(__CLASS__, 'wp_slimstat_stylesheet_icon'));
 
 			// Update the table structure and options, if needed
-			if (!empty(wp_slimstat::$options['version']) && wp_slimstat::$options['version'] != wp_slimstat::$version){
-				add_action('admin_init', array(__CLASS__, 'update_tables_and_options'));
+			if ( !empty( wp_slimstat::$options[ 'version' ] ) && wp_slimstat::$options[ 'version' ] != wp_slimstat::$version ) {
+				add_action( 'admin_init', array(__CLASS__, 'update_tables_and_options' ) );
 			}
 		}
 
@@ -264,7 +266,9 @@ class wp_slimstat_admin{
 				
 				outbound_resource VARCHAR(2048) DEFAULT NULL,
 
+				dt_out INT(10) UNSIGNED DEFAULT 0,
 				dt INT(10) UNSIGNED DEFAULT 0,
+
 				CONSTRAINT PRIMARY KEY (id),
 				INDEX idx_{$GLOBALS['wpdb']->prefix}slim_stats_dt (dt)
 			) COLLATE utf8_general_ci $use_innodb";
@@ -383,7 +387,9 @@ class wp_slimstat_admin{
 					
 					outbound_resource VARCHAR(2048) DEFAULT NULL,
 
+					dt_out INT(10) UNSIGNED DEFAULT 0,
 					dt INT(10) UNSIGNED DEFAULT 0,
+
 					CONSTRAINT PRIMARY KEY (id),
 					INDEX idx_{$GLOBALS['wpdb']->prefix}slim_stats_dt (dt)
 				) COLLATE utf8_general_ci $use_innodb", $GLOBALS['wpdb']->prefix.'slim_stats_4', $my_wpdb );
@@ -514,7 +520,7 @@ class wp_slimstat_admin{
 		// --- Updates for version 4.1.3 ---
 		if (version_compare(wp_slimstat::$options['version'], '4.1.3', '<')){
 			// Change column type to add IPv6 support
-			$my_wpdb->query( "ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD ip_temp VARCHAR(39) DEFAULT NULL AFTER id, ADD other_ip_temp VARCHAR(39) DEFAULT NULL AFTER id" );
+			$my_wpdb->query( "ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD ip_temp VARCHAR(39) DEFAULT NULL AFTER outbound_resource, ADD other_ip_temp VARCHAR(39) DEFAULT NULL AFTER id" );
 			$my_wpdb->query( "UPDATE {$GLOBALS['wpdb']->prefix}slim_stats SET ip_temp = INET_NTOA(ip), other_ip_temp = INET_NTOA(other_ip)" );
 			$my_wpdb->query( "ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats CHANGE ip ip_num INT UNSIGNED DEFAULT 0" );
 			$my_wpdb->query( "ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats CHANGE other_ip other_ip_num INT UNSIGNED DEFAULT 0" );
@@ -522,6 +528,12 @@ class wp_slimstat_admin{
 			$my_wpdb->query( "ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats CHANGE other_ip_temp other_ip VARCHAR(39) DEFAULT NULL AFTER ip" );
 		}
 		// --- END: Updates for version 4.1.3 ---
+
+		// --- Updates for version 4.1.7 ---
+		if ( version_compare( wp_slimstat::$options[ 'version' ], '4.1.7', '<' ) ) {
+			// Change column type to add IPv6 support
+			$my_wpdb->query( "ALTER TABLE {$GLOBALS[ 'wpdb' ]->prefix}slim_stats ADD dt_out INT(10) UNSIGNED DEFAULT 0 AFTER outbound_resource" );
+		}
 
 		// Now we can update the version stored in the database
 		wp_slimstat::$options['version'] = wp_slimstat::$version;
@@ -611,7 +623,8 @@ class wp_slimstat_admin{
 			'expand_details' => isset(wp_slimstat::$options['expand_details'])?wp_slimstat::$options['expand_details']:'no',
 			'refresh_interval' => intval( wp_slimstat::$options[ 'refresh_interval' ] ),
 			'text_direction' => $GLOBALS['wp_locale']->text_direction,
-			'use_slimscroll' => isset(wp_slimstat::$options['use_slimscroll'])?wp_slimstat::$options['use_slimscroll']:'yes'
+			'use_slimscroll' => !empty( wp_slimstat::$options[ 'use_slimscroll' ] ) ? wp_slimstat::$options[ 'use_slimscroll' ] : 'yes',
+			'chart_colors' => !empty( wp_slimstat::$options[ 'chart_colors' ] ) ? wp_slimstat::string_to_array( wp_slimstat::$options[ 'chart_colors' ] ) : array( '#ccc', '#999', '#bbcc44', '#21759b' )
 		);
 		wp_localize_script('slimstat_admin', 'SlimStatAdminParams', $params);
 	}
@@ -656,7 +669,6 @@ class wp_slimstat_admin{
 			$new_entry[] = add_submenu_page('admin.php', __('Site Analysis','wp-slimstat'), __('Site Analysis','wp-slimstat'), $minimum_capability, 'wp-slim-view-4', array(__CLASS__, 'wp_slimstat_include_view'));
 			$new_entry[] = add_submenu_page('admin.php', __('Traffic Sources','wp-slimstat'), __('Traffic Sources','wp-slimstat'), $minimum_capability, 'wp-slim-view-5', array(__CLASS__, 'wp_slimstat_include_view'));
 			$new_entry[] = add_submenu_page('admin.php', __('Map Overlay','wp-slimstat'), __('Map Overlay','wp-slimstat'), $minimum_capability, 'wp-slim-view-6', array(__CLASS__, 'wp_slimstat_include_view'));
-			if (has_action('wp_slimstat_custom_report')) $new_entry[] = add_submenu_page('admin.php', __('Custom Reports','wp-slimstat'), __('Custom Reports','wp-slimstat'), $minimum_capability, 'wp-slim-view-7', array(__CLASS__, 'wp_slimstat_include_view'));
 			$new_entry[] = add_submenu_page('admin.php', __('Add-ons','wp-slimstat'), __('Add-ons','wp-slimstat'), $minimum_capability, 'wp-slim-addons', array(__CLASS__, 'wp_slimstat_include_addons'));
 		}
 
@@ -683,9 +695,11 @@ class wp_slimstat_admin{
 			$minimum_capability = wp_slimstat::$options['capability_can_admin'];
 		}
 
-		$new_entry = add_submenu_page(null, __('Settings','wp-slimstat'), __('Settings','wp-slimstat'), $minimum_capability, 'wp-slim-config', array(__CLASS__, 'wp_slimstat_include_config'));
 		if (wp_slimstat::$options['use_separate_menu'] == 'yes'){
 			$new_entry = add_submenu_page('wp-slim-view-1', __('Settings','wp-slimstat'), __('Settings','wp-slimstat'), $minimum_capability, 'wp-slim-config', array(__CLASS__, 'wp_slimstat_include_config'));
+		}
+		else {
+			$new_entry = add_submenu_page(null, __('Settings','wp-slimstat'), __('Settings','wp-slimstat'), $minimum_capability, 'wp-slim-config', array(__CLASS__, 'wp_slimstat_include_config'));
 		}
 		
 		// Load styles and Javascript needed to make the reports look nice and interactive
@@ -1100,7 +1114,7 @@ class wp_slimstat_admin{
 		echo '</tr>';
 	}
 
-	protected static function settings_textarea($_option_name = '', $_option_details = array('description' =>'', 'type' => '', 'long_description' => ''), $_alternate = false){
+	protected static function settings_textarea($_option_name = '', $_option_details = array('description' =>'', 'type' => '', 'long_description' => '', 'rows' => 2), $_alternate = false){
 		$_option_details = array_merge(array('description' =>'', 'type' => '', 'long_description' => '', 'before_input_field' => '', 'after_input_field' => '', 'custom_label_yes' => '', 'custom_label_no' => ''), $_option_details);
 		
 		if (!isset(wp_slimstat::$options[$_option_name])){
@@ -1111,7 +1125,7 @@ class wp_slimstat_admin{
 			<td colspan="2">
 				<label for="<?php echo $_option_name ?>"><?php echo $_option_details['description'] ?></label>
 				<p class="description"><?php echo $_option_details['long_description'] ?></p>
-				<p><textarea class="large-text code" cols="50" rows="2" name="options[<?php echo $_option_name ?>]" id="<?php echo $_option_name ?>"><?php echo !empty(wp_slimstat::$options[$_option_name])?stripslashes(wp_slimstat::$options[$_option_name]):'' ?></textarea> <span class="description"><?php echo $_option_details['after_input_field'] ?></span></p>
+				<p><textarea class="large-text code" cols="50" rows="<?php echo $_option_details['rows'] ?>" name="options[<?php echo $_option_name ?>]" id="<?php echo $_option_name ?>"><?php echo !empty(wp_slimstat::$options[$_option_name])?stripslashes(wp_slimstat::$options[$_option_name]):'' ?></textarea> <span class="description"><?php echo $_option_details['after_input_field'] ?></span></p>
 			</td>
 		</tr><?php
 	}

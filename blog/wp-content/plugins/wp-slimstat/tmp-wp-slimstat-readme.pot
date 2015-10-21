@@ -1,0 +1,410 @@
+msgid ""
+msgstr "MIME-Version: 1.0\n"
+
+#. Name.
+msgid "WP Slimstat"
+msgstr ""
+
+#. Screenshot description.
+msgid "<strong>Overview</strong> - Your website traffic at a glance"
+msgstr ""
+
+#. Screenshot description.
+msgid "<strong>Activity Log</strong> - A real-time view of your visitors' whereabouts"
+msgstr ""
+
+#. Screenshot description.
+msgid "<strong>Settings</strong> - Plenty of options to customize the plugin's behavior"
+msgstr ""
+
+#. Screenshot description.
+msgid "<strong>Interactive World Map</strong> - See where your visitors are coming from"
+msgstr ""
+
+#. Screenshot description.
+msgid "<strong>Responsive layout</strong> - Keep an eye on your reports on the go"
+msgstr ""
+
+#. Found in description header.
+msgid "Key Features"
+msgstr ""
+
+#. Found in description header.
+msgid "What are people saying about Slimstat?"
+msgstr ""
+
+#. Found in description header.
+msgid "Requirements"
+msgstr ""
+
+#. Found in description header.
+msgid "Premium Add-ons"
+msgstr ""
+
+#. Found in description list item.
+msgid "Real-time activity log, server latency, heatmaps, email reports, export data to Excel, full IPv6 support, and much more"
+msgstr ""
+
+#. Found in description list item.
+msgid "Compatible with W3 Total Cache, WP SuperCache and most caching plugins"
+msgstr ""
+
+#. Found in description list item.
+msgid "Accurate IP geolocation, browser and platform detection (courtesy of <a href=\"http://www.maxmind.com/\">MaxMind</a> and <a href=\"http://browscap.org\">Browscap</a>)"
+msgstr ""
+
+#. Found in description list item.
+msgid "Available in multiple languages: English, Chinese (沐熙工作室), Farsi (<a href=\"http://www.mangallery.net\">Dean</a>), French (Michael Bastin, Jean-Michel Venet, Yves Pouplard, Henrick Kac), German (TechnoViel), Italian, Japanese (h_a_l_f), Portuguese, Russian (<a href=\"http://www.visbiz.org/\">Vitaly</a>), Spanish (<a href=\"http://www.webhostinghub.com/\">WebHostingHub</a>), Swedish (Per Soderman). Is your language missing or incomplete? <a href=\"http://support.wp-slimstat.com/\">Contact Us</a> if you would like to share your localization."
+msgstr ""
+
+#. Found in description list item.
+msgid "World Map that works on your mobile device, too (courtesy of <a href=\"http://www.ammap.com/\">amMap</a>)."
+msgstr ""
+
+#. Found in description list item.
+msgid "One of the 15+ Cool Free SEO Plugins for WordPress - <a href=\"http://www.pixeldetail.com/wordpress/free-seo-plugins-for-wordpress/\">udesign</a>"
+msgstr ""
+
+#. Found in description list item.
+msgid "Thanks you for such an excellent plugin. I am using it to kick Jetpack out of all the wordpress installations that I manage for myself and others - <a href=\"http://wordpress.org/support/topic/plugin-wp-slimstat-excellent-but-some-errors-on-activating\">robertwagnervt</a>"
+msgstr ""
+
+#. Found in description list item.
+msgid "I like Slimstat very much and so I decided to use it instead of Piwik - <a href=\"http://wordpress.org/support/topic/plugin-wp-slimstat-slimstat-and-privacy\">Joannes</a>"
+msgstr ""
+
+#. Found in description list item.
+msgid "Read all the <a href=\"http://wordpress.org/support/view/plugin-reviews/wp-slimstat\">reviews</a> and feel free to post your own!"
+msgstr ""
+
+#. Found in description list item.
+msgid "WordPress 3.8+"
+msgstr ""
+
+#. Found in description list item.
+msgid "PHP 5.3+"
+msgstr ""
+
+#. Found in description list item.
+msgid "MySQL 5.0.3+"
+msgstr ""
+
+#. Found in description list item.
+msgid "At least 25 MB of free web space"
+msgstr ""
+
+#. Found in description list item.
+msgid "At least 5 MB of free DB space"
+msgstr ""
+
+#. Found in description list item.
+msgid "At least 20 Mb of free PHP memory for the tracker (peak memory usage)"
+msgstr ""
+
+#. Found in description list item.
+msgid "IE9+ or any browser supporting HTML5, to access the reports"
+msgstr ""
+
+#. Found in description paragraph.
+msgid "[youtube https://www.youtube.com/watch?v=iJCtjxArq4U]"
+msgstr ""
+
+#. Found in description paragraph.
+msgid "Visit <a href=\"http://www.wp-slimstat.com/addons/\">our website</a> for a list of available extensions."
+msgstr ""
+
+#. Found in installation list item.
+msgid "In your WordPress admin, go to Plugins &gt; Add New"
+msgstr ""
+
+#. Found in installation list item.
+msgid "Search for WP Slimstat"
+msgstr ""
+
+#. Found in installation list item.
+msgid "Click on <strong>Install Now</strong> under WP Slimstat and then activate the plugin"
+msgstr ""
+
+#. Found in installation list item.
+msgid "Make sure your template calls <code>wp_footer()</code> or the equivalent hook somewhere (possibly just before the <code>&lt;/body&gt;</code> tag)"
+msgstr ""
+
+#. Found in installation list item.
+msgid "Go to Slimstat &gt; Settings &gt; Maintenance tab &gt; MaxMind IP to Country section and click on \"Install GeoLite DB\" to detect your visitors' countries based on their IP addresses"
+msgstr ""
+
+#. Found in installation list item.
+msgid "If your <code>wp-admin</code> folder is not publicly accessible, make sure to check the <a href=\"http://wordpress.org/extend/plugins/wp-slimstat/faq/\">FAQs</a> to see if there's anything else you need to do"
+msgstr ""
+
+#. Found in installation paragraph.
+msgid "Please note: if you decide to uninstall Slimstat, all the stats will be <strong>PERMANENTLY</strong> deleted from your database. Make sure to setup a database backup (wp_slim_*) to avoid losing your data."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] The hover effect that revealed the details of a given row in many of our list reports has been flagged as not user-friendly by some users. A new approach using a floating tooltip has been implemented to address this issue (thank you, Romain Petges)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Slimstat now differentiates between known users who are currently visiting your website, and all others users currently online (two separate reports)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Customize the look and feel of your charts. Go to Settings &gt; Reports &gt; Miscellaneous, and follow the instructions (thank you, <a href=\"https://wordpress.org/support/topic/slimstatadmin_chart_optionscolors\">Morcom</a>)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] The WordPress Translation Team contacted us to let us know that Slimstat has been imported into <a href=\"https://translate.wordpress.org/projects/wp-plugins/wp-slimstat\">translate.wordpress.org</a>. We are adapting the source code and relocating the localization files within our folder structure, to comply with their new guidelines."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Removed atialiasing detection feature from the tracker source code, as it was not considered reliable and it didn't really add any useful information for the administrator."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Top Downloads report is now showing number of downloads by default, and percentages on hover (thank you, Romain Petges)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] SlimScroll jquery library has been updated to version 1.3.6."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] <a href=\"http://browscap.org/\">Browscap</a> has been updated to version 6007, released on September 28, 2015."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] <a href=\"http://www.amcharts.com/javascript-maps/\">AmMap</a> has been updated to version 3.17.1, released on September 16, 2015."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] A bug in the SQL to calculate the top bounce pages was affecting the report itself (thank you, Pattaya_web)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] An update to the WordPress CSS files affected the layout of our User Overview add-on (thank you, Per Soderman)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Do not record referer URL, if it's the site URL itself."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Added new column dt_out to our table structure, to capture when a visitor leaves the page. This allows us to measure things like time on page and time on site. Please consider purchasing our <a href=\"http://www.wp-slimstat.com/downloads/heartbeat/\">Heartbeat</a> add-on to increase this metric's accuracy."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] New icon added to our custom font package, and removed unneded font files for faster loading."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] <a href=\"https://github.com/YahnisElsts/plugin-update-checker\">Plugin Update Checker</a> version 2.2 is now part of the package."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Bug preventing the stylesheet from loading on the Settings pages, under certain circumstances."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Polish localization added. Thank you, <a href=\"https://www.dfactory.eu/\">DFactory Team</a>."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Bug affecting the admin bar: permissions to display the link to just administrators were not being honored. (thank you, Nils)"
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Note] Yep, our team is active even in August, while sunbathing somewhere on the US East Coast."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Now all the 'Recent' reports leverage the new optimized SQL code, not just Activity Log."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Replaced function get_the_title with the_title_attribute (thank you, <a href=\"https://wordpress.org/support/topic/html-code-in-reports-post-titles\">Pepe</a>)"
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] The GNU License notice was not hiding upon acceptance of the terms and conditions."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Contextual counters are now added not just to pages and posts, but to other custom post types available on your website."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Optimized SQL query that retrieves the data for the Access Log report."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] New link for GetSocial.io partnership."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Patched a remote XSS vulnerability related to forged referrer URLs."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Bug in refreshing Access Log (second try)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Bug in calculating Unique IP counters for pages and posts."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Link to install the GeoLocation DB was pointing to the wrong tab under Settings."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] When selecting the filter in Overview &gt; Top Pages, reports were returning empty datasets."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Resetting the report layout was not always working as expected, if Slimstat was displayed in the admin bar."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Administrators can now set the maximum number of records that should be retrieved from the database when generating the reports (Settings &gt; Reports). This allows those with powerful servers and unlimited PHP resources to increase this limit and get a more accurate picture of their visitors."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Extended the export functionality (via our premium Export to Excel add-on) to reports like At a Glance, Rankings, Audience Overview, etc (thank you, Tiffany)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Undefined variable 'temp' in wp-slimstat-admin.php (thank you, <a href=\"https://wordpress.org/support/topic/undefined-variable-temp-in-wp-slimstat-adminphp\">candidhams</a>)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Referrers and other information were not being displayed when the Access Log report was refreshed through the admin button (thank you, <a href=\"https://wordpress.org/support/topic/losing-referrers-on-refresh\">Diggories</a>)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Warning message in Top Entry Pages and Top Exit Pages (thank you, Romain)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] The link in the admin bar, when the corresponding option was enabled, was interfering with some admin bar plugins (thank you, Christian)"
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Note] We are still getting support requests from users having issues with Slimstat because of the GeoLite add-on that was distributed a few months ago. If you are still using this separate add-on, we'd like to remind you that Slimstat 4 introduced a new more intuitive way of managing the MaxMind Geolocation database bundled with our software. Actually, the free Geolite plugin is not compatible with the latest version of Slimstat, because of the IPv6 support we introduced a few weeks ago. We recommend that you uninstall the add-on from your systems, thus improving the overall performance of your website. As usual, do not hesitate to contact us if you have any questions."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Restored Activity Log report in the WordPress Dashboard."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] The Add-ons tab under settings was visible even if no add-ons were installed (thank you, <a href=\"https://wordpress.org/support/topic/add-ons-tab-blank\">greg57 and others</a>)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Typo in our German localization (thank you, Marc-Oliver)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Adding users to the corresponding blacklist was not working if the table wp_users had certain collations (thank you, Romain Petges)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Non-standard quotes and other characters (hyphens, etc) were getting munged because of a security feature being overzealous (thank you, Victor)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] SQL Debug Mode is now correctly displayed in the WP Dashboard reports."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] More PHP warnings (debug mode) removed."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Added missing localization strings for certain operating systems (thank you, Romain Petges)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Our Export to Excel add-on now includes the post slug, when appropriate."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Removed a few warnings displayed when DEBUG MODE was enabled."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] A warning was being displayed when exporting certain reports."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Welcome our new partner GetSocial.io, a service that allows you to find your true influencers and understand which users are driving your traffic and conversions through their shares. Our users get free access to their platform through a new report located in the Site Analysis screen."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[New] Slimstat can now differentiate between viewport size and screen size (or resolution). Two new reports, hidden by default, will enumerate the most popular of both categories."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] We implemented a more flexible way to change the number of results returned by the database API (via filter). Documentation to follow soon."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Reports for Top and Recent Events are back. Go say hi, they will be waiting for you under Slimstat &gt; Site Analysis. If you don't see them, you will need to activate them inside the Screen Options tab."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] After the report and data API overhaul, it was now the config panels' turn. We revisited the way they are managed, and consolidated how third party add-ons can add their own parameters. All of our add-ons affected by this change have been updated on our repository."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Third party plugins and add-ons have now an easier way to increase the limit on the number of results returned by the data API."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] To avoid confusion when a date filter is set, the Real-Time Log has been renamed Access Log."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Update] Code optimizations in the report library/API: function get_raw_results is about to be deprecated. Please contact us if you're using it and would like to know how to proceed from now on."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Setting the 'is empty' filter would cause a WordPress warning regarding wpdb-&gt;prepare."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] The setting to ignore visitors by username was not being saved as expected (thank you, Romain)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Custom CSS styles were not being properly enqueued (thank you, Romain)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Quotes in post titles were being escaped twice (better safe than sorry, right? thank you, Victor)."
+msgstr ""
+
+#. Found in changelog list item.
+msgid "[Fix] Bug affecting the Export to Excel add-on."
+msgstr ""
+
+#. Found in faq paragraph.
+msgid "Our knowledge base is available on our <a href=\"http://docs.wp-slimstat.com/\">support center</a> website."
+msgstr ""
+
+#. Found in remaining content header.
+msgid "Special Thanks To"
+msgstr ""
+
+#. Found in remaining content header.
+msgid "Supporters"
+msgstr ""
+
+#. Found in remaining content list item.
+msgid "<a href=\"http://www.visbiz.org/\">Vitaly</a>, who volunteers quite a lot of time for QA, testing, and for his Russian localization."
+msgstr ""
+
+#. Found in remaining content list item.
+msgid "Davide Tomasello, who provided great feedback and plenty of ideas to take this plugin to the next level."
+msgstr ""
