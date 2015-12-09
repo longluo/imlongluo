@@ -380,7 +380,9 @@ a:focus {
     width: 900px;
     padding-bottom: 120px;
 
+    <!--
     background-image: url(http://databank.u.qiniudn.com/images/cat/cat_guibai.jpg?imageView/1/w/180/h/220/q/85);
+    -->
     background-position: bottom right;
     background-repeat: no-repeat;
 }
