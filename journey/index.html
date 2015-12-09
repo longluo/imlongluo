@@ -20,6 +20,10 @@
 	Version: 3.1.1
 	修正标题图片显示问题	
 	2015-12-09 11:38:51
+	
+	Version: 3.2
+	修改文字脚本
+	2015-12-09 16:51:18
 
 -->
 
@@ -55,8 +59,8 @@
 <meta name="apple-mobile-web-app-title" content="旅行足迹" />
 
 <link rel="apple-touch-icon-precomposed" href="http://databank.u.qiniudn.com/images/ios/icon.png" />
-<link rel="shortcut icon" href="http://databank.u.qiniudn.com/images/favicon.ico" />
-<link rel="icon" href="http://databank.u.qiniudn.com/images/favicon.ico" />
+<link rel="shortcut icon" href="http://7d9hot.com1.z0.glb.clouddn.com/favicon/coding_favicon.ico" />
+<link rel="icon" href="http://7d9hot.com1.z0.glb.clouddn.com/favicon/coding_favicon.ico" />
 
 <link href="http://databank.u.qiniudn.com/bootstrap/global.min.css" rel="stylesheet" media="screen" />
 <link href="http://databank.u.qiniudn.com/bootstrap/responsive.min.css" rel="stylesheet" media="screen" />
@@ -84,9 +88,6 @@
 body {
 	overflow-x: hidden;
 	background-color: #999;
-	/*
-	background-image:url(http://databank.u.qiniudn.com/images/travel_bg.jpg);
-	*/
 	background-image:url(data:image/jpeg;base64,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);
 	-webkit-user-select: none;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -607,7 +608,7 @@ footer {
 ----------------------------------------------- */
 ::-webkit-scrollbar {
 	width: 10px;
-	background: #cacaca url("http://dw-resources.qiniudn.com/images/patterns/mooning.jpg");
+	background: #cacaca url("http://databank.u.qiniudn.com/images/patterns/mooning.jpg");
 	opacity: .8;	
 	-webkit-transition: .25s;
 }
@@ -617,7 +618,7 @@ footer {
 	-webkit-transition: .25s;
 }
 ::-webkit-scrollbar-track {
-	background: #cacaca url("http://dw-resources.qiniudn.com/images/patterns/mooning.jpg");
+	background: #cacaca url("http://databank.u.qiniudn.com/images/patterns/mooning.jpg");
 	/* border: thin solid lightgray; 
 	box-shadow: 0px 0px 3px #dfdfdf inset; */
 	border-radius: 10px;
@@ -642,24 +643,29 @@ footer {
 <div id="header-camarts-entry" class="navbar navbar-inverse hide">
     <div class="navbar-inner">
         <div class="container">
-        	<a href="http://www.imlongluo.com/blog/" target="_blank">去我的博客网站查看更多作品 »</a>
+        	<a href="http://www.imlongluo.com/blog/" target="_blank">去我的博客查看更多作品 »</a>
         </div>
     </div>
 </div>
 
 <header id="header" class="jumbotron jumbotron-shadow">
     <div id="header-text" class="container header-elements">
-        <h1 id="title" class="header-elements"><img src="http://databank.u.qiniudn.com/images/travel_title.png"></h1>
-        <p id="subtitle" class="lead"> Long Luo's Journey <br class="visible-desktop">
-        旅行...<br>
-        <a id="website-link" href="http://www.imlongluo.com/blog/" class="lead-link text-center" target="_blank" title="了解关于我的一切" data-toggle="tooltip" data-placement="bottom">进入我的个人网站 »</a></p>
+    
+        <h1 id="title" class="header-elements">
+        	<img src="../../images/travel_title.png">
+        </h1>
+        
+        <p id="subtitle" class="lead">吾生也有涯，而知也无涯。纸上得来终觉浅，绝知此事要躬行。人生就像一场旅行，让每时每刻都是最好的自己。
+        	<br class="visible-desktop">
+			我们所看到的往往只有自己这个层次的世界，但生活并不是像自己原先以为的只有我所知道的那种方式。不断地思考，不断的学习，让自己看到更大的世界，永远让自己成为一个更好的自己。				
+			<br>
+        
+			<a id="website-link" href="../blog/index.php" class="lead-link text-center" target="_blank" title="了解关于我的一切" data-toggle="tooltip" data-placement="bottom">进入我的个人网站 »
+			</a>
+        </p>
 	</div>
-	
-    <div class="am-container under blur" id="am-container">
-			
-	<span class="montage-copyright">旅行摄影作品随机展示墙 <a href="javascript:;" onclick="javascript:window.location.reload()">刷新页面换一换</a> | <a href="http://www.imlongluo.com/blog/" target="_blank">&copy; 2013-2015</a> <a href="http://www.imlongluo.com/blog/" target="_blank">Long Luo&reg;</a></span>
-    </div>
-    <div id="header-shadow" class="shadow"></div>
+    
+	<div id="header-shadow" class="shadow"></div>
     <div id="handle" class="hide">
 		<a href="javascript:;"><img id="handle-chevron" src="http://databank.u.qiniudn.com/images/chevron.png"></a>
     </div>
@@ -678,11 +684,10 @@ footer {
             <li class="active">
                 <a id="link-to-china" href="javascript:;" data-toggle="tooltip">China</a>
             </li>
-            <li><a id="link-to-world" href="http://www.imlongluo.com/journey/world.html" title="切换到世界地图" pjax-title="旅行足迹" data-toggle="tooltip">World</a></li>
-            <!--
-			<li class="disabled"><a id="link-to-america" href="javascript:;" title="暂未开放" data-toggle="tooltip">美洲</a></li>
-            <li class="disabled"><a id="link-to-europe" href="javascript:;" title="暂未开放" data-toggle="tooltip">欧洲</a></li>
-			-->
+            
+            <li>
+            	<a id="link-to-world" href="world.html" title="切换到世界地图" pjax-title="旅行足迹" data-toggle="tooltip">World</a>
+            </li>
         </ul>
     </nav>
     
@@ -697,10 +702,12 @@ footer {
             	<div class="row">                    
                     <div class="span6 offset3">
                     	<h3 class="text-center">关于地图数据</h3>
-                        <p>地图中以红点标示的为我曾到达过的地方</p>
+                        <p>地图中以红点标示为我曾到达过的地方</p>
                         <ul>
+                        	<!--
                         	<li><p>地图数据来自 <a href="http://www.naturalearthdata.com/" target="_blank">Natural Earth</a></p></li>
-                            <li><p>所有这些坐标都是我人生的重要经历，正是这些造就了我；</p></li>
+                        	-->
+                            <li><p>所有这些坐标都是我人生的重要经历，正是这些成就了现在的我；</p></li>
                             <li><p>所有坐标信息，均来源于在 Google 地图查询中到的该地方坐标；</p></li>         
                             <li><p>坐标点和其中所标出的到达年份为非完整数据。</p></li> 
                             <li><p>最后更新时间：2013年11月27日</p></li>
@@ -723,14 +730,6 @@ footer {
 	
 	$('#link-to-china').hover(function(){
 		$('#link-to-china').tooltip('show');
-	});
-	
-	$('#link-to-america').hover(function(){
-		$('#link-to-america').tooltip('show');
-	});
-	
-	$('#link-to-europe').hover(function(){
-		$('#link-to-europe').tooltip('show');
 	});
 	</script>
     

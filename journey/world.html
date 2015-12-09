@@ -14,8 +14,8 @@
 	Modified by Long Luo @December 23th, 2013 at Shenzhen, China.
 	
 	Version: 3.1
-	Modify the image sources.
-	2015-12-09 12:32:26
+	修改图片源，文字脚本，删除冗余代码
+	2015-12-09 16:14:59
 	
 -->
 
@@ -53,8 +53,8 @@
 
 
 <link rel="apple-touch-icon-precomposed" href="http://databank.u.qiniudn.com/images/ios/icon.png" />
-<link rel="shortcut icon" href="http://databank.u.qiniudn.com/images/favicon.ico" />
-<link rel="icon" href="http://databank.u.qiniudn.com/images/favicon.ico" />
+<link rel="shortcut icon" href="http://7d9hot.com1.z0.glb.clouddn.com/favicon/coding_favicon.ico" />
+<link rel="icon" href="http://7d9hot.com1.z0.glb.clouddn.com/favicon/coding_favicon.ico" />
 
 <link href="http://databank.u.qiniudn.com/bootstrap/global.min.css" rel="stylesheet" media="screen" />
 <link href="http://databank.u.qiniudn.com/bootstrap/responsive.min.css" rel="stylesheet" media="screen" />
@@ -82,9 +82,6 @@
 body {
 	overflow-x: hidden;
 	background-color: #999;
-	/*
-	background-image:url(http://databank.u.qiniudn.com/images/travel_bg.jpg);
-	*/
 	background-image:url(data:image/jpeg;base64,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);
 	-webkit-user-select: none;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
@@ -245,6 +242,7 @@ h1, h2, h3, h4, h5, p, span {
 	   -moz-transition: all 1s ease-in-out;
 			transition: all 1s ease-in-out;
 }
+
 .jumbotron .am-container a:hover {
 	
 }
@@ -620,15 +618,16 @@ footer {
 <header id="header" class="jumbotron jumbotron-shadow">
     <div id="header-text" class="container header-elements">
         <h1 id="title" class="header-elements"><img src="http://databank.u.qiniudn.com/images/travel_title.png"></h1>
-        <p id="subtitle" class="lead"> Frank Luo's Journey <br class="visible-desktop">
-        Life is a long long journey. <br>
-        <a id="website-link" href="http://www.imlongluo.com" class="lead-link text-center" target="_blank" title="Wanna Know Me?" data-toggle="tooltip" data-placement="bottom">Surf My Website »</a></p>
+        <p id="subtitle" class="lead"> Life is a long long journey.
+        	<br class="visible-desktop">
+			Always getting better and better, Always be the best of yourself. 
+			<br>
+
+        <a id="website-link" href="http://www.imlongluo.com" class="lead-link text-center" target="_blank" title="Wanna Know Me?" data-toggle="tooltip" data-placement="bottom">Surfing My Website »</a></p>
 	</div>
 	
     <div class="am-container under blur" id="am-container">
-
-	<span class="montage-copyright">My Works Show Wall <a href="javascript:;" onclick="javascript:window.location.reload()">刷新页面换一换</a> | <a href="http://www.imlongluo.com/blog/" target="_blank">&copy; 2005 - 2013</a> <a href="http://www.imlongluo.com/blog/" target="_blank">Long Luo&reg;</a></span>
-    </div>
+    
     <div id="header-shadow" class="shadow"></div>
     <div id="handle" class="hide">
 		<a href="javascript:;"><img id="handle-chevron" src="http://databank.u.qiniudn.com/images/chevron.png"></a>
@@ -649,10 +648,6 @@ footer {
             <li class="active">
                 <a id="link-to-world" href="javascript:;" data-toggle="tooltip">World</a>
             </li>
-			<!--
-            <li class="disabled"><a id="link-to-america" href="javascript:;" title="暂未开放" data-toggle="tooltip">美洲</a></li>
-            <li class="disabled"><a id="link-to-europe" href="javascript:;" title="暂未开放" data-toggle="tooltip">欧洲</a></li>
-			-->
         </ul>
     </nav>
     
@@ -667,9 +662,11 @@ footer {
             	<div class="row">                    
                     <div class="span6 offset3">
                     	<h3 class="text-center">About Map </h3>
-                        <p>Map with Blue Pot representing for the place where I had reached </p>
+                        <p>Map with Red Pot representing for the place where I had reached </p>
                         <ul>
+                        <!--
                         	<li><p>The Map Source: <a href="http://www.naturalearthdata.com/" target="_blank">Natural Earth</a></p></li>
+                        	-->
                             <li><p>All of these are the important experience of my life;</p></li>
                             <li><p>All the Geo co-ordinates are from the Google Map;</p></li>         
                             <li><p>You can change to the country to view the details, such as <a href="china.html" title="Change to China Map" pjax-title="Journey Frank Luo">China</a>;</p></li> 
@@ -695,13 +692,6 @@ footer {
 		$('#link-to-china').tooltip('show');
 	});
 	
-	$('#link-to-america').hover(function(){
-		$('#link-to-america').tooltip('show');
-	});
-	
-	$('#link-to-europe').hover(function(){
-		$('#link-to-europe').tooltip('show');
-	});
 	</script>
     
 </article>
