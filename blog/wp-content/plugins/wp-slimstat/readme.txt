@@ -5,7 +5,7 @@ Tags: analytics, tracking, reports, analyze, wassup, geolocation, online users, 
 Text Domain: wp-slimstat
 Requires at least: 3.8
 Tested up to: 4.4
-Stable tag: 4.1.8
+Stable tag: 4.2.2
 
 == Description ==
 [youtube https://www.youtube.com/watch?v=iJCtjxArq4U]
@@ -27,9 +27,9 @@ Stable tag: 4.1.8
 * WordPress 3.8+
 * PHP 5.3+
 * MySQL 5.0.3+
-* At least 25 MB of free web space
+* At least 35 MB of free web space
 * At least 5 MB of free DB space
-* At least 20 Mb of free PHP memory for the tracker (peak memory usage)
+* At least 30 Mb of free PHP memory for the tracker (peak memory usage)
 * IE9+ or any browser supporting HTML5, to access the reports
 
 = Premium Add-ons =
@@ -44,7 +44,9 @@ Visit [our website](http://www.wp-slimstat.com/addons/) for a list of available 
 5. Go to Slimstat > Settings > Maintenance tab > MaxMind IP to Country section and click on "Install GeoLite DB" to detect your visitors' countries based on their IP addresses
 6. If your `wp-admin` folder is not publicly accessible, make sure to check the [FAQs](http://wordpress.org/extend/plugins/wp-slimstat/faq/) to see if there's anything else you need to do
 
-Please note: if you decide to uninstall Slimstat, all the stats will be **PERMANENTLY** deleted from your database. Make sure to setup a database backup (wp_slim_*) to avoid losing your data.
+== Please note ==
+* If you decide to uninstall Slimstat, all the stats will be **PERMANENTLY** deleted from your database. Make sure to setup a database backup (wp_slim_*) to avoid losing your data.
+* If you are upgrading from a version prior to 4.0, please install version 4.0 first to upgrade the database structure and download the new Geolocation data.
 
 == Frequently Asked Questions ==
 
@@ -59,6 +61,45 @@ Our knowledge base is available on our [support center](http://docs.wp-slimstat.
 5. **Responsive layout** - Keep an eye on your reports on the go
 
 == Changelog ==
+
+= 4.2.2 =
+* [Note] The WordPress Translation Team contacted us to let us know that Slimstat has been imported into [translate.wordpress.org](https://translate.wordpress.org/projects/wp-plugins/wp-slimstat). We adapted the source code and moved the localization files within our folder structure, to comply with their new guidelines. It looks like it will now be much easier for our users to contribute, and help Slimstat speak many new languages.
+* [New] You can now filter existing users in groups, using wildcards.
+* [New] Our premium add-on User Overview now extends the tracker to record login/logout events. This feature can be useful if you have a membership site and want to know when users actually log in.
+* [Update] Time on page now displays hours, if the duration is long enough (thank you, Ralf)
+* [Fix] Patched a javascript vulnerability that might be exploited via the Activity Log report (thank you, Ivan)
+* [Fix] Session tracking cookie does not differentiate between logged in and anonymous users anymore.
+* [Fix] Tracker was not working as expected on the WordPress login screen and when admin-ajax.php was being called by other scripts.
+* [Fix] Blacklist by username was incorrectly considering substrings.
+* [Fix] When running reports on date intervals, start and end of calculated timeframe were skewed by one day under certain circumstances.
+* [Fix] Link on Edit Posts/Pages counter was not working as expected (thank you, [SGURYGF](https://wordpress.org/support/topic/pagesposts-view-count-0)).
+* [Fix] Miscellaneous code optimizations and clean-up.
+
+= 4.2.1 =
+* [Note] If you're upgrading from a version prior to 4.0, please upgrade to version 4.0 first. To simplify our codebase, we removed all the upgrade scripts to support versions prior to 4.0.
+* [New] Say hi to your new charts: search terms (total and unique per day or even hour), outbound links, users. If you can't see the new charts, don't forget to give the No Panic button a try.
+* [Update] We are dropping old unused columns from the main table: ip_temp, other_ip_temp, ip_num, other_ip_num. Please make sure you have a backup, in case you need those columns for other custom purposes.
+* [Fix] Some users were seeing "ghost reports" in their admin screens. A residue from Halloween, we assume.
+* [Fix] Our "loading" animated icon was not being displayed correctly on refresh.
+* [Fix] Chart legend was not being displayed as expected.
+
+= 4.2.0.1 =
+* [Fix] The Access Log report was not displaying referrers and other critical information.
+
+= 4.2 =
+* [Note] You now have full control over the placement of your reports. Move them not just within each screen, but from one screen to another. Build your own custom Overview, by simply dragging and dropping report labels just like you already do with widgets and widget areas. Compare multiple charts in one screen, and much more. Go to Slimstat > Customize and... have fun!
+* [Note] If for any reasons your reports are not being displayed correctly, make sure to give the No Panic button a try (under Settings > Maintenance)
+* [Note] Did you say charts? We are adding new visual reports to Slimstat, to make your metrics easier to interpret. Stay tuned!
+* [Update] Support for the old "Custom Report" screen (already deprecated in version 4.0) has been removed from the source code. Please update your custom reports accordingly.
+* [Update] Renamed and reorganized tabs under Settings to make them easier to understand.
+* [Update] [Flot](http://www.flotcharts.org/) chart library updated to version 0.8.3
+
+= 4.1.8.1 =
+* [Update] Renamed and reorganized some tabs under Settings to make them easier to understand.
+* [Update] Added icons for Windows 10 and Microsoft Edge 12 browser (thank you, Romain Petges).
+* [Update] Top Outbound Links and other reports can now be added to the WordPress dashboard (thank you, Cole).
+* [Fix] One metric's description was misleading: it was supposed to be Pageviews per Visit, not Pages per Visit (thank you, Bperun).
+* [Fix] Some people were having problems locating the Save button in the settings, which was also hidden when RTL was enabled.
 
 = 4.1.8 =
 * [New] The hover effect that revealed the details of a given row in many of our list reports has been flagged as not user-friendly by some users. A new approach using a floating tooltip has been implemented to address this issue (thank you, Romain Petges).
@@ -140,11 +181,6 @@ Our knowledge base is available on our [support center](http://docs.wp-slimstat.
 * [Fix] Quotes in post titles were being escaped twice (better safe than sorry, right? thank you, Victor).
 * [Fix] Bug affecting the Export to Excel add-on.
 
-== Special Thanks To ==
-
-* [Vitaly](http://www.visbiz.org/), who volunteers quite a lot of time for QA, testing, and for his Russian localization.
-* Davide Tomasello, who provided great feedback and plenty of ideas to take this plugin to the next level.
-
 == Supporters ==
 Slimstat is an Open Source project, dependent in large parts on donations. [This page](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BNJR5EZNY3W38)
 is for those who want to donate money - be it once, be it regularly, be it a small or a big amount. Everything is set up for an easy donation process.
@@ -194,13 +230,7 @@ Thomas Weiss,
 Wayne Liebman,
 Willow Ridge Press
 
-== Tools of the trade
-[Duri.Me](http://duri.me/),
-[Filezilla](https://filezilla-project.org/),
-[Fontello](http://fontello.com/),
-[Gimp](http://www.gimp.org/),
-[Google Chrome](https://www.google.com/intl/en/chrome/browser/),
-[poEdit](http://www.poedit.net/),
-[Notepad++](http://notepad-plus-plus.org/),
-[Tortoise SVN](http://tortoisesvn.net/),
-[WAMP Server](http://www.wampserver.com/en/)
+== Special Thanks To ==
+
+* [Vitaly](http://www.visbiz.org/), who volunteers quite a lot of time for QA, testing, and for his Russian localization.
+* Davide Tomasello, who provided great feedback and plenty of ideas to take this plugin to the next level.

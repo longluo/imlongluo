@@ -521,28 +521,29 @@ class wp_slimstat_db {
 		}
 		else { // An interval was specified
 			$filters_normalized[ 'utime' ][ 'type' ] = 'interval';
+			$sign = ( $filters_normalized[ 'date' ][ 'interval_direction' ] == 'plus' ) ? '+' : '-';
 
 			$filters_normalized[ 'utime' ][ 'start' ] = mktime( 
-				!empty( $filters_normalized[ 'date' ][ 'hour' ] )?$filters_normalized[ 'date' ][ 'hour' ]:0,
-				!empty( $filters_normalized[ 'date' ][ 'minute' ] )?$filters_normalized[ 'date' ][ 'minute' ]:0,
+				!empty( $filters_normalized[ 'date' ][ 'hour' ] ) ? $filters_normalized[ 'date' ][ 'hour' ] : 0,
+				!empty( $filters_normalized[ 'date' ][ 'minute' ] ) ? $filters_normalized[ 'date' ][ 'minute' ] : 0,
 				0,
-				!empty( $filters_normalized[ 'date' ][ 'month' ] )?$filters_normalized[ 'date' ][ 'month' ]:date_i18n( 'n' ),
-				!empty( $filters_normalized[ 'date' ][ 'day' ] )?$filters_normalized[ 'date' ][ 'day' ]:date_i18n( 'j' ),
-				!empty( $filters_normalized[ 'date' ][ 'year' ] )?$filters_normalized[ 'date' ][ 'year' ]:date_i18n( 'Y' )
-			 );
-
-			$sign = ( $filters_normalized[ 'date' ][ 'interval_direction' ] == 'plus' )?'+':'-';
+				!empty( $filters_normalized[ 'date' ][ 'month' ] ) ? $filters_normalized[ 'date' ][ 'month' ] : date_i18n( 'n' ),
+				!empty( $filters_normalized[ 'date' ][ 'day' ] ) ? $filters_normalized[ 'date' ][ 'day' ] : date_i18n( 'j' ), 
+				!empty( $filters_normalized[ 'date' ][ 'year' ] ) ? $filters_normalized[ 'date' ][ 'year' ] : date_i18n( 'Y' )
+			);
 
 			$filters_normalized[ 'utime' ][ 'end' ] = $filters_normalized[ 'utime' ][ 'start' ] + intval( $sign.( 
-					( !empty( $filters_normalized[ 'date' ][ 'interval' ] )?intval( $filters_normalized[ 'date' ][ 'interval' ] + 1):0 ) * 86400 + 
-					( !empty( $filters_normalized[ 'date' ][ 'interval_hours' ] )?intval( $filters_normalized[ 'date' ][ 'interval_hours' ] ):0 ) * 3600 +
-					( !empty( $filters_normalized[ 'date' ][ 'interval_minutes' ] )?intval( $filters_normalized[ 'date' ][ 'interval_minutes' ] ):0 ) * 60
-				 ) ) - 1;
+				( !empty( $filters_normalized[ 'date' ][ 'interval' ] ) ? intval( $filters_normalized[ 'date' ][ 'interval' ] ) : 0 ) * 86400 + 
+				( !empty( $filters_normalized[ 'date' ][ 'interval_hours' ] ) ? intval( $filters_normalized[ 'date' ][ 'interval_hours' ] ) : 0 ) * 3600 +
+				( !empty( $filters_normalized[ 'date' ][ 'interval_minutes' ] ) ? intval( $filters_normalized[ 'date' ][ 'interval_minutes' ] ) : 0 ) * 60
+			) );
 
 			// Swap boundaries if we're going back in time
 			if ( $filters_normalized[ 'date' ][ 'interval_direction' ] == 'minus' ) {
-				list( $filters_normalized[ 'utime' ][ 'start' ], $filters_normalized[ 'utime' ][ 'end' ] ) = array( $filters_normalized[ 'utime' ][ 'end' ] + 1, $filters_normalized[ 'utime' ][ 'start' ] - 1 );
+				list( $filters_normalized[ 'utime' ][ 'start' ], $filters_normalized[ 'utime' ][ 'end' ] ) = array( $filters_normalized[ 'utime' ][ 'end' ] + 86400, $filters_normalized[ 'utime' ][ 'start' ] + 86400 );
 			}
+
+			$filters_normalized[ 'utime' ][ 'end' ]--;
 		}
 
 		// If end is in the future, set it to now
@@ -630,7 +631,8 @@ class wp_slimstat_db {
 			'SUM(counthits) AS counthits' ) );
 	}
 
-	public static function get_data_for_chart( $_data1 = '', $_data2 = '', $_where = '' ) {
+	// public static function get_data_for_chart( $_data1 = '', $_data2 = '', $_where = '' ) {
+	public static function get_data_for_chart( $_args = array() ) {
 		$previous = array( 'end' => self::$filters_normalized[ 'utime' ][ 'start' ] - 1 );
 		$label_date_format = '';
 		$output = array();
@@ -660,7 +662,7 @@ class wp_slimstat_db {
 
 			case 'interval':
 				$group_by = array( 'MONTH', 'DAY', 'j' );
-				$values_in_interval = array( abs( self::$filters_normalized[ 'date' ][ 'interval' ] ), abs( self::$filters_normalized[ 'date' ][ 'interval' ] ), 0, 86400 );
+				$values_in_interval = array( abs( self::$filters_normalized[ 'date' ][ 'interval' ] - 1 ), abs( self::$filters_normalized[ 'date' ][ 'interval' ] - 1 ), 0, 86400 );
 				break;
 
 			default:
@@ -671,22 +673,26 @@ class wp_slimstat_db {
 				break;
 		}
 
+		if ( empty( $_args[ 'where' ] ) ) {
+			$_args[ 'where' ] = '';
+		}
+
 		// Custom intervals don't have a comparison chart ('previous' range)
 		if ( empty( self::$filters_normalized[ 'date' ][ 'interval' ] ) ) {
-			$_where = self::get_combined_where( $_where, '*', false );
+			$_args[ 'where' ] = self::get_combined_where( $_args[ 'where' ], '*', false );
 			$previous_time_range = ' AND (dt BETWEEN '.$previous[ 'start' ].' AND '.$previous[ 'end' ].' OR dt BETWEEN '.self::$filters_normalized[ 'utime' ][ 'start' ].' AND '.self::$filters_normalized[ 'utime' ][ 'end' ].')';
 		}
 		else {
-			$_where = self::get_combined_where( $_where );
+			$_args[ 'where' ] = self::get_combined_where( $_args[ 'where' ] );
 			$previous_time_range = '';
 		}
 
 		// Build the SQL query
 		$group_by_string = "GROUP BY {$group_by[0]}(CONVERT_TZ(FROM_UNIXTIME(dt), @@session.time_zone, '+00:00')), {$group_by[1]}(CONVERT_TZ(FROM_UNIXTIME(dt), @@session.time_zone, '+00:00'))";
 		$sql = "
-			SELECT dt, $_data1 first_metric, $_data2 second_metric
+			SELECT dt, {$_args[ 'data1' ]} first_metric, {$_args[ 'data2' ]} second_metric
 			FROM {$GLOBALS['wpdb']->prefix}slim_stats
-			WHERE $_where $previous_time_range
+			WHERE {$_args[ 'where' ]} $previous_time_range
 			$group_by_string";
 
 		// Get the data

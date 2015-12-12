@@ -4,11 +4,11 @@ if ( !function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-$is_dashboard = empty( $_REQUEST[ 'page' ] ) || $_REQUEST[ 'page' ] != 'wp-slim-view-1';
+$is_dashboard = empty( $_REQUEST[ 'page' ] ) || $_REQUEST[ 'page' ] != 'slimview1';
 
 // Available icons
-$supported_browser_icons = array('Android','Anonymouse','Baiduspider','BlackBerry','BingBot','CFNetwork','Chrome','Chromium','Default Browser','Exabot/BiggerBetter','FacebookExternalHit','FeedBurner','Feedfetcher-Google','Firefox','Internet Archive','Googlebot','Google Bot','Google Feedfetcher','Google Web Preview','IE','IEMobile','iPad','iPhone','iPod Touch','Maxthon','Mediapartners-Google','Microsoft-WebDAV','msnbot','Mozilla','NewsGatorOnline','Netscape','Nokia','Opera','Opera Mini','Opera Mobi','Python','PycURL','Safari','W3C_Validator','WordPress','Yahoo! Slurp','YandexBot');
-$supported_os_icons = array('android','blackberry os','cellos','chromeos','ios','iphone osx','java','linux','macosx','rim os','symbianos','win7','win8','win8.1','winphone7','winphone7.5','winphone8','winphone8.1','winvista','winxp','unknown');
+$supported_browser_icons = array('Android','Anonymouse','Baiduspider','BlackBerry','BingBot','CFNetwork','Chrome','Chromium','Default Browser','Edge','Exabot/BiggerBetter','FacebookExternalHit','FeedBurner','Feedfetcher-Google','Firefox','Internet Archive','Googlebot','Google Bot','Google Feedfetcher','Google Web Preview','IE','IEMobile','iPad','iPhone','iPod Touch','Maxthon','Mediapartners-Google','Microsoft-WebDAV','msnbot','Mozilla','NewsGatorOnline','Netscape','Nokia','Opera','Opera Mini','Opera Mobi','Pingdom','Python','PycURL','Safari','W3C_Validator','WordPress','Yahoo! Slurp','YandexBot');
+$supported_os_icons = array('android','blackberry os','cellos','chromeos','ios','iphone osx','java','linux','macosx','rim os','symbianos','win7','win8','win8.1','win10','winphone7','winphone7.5','winphone8','winphone8.1','winvista','winxp','unknown');
 $supported_browser_types = array(__('Human','wp-slimstat'),__('Bot/Crawler','wp-slimstat'),__('Mobile Device','wp-slimstat'),__('Syndication Reader','wp-slimstat'));
 
 $plugin_url = plugins_url('', dirname(__FILE__));
@@ -145,7 +145,8 @@ else {
 		// Time on page
 		$time_on_page = '';
 		if ( !$is_dashboard && !empty( $results[ $i ][ 'dt_out' ] ) ) {
-			$time_on_page = "<i class='slimstat-font-stopwatch spaced' title='" . __( 'Time spent on this page in seconds', 'wp-slimstat' ) . "'></i> " . date( 'i:s', $results[ $i ][ 'dt_out' ] - $results[ $i ][ 'dt' ] );
+			$duration = $results[ $i ][ 'dt_out' ] - $results[ $i ][ 'dt' ];
+			$time_on_page = "<i class='slimstat-font-stopwatch spaced' title='" . __( 'Time spent on this page in seconds', 'wp-slimstat' ) . "'></i> " . date( ( $duration > 3599 ? 'H:i:s' : 'i:s' ), $duration );
 		}
 
 		// Permalink: find post title, if available
@@ -157,7 +158,7 @@ else {
 			if (!empty($results[$i]['blog_id'])){
 				$base_url = $parse_url['scheme'].'://'.$base_host;
 			}
-			$results[$i]['resource'] = "<a class='slimstat-font-logout' target='_blank' title='".htmlentities(__('Open this URL in a new window','wp-slimstat'), ENT_QUOTES, 'UTF-8')."' href='".$base_url.htmlentities($results[$i]['resource'], ENT_QUOTES, 'UTF-8')."'></a> $base_url<a class='slimstat-filter-link' href='".wp_slimstat_reports::fs_url('resource equals '.$results[$i]['resource'])."'>".wp_slimstat_reports::get_resource_title( $results[$i][ 'resource' ], $results[$i][ 'category' ] ).'</a>';
+			$results[$i]['resource'] = "<a class='slimstat-font-logout' target='_blank' title='".htmlentities(__('Open this URL in a new window','wp-slimstat'), ENT_QUOTES, 'UTF-8')."' href='".$base_url.htmlentities($results[$i]['resource'], ENT_QUOTES, 'UTF-8')."'></a> $base_url<a class='slimstat-filter-link' href='".wp_slimstat_reports::fs_url('resource equals ' . htmlentities($results[$i]['resource'], ENT_QUOTES, 'UTF-8') ) . "'>".wp_slimstat_reports::get_resource_title( $results[$i][ 'resource' ], $results[$i][ 'category' ] ).'</a>';
 		}
 		else{
 			$results[$i]['resource'] = __('Local search results page','wp-slimstat');
