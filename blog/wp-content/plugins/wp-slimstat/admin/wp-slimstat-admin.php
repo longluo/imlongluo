@@ -1,6 +1,7 @@
 <?php
 
-class wp_slimstat_admin{
+class wp_slimstat_admin {
+	public static $screens_info = array();
 	public static $config_url = '';
 	public static $faulty_fields = array();
 	
@@ -10,8 +11,8 @@ class wp_slimstat_admin{
 	 * Init -- Sets things up.
 	 */
 	public static function init(){
-		if ((wp_slimstat::$options['enable_ads_network'] == 'yes' || wp_slimstat::$options['enable_ads_network'] == 'no')){
-			self::$admin_notice = "The WordPress Translation Team contacted us to let us know that Slimstat has been imported into <a href='https://translate.wordpress.org/projects/wp-plugins/wp-slimstat' target='_blank'>translate.wordpress.org</a>. We adapted the source code and moved the localization files within our folder structure, to comply with their new guidelines. It looks like it will now be much easier for our users to contribute, and help Slimstat speak many new languages. <a href='https://translate.wordpress.org/projects/wp-plugins/wp-slimstat/stable' target='_blank'>Go take a look</a>!";
+		if ( ( wp_slimstat::$options['enable_ads_network'] == 'yes' || wp_slimstat::$options['enable_ads_network'] == 'no' ) ) {
+			self::$admin_notice = "THANK YOU. From the bottom of our hearts. Our previous request for help did not fall on deaf ears. Each donation we received in the past few weeks, reminded us just how important is our work for our community, and how much you all appreciate it. To date, about 120 people have donated more than $900, which will help us pay this month's attorney's bill. To show how grateful we are, we decided to give back to our community <strong>twice as much</strong>. Yes, you read that right. In the next few days, we will be sending our donors coupons that <a href='http://www.wp-slimstat.com/addons/' target='_blank'>can be used on our store</a> to get a discount equal to double the amount they donated. If you are a donor and don't get an email from us in a few days, feel free to contact us so that we can look into it. This promotion will only apply to donations received by midnight on February 15, 2016. Again, thank you for stepping up and being such a great community of supporters. It means a lot to us.";
 			self::$admin_notice .= '<br/><br/><a id="slimstat-hide-admin-notice" href="#" class="button-secondary">Got it, thanks</a>';
 		}
 		else {
@@ -65,16 +66,81 @@ class wp_slimstat_admin{
 			</div>";
 		}
 
-		// Settings URL
-		self::$config_url = 'admin.php?page=wp-slim-config&amp;tab=';
-
 		// Load language files
-		load_plugin_textdomain('wp-slimstat', WP_PLUGIN_DIR .'/wp-slimstat/languages', '/wp-slimstat/languages');
+		load_plugin_textdomain( 'wp-slimstat', WP_PLUGIN_DIR .'/wp-slimstat/languages', '/wp-slimstat/languages' );
 
 		// If a localization does not exist, use English
-		if (!isset($l10n['wp-slimstat'])){
-			load_textdomain('wp-slimstat', WP_PLUGIN_DIR .'/wp-slimstat/languages/wp-slimstat-en_US.mo');
+		if ( !isset( $l10n[ 'wp-slimstat' ] ) ) {
+			load_textdomain( 'wp-slimstat', WP_PLUGIN_DIR .'/wp-slimstat/languages/wp-slimstat-en_US.mo' );
 		}
+
+		// Define the default screens
+		self::$screens_info = array(
+			'slimview1' => array(
+				'is_report_group' => false,
+				'show_in_sidebar' => true,
+				'title' => __( 'Access Log', 'wp-slimstat' ),
+				'callback' => array( __CLASS__, 'wp_slimstat_include_view' )
+			),
+			'slimview2' => array(
+				'is_report_group' => true,
+				'show_in_sidebar' => true,
+				'title' => __( 'Overview', 'wp-slimstat' ),
+				'callback' => array( __CLASS__, 'wp_slimstat_include_view' )
+			),
+			'slimview3' => array(
+				'is_report_group' => true,
+				'show_in_sidebar' => true,
+				'title' => __( 'Audience', 'wp-slimstat' ),
+				'callback' => array( __CLASS__, 'wp_slimstat_include_view' )
+			),
+			'slimview4' => array(
+				'is_report_group' => true,
+				'show_in_sidebar' => true,
+				'title' => __( 'Site Analysis', 'wp-slimstat' ),
+				'callback' => array( __CLASS__, 'wp_slimstat_include_view' )
+			),
+			'slimview5' => array(
+				'is_report_group' => true,
+				'show_in_sidebar' => true,
+				'title' => __( 'Traffic Sources', 'wp-slimstat' ),
+				'callback' => array( __CLASS__, 'wp_slimstat_include_view' )
+			),
+			'slimview6' => array(
+				'is_report_group' => true,
+				'show_in_sidebar' => true,
+				'title' => __( 'Geolocation', 'wp-slimstat' ),
+				'callback' => array( __CLASS__, 'wp_slimstat_include_view' )
+			),
+			'slimlayout' => array(
+				'is_report_group' => false,
+				'show_in_sidebar' => true,
+				'title' => __( 'Customize', 'wp-slimstat' ),
+				'callback' => array( __CLASS__, 'wp_slimstat_include_layout' )
+			),
+			'slimaddons' => array(
+				'is_report_group' => false,
+				'show_in_sidebar' => true,
+				'title' => __( 'Add-ons', 'wp-slimstat' ),
+				'callback' => array( __CLASS__, 'wp_slimstat_include_addons' )
+			),
+			'dashboard' => array(
+				'is_report_group' => true,
+				'show_in_sidebar' => false,
+				'title' => __( 'WordPress Dashboard', 'wp-slimstat' ),
+				'callback' => '' // No callback if show_in_sidebar is false
+			),
+			'inactive' => array(
+				'is_report_group' => true,
+				'show_in_sidebar' => false,
+				'title' => __( 'Inactive Reports'),
+				'callback' => '' // No callback if show_in_sidebar is false
+			)
+		);
+		self::$screens_info = apply_filters( 'slimstat_screens_info', self::$screens_info );
+
+		// Settings URL
+		self::$config_url = 'admin.php?page=wp-slim-config&amp;tab=';
 
 		// WPMU - New blog created
 		$active_sitewide_plugins = get_site_option('active_sitewide_plugins');
@@ -96,6 +162,11 @@ class wp_slimstat_admin{
 		// Remove spammers from the database
 		if (wp_slimstat::$options['ignore_spammers'] == 'yes'){
 			add_action('transition_comment_status', array(__CLASS__, 'remove_spam'), 15, 3);
+		}
+
+		// Add a menu to the admin bar ( this function is declared here and not in wp_slimstat_admin because the latter is only initialized if is_admin(), and not in the front-end )
+		if ( wp_slimstat::$options[ 'use_separate_menu' ] != 'yes' && is_admin_bar_showing() ) {
+			add_action( 'admin_bar_menu', array( __CLASS__, 'wp_slimstat_adminbar' ), 100 );
 		}
 
 		if (function_exists('is_network_admin') && !is_network_admin()){
@@ -359,8 +430,13 @@ class wp_slimstat_admin{
 		}
 		// --- END: Updates for version 4.2.1 ---
 
+		// --- Updates for version 4.2.6 ---
+		if ( version_compare( wp_slimstat::$options[ 'version' ], '4.2.6', '<' ) ) {
+			wp_slimstat::$options[ 'auto_purge_delete' ] = ( wp_slimstat::$options[ 'auto_purge_delete' ] == 'yes' ) ? 'no' : 'yes';
+		}
+
 		// Now we can update the version stored in the database
-		wp_slimstat::$options['version'] = wp_slimstat::$version;
+		wp_slimstat::$options[ 'version' ] = wp_slimstat::$version;
 
 		return true;
 	}
@@ -451,12 +527,13 @@ class wp_slimstat_admin{
 
 		// Pass some information to Javascript
 		$params = array(
-			'datepicker_image' => plugins_url('/admin/images/datepicker.png', dirname(__FILE__)),
-			'expand_details' => isset(wp_slimstat::$options['expand_details'])?wp_slimstat::$options['expand_details']:'no',
+			'async_load' => !empty( wp_slimstat::$options[ 'async_load' ] ) ? wp_slimstat::$options[ 'async_load' ] : 'no',
+			'chart_colors' => !empty( wp_slimstat::$options[ 'chart_colors' ] ) ? wp_slimstat::string_to_array( wp_slimstat::$options[ 'chart_colors' ] ) : array( '#ccc', '#999', '#bbcc44', '#21759b' ),
+			'datepicker_image' => plugins_url( '/admin/images/datepicker.png', dirname( __FILE__ ) ),
+			'expand_details' => !empty( wp_slimstat::$options[ 'expand_details' ] ) ? wp_slimstat::$options[ 'expand_details' ] : 'no',
 			'refresh_interval' => intval( wp_slimstat::$options[ 'refresh_interval' ] ),
-			'text_direction' => $GLOBALS['wp_locale']->text_direction,
-			'use_slimscroll' => !empty( wp_slimstat::$options[ 'use_slimscroll' ] ) ? wp_slimstat::$options[ 'use_slimscroll' ] : 'yes',
-			'chart_colors' => !empty( wp_slimstat::$options[ 'chart_colors' ] ) ? wp_slimstat::string_to_array( wp_slimstat::$options[ 'chart_colors' ] ) : array( '#ccc', '#999', '#bbcc44', '#21759b' )
+			'text_direction' => $GLOBALS[ 'wp_locale' ]->text_direction,
+			'use_slimscroll' => !empty( wp_slimstat::$options[ 'use_slimscroll' ] ) ? wp_slimstat::$options[ 'use_slimscroll' ] : 'yes'
 		);
 		wp_localize_script('slimstat_admin', 'SlimStatAdminParams', $params);
 	}
@@ -468,41 +545,35 @@ class wp_slimstat_admin{
 	/**
 	 * Adds a new entry in the admin menu, to view the stats
 	 */
-	public static function wp_slimstat_add_view_menu($_s){
-		wp_slimstat::$options['capability_can_view'] = empty(wp_slimstat::$options['capability_can_view'])?'read':wp_slimstat::$options['capability_can_view'];
-
+	public static function wp_slimstat_add_view_menu( $_s = '' ) {
 		// If this user is whitelisted, we use the minimum capability
 		$minimum_capability = 'read';
-		if (strpos(wp_slimstat::$options['can_view'], $GLOBALS['current_user']->user_login) === false){
-			$minimum_capability = wp_slimstat::$options['capability_can_view'];
+		if ( is_network_admin() ) {
+			$minimum_capability = 'manage_network';
+		}
+		else if ( strpos( wp_slimstat::$options[ 'can_view' ], $GLOBALS[ 'current_user' ]->user_login) === false ) {
+			$minimum_capability = wp_slimstat::$options[ 'capability_can_view' ];
 		}
 
+		// Get the current report assignments
 		$new_entry = array();
-		if (wp_slimstat::$options['use_separate_menu'] == 'yes'){
-			$new_entry[] = add_menu_page(__('SlimStat','wp-slimstat'), __('SlimStat','wp-slimstat'), $minimum_capability, 'slimview1', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('slimview1', __('Access Log','wp-slimstat'), __('Access Log','wp-slimstat'), $minimum_capability, 'slimview1', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('slimview1', __('Overview','wp-slimstat'), __('Overview','wp-slimstat'), $minimum_capability, 'slimview2', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('slimview1', __('Audience','wp-slimstat'), __('Audience','wp-slimstat'), $minimum_capability, 'slimview3', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('slimview1', __('Site Analysis','wp-slimstat'), __('Site Analysis','wp-slimstat'), $minimum_capability, 'slimview4', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('slimview1', __('Traffic Sources','wp-slimstat'), __('Traffic Sources','wp-slimstat'), $minimum_capability, 'slimview5', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('slimview1', __('Geolocation','wp-slimstat'), __('Geolocation','wp-slimstat'), $minimum_capability, 'slimview6', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('slimview1', __('Customize','wp-slimstat'), __('Customize','wp-slimstat'), $minimum_capability, 'slimlayout', array(__CLASS__, 'wp_slimstat_include_layout'));
-			$new_entry[] = add_submenu_page('slimview1', __('Add-ons','wp-slimstat'), __('Add-ons','wp-slimstat'), $minimum_capability, 'slimaddons', array(__CLASS__, 'wp_slimstat_include_addons'));
+		if ( wp_slimstat::$options[ 'use_separate_menu' ] == 'yes' || is_network_admin() ) {
+			$parent = 'slimview1';
+			$page_location = 'slimstat';
+			$new_entry[] = add_menu_page(__('SlimStat','wp-slimstat'), __('SlimStat','wp-slimstat'), $minimum_capability, $parent, array( __CLASS__, 'wp_slimstat_include_view' ) );	
 		}
-		else{
-			$new_entry[] = add_submenu_page('admin.php', __('SlimStat','wp-slimstat'), __('SlimStat','wp-slimstat'), $minimum_capability, 'slimview1', array(__CLASS__, 'wp_slimstat_include_view'));
-			if (!is_admin_bar_showing()){
-				$new_entry[] = add_submenu_page('index.php', __('SlimStat','wp-slimstat'), __('SlimStat','wp-slimstat'), $minimum_capability, 'slimview1', array(__CLASS__, 'wp_slimstat_include_view'));
-			}
+		else {
+			$parent = 'admin.php';
+			$page_location = 'admin';
+		}
 
-			// Let's tell WordPress that these page exist, without showing them
-			$new_entry[] = add_submenu_page('admin.php', __('Overview','wp-slimstat'), __('Overview','wp-slimstat'), $minimum_capability, 'slimview2', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('admin.php', __('Audience','wp-slimstat'), __('Audience','wp-slimstat'), $minimum_capability, 'slimview3', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('admin.php', __('Site Analysis','wp-slimstat'), __('Site Analysis','wp-slimstat'), $minimum_capability, 'slimview4', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('admin.php', __('Traffic Sources','wp-slimstat'), __('Traffic Sources','wp-slimstat'), $minimum_capability, 'slimview5', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('admin.php', __('Geolocation','wp-slimstat'), __('Geolocation','wp-slimstat'), $minimum_capability, 'slimview6', array(__CLASS__, 'wp_slimstat_include_view'));
-			$new_entry[] = add_submenu_page('admin.php', __('Customize','wp-slimstat'), __('Customize','wp-slimstat'), $minimum_capability, 'slimlayout', array(__CLASS__, 'wp_slimstat_include_layout'));
-			$new_entry[] = add_submenu_page('admin.php', __('Add-ons','wp-slimstat'), __('Add-ons','wp-slimstat'), $minimum_capability, 'slimaddons', array(__CLASS__, 'wp_slimstat_include_addons'));
+		$current_user = wp_get_current_user();
+		$user_reports = get_user_option( "meta-box-order_{$page_location}_page_slimlayout", $current_user->ID );
+
+		foreach ( self::$screens_info as $a_screen_id => $a_screen_info ) {
+			if ( $a_screen_info[ 'show_in_sidebar' ] && ( !is_array( $user_reports ) || !empty( $user_reports[ $a_screen_id ] ) || !$a_screen_info[ 'is_report_group' ] ) ) {
+				$new_entry[] = add_submenu_page( $parent, $a_screen_info[ 'title' ], $a_screen_info[ 'title' ], $minimum_capability, $a_screen_id, $a_screen_info[ 'callback' ] );
+			}
 		}
 
 		// Load styles and Javascript needed to make the reports look nice and interactive
@@ -515,6 +586,58 @@ class wp_slimstat_admin{
 		return $_s;
 	}
 	// end wp_slimstat_add_view_menu
+
+	/**
+	 * Adds a new entry to the Wordpress Toolbar
+	 */
+	public static function wp_slimstat_adminbar(){
+		// If this user is whitelisted, we use the minimum capability
+		$minimum_capability_view = 'read';
+		if ( strpos( wp_slimstat::$options[ 'can_view' ], $GLOBALS[ 'current_user' ]->user_login) === false ) {
+			$minimum_capability_view = wp_slimstat::$options[ 'capability_can_view' ];
+		}
+
+		// If this user is whitelisted, we use the minimum capability
+		$minimum_capability_config = 'read';
+		if ( ( strpos( wp_slimstat::$options[ 'can_admin' ], $GLOBALS[ 'current_user' ]->user_login ) === false) && $GLOBALS[ 'current_user' ]->user_login != 'slimstatadmin' ) {
+			$minimum_capability_config = wp_slimstat::$options[ 'capability_can_admin' ];
+		}
+
+		if ( ( function_exists( 'is_network_admin' ) && is_network_admin() ) || !is_user_logged_in() || !current_user_can( $minimum_capability_view ) ) {
+			return;
+		}
+
+		wp_slimstat::$options['capability_can_view'] = empty(wp_slimstat::$options['capability_can_view'])?'read':wp_slimstat::$options['capability_can_view'];
+
+		if (empty(wp_slimstat::$options['can_view']) || strpos(wp_slimstat::$options['can_view'], $GLOBALS['current_user']->user_login) !== false || current_user_can('manage_options')){
+			$slimstat_view_url = get_admin_url($GLOBALS['blog_id'], "admin.php?page=");
+			$slimstat_config_url = get_admin_url($GLOBALS['blog_id'], "admin.php?page=wp-slim-config");
+
+			$page_location = ( wp_slimstat::$options[ 'use_separate_menu' ] == 'yes' ) ? 'slimstat' : 'admin';
+			$user_reports = get_user_option( "meta-box-order_{$page_location}_page_slimlayout", $GLOBALS[ 'current_user' ]->ID );
+
+			$GLOBALS[ 'wp_admin_bar' ]->add_menu( array(
+				'id' => 'slimstat-header',
+				'title' => __( 'Slimstat', 'wp-slimstat' ),
+				'href' => "{$slimstat_view_url}slimview1"
+			) );
+
+			foreach ( self::$screens_info as $a_screen_id => $a_screen_info ) {
+				if ( $a_screen_info[ 'show_in_sidebar' ] && ( !is_array( $user_reports ) || !empty( $user_reports[ $a_screen_id ] ) || !$a_screen_info[ 'is_report_group' ] ) ) {
+					$GLOBALS[ 'wp_admin_bar' ]->add_menu( array(
+						'id' => $a_screen_id,
+						'href' => "{$slimstat_view_url}$a_screen_id",
+						'parent' => 'slimstat-header',
+						'title' => $a_screen_info[ 'title' ]
+					) );
+				}
+			}
+
+			if ( ( empty( wp_slimstat::$options[ 'can_admin' ] ) || strpos( wp_slimstat::$options[ 'can_admin' ], $GLOBALS[ 'current_user' ]->user_login ) !== false || $GLOBALS[ 'current_user' ]->user_login == 'slimstatadmin' ) && current_user_can( $minimum_capability_config ) ) {
+				$GLOBALS['wp_admin_bar']->add_menu(array('id' => 'slimstat-config', 'href' => $slimstat_config_url, 'parent' => 'slimstat-header', 'title' => __('Settings', 'wp-slimstat')));
+			}
+		}
+	}
 
 	/**
 	 * Adds a new entry in the admin menu, to manage SlimStat options

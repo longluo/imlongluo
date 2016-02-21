@@ -51,14 +51,14 @@ function weixin_robot_add_credit($arg){
 
 	$limit = 0;
 
-	if($credit_change > 0 && $operator_id == 0 ){ // 有 operator_id 就不检测每日上限
-		$today_credit_sum =  (int)$wpdb->get_var($wpdb->prepare("SELECT SUM(credit_change) FROM {$wpdb->weixin_credits} WHERE weixin_openid=%s AND time<=%s AND time>=%s AND credit_change > 0 AND operator_id = 0",$weixin_openid,date('Y-m-d', current_time('timestamp')).' 23:59:59',date('Y-m-d', current_time('timestamp')).' 00:00:00'));
+	// if($credit_change > 0 && $operator_id == 0 ){ // 有 operator_id 就不检测每日上限
+	// 	$today_credit_sum =  (int)$wpdb->get_var($wpdb->prepare("SELECT SUM(credit_change) FROM {$wpdb->weixin_credits} WHERE weixin_openid=%s AND time<=%s AND time>=%s AND credit_change > 0 AND operator_id = 0",$weixin_openid,date('Y-m-d', current_time('timestamp')).' 23:59:59',date('Y-m-d', current_time('timestamp')).' 00:00:00'));
 
-		if($today_credit_sum >= weixin_robot_get_setting('weixin_day_credit_limit')){
-			$credit_change = 0;
-			$limit = 1;
-		}
-	}
+	// 	if($today_credit_sum >= weixin_robot_get_setting('weixin_day_credit_limit')){
+	// 		$credit_change = 0;
+	// 		$limit = 1;
+	// 	}
+	// }
 
 	$credit = $old_credit + $credit_change;
 	$exp 	= $old_exp + $exp_change;

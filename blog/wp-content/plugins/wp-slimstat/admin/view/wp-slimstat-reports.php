@@ -3,7 +3,6 @@
 class wp_slimstat_reports {
 
 	// Structures to store all the information about what screens and reports are available
-	public static $screens_info = array();
 	public static $reports_info = array();
 	public static $user_reports = array();
 
@@ -17,17 +16,6 @@ class wp_slimstat_reports {
 	 * Initalize class properties
 	 */
 	public static function init(){
-		self::$screens_info = array(
-			'slimview1' => __( 'Access Log', 'wp-slimstat' ),
-			'slimview2' => __( 'Overview', 'wp-slimstat' ),
-			'slimview3' => __( 'Audience', 'wp-slimstat' ),
-			'slimview4' => __( 'Site Analysis', 'wp-slimstat' ),
-			'slimview5' => __( 'Traffic Sources', 'wp-slimstat' ),
-			'slimview6' => __( 'Geolocation', 'wp-slimstat' ),
-			'dashboard' => __( 'WordPress Dashboard', 'wp-slimstat' ),
-			'inactive' => __( 'Inactive Reports')
-		);
-
 		// Filters use the following format: browser equals Firefox&&&country contains gb
 		$filters = array();
 		if ( !empty( $_REQUEST[ 'fs' ] ) && is_array( $_REQUEST[ 'fs' ] ) ) {
@@ -76,13 +64,6 @@ class wp_slimstat_reports {
 		
 		$chart_tooltip = '<strong>' . __( 'Chart controls', 'wp-slimstat' ) . '</strong><ul><li>' . __( 'Use your mouse wheel to zoom in and out', 'wp-slimstat' ) . '</li><li>' . __( 'While zooming in, drag the chart to move to a different area', 'wp-slimstat' ) . '</li></ul>';
 		self::$reports_info = array(
-			'slim_getsocial' => array(
-				'title' => __( 'Social Sharing Analytics', 'wp-slimstat' ),
-				'callback' => array( __CLASS__, 'show_getsocial' ),
-				'classes' => array( 'full-width' ),
-				'screens' => array( 'slimview4' )
-			),
-
 			'slim_p7_02' => array(
 				'title' => __( 'Visitors Activity', 'wp-slimstat' ),
 				'callback' => array( __CLASS__, 'show_activity_log' ),
@@ -152,6 +133,7 @@ class wp_slimstat_reports {
 				'callback_args' => array(
 					'type' => 'recent',
 					'columns' => 'searchterms',
+					'where' => 'searchterms <> "_"',
 					'more_columns' => 'referer, resource',
 					'raw' => array( 'wp_slimstat_db', 'get_recent' )
 				),
@@ -174,11 +156,13 @@ class wp_slimstat_reports {
 				'tooltip' => __( 'Here a "page" is not just a WordPress page type, but any webpage on your site, including posts, products, categories, and so on. You can set the corresponding filter where Resource Content Type equals cpt:you_cpt_slug_here to get top web pages for a specific custom post type you have.', 'wp-slimstat' )
 			),
 			'slim_p1_10' => array(
-				'title' => __('Top Traffic Sources', 'wp-slimstat'),
+				'title' => __('Top Referring Domains', 'wp-slimstat'),
 				'callback' => array( __CLASS__, 'raw_results_to_html' ),
 				'callback_args' => array(
 					'type' => 'top',
-					'columns' => 'referer',
+					'columns' => 'REPLACE( SUBSTRING_INDEX( ( SUBSTRING_INDEX( ( SUBSTRING_INDEX( referer, "://", -1 ) ), "/", 1 ) ), ".", -5 ), "www.", "" )',
+					'as_column' => 'referer_calculated',
+					'filter_op' => 'contains',
 					'where' => 'referer NOT LIKE "%' . str_replace( 'www.', '', parse_url( home_url(), PHP_URL_HOST ) ) . '%"',
 					'raw' => array( 'wp_slimstat_db', 'get_top' )
 				),
@@ -202,6 +186,7 @@ class wp_slimstat_reports {
 				'callback_args' => array(
 					'type' => 'top',
 					'columns' => 'searchterms',
+					'where' => 'searchterms <> "_"',
 					'raw' => array( 'wp_slimstat_db', 'get_top' )
 				),
 				'classes' => array( 'normal' ),
@@ -260,7 +245,8 @@ class wp_slimstat_reports {
 					'id' => 'slim_p1_19_01',
 					'chart_data' => array(
 						'data1' => 'COUNT( searchterms )',
-						'data2' => 'COUNT( DISTINCT searchterms )'
+						'data2' => 'COUNT( DISTINCT searchterms )',
+						'where' => 'searchterms <> "_"'
 					),
 					'chart_labels' => array(
 						__( 'Search Terms', 'wp-slimstat' ),
@@ -271,6 +257,18 @@ class wp_slimstat_reports {
 				'screens' => array( 'slimview2' ),
 				'tooltip' => $chart_tooltip
 			),
+			'slim_p1_20' => array(
+				'title' => __('Top Referring URLs', 'wp-slimstat'),
+				'callback' => array( __CLASS__, 'raw_results_to_html' ),
+				'callback_args' => array(
+					'type' => 'top',
+					'columns' => 'referer',
+					'where' => 'referer NOT LIKE "%' . str_replace( 'www.', '', parse_url( home_url(), PHP_URL_HOST ) ) . '%"',
+					'raw' => array( 'wp_slimstat_db', 'get_top' )
+				),
+				'classes' => array( 'normal' ),
+				'screens' => array( 'slimview2', 'slimview5', 'dashboard' )
+			),
 
 			'slim_p2_01' => array(
 				'title' => __( 'Human Visits', 'wp-slimstat' ),
@@ -279,13 +277,13 @@ class wp_slimstat_reports {
 					'id' => 'slim_p2_01',
 					'chart_data' => array(
 						'data1' => 'COUNT( DISTINCT visit_id )',
-						'data2' => 'COUNT( DISTINCT ip )'
+						'data2' => 'COUNT( DISTINCT ip )',
+						'where' => '(visit_id > 0 AND browser_type <> 1)'
 					),
 					'chart_labels' => array(
 						__( 'Visits', 'wp-slimstat' ),
 						__( 'Unique IPs', 'wp-slimstat' )
-					),
-					'where' => '(visit_id > 0 AND browser_type <> 1)'
+					)
 				),
 				'classes' => array( 'wide', 'chart' ),
 				'screens' => array( 'slimview3' ),
@@ -353,6 +351,7 @@ class wp_slimstat_reports {
 				'callback_args' => array(
 					'type' => 'top',
 					'columns' => 'screen_width, screen_height',
+					'where' => 'screen_width <> 0 AND screen_height <> 0',
 					'raw' => array( 'wp_slimstat_db', 'get_top' )
 				),
 				'classes' => array( 'normal' ),
@@ -519,13 +518,13 @@ class wp_slimstat_reports {
 					'id' => 'slim_p3_01',
 					'chart_data' => array(
 						'data1' => 'COUNT( DISTINCT referer )',
-						'data2' => 'COUNT( DISTINCT ip )'
+						'data2' => 'COUNT( DISTINCT ip )',
+						'where' => '(referer IS NOT NULL AND referer NOT LIKE "%' . home_url() . '%")'
 					),
 					'chart_labels' => array(
 						__( 'Domains', 'wp-slimstat' ),
 						__( 'Unique IPs', 'wp-slimstat' )
-					),
-					'where' => '(referer IS NOT NULL AND referer NOT LIKE "%' . home_url() . '%")'
+					)
 				),
 				'classes' => array( 'wide', 'chart' ),
 				'screens' => array( 'slimview5' ),
@@ -545,8 +544,10 @@ class wp_slimstat_reports {
 				'callback' => array( __CLASS__, 'raw_results_to_html' ),
 				'callback_args' => array(
 					'type' => 'top',
-					'columns' => 'referer',
-					'where' => "searchterms IS NOT NULL AND referer NOT LIKE '%".home_url()."%'",
+					'columns' => 'REPLACE( SUBSTRING_INDEX( SUBSTRING_INDEX( SUBSTRING_INDEX( referer, "://", -1 ), "/", 1 ), ".", -5 ), "www.", "" )',
+					'as_column' => 'referer_calculated',
+					'filter_op' => 'contains',
+					'where' => 'searchterms IS NOT NULL AND referer NOT LIKE "%' . str_replace( 'www.', '', parse_url( home_url(), PHP_URL_HOST ) ) . '%"',
 					'raw' => array( 'wp_slimstat_db', 'get_top' )
 				),
 				'classes' => array( 'normal' ),
@@ -883,17 +884,16 @@ class wp_slimstat_reports {
 			'slim_p3_10' => 1,
 			'slim_p4_08' => 1,
 			'slim_p4_14' => 1,
-			'slim_p4_16' => 1,
-			'slim_p4_17' => 1
+			'slim_p4_17' => 1,
+			'slim_getsocial' => 1
 		);
 
 		// Retrieve this user's list of active reports, 
 		$current_user = wp_get_current_user();
 		$page_location = ( wp_slimstat::$options[ 'use_separate_menu' ] == 'yes' ) ? 'slimstat' : 'admin';
-		
-		// Do this only if we are in one of our screens (no dashboard!)
 		self::$user_reports = get_user_option( "meta-box-order_{$page_location}_page_slimlayout", $current_user->ID );
 
+		// Do this only if we are in one of our screens (no dashboard!)
 		if ( !empty( $_REQUEST['page'] ) && strpos( $_REQUEST['page'], 'slimview' ) !== false ) {
 
 			// If this list is not empty, we rearrange the order of our reports
@@ -941,7 +941,7 @@ class wp_slimstat_reports {
 
 	public static function report_header( $_report_id = '' ) {
 		$header_classes =  !empty( self::$reports_info[ $_report_id ][ 'classes' ] ) ? implode( ' ', self::$reports_info[ $_report_id ][ 'classes' ] ) : '';
-		$header_buttons = '<div class="slimstat-header-buttons">'.apply_filters('slimstat_report_header_buttons', '<a class="button-ajax refresh slimstat-font-arrows-cw" title="'.__('Refresh','wp-slimstat').'" href="'.self::fs_url().'"></a>', $_report_id).'</div>';
+		$header_buttons = '<div class="slimstat-header-buttons">'.apply_filters('slimstat_report_header_buttons', '<a class="button-ajax noslimstat refresh slimstat-font-arrows-cw" title="'.__('Refresh','wp-slimstat').'" href="'.self::fs_url().'"></a>', $_report_id).'</div>';
 		$header_tooltip = !empty( self::$reports_info[ $_report_id ][ 'tooltip' ] ) ? "<i class='slimstat-tooltip-trigger corner'></i><span class='slimstat-tooltip-content'>".self::$reports_info[ $_report_id ][ 'tooltip' ]."</span>" : '';
 
 		echo "<div class='postbox $header_classes' id='$_report_id'>$header_buttons<h3>".self::$reports_info[ $_report_id ][ 'title' ]." $header_tooltip</h3><div class='inside' id='{$_report_id}_inside'>";
@@ -993,7 +993,12 @@ class wp_slimstat_reports {
 	}
 
 	public static function raw_results_to_html( $_args = array() ) {
+		if ( wp_slimstat::$options[ 'async_load' ] == 'yes' && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) ) {
+			return '';
+		}
+
 		wp_slimstat_db::$debug_message = '';
+
 		$all_results = call_user_func( $_args[ 'raw' ] , $_args );
 
 		echo wp_slimstat_db::$debug_message;
@@ -1056,6 +1061,7 @@ class wp_slimstat_reports {
 			
 			$is_expanded = ( wp_slimstat::$options['expand_details'] == 'yes' ) ? ' expanded' : '';
 			$permalinks_enabled = get_option( 'permalink_structure' );
+			$column_not_calculated = str_replace( '_calculated', '', $_args[ 'columns' ] );
 
 			for($i=0; $i<$count_page_results; $i++){
 				$row_details = $percentage = '';
@@ -1063,7 +1069,7 @@ class wp_slimstat_reports {
 				$element_value = $results[ $i ][ $_args[ 'columns' ] ];
 
 				// Some columns require a special pre-treatment
-				switch ( $_args[ 'columns' ] ){
+				switch ( $column_not_calculated ){
 
 					case 'browser':
 						if (!empty($results[$i]['user_agent']) && wp_slimstat::$options['show_complete_user_agent_tooltip'] == 'yes'){
@@ -1092,23 +1098,22 @@ class wp_slimstat_reports {
 						break;
 
 					case 'language':
-					case 'language_calculated':
-						$row_details = __('Code','wp-slimstat').": {$results[ $i ][ $_args[ 'columns' ] ]}";
-						$element_value = __('l-'.$results[ $i ][ $_args[ 'columns' ] ], 'wp-slimstat');
+						$row_details = __( 'Code', 'wp-slimstat' ) . ": {$results[ $i ][ $_args[ 'columns' ] ]}";
+						$element_value = __( 'l-' . $results[ $i ][ $_args[ 'columns' ] ], 'wp-slimstat' );
 						break;
 
 					case 'platform':
-					case 'platform_calculated':
-						$row_details = __('Code','wp-slimstat').": {$results[ $i ][ $_args[ 'columns' ] ]}";
-						$element_value = __( $results[ $i ][ $_args[ 'columns' ] ], 'wp-slimstat');
+						$row_details = __( 'Code', 'wp-slimstat' ).": {$results[ $i ][ $_args[ 'columns' ] ]}";
+						$element_value = __( $results[ $i ][ $_args[ 'columns' ] ], 'wp-slimstat' );
+						$results[ $i ][ $_args[ 'columns' ] ] = str_replace( 'p-', '', $results[ $i ][ $_args[ 'columns' ] ] );
 						break;
 
 					case 'referer':
 						$element_value = str_replace( array( '<', '>' ), array( '&lt;', '&gt;' ), urldecode( $results[ $i ][ $_args[ 'columns' ] ] ) );
+						//$element_value = parse_url( $element_value, PHP_URL_HOST );
 						break;
 
 					case 'resource':
-					case 'resource_calculated':
 						$resource_title = self::get_resource_title( $results[ $i ][ $_args[ 'columns' ] ] );
 						if ( $resource_title != $results[ $i ][ $_args[ 'columns' ] ] ) {
 							$row_details = __( 'URL', 'wp-slimstat' ) . ': ' . htmlentities( $results[ $i ][ $_args[ 'columns' ] ], ENT_QUOTES, 'UTF-8' );
@@ -1131,6 +1136,7 @@ class wp_slimstat_reports {
 							$element_value = htmlentities( $results[ $i ][ 'searchterms' ], ENT_QUOTES, 'UTF-8' );
 						}
 						break;
+
 					case 'username':
 						$element_value = $results[$i]['username'];
 						if (wp_slimstat::$options['show_display_name'] == 'yes'){
@@ -1149,9 +1155,9 @@ class wp_slimstat_reports {
 					default:
 				}
 				
-				$element_value = "<a class='slimstat-filter-link' href='".self::fs_url( $_args[ 'columns' ].' '.$_args['filter_op'].' '.$results[$i][ $_args[ 'columns' ] ] )."'>$element_value</a>";
+				$element_value = "<a class='slimstat-filter-link' href='" . self::fs_url( $column_not_calculated. ' ' . $_args[ 'filter_op' ] . ' ' . $results[ $i ][ $_args[ 'columns' ] ] ) . "'>$element_value</a>";
 
-				if ( !empty($_args['type'] ) && $_args['type'] == 'recent' ) {
+				if ( !empty( $_args['type'] ) && $_args['type'] == 'recent' ) {
 					$row_details = date_i18n(wp_slimstat::$options['date_format'].' '.wp_slimstat::$options['time_format'], $results[$i]['dt'], true) . ( !empty( $row_details ) ? '<br>' : '' ) . $row_details;
 				}
 
@@ -1178,10 +1184,17 @@ class wp_slimstat_reports {
 					}
 					$element_value = '<a target="_blank" class="slimstat-font-logout" title="'.__('Open this URL in a new window','wp-slimstat').'" href="'.$base_url.htmlentities($results[$i]['resource'], ENT_QUOTES, 'UTF-8').'"></a> '.$base_url.$element_value;
 				}
-				if ( $_args[ 'columns' ] == 'referer' ) {
-					$element_url = htmlentities($results[$i]['referer'], ENT_QUOTES, 'UTF-8');
+				
+				if ( $_args[ 'columns' ] == 'referer_calculated' && !empty( $_args[ 'type' ] ) && $_args[ 'type' ] == 'top' ) {
+					$element_url = 'http://' . htmlentities( $results[ $i ][ 'referer_calculated' ], ENT_QUOTES, 'UTF-8' );
 					$element_value = '<a target="_blank" class="slimstat-font-logout" title="'.__('Open this URL in a new window','wp-slimstat').'" href="'.$element_url.'"></a> '.$element_value;
 				}
+
+				if ( $_args[ 'columns' ] == 'referer' && !empty( $_args[ 'type' ] ) && $_args[ 'type' ] == 'top' ) {
+					$element_url = htmlentities( $results[ $i ][ 'referer' ], ENT_QUOTES, 'UTF-8' );
+					$element_value = '<a target="_blank" class="slimstat-font-logout" title="'.__('Open this URL in a new window','wp-slimstat').'" href="'.$element_url.'"></a> '.$element_value;
+				}
+				
 				if (!empty($results[$i]['ip']) && $_args[ 'columns' ] != 'ip' && wp_slimstat::$options['convert_ip_addresses'] != 'yes'){
 					$row_details .= '<br> IP: <a class="slimstat-filter-link" href="'.self::fs_url('ip equals '.$results[$i]['ip']).'">'.$results[$i]['ip'].'</a>'.(!empty($results[$i]['other_ip'])?' / '.$results[$i]['other_ip']:'').'<a title="WHOIS: '.$results[$i]['ip'].'" class="slimstat-font-location-1 whois" href="'.wp_slimstat::$options['ip_lookup_service'].$results[$i]['ip'].'"></a>';
 				}
@@ -1735,77 +1748,6 @@ class wp_slimstat_reports {
 		}
 	}
 
-	public static function show_getsocial() {
-		if ( !empty( $_POST[ 'fs' ][ 'addon_enable_getsocial' ] ) ) {
-			wp_slimstat::$options[ 'enable_getsocial' ] = 'yes';
-
-			// Update the list of posts
-			$all_posts = get_posts( array( 'posts_per_page' => 100 ) );
-			$all_post_urls = array();
-
-			if ( !empty( $all_posts ) ) {
-				foreach( $all_posts as $a_post ) {
-					$all_post_urls[] = parse_url( get_permalink( $a_post->ID ), PHP_URL_PATH );
-				}
-
-				$args = json_encode( array(
-					'domain' => parse_url( get_site_url(), PHP_URL_HOST ),
-					'items' => $all_post_urls
-				) );
-				wp_remote_post( 'http://api.at.sharescount.com/process', array( 'timeout' => 5, 'body' => $args ) );
-			}
-		}
-		if ( wp_slimstat::$options[ 'enable_getsocial' ] == 'yes' ) { 
-			$response = wp_remote_get( 'http://api.at.sharescount.com/results/' . parse_url( get_site_url(), PHP_URL_HOST ), array( 'timeout' => 5 ) );
-			if ( is_wp_error( $response ) ) {
-				echo '<p class="nodata">' . __( 'Error contacting the GetSocial endpoint.', 'wp-slimstat' ) . '</p>';
-			}
-			else {
-                // Parse remote HTML file
-				$data = wp_remote_retrieve_body( $response );
-
-				// Check for error
-				if ( is_wp_error( $data ) ) {
-					echo '<p class="nodata">' . __( 'Error decoding the GetSocial payload.', 'wp-slimstat' ) . '</p>';
-				}
-				else {
-					$decoded_data = @json_decode( $data );
-
-					echo '<table class="wp-list-table widefat fixed" cellspacing="0">
-							<thead>
-								<tr>
-									<th scope="col" style="width:45%">Page</th>
-									<th scope="col" style="text-align:center">Facebook</th>
-									<th scope="col" style="text-align:center">Twitter</th>
-									<th scope="col" style="text-align:center">LinkedIn</th>
-									<th scope="col" style="text-align:center">Pinterest</th>
-									<th scope="col" style="text-align:center">Google</th>
-									<th scope="col" style="text-align:center">Total</th>
-								</tr>
-							</thead>';
-					foreach ( $decoded_data as $key => $obj ) {
-						echo "<tr>
-							<td>" . self::get_resource_title( $key ) ."</td>
-							<td style='text-align:center'>" . ( !empty( $obj->facebook ) ? $obj->facebook : 0 ) . "</td>
-							<td style='text-align:center'>" . ( !empty( $obj->twitter ) ? $obj->twitter : 0 ) . "</td>
-							<td style='text-align:center'>" . ( !empty( $obj->linkedin ) ? $obj->linkedin : 0 ) . "</td>
-							<td style='text-align:center'>" . ( !empty( $obj->pinterest ) ? $obj->pinterest : 0 ) . "</td>
-							<td style='text-align:center'>" . ( !empty( $obj->google ) ? $obj->google : 0 ) . "</td>
-							<td style='text-align:center'>" . ( !empty( $obj->total ) ? $obj->total : 0 ) . "</td>";
-					}
-					echo '</table>';
-				}
-			}
-		}
-		else { 
-			echo '<p class="nodata">' . __( "Thanks to a partnership with GetSocial.io, you can access your website's<br/>social media metrics and identify your top performing posts.<br/> <a class='button-ajax' title='Enable this functionality' href='".self::fs_url()."&amp;fs%5Baddon_enable_getsocial%5D=yes'>Enable your social sharing report.</a>", 'wp-slimstat' ) . '</p>';
-		}
-
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
-			die();
-		}
-	}
-
 	public static function show_world_map() {
 		$countries = wp_slimstat_db::get_top('country');
 		$data_areas = array('xx'=>'{id:"XX",balloonText:"'.__('c-xx','wp-slimstat').': 0",value:0,color:"#ededed"}','af'=>'{id:"AF",balloonText:"'.__('c-af','wp-slimstat').': 0",value:0,color:"#ededed"}','ax'=>'{id:"AX",balloonText:"'.__('c-ax','wp-slimstat').': 0",value:0,color:"#ededed"}','al'=>'{id:"AL",balloonText:"'.__('c-al','wp-slimstat').': 0",value:0,color:"#ededed"}','dz'=>'{id:"DZ",balloonText:"'.__('c-dz','wp-slimstat').': 0",value:0,color:"#ededed"}','ad'=>'{id:"AD",balloonText:"'.__('c-ad','wp-slimstat').': 0",value:0,color:"#ededed"}','ao'=>'{id:"AO",balloonText:"'.__('c-ao','wp-slimstat').': 0",value:0,color:"#ededed"}','ai'=>'{id:"AI",balloonText:"'.__('c-ai','wp-slimstat').': 0",value:0,color:"#ededed"}','ag'=>'{id:"AG",balloonText:"'.__('c-ag','wp-slimstat').': 0",value:0,color:"#ededed"}','ar'=>'{id:"AR",balloonText:"'.__('c-ar','wp-slimstat').': 0",value:0,color:"#ededed"}','am'=>'{id:"AM",balloonText:"'.__('c-am','wp-slimstat').': 0",value:0,color:"#ededed"}','aw'=>'{id:"AW",balloonText:"'.__('c-aw','wp-slimstat').': 0",value:0,color:"#ededed"}','au'=>'{id:"AU",balloonText:"'.__('c-au','wp-slimstat').': 0",value:0,color:"#ededed"}','at'=>'{id:"AT",balloonText:"'.__('c-at','wp-slimstat').': 0",value:0,color:"#ededed"}','az'=>'{id:"AZ",balloonText:"'.__('c-az','wp-slimstat').': 0",value:0,color:"#ededed"}','bs'=>'{id:"BS",balloonText:"'.__('c-bs','wp-slimstat').': 0",value:0,color:"#ededed"}','bh'=>'{id:"BH",balloonText:"'.__('c-bh','wp-slimstat').': 0",value:0,color:"#ededed"}','bd'=>'{id:"BD",balloonText:"'.__('c-bd','wp-slimstat').': 0",value:0,color:"#ededed"}','bb'=>'{id:"BB",balloonText:"'.__('c-bb','wp-slimstat').': 0",value:0,color:"#ededed"}','by'=>'{id:"BY",balloonText:"'.__('c-by','wp-slimstat').': 0",value:0,color:"#ededed"}','be'=>'{id:"BE",balloonText:"'.__('c-be','wp-slimstat').': 0",value:0,color:"#ededed"}','bz'=>'{id:"BZ",balloonText:"'.__('c-bz','wp-slimstat').': 0",value:0,color:"#ededed"}','bj'=>'{id:"BJ",balloonText:"'.__('c-bj','wp-slimstat').': 0",value:0,color:"#ededed"}','bm'=>'{id:"BM",balloonText:"'.__('c-bm','wp-slimstat').': 0",value:0,color:"#ededed"}','bt'=>'{id:"BT",balloonText:"'.__('c-bt','wp-slimstat').': 0",value:0,color:"#ededed"}','bo'=>'{id:"BO",balloonText:"'.__('c-bo','wp-slimstat').': 0",value:0,color:"#ededed"}','ba'=>'{id:"BA",balloonText:"'.__('c-ba','wp-slimstat').': 0",value:0,color:"#ededed"}','bw'=>'{id:"BW",balloonText:"'.__('c-bw','wp-slimstat').': 0",value:0,color:"#ededed"}','br'=>'{id:"BR",balloonText:"'.__('c-br','wp-slimstat').': 0",value:0,color:"#ededed"}','bn'=>'{id:"BN",balloonText:"'.__('c-bn','wp-slimstat').': 0",value:0,color:"#ededed"}','bg'=>'{id:"BG",balloonText:"'.__('c-bg','wp-slimstat').': 0",value:0,color:"#ededed"}','bf'=>'{id:"BF",balloonText:"'.__('c-bf','wp-slimstat').': 0",value:0,color:"#ededed"}','bi'=>'{id:"BI",balloonText:"'.__('c-bi','wp-slimstat').': 0",value:0,color:"#ededed"}','kh'=>'{id:"KH",balloonText:"'.__('c-kh','wp-slimstat').': 0",value:0,color:"#ededed"}','cm'=>'{id:"CM",balloonText:"'.__('c-cm','wp-slimstat').': 0",value:0,color:"#ededed"}','ca'=>'{id:"CA",balloonText:"'.__('c-ca','wp-slimstat').': 0",value:0,color:"#ededed"}','cv'=>'{id:"CV",balloonText:"'.__('c-cv','wp-slimstat').': 0",value:0,color:"#ededed"}','ky'=>'{id:"KY",balloonText:"'.__('c-ky','wp-slimstat').': 0",value:0,color:"#ededed"}','cf'=>'{id:"CF",balloonText:"'.__('c-cf','wp-slimstat').': 0",value:0,color:"#ededed"}','td'=>'{id:"TD",balloonText:"'.__('c-td','wp-slimstat').': 0",value:0,color:"#ededed"}','cl'=>'{id:"CL",balloonText:"'.__('c-cl','wp-slimstat').': 0",value:0,color:"#ededed"}','cn'=>'{id:"CN",balloonText:"'.__('c-cn','wp-slimstat').': 0",value:0,color:"#ededed"}','co'=>'{id:"CO",balloonText:"'.__('c-co','wp-slimstat').': 0",value:0,color:"#ededed"}','km'=>'{id:"KM",balloonText:"'.__('c-km','wp-slimstat').': 0",value:0,color:"#ededed"}','cg'=>'{id:"CG",balloonText:"'.__('c-cg','wp-slimstat').': 0",value:0,color:"#ededed"}','cd'=>'{id:"CD",balloonText:"'.__('c-cd','wp-slimstat').': 0",value:0,color:"#ededed"}','cr'=>'{id:"CR",balloonText:"'.__('c-cr','wp-slimstat').': 0",value:0,color:"#ededed"}','ci'=>'{id:"CI",balloonText:"'.__('c-ci','wp-slimstat').': 0",value:0,color:"#ededed"}','hr'=>'{id:"HR",balloonText:"'.__('c-hr','wp-slimstat').': 0",value:0,color:"#ededed"}','cu'=>'{id:"CU",balloonText:"'.__('c-cu','wp-slimstat').': 0",value:0,color:"#ededed"}','cy'=>'{id:"CY",balloonText:"'.__('c-cy','wp-slimstat').': 0",value:0,color:"#ededed"}','cz'=>'{id:"CZ",balloonText:"'.__('c-cz','wp-slimstat').': 0",value:0,color:"#ededed"}','dk'=>'{id:"DK",balloonText:"'.__('c-dk','wp-slimstat').': 0",value:0,color:"#ededed"}','dj'=>'{id:"DJ",balloonText:"'.__('c-dj','wp-slimstat').': 0",value:0,color:"#ededed"}','dm'=>'{id:"DM",balloonText:"'.__('c-dm','wp-slimstat').': 0",value:0,color:"#ededed"}','do'=>'{id:"DO",balloonText:"'.__('c-do','wp-slimstat').': 0",value:0,color:"#ededed"}','ec'=>'{id:"EC",balloonText:"'.__('c-ec','wp-slimstat').': 0",value:0,color:"#ededed"}','eg'=>'{id:"EG",balloonText:"'.__('c-eg','wp-slimstat').': 0",value:0,color:"#ededed"}','sv'=>'{id:"SV",balloonText:"'.__('c-sv','wp-slimstat').': 0",value:0,color:"#ededed"}','gq'=>'{id:"GQ",balloonText:"'.__('c-gq','wp-slimstat').': 0",value:0,color:"#ededed"}','er'=>'{id:"ER",balloonText:"'.__('c-er','wp-slimstat').': 0",value:0,color:"#ededed"}','ee'=>'{id:"EE",balloonText:"'.__('c-ee','wp-slimstat').': 0",value:0,color:"#ededed"}','et'=>'{id:"ET",balloonText:"'.__('c-et','wp-slimstat').': 0",value:0,color:"#ededed"}','fo'=>'{id:"FO",balloonText:"'.__('c-fo','wp-slimstat').': 0",value:0,color:"#ededed"}','fk'=>'{id:"FK",balloonText:"'.__('c-fk','wp-slimstat').': 0",value:0,color:"#ededed"}','fj'=>'{id:"FJ",balloonText:"'.__('c-fj','wp-slimstat').': 0",value:0,color:"#ededed"}','fi'=>'{id:"FI",balloonText:"'.__('c-fi','wp-slimstat').': 0",value:0,color:"#ededed"}','fr'=>'{id:"FR",balloonText:"'.__('c-fr','wp-slimstat').': 0",value:0,color:"#ededed"}','gf'=>'{id:"GF",balloonText:"'.__('c-gf','wp-slimstat').': 0",value:0,color:"#ededed"}','ga'=>'{id:"GA",balloonText:"'.__('c-ga','wp-slimstat').': 0",value:0,color:"#ededed"}','gm'=>'{id:"GM",balloonText:"'.__('c-gm','wp-slimstat').': 0",value:0,color:"#ededed"}','ge'=>'{id:"GE",balloonText:"'.__('c-ge','wp-slimstat').': 0",value:0,color:"#ededed"}','de'=>'{id:"DE",balloonText:"'.__('c-de','wp-slimstat').': 0",value:0,color:"#ededed"}','gh'=>'{id:"GH",balloonText:"'.__('c-gh','wp-slimstat').': 0",value:0,color:"#ededed"}','gr'=>'{id:"GR",balloonText:"'.__('c-gr','wp-slimstat').': 0",value:0,color:"#ededed"}','gl'=>'{id:"GL",balloonText:"'.__('c-gl','wp-slimstat').': 0",value:0,color:"#ededed"}','gd'=>'{id:"GD",balloonText:"'.__('c-gd','wp-slimstat').': 0",value:0,color:"#ededed"}','gp'=>'{id:"GP",balloonText:"'.__('c-gp','wp-slimstat').': 0",value:0,color:"#ededed"}','gt'=>'{id:"GT",balloonText:"'.__('c-gt','wp-slimstat').': 0",value:0,color:"#ededed"}','gn'=>'{id:"GN",balloonText:"'.__('c-gn','wp-slimstat').': 0",value:0,color:"#ededed"}','gw'=>'{id:"GW",balloonText:"'.__('c-gw','wp-slimstat').': 0",value:0,color:"#ededed"}','gy'=>'{id:"GY",balloonText:"'.__('c-gy','wp-slimstat').': 0",value:0,color:"#ededed"}','ht'=>'{id:"HT",balloonText:"'.__('c-ht','wp-slimstat').': 0",value:0,color:"#ededed"}','hn'=>'{id:"HN",balloonText:"'.__('c-hn','wp-slimstat').': 0",value:0,color:"#ededed"}','hk'=>'{id:"HK",balloonText:"'.__('c-hk','wp-slimstat').': 0",value:0,color:"#ededed"}','hu'=>'{id:"HU",balloonText:"'.__('c-hu','wp-slimstat').': 0",value:0,color:"#ededed"}','is'=>'{id:"IS",balloonText:"'.__('c-is','wp-slimstat').': 0",value:0,color:"#ededed"}','in'=>'{id:"IN",balloonText:"'.__('c-in','wp-slimstat').': 0",value:0,color:"#ededed"}','id'=>'{id:"ID",balloonText:"'.__('c-id','wp-slimstat').': 0",value:0,color:"#ededed"}','ir'=>'{id:"IR",balloonText:"'.__('c-ir','wp-slimstat').': 0",value:0,color:"#ededed"}','iq'=>'{id:"IQ",balloonText:"'.__('c-iq','wp-slimstat').': 0",value:0,color:"#ededed"}','ie'=>'{id:"IE",balloonText:"'.__('c-ie','wp-slimstat').': 0",value:0,color:"#ededed"}','il'=>'{id:"IL",balloonText:"'.__('c-il','wp-slimstat').': 0",value:0,color:"#ededed"}','it'=>'{id:"IT",balloonText:"'.__('c-it','wp-slimstat').': 0",value:0,color:"#ededed"}','jm'=>'{id:"JM",balloonText:"'.__('c-jm','wp-slimstat').': 0",value:0,color:"#ededed"}','jp'=>'{id:"JP",balloonText:"'.__('c-jp','wp-slimstat').': 0",value:0,color:"#ededed"}','jo'=>'{id:"JO",balloonText:"'.__('c-jo','wp-slimstat').': 0",value:0,color:"#ededed"}','kz'=>'{id:"KZ",balloonText:"'.__('c-kz','wp-slimstat').': 0",value:0,color:"#ededed"}','ke'=>'{id:"KE",balloonText:"'.__('c-ke','wp-slimstat').': 0",value:0,color:"#ededed"}','nr'=>'{id:"NR",balloonText:"'.__('c-nr','wp-slimstat').': 0",value:0,color:"#ededed"}','kp'=>'{id:"KP",balloonText:"'.__('c-kp','wp-slimstat').': 0",value:0,color:"#ededed"}','kr'=>'{id:"KR",balloonText:"'.__('c-kr','wp-slimstat').': 0",value:0,color:"#ededed"}','kv'=>'{id:"KV",balloonText:"'.__('c-kv','wp-slimstat').': 0",value:0,color:"#ededed"}','kw'=>'{id:"KW",balloonText:"'.__('c-kw','wp-slimstat').': 0",value:0,color:"#ededed"}','kg'=>'{id:"KG",balloonText:"'.__('c-kg','wp-slimstat').': 0",value:0,color:"#ededed"}','la'=>'{id:"LA",balloonText:"'.__('c-la','wp-slimstat').': 0",value:0,color:"#ededed"}','lv'=>'{id:"LV",balloonText:"'.__('c-lv','wp-slimstat').': 0",value:0,color:"#ededed"}','lb'=>'{id:"LB",balloonText:"'.__('c-lb','wp-slimstat').': 0",value:0,color:"#ededed"}','ls'=>'{id:"LS",balloonText:"'.__('c-ls','wp-slimstat').': 0",value:0,color:"#ededed"}','lr'=>'{id:"LR",balloonText:"'.__('c-lr','wp-slimstat').': 0",value:0,color:"#ededed"}','ly'=>'{id:"LY",balloonText:"'.__('c-ly','wp-slimstat').': 0",value:0,color:"#ededed"}','li'=>'{id:"LI",balloonText:"'.__('c-li','wp-slimstat').': 0",value:0,color:"#ededed"}','lt'=>'{id:"LT",balloonText:"'.__('c-lt','wp-slimstat').': 0",value:0,color:"#ededed"}','lu'=>'{id:"LU",balloonText:"'.__('c-lu','wp-slimstat').': 0",value:0,color:"#ededed"}','mk'=>'{id:"MK",balloonText:"'.__('c-mk','wp-slimstat').': 0",value:0,color:"#ededed"}','mg'=>'{id:"MG",balloonText:"'.__('c-mg','wp-slimstat').': 0",value:0,color:"#ededed"}','mw'=>'{id:"MW",balloonText:"'.__('c-mw','wp-slimstat').': 0",value:0,color:"#ededed"}','my'=>'{id:"MY",balloonText:"'.__('c-my','wp-slimstat').': 0",value:0,color:"#ededed"}','ml'=>'{id:"ML",balloonText:"'.__('c-ml','wp-slimstat').': 0",value:0,color:"#ededed"}','mt'=>'{id:"MT",balloonText:"'.__('c-mt','wp-slimstat').': 0",value:0,color:"#ededed"}','mq'=>'{id:"MQ",balloonText:"'.__('c-mq','wp-slimstat').': 0",value:0,color:"#ededed"}','mr'=>'{id:"MR",balloonText:"'.__('c-mr','wp-slimstat').': 0",value:0,color:"#ededed"}','mu'=>'{id:"MU",balloonText:"'.__('c-mu','wp-slimstat').': 0",value:0,color:"#ededed"}','mx'=>'{id:"MX",balloonText:"'.__('c-mx','wp-slimstat').': 0",value:0,color:"#ededed"}','md'=>'{id:"MD",balloonText:"'.__('c-md','wp-slimstat').': 0",value:0,color:"#ededed"}','mn'=>'{id:"MN",balloonText:"'.__('c-mn','wp-slimstat').': 0",value:0,color:"#ededed"}','me'=>'{id:"ME",balloonText:"'.__('c-me','wp-slimstat').': 0",value:0,color:"#ededed"}','ms'=>'{id:"MS",balloonText:"'.__('c-ms','wp-slimstat').': 0",value:0,color:"#ededed"}','ma'=>'{id:"MA",balloonText:"'.__('c-ma','wp-slimstat').': 0",value:0,color:"#ededed"}','mz'=>'{id:"MZ",balloonText:"'.__('c-mz','wp-slimstat').': 0",value:0,color:"#ededed"}','mm'=>'{id:"MM",balloonText:"'.__('c-mm','wp-slimstat').': 0",value:0,color:"#ededed"}','na'=>'{id:"NA",balloonText:"'.__('c-na','wp-slimstat').': 0",value:0,color:"#ededed"}','np'=>'{id:"NP",balloonText:"'.__('c-np','wp-slimstat').': 0",value:0,color:"#ededed"}','nl'=>'{id:"NL",balloonText:"'.__('c-nl','wp-slimstat').': 0",value:0,color:"#ededed"}','nc'=>'{id:"NC",balloonText:"'.__('c-nc','wp-slimstat').': 0",value:0,color:"#ededed"}','nz'=>'{id:"NZ",balloonText:"'.__('c-nz','wp-slimstat').': 0",value:0,color:"#ededed"}','ni'=>'{id:"NI",balloonText:"'.__('c-ni','wp-slimstat').': 0",value:0,color:"#ededed"}','ne'=>'{id:"NE",balloonText:"'.__('c-ne','wp-slimstat').': 0",value:0,color:"#ededed"}','ng'=>'{id:"NG",balloonText:"'.__('c-ng','wp-slimstat').': 0",value:0,color:"#ededed"}','no'=>'{id:"NO",balloonText:"'.__('c-no','wp-slimstat').': 0",value:0,color:"#ededed"}','om'=>'{id:"OM",balloonText:"'.__('c-om','wp-slimstat').': 0",value:0,color:"#ededed"}','pk'=>'{id:"PK",balloonText:"'.__('c-pk','wp-slimstat').': 0",value:0,color:"#ededed"}','pw'=>'{id:"PW",balloonText:"'.__('c-pw','wp-slimstat').': 0",value:0,color:"#ededed"}','ps'=>'{id:"PS",balloonText:"'.__('c-ps','wp-slimstat').': 0",value:0,color:"#ededed"}','pa'=>'{id:"PA",balloonText:"'.__('c-pa','wp-slimstat').': 0",value:0,color:"#ededed"}','pg'=>'{id:"PG",balloonText:"'.__('c-pg','wp-slimstat').': 0",value:0,color:"#ededed"}','py'=>'{id:"PY",balloonText:"'.__('c-py','wp-slimstat').': 0",value:0,color:"#ededed"}','pe'=>'{id:"PE",balloonText:"'.__('c-pe','wp-slimstat').': 0",value:0,color:"#ededed"}','ph'=>'{id:"PH",balloonText:"'.__('c-ph','wp-slimstat').': 0",value:0,color:"#ededed"}','pl'=>'{id:"PL",balloonText:"'.__('c-pl','wp-slimstat').': 0",value:0,color:"#ededed"}','pt'=>'{id:"PT",balloonText:"'.__('c-pt','wp-slimstat').': 0",value:0,color:"#ededed"}','pr'=>'{id:"PR",balloonText:"'.__('c-pr','wp-slimstat').': 0",value:0,color:"#ededed"}','qa'=>'{id:"QA",balloonText:"'.__('c-qa','wp-slimstat').': 0",value:0,color:"#ededed"}','re'=>'{id:"RE",balloonText:"'.__('c-re','wp-slimstat').': 0",value:0,color:"#ededed"}','ro'=>'{id:"RO",balloonText:"'.__('c-ro','wp-slimstat').': 0",value:0,color:"#ededed"}','ru'=>'{id:"RU",balloonText:"'.__('c-ru','wp-slimstat').': 0",value:0,color:"#ededed"}','rw'=>'{id:"RW",balloonText:"'.__('c-rw','wp-slimstat').': 0",value:0,color:"#ededed"}','kn'=>'{id:"KN",balloonText:"'.__('c-kn','wp-slimstat').': 0",value:0,color:"#ededed"}','lc'=>'{id:"LC",balloonText:"'.__('c-lc','wp-slimstat').': 0",value:0,color:"#ededed"}','mf'=>'{id:"MF",balloonText:"'.__('c-mf','wp-slimstat').': 0",value:0,color:"#ededed"}','vc'=>'{id:"VC",balloonText:"'.__('c-vc','wp-slimstat').': 0",value:0,color:"#ededed"}','ws'=>'{id:"WS",balloonText:"'.__('c-ws','wp-slimstat').': 0",value:0,color:"#ededed"}','st'=>'{id:"ST",balloonText:"'.__('c-st','wp-slimstat').': 0",value:0,color:"#ededed"}','sa'=>'{id:"SA",balloonText:"'.__('c-sa','wp-slimstat').': 0",value:0,color:"#ededed"}','sn'=>'{id:"SN",balloonText:"'.__('c-sn','wp-slimstat').': 0",value:0,color:"#ededed"}','rs'=>'{id:"RS",balloonText:"'.__('c-rs','wp-slimstat').': 0",value:0,color:"#ededed"}','sl'=>'{id:"SL",balloonText:"'.__('c-sl','wp-slimstat').': 0",value:0,color:"#ededed"}','sg'=>'{id:"SG",balloonText:"'.__('c-sg','wp-slimstat').': 0",value:0,color:"#ededed"}','sk'=>'{id:"SK",balloonText:"'.__('c-sk','wp-slimstat').': 0",value:0,color:"#ededed"}','si'=>'{id:"SI",balloonText:"'.__('c-si','wp-slimstat').': 0",value:0,color:"#ededed"}','sb'=>'{id:"SB",balloonText:"'.__('c-sb','wp-slimstat').': 0",value:0,color:"#ededed"}','so'=>'{id:"SO",balloonText:"'.__('c-so','wp-slimstat').': 0",value:0,color:"#ededed"}','za'=>'{id:"ZA",balloonText:"'.__('c-za','wp-slimstat').': 0",value:0,color:"#ededed"}','gs'=>'{id:"GS",balloonText:"'.__('c-gs','wp-slimstat').': 0",value:0,color:"#ededed"}','es'=>'{id:"ES",balloonText:"'.__('c-es','wp-slimstat').': 0",value:0,color:"#ededed"}','lk'=>'{id:"LK",balloonText:"'.__('c-lk','wp-slimstat').': 0",value:0,color:"#ededed"}','sc'=>'{id:"SC",balloonText:"'.__('c-sc','wp-slimstat').': 0",value:0,color:"#ededed"}','sd'=>'{id:"SD",balloonText:"'.__('c-sd','wp-slimstat').': 0",value:0,color:"#ededed"}','ss'=>'{id:"SS",balloonText:"'.__('c-ss','wp-slimstat').': 0",value:0,color:"#ededed"}','sr'=>'{id:"SR",balloonText:"'.__('c-sr','wp-slimstat').': 0",value:0,color:"#ededed"}','sj'=>'{id:"SJ",balloonText:"'.__('c-sj','wp-slimstat').': 0",value:0,color:"#ededed"}','sz'=>'{id:"SZ",balloonText:"'.__('c-sz','wp-slimstat').': 0",value:0,color:"#ededed"}','se'=>'{id:"SE",balloonText:"'.__('c-se','wp-slimstat').': 0",value:0,color:"#ededed"}','ch'=>'{id:"CH",balloonText:"'.__('c-ch','wp-slimstat').': 0",value:0,color:"#ededed"}','sy'=>'{id:"SY",balloonText:"'.__('c-sy','wp-slimstat').': 0",value:0,color:"#ededed"}','tw'=>'{id:"TW",balloonText:"'.__('c-tw','wp-slimstat').': 0",value:0,color:"#ededed"}','tj'=>'{id:"TJ",balloonText:"'.__('c-tj','wp-slimstat').': 0",value:0,color:"#ededed"}','tz'=>'{id:"TZ",balloonText:"'.__('c-tz','wp-slimstat').': 0",value:0,color:"#ededed"}','th'=>'{id:"TH",balloonText:"'.__('c-th','wp-slimstat').': 0",value:0,color:"#ededed"}','tl'=>'{id:"TL",balloonText:"'.__('c-tl','wp-slimstat').': 0",value:0,color:"#ededed"}','tg'=>'{id:"TG",balloonText:"'.__('c-tg','wp-slimstat').': 0",value:0,color:"#ededed"}','to'=>'{id:"TO",balloonText:"'.__('c-to','wp-slimstat').': 0",value:0,color:"#ededed"}','tt'=>'{id:"TT",balloonText:"'.__('c-tt','wp-slimstat').': 0",value:0,color:"#ededed"}','tn'=>'{id:"TN",balloonText:"'.__('c-tn','wp-slimstat').': 0",value:0,color:"#ededed"}','tr'=>'{id:"TR",balloonText:"'.__('c-tr','wp-slimstat').': 0",value:0,color:"#ededed"}','tm'=>'{id:"TM",balloonText:"'.__('c-tm','wp-slimstat').': 0",value:0,color:"#ededed"}','tc'=>'{id:"TC",balloonText:"'.__('c-tc','wp-slimstat').': 0",value:0,color:"#ededed"}','ug'=>'{id:"UG",balloonText:"'.__('c-ug','wp-slimstat').': 0",value:0,color:"#ededed"}','ua'=>'{id:"UA",balloonText:"'.__('c-ua','wp-slimstat').': 0",value:0,color:"#ededed"}','ae'=>'{id:"AE",balloonText:"'.__('c-ae','wp-slimstat').': 0",value:0,color:"#ededed"}','gb'=>'{id:"GB",balloonText:"'.__('c-gb','wp-slimstat').': 0",value:0,color:"#ededed"}','us'=>'{id:"US",balloonText:"'.__('c-us','wp-slimstat').': 0",value:0,color:"#ededed"}','uy'=>'{id:"UY",balloonText:"'.__('c-uy','wp-slimstat').': 0",value:0,color:"#ededed"}','uz'=>'{id:"UZ",balloonText:"'.__('c-uz','wp-slimstat').': 0",value:0,color:"#ededed"}','vu'=>'{id:"VU",balloonText:"'.__('c-vu','wp-slimstat').': 0",value:0,color:"#ededed"}','ve'=>'{id:"VE",balloonText:"'.__('c-ve','wp-slimstat').': 0",value:0,color:"#ededed"}','vn'=>'{id:"VN",balloonText:"'.__('c-vn','wp-slimstat').': 0",value:0,color:"#ededed"}','vg'=>'{id:"VG",balloonText:"'.__('c-vg','wp-slimstat').': 0",value:0,color:"#ededed"}','vi'=>'{id:"VI",balloonText:"'.__('c-vi','wp-slimstat').': 0",value:0,color:"#ededed"}','eh'=>'{id:"EH",balloonText:"'.__('c-eh','wp-slimstat').': 0",value:0,color:"#ededed"}','ye'=>'{id:"YE",balloonText:"'.__('c-ye','wp-slimstat').': 0",value:0,color:"#ededed"}','zm'=>'{id:"ZM",balloonText:"'.__('c-zm','wp-slimstat').': 0",value:0,color:"#ededed"}','zw'=>'{id:"ZW",balloonText:"'.__('c-zw','wp-slimstat').': 0",value:0,color:"#ededed"}','gg'=>'{id:"GG",balloonText:"'.__('c-gg','wp-slimstat').': 0",value:0,color:"#ededed"}','je'=>'{id:"JE",balloonText:"'.__('c-je','wp-slimstat').': 0",value:0,color:"#ededed"}','im'=>'{id:"IM",balloonText:"'.__('c-im','wp-slimstat').': 0",value:0,color:"#ededed"}','mv'=>'{id:"MV",balloonText:"'.__('c-mv','wp-slimstat').': 0",value:0,color:"#ededed"}');
@@ -1883,24 +1825,21 @@ class wp_slimstat_reports {
 	public static function get_search_terms_info($_searchterms = '', $_referer = '', $_serp_only = false){
 		$query_details = '';
 		$search_terms_info = '';
-		$domain = parse_url($_referer);
-		$domain = !empty( $domain['host'] ) ? $domain['host'] : '';
+		parse_str( $_referer, $query_parse_str );
 
-		parse_str("daum=search?q&naver=search.naver?query&google=search?q&yahoo=search?p&bing=search?q&aol=search?query&lycos=web?q&ask=web?q&cnn=search/?query&about=?q&mamma=result.php?q&voila=S/voila?rdata&virgilio=ricerca?qs&baidu=s?wd&yandex=yandsearch?text&najdi=search.jsp?q&seznam=?q&onet=wyniki.html?qt&yam=Search/Web/DefaultCSA.aspx?k&pchome=/search/?q&kvasir=alle?q&arama.mynet=web/goal/1/?q&nova_rambler=search?query", $query_formats);
-		preg_match("/(daum|naver|google|yahoo|bing|aol|lycos|ask|cnn|about|mamma|voila|virgilio|baidu|yandex|najdi|seznam|onet|szukacz|yam|pchome|kvasir|mynet|ekolay|rambler)./", $domain, $matches);
-		parse_str($_referer, $query_parse_str);
+		if ( !empty( $query_parse_str[ 'source' ] ) && !$_serp_only ) {
+			$query_details = __( 'src', 'wp-slimstat' ) . ": {$query_parse_str[ 'source' ]}";
+		}
 
-		if (!empty($query_parse_str['source']) && !$_serp_only){
-			$query_details = __('src','wp-slimstat').": {$query_parse_str['source']}";
+		if ( !empty( $query_parse_str[ 'cd' ] ) ) {
+			$query_details = __( 'serp', 'wp-slimstat') . ": {$query_parse_str[ 'cd' ]}";
 		}
-		if (!empty($query_parse_str['cd'])){
-			$query_details = __('serp','wp-slimstat').": {$query_parse_str['cd']}";
-		}
-		if (!empty($query_details)){
+
+		if ( !empty( $query_details ) ) {
 			$query_details = "($query_details)";
 		}
 
-		if (!empty($_searchterms)){		
+		if ( !empty( $_searchterms ) && $_searchterms != '_' ) {		
 			$search_terms_info = '<a class="slimstat-font-logout" target="_blank" title="' . htmlentities( __( 'Go to the referring page', 'wp-slimstat' ), ENT_QUOTES, 'UTF-8' ) . '" href="' . $_referer . '"></a>' . htmlentities( $_searchterms, ENT_QUOTES, 'UTF-8' );
 			$search_terms_info = "$search_terms_info $query_details";
 		}
@@ -1947,7 +1886,7 @@ class wp_slimstat_reports {
 		if ( empty( $_REQUEST[ 'page' ] ) ) {
 			$request_uri = str_replace( 'index.php', 'admin.php', $request_uri );
 		}
-		else if ( array_key_exists( $_REQUEST[ 'page' ], self::$screens_info ) ) {
+		else if ( array_key_exists( $_REQUEST[ 'page' ], wp_slimstat_admin::$screens_info ) ) {
 			$request_page = $_REQUEST[ 'page' ];
 		}
 		else {
@@ -2001,6 +1940,11 @@ class wp_slimstat_reports {
 
 		if ( $post_id > 0 ) {
 			$resource_title = the_title_attribute( array( 'post' => $post_id, 'echo' => false ) );
+
+			// Encode URLs to avoid XSS attacks
+			if ( $resource_title == $_resource ) {
+				$resource_title = htmlspecialchars( $resource_title, ENT_QUOTES, 'UTF-8' );
+			}
 		}
 
 		// Is this a category or tag permalink?
@@ -2028,9 +1972,12 @@ class wp_slimstat_reports {
 			if ( !empty( $term_names ) ) {
 				$resource_title = implode( ',', $term_names );
 			}
+			else {
+				$resource_title = htmlspecialchars( $resource_title, ENT_QUOTES, 'UTF-8' );
+			}
 		}
 
-		return htmlentities( $resource_title, ENT_QUOTES, 'UTF-8' );
+		return $resource_title;
 	}
 	
 	public static function inline_help( $_text = '', $_echo = true ) {

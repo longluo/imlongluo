@@ -894,7 +894,7 @@ function weixin_robot_messages_page() {
 				<td class="content">
 				<?php
 				if($MsgType == 'text'){
-					echo $weixin_message->Content; 
+					echo wp_strip_all_tags($weixin_message->Content); 
 				}elseif($MsgType == 'link'){
 					echo '<a href="'.$weixin_message->Url.'" target="_blank">'.$weixin_message->Title.'</a>';
 				}elseif($MsgType == 'image'){
@@ -975,7 +975,9 @@ function weixin_robot_messages_page() {
 			<?php } ?>
 		</tbody>
 		</table>
+		<div class="tablenav bottom">
 		<?php wpjam_admin_pagenavi($total_count,$number_per_page); ?>
+		</div>
 		<?php if(weixin_robot_get_setting('weixin_advanced_api') && strpos($wpdb->weixin_messages, 'weixin')){?>
 		<script type="text/javascript">
 			function reply_to_weixin(weixin_openid, id){
@@ -1021,8 +1023,7 @@ function weixin_robot_messages_page() {
 					event.preventDefault();
 				});
 			});
-		</script>		
-		<?php wpjam_confim_delete_script(); ?>
+		</script>
 		<?php } ?>
 <?php }
 

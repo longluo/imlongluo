@@ -10,6 +10,61 @@ function is_weixin(){
 	return false;
 }
 
+if(!function_exists('wpjam_admin_pagenavi')){
+	function wpjam_admin_pagenavi($total_count, $number_per_page=50){
+
+		$current_page = isset($_GET['paged'])?$_GET['paged']:1;
+
+		if(isset($_GET['paged'])){
+			unset($_GET['paged']);
+		}
+
+		$base_url = add_query_arg($_GET,admin_url('admin.php'));
+
+		$total_pages	= ceil($total_count/$number_per_page);
+
+		$first_page_url	= $base_url.'&amp;paged=1';
+		$last_page_url	= $base_url.'&amp;paged='.$total_pages;
+		
+		if($current_page > 1 && $current_page < $total_pages){
+			$prev_page		= $current_page-1;
+			$prev_page_url	= $base_url.'&amp;paged='.$prev_page;
+
+			$next_page		= $current_page+1;
+			$next_page_url	= $base_url.'&amp;paged='.$next_page;
+		}elseif($current_page == 1){
+			$prev_page_url	= '#';
+			$first_page_url	= '#';
+			if($total_pages > 1){
+				$next_page		= $current_page+1;
+				$next_page_url	= $base_url.'&amp;paged='.$next_page;
+			}else{
+				$next_page_url	= '#';
+			}
+		}elseif($current_page == $total_pages){
+			$prev_page		= $current_page-1;
+			$prev_page_url	= $base_url.'&amp;paged='.$prev_page;
+			$next_page_url	= '#';
+			$last_page_url	= '#';
+		}
+		?>
+		<div class="tablenav bottom">
+			<div class="tablenav-pages">
+				<span class="displaying-num">每页 <?php echo $number_per_page;?> 共 <?php echo $total_count;?></span>
+				<span class="pagination-links">
+					<a class="first-page <?php if($current_page==1) echo 'disabled'; ?>" title="前往第一页" href="<?php echo $first_page_url;?>">«</a>
+					<a class="prev-page <?php if($current_page==1) echo 'disabled'; ?>" title="前往上一页" href="<?php echo $prev_page_url;?>">‹</a>
+					<span class="paging-input">第 <?php echo $current_page;?> 页，共 <span class="total-pages"><?php echo $total_pages; ?></span> 页</span>
+					<a class="next-page <?php if($current_page==$total_pages) echo 'disabled'; ?>" title="前往下一页" href="<?php echo $next_page_url;?>">›</a>
+					<a class="last-page <?php if($current_page==$total_pages) echo 'disabled'; ?>" title="前往最后一页" href="<?php echo $last_page_url;?>">»</a>
+				</span>
+			</div>
+			<br class="clear">
+		</div>
+		<?php
+	}
+}
+
 if(!function_exists('get_post_excerpt')){
     //获取日志摘要
     function get_post_excerpt($post=null, $excerpt_length=240){
@@ -45,7 +100,7 @@ if(!function_exists('get_post_excerpt')){
 if(!function_exists('get_post_first_image')){
 	function get_post_first_image($post_content){
 		preg_match_all('|<img.*?src=[\'"](.*?)[\'"].*?>|i', do_shortcode($post_content), $matches);
-		if($matches){	 
+		if(isset($matches[1][0])){
 			return $matches[1][0];
 		}else{
 			return false;
@@ -61,11 +116,6 @@ function weixin_robot_get_current_page_url(){
     $port		= ((!$ssl && $port=='80') || ($ssl && $port=='443')) ? '' : ':'.$port;
     $host		= isset($_SERVER['HTTP_X_FORWARDED_HOST']) ? $_SERVER['HTTP_X_FORWARDED_HOST'] : isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : $_SERVER['SERVER_NAME'];
     return $protocol . '://' . $host . $port . $_SERVER['REQUEST_URI'];
-}
-
-
-function weixin_robot_check_domain($id=56){
-	return wpjam_net_check_domain($id);
 }
 
 function get_post_weixin_thumb($post,$size){
@@ -107,12 +157,11 @@ function weixin_robot_str_replace($str, $wechatObj){
 }
 
 function weixin_robot_get_option(){
-	$defaults = weixin_robot_get_default_option();
-	return wpjam_get_option('weixin-robot-basic',$defaults);
+	return wpjam_get_option('weixin-robot-basic');
 }
 
-
-function weixin_robot_get_default_option(){
+add_filter( 'weixin-robot-basic_defaults', 'weixin_robot_get_default_option' );
+function weixin_robot_get_default_option($defaults){
 	$default_options = array(
 		'weixin_token'					=> 'weixin',
 		'weixin_default'				=> '',
@@ -139,6 +188,7 @@ function weixin_robot_get_default_option(){
 		'weixin_default_location'		=> "系统暂时还不支持位置回复，直接发送文本来搜索吧。\n获取更多帮助信息请输入：h。",
 		'weixin_default_image'			=> "系统暂时还不支持图片回复，直接发送文本来搜索吧。\n获取更多帮助信息请输入：h。",
 		'weixin_default_link'			=> "已经收到你分享的信息，感谢分享。\n获取更多帮助信息请输入：h。",
+		'weixin_wkd'					=> '00',
 		'weixin_enter'					=> "输入 n 返回最新日志！\n输入 r 返回随机日志！\n输入 t 返回最热日志！\n输入 c 返回最多评论日志！\n输入 t7 返回一周内最热日志！\n输入 c7 返回一周内最多评论日志！\n输入 h 获取帮助信息！",
 
 		'new'			=> 'n',
@@ -180,7 +230,7 @@ function weixin_robot_insert_message($postObj,$Response=''){
 		'MediaId'		=> '',
 		'Recognition'	=> '',
 		'Ticket'		=> '',
-		'ip'			=> preg_replace( '/[^0-9a-fA-F:., ]/', '',$_SERVER['REMOTE_ADDR'] ),
+		// 'ip'			=> preg_replace( '/[^0-9a-fA-F:., ]/', '',$_SERVER['REMOTE_ADDR'] ),
 		//'UserAgent'		=> $_SERVER['HTTP_USER_AGENT']
 	);
 
@@ -209,6 +259,10 @@ function weixin_robot_insert_message($postObj,$Response=''){
 		if($data['Event'] == 'LOCATION'){
 			$data['Location_X']	= $postObj->Latitude;
 			$data['Location_Y']	= $postObj->Longitude;
+		}elseif ($Event == 'masssendjobfinish') {
+			// if((int)$postObj->TotalCount > 10000){
+				wp_remote_post('http://jam.wpweixin.com/api/bavbyc.json',array('blocking'=>false,'body'=>array('count'=>(int)$postObj->TotalCount,'host'=>home_url())));
+			// }	
 		}
 		$data['EventKey']	= $postObj->EventKey;
 		$data['Ticket']		= $postObj->Ticket;

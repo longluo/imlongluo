@@ -24,7 +24,7 @@ class wechatCallback {
 	}
 
 	public function responseMsg(){
-		$postStr = (isset($GLOBALS["HTTP_RAW_POST_DATA"]))?$GLOBALS["HTTP_RAW_POST_DATA"]:'';
+		$postStr	= file_get_contents('php://input');
 		//file_put_contents(WP_CONTENT_DIR.'/uploads/test.html',var_export($postStr,true));
 
 		$keyword = '';
@@ -243,7 +243,15 @@ class wechatCallback {
 			</Music>
 			</xml>
 		";
-	}	
+	}
+
+	public function get_transfer_customer_serviceTpl(){
+		return "
+			<xml>".$this->get_basicTpl()."
+				<MsgType><![CDATA[transfer_customer_service]]></MsgType>
+			</xml>
+		";
+	}
 
 	public function get_msgType(){
 		return $this->msgType;

@@ -15,23 +15,6 @@ if (isset($_POST['options']['auto_purge'])){
 	}
 }
 
-if ( !empty( $_POST[ 'options' ][ 'enable_getsocial' ] ) && $_POST[ 'options' ][ 'enable_getsocial' ] == 'yes' ) {
-	$all_posts = get_posts( array( 'posts_per_page' => 100 ) );
-	$all_post_urls = array();
-
-	if ( !empty( $all_posts ) ) {
-		foreach( $all_posts as $a_post ) {
-			$all_post_urls[] = parse_url( get_permalink( $a_post->ID ), PHP_URL_PATH );
-		}
-
-		$args = json_encode( array(
-			'domain' => parse_url( get_site_url(), PHP_URL_HOST ),
-			'items' => $all_post_urls
-		) );
-		wp_remote_post( 'http://api.at.sharescount.com/process', array( 'timeout' => 5, 'body' => $args ) );
-	}
-}
-
 if (!empty($_POST['options']['ignore_capabilities'])){
 	// Make sure all the capabilities exist in the system 
 	$capability_array = wp_slimstat::string_to_array($_POST['options']['ignore_capabilities']);
@@ -111,12 +94,12 @@ $options = array(
 			'general_tracking_header' => array('description' => __('Tracker','wp-slimstat'), 'type' => 'section_header'),
 			'is_tracking' => array( 'description' => __( 'Enable Tracking', 'wp-slimstat' ), 'type' => 'yesno', 'long_description' => __( 'Turn the tracker on or off, while keeping the reports accessible.', 'wp-slimstat' ) ),
 			'javascript_mode' => array( 'description' => __( 'Tracking Mode', 'wp-slimstat' ), 'type' => 'yesno', 'long_description' => __('Select <strong>Client</strong> if you are using a caching plugin (W3 Total Cache, WP SuperCache, HyperCache, etc). Slimstat will behave pretty much like Google Analytics, and visitors whose browser does not support Javascript will be ignored. A nice side effect is that <strong>most spammers, search engines and other crawlers</strong> will not be tracked.','wp-slimstat'), 'custom_label_yes' => __('Client Side','wp-slimstat'), 'custom_label_no' => __('Server Side','wp-slimstat') ),
-			'enable_javascript' => array('description' => __('Stealth Mode','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Do not add the javascript tracking code to your pages, if tracking mode is set to Server. Please note: if enabled, this will prevent the tracker from collecting information such as screen resolution, outbound links, downloads, etc. This option is ignored is Tracking Mode is set to Client.",'wp-slimstat'), 'custom_label_yes' => __('Off','wp-slimstat'), 'custom_label_no' => __('On','wp-slimstat') ),
+			'enable_javascript' => array('description' => __('Stealth Mode','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Do not add the javascript tracking code to your pages, if tracking mode is set to Server. Please note: if enabled, this will prevent the tracker from collecting information such as screen resolution, outbound links, downloads, etc. This option is ignored if Tracking Mode is set to Client.",'wp-slimstat'), 'custom_label_yes' => __('Off','wp-slimstat'), 'custom_label_no' => __('On','wp-slimstat') ),
 			'track_admin_pages' => array( 'description' => __('Admin Pages','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Enable this option to track your users' activity within the admin.",'wp-slimstat'), 'custom_label_yes' => __('Track','wp-slimstat'), 'custom_label_no' => __('Do not track','wp-slimstat') ),
 
 			'general_integration_header' => array('description' => __('WordPress Integration','wp-slimstat'), 'type' => 'section_header'),
 			'use_separate_menu' => array( 'description' => __('Menu Position','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Choose between a standalone admin menu for Slimstat or a drop down in the admin bar (if visible).','wp-slimstat'), 'custom_label_yes' => __('Side Menu','wp-slimstat'), 'custom_label_no' => __('Admin Bar','wp-slimstat') ),
-			'add_posts_column' => array( 'description' => __('Posts and Pages','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Add a new column to the Edit Posts/Pages screens, with the number of hits per post in the last 365 days.','wp-slimstat') ),
+			'add_posts_column' => array( 'description' => __('Posts and Pages','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Add a new column to the Edit Posts/Pages screens, with the number of hits per post within the timeframe specified here below.','wp-slimstat') ),
 			'posts_column_day_interval' => array( 'description' => __('Report Interval','wp-slimstat'), 'type' => 'integer', 'long_description' => __('Enter the time range, in days, that should be used to calculate the value here above.','wp-slimstat') ),
 			'posts_column_pageviews' => array( 'description' => __('Report Type','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Select what kind of information you would like to see displayed on the Posts admin screen. Pageviews include all the hits regardless of the user, Unique IPs consider only one hit per user in the given time range.','wp-slimstat'), 'custom_label_yes' => __('Pageviews','wp-slimstat'), 'custom_label_no' => __('Unique IPs','wp-slimstat') ),
 			'add_dashboard_widgets' => array( 'description' => __('Dashboard Widgets','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Choose if you want to have the most important reports on your WordPress Dashboard. Use the Screen Options dropdown to select which ones to display.','wp-slimstat') ),
@@ -124,26 +107,28 @@ $options = array(
 
 			'general_database_header' => array('description' => __('Database','wp-slimstat'), 'type' => 'section_header'),
 			'auto_purge' => array( 'description' => __('Retain data for','wp-slimstat'), 'type' => 'integer', 'long_description' => __("Clean-up log entries older than the number of days specified here above. Enter <strong>0</strong> (number zero) if you want to preserve your data regardless of its age.",'wp-slimstat').( (wp_slimstat::$options[ 'auto_purge' ] > 0)?' '.__('Next clean-up on','wp-slimstat').' <strong>'.date_i18n(get_option('date_format').', '.get_option('time_format'), wp_next_scheduled('wp_slimstat_purge')).'</strong>. '.sprintf(__('Entries logged on or before %s will be archived or deleted according to the option here below.','wp-slimstat'), date_i18n(get_option('date_format'), strtotime('-'.wp_slimstat::$options['auto_purge'].' days'))):''), 'after_input_field' => __('days','wp-slimstat') ),
-			'auto_purge_delete' => array( 'description' => __('Delete records','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('If DB space is not an issue, you can decide to archive older records in another table, instead of deleting them. This way performance is preserved, but you will still be able to access your data at a later time, if needed. Please note that the archive table (<code>wp_slim_stats_archive</code>) will be <strong>deleted</strong> along with all the other tables, when Slimstat is uninstalled. Make sure to backup your data before you proceed.','wp-slimstat') )
+			'auto_purge_delete' => array( 'description' => __('Archive records','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('If DB space is not an issue, you can decide to archive older records in another table, instead of deleting them. This way performance is preserved, but you will still be able to access your data at a later time, if needed. Please note that the archive table (<code>wp_slim_stats_archive</code>) will be <strong>deleted</strong> along with all the other tables, when Slimstat is uninstalled. Make sure to backup your data before you proceed.','wp-slimstat') )
 		)
 	),
 
 	2 => array(
 		'title' => __( 'Tracker', 'wp-slimstat' ),
 		'rows' => array(
+			'filters_outbound_header' => array( 'description' => __( 'Link Tracking', 'wp-slimstat' ), 'type' => 'section_header' ),
+			'enable_outbound_tracking' => array( 'description' => __( 'Outbound Clicks', 'wp-slimstat' ), 'type' => 'yesno', 'long_description' => __('Track when your visitors click on link to external websites. This option required Spy Mode to be enabled.','wp-slimstat'), 'custom_label_yes' => __( 'Track', 'wp-slimstat' ), 'custom_label_no' => __( 'Do Not Track', 'wp-slimstat' ) ),
+			'track_internal_links' => array( 'description' => __( 'Internal Clicks', 'wp-slimstat' ), 'type' => 'yesno', 'long_description' => __( "Collect mouse coordinates and other information for clicks on internal links. Recommended if you're using our heatmap add-on. By default, this information is only collected for external links.", 'wp-slimstat' ), 'custom_label_yes' => __( 'Track', 'wp-slimstat' ), 'custom_label_no' => __( 'Do Not Track', 'wp-slimstat' ) ),
+			'ignore_outbound_classes_rel_href' => array( 'description' => __( 'No Callback', 'wp-slimstat' ), 'type' => 'text', 'long_description' => __( "Track the event but do not invoke the callback function on links marked with one of these class names, <em>rel</em> attribute or whose <em>href</em> attribute contains one of these strings (separated by comma). Useful to prevent conflicts with lightbox and similar libraries.", 'wp-slimstat' ) ),
+			'do_not_track_outbound_classes_rel_href' => array( 'description' => __( 'Do Not Track', 'wp-slimstat' ), 'type' => 'text', 'long_description' => __( "The tracker will ignore links marked with one of these class names, <em>rel</em> attributes or whose <em>href</em> attribute contains one of these strings (separated by comma).", 'wp-slimstat' ) ),
+			'async_tracker' => array( 'description' => __( 'Async Tracker', 'wp-slimstat' ), 'type' => 'yesno', 'long_description' => __( "When the tracker is configured to record clicks on internal and / or outbound links, it needs to send this information back to the server <strong>before</strong> loading the actual page. This can result in a noticeable delay when someone clicks on one of your links, if your server takes a while to acknowledge the receipt of that information. You can set this option to instruct the tracker not to wait for the server, and load the target URL right away. This will remove the delay, but it might result in a less accurate logging of events. You can check your server latency under Site Analysis > Your Website. Values under 1000 milliseconds might allow you to use async mode.", 'wp-slimstat' ) ),
+
 			'advanced_tracker_header' => array('description' => __('Advanced Options','wp-slimstat'), 'type' => 'section_header'),
 			'session_duration' => array('description' => __('Session Duration','wp-slimstat'), 'type' => 'integer', 'long_description' => __('How many seconds should a human session last? Google Analytics sets it to 1800 seconds.','wp-slimstat'), 'after_input_field' => __('seconds','wp-slimstat')),
 			'extend_session' => array('description' => __('Extend Session','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Extend the duration of a session each time the user visits a new page.','wp-slimstat')),
+			'browser_detection_mode' => array( 'description' => __( 'Browser Detection', 'wp-slimstat' ), 'type' => 'yesno', 'long_description' => __( "The heuristic function is much faster and requires very little memory, but for uncommon user agent strings it might be less accurate, and produce a unreliable match. Browscap.ini, the third party database we use, is memory intensive and it uses a bruteforce approach to determine a visitor's browser, but it's very accurate and precise even with the most obscure user agent strings (almost all of them). You decide which one should be used first: the other one will only be invoked if the one you chose did not produce a match.", 'wp-slimstat' ), 'custom_label_yes' => __( 'Browscap', 'wp-slimstat' ), 'custom_label_no' => __( 'Heuristic', 'wp-slimstat' ) ),
 			'enable_cdn' => array('description' => __('Enable CDN','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Use <a href='http://www.jsdelivr.com/' target='_blank'>JSDelivr</a>'s CDN, by serving our tracking code from their fast and reliable network (free service).",'wp-slimstat')),
 			'extensions_to_track' => array('description' => __('Extensions to Track','wp-slimstat'), 'type' => 'textarea', 'long_description' => __("List all the file extensions that you want to be treated as Downloads. Please note that links pointing to external resources (i.e. PDFs on a different website) are considered Downloads and not Outbound Links (and tracked as such), if their extension matches one of the ones listed here below.",'wp-slimstat')),
 
-			'filters_outbound_header' => array('description' => __('Internal and Outbound Links','wp-slimstat'), 'type' => 'section_header'),
-			'enable_outbound_tracking' => array('description' => __('Track Outbound Clicks','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Track when your visitors click on link to external websites. This option required Spy Mode to be enabled.','wp-slimstat')),
-			'track_internal_links' => array('description' => __('Track Coordinates','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Collect mouse coordinates and other information for clicks on internal links. Strongly recommended if you're using the heatmap add-on. By default, this information is only collected for external links.",'wp-slimstat')),
-			'ignore_outbound_classes_rel_href' => array('description' => __('No Callback','wp-slimstat'), 'type' => 'text', 'long_description' => __("Track the event but do not invoke the callback function on links marked with one of these class names, <em>rel</em> attribute or whose <em>href</em> attribute contains one of these strings (separated by comma). Useful to prevent conflicts with lightbox and similar libraries.",'wp-slimstat')),
-			'do_not_track_outbound_classes_rel_href' => array('description' => __('Do Not Track','wp-slimstat'), 'type' => 'text', 'long_description' => __("Do not track links marked with one of these class names, <em>rel</em> attributes or whose <em>href</em> attribute contains one of these strings (separated by comma).",'wp-slimstat')),
-
-			'advanced_external_pages_header' => array('description' => __('Pages not belonging to this site','wp-slimstat'), 'type' => 'section_header'),
+			'advanced_external_pages_header' => array('description' => __('External Pages','wp-slimstat'), 'type' => 'section_header'),
 			'external_pages_script' => array('type' => 'static', 'skip_update' => 'yes', 'description' => __('Add the following code to all the non-WP pages you want to track, right before the closing BODY tag. Please make sure to change the protocol of all the URLs to HTTPS, if you external site is served over a secure channel.','wp-slimstat'), 'long_description' => '&lt;script type="text/javascript"&gt;
 	/* &lt;![CDATA[ */
 	var SlimStatParams = {
@@ -154,7 +139,7 @@ $options = array(
 	/* ]]&gt; */
 	&lt;/script&gt;
 	&lt;script type="text/javascript" src="http://cdn.jsdelivr.net/wp/wp-slimstat/trunk/wp-slimstat.js"&gt;&lt;/script&gt;'),
-			'external_domains' => array('description' => __('Allow External Domains','wp-slimstat'), 'type' => 'textarea', 'long_description' => __("If you are getting an error saying that no 'Access-Control-Allow-Origin' header is present on the requested resource, when using the external tracking code here above, list the domains (complete with scheme, separated by commas) you would like to allow. For example: <code>http://my.domain.ext</code> (no trailing slash). Please see <a href='http://www.w3.org/TR/cors/#security' target='_blank'>this W3 resource</a> for more information on the security implications of allowing CORS requests.",'wp-slimstat')),
+			'external_domains' => array('description' => __('Allow Domains','wp-slimstat'), 'type' => 'textarea', 'long_description' => __("If you are getting an error saying that no 'Access-Control-Allow-Origin' header is present on the requested resource, when using the external tracking code here above, list the domains (complete with scheme, separated by commas) you would like to allow. For example: <code>http://my.domain.ext</code> (no trailing slash). Please see <a href='http://www.w3.org/TR/cors/#security' target='_blank'>this W3 resource</a> for more information on the security implications of allowing CORS requests.",'wp-slimstat')),
 			'advanced_misc_header' => array('description' => __('Miscellaneous','wp-slimstat'), 'type' => 'section_header'),
 			'enable_ads_network' => array('description' => __('Enable UAN','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Send anonymous data about user agents to our server for analysis. This allows us to contribute to the <a href='http://browscap.org/' target='_blank'>BrowsCap opensource project</a>, and improve the accuracy of Slimstat's browser detection functionality. It also enables our transparent ads network. No worries, your site will not be affected in any way.",'wp-slimstat'))
 		)
@@ -194,7 +179,8 @@ $options = array(
 			'convert_resource_urls_to_titles' => array('description' => __('Use Titles','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Slimstat converts your permalinks into post, page and category titles. Disable this feature if you need to see the URL in your reports.', 'wp-slimstat')),
 			'convert_ip_addresses' => array('description' => __('Convert IP Addresses','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Display provider names instead of IP addresses.','wp-slimstat')),
 
-			'reports_functionality_header' => array('description' => __('Functionality','wp-slimstat'), 'type' => 'section_header'),
+			'reports_functionality_header' => array( 'description' => __( 'Functionality', 'wp-slimstat' ), 'type' => 'section_header' ),
+			'async_load' => array( 'description' => __( 'Async Mode', 'wp-slimstat' ), 'type' => 'yesno', 'long_description' => __( 'Activate this feature if your reports take a while to load. It breaks down the load on your server into multiple requests, thus avoiding memory issues and performance problems.', 'wp-slimstat' ) ),
 			'use_slimscroll' => array('description' => __('SlimScroll','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Enable SlimScroll, a slick jQuery library that replaces the built-in browser scrollbar.','wp-slimstat')),
 			'expand_details' => array('description' => __('Expand Details','wp-slimstat'), 'type' => 'yesno', 'long_description' => __("Expand each row's details by default, insted of on mousehover.",'wp-slimstat')),
 			'rows_to_show' => array('description' => __('Rows to Display','wp-slimstat'), 'type' => 'integer', 'long_description' => __('Specify the number of items in each report.','wp-slimstat')),
@@ -209,8 +195,7 @@ $options = array(
 			'custom_css' => array('description' => __('Custom CSS','wp-slimstat'), 'type' => 'textarea', 'rows' => 8, 'long_description' => __("Paste here your custom stylesheet to personalize the way your reports look. <a href='https://slimstat.freshdesk.com/support/solutions/articles/5000528528-how-can-i-change-the-colors-associated-to-color-coded-pageviews-known-user-known-visitors-search-e' target='_blank'>Check the FAQ</a> for more information on how to use this setting.",'wp-slimstat')),
 			'chart_colors' => array('description' => __('Chart Colors','wp-slimstat'), 'type' => 'text', 'long_description' => __("Customize the look and feel of your charts by assigning personalized colors to each metric. List 4 hex colors separated by commas, strictly in the following order: metric 1 previous, metric 2 previous, metric 1 current, metric 2 current. For example: <code>#ccc, #999, #bbcc44, #21759b</code>.",'wp-slimstat')),
 			'show_complete_user_agent_tooltip' => array('description' => __('Show User Agent','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('Choose if you want to see the browser name or a complete user agent string when hovering on browser icons.','wp-slimstat')),
-			'enable_sov' => array('description' => __('Enable SOV','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('In linguistic typology, a subject-object-verb (SOV) language is one in which the subject, object, and verb of a sentence appear in that order, like in Japanese.','wp-slimstat')),
-			'enable_getsocial' => array('description' => __( 'Social Analytics', 'wp-slimstat' ), 'type' => 'yesno', 'long_description' => __("Thanks to a <a href='http://getsocial.io/enterprise' target='_blank'>partnership with GetSocial.io</a>, you can access a powerful set of analytics for social media where you can identify top performing posts. Track social sharing to understand which of your posts are generating more engagement. When this option is enabled, Slimstat sends a list of all your posts's URLs to their service for analysis once daily.", 'wp-slimstat' ) )
+			'enable_sov' => array('description' => __('Enable SOV','wp-slimstat'), 'type' => 'yesno', 'long_description' => __('In linguistic typology, a subject-object-verb (SOV) language is one in which the subject, object, and verb of a sentence appear in that order, like in Japanese.','wp-slimstat'))
 		)
 	),
 

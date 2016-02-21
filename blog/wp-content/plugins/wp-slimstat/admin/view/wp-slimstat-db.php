@@ -44,7 +44,7 @@ class wp_slimstat_db {
 			'platform' => array( __( 'Operating System', 'wp-slimstat' ), 'varchar' ),
 			'resource' => array( __( 'Permalink', 'wp-slimstat' ), 'varchar' ),
 			'referer' => array( __( 'Referer', 'wp-slimstat' ), 'varchar' ),
-			'username' => array( __( 'Visitor\'s Name', 'wp-slimstat' ), 'varchar' ),
+			'username' => array( __( 'Visitor\'s Username', 'wp-slimstat' ), 'varchar' ),
 			'outbound_resource' => array( __( 'Outbound Link', 'wp-slimstat' ), 'varchar' ),
 			'page_performance' => array( __( 'Page Speed', 'wp-slimstat' ), 'int' ),
 			'no_filter_selected_2' => array( '&nbsp;', 'none' ),
@@ -156,12 +156,13 @@ class wp_slimstat_db {
 				if ($_use_date_filters) {
 					$time_range_condition = "$dt_with_alias BETWEEN " . self::$filters_normalized[ 'utime' ][ 'start' ] . ' AND ' . self::$filters_normalized[ 'utime' ][ 'end' ];
 				}
-
 			}
 			elseif ( $_use_date_filters ) {
 				$time_range_condition = "$dt_with_alias BETWEEN " . self::$filters_normalized[ 'utime' ][ 'start' ] . ' AND ' . self::$filters_normalized[ 'utime' ][ 'end' ];
 			}
-			else {
+			
+			// This could happen if we have custom filters (add-ons, third party tools)
+			if ( empty( $_where ) ) {
 				$_where = '1=1';
 			}
 		}
@@ -291,7 +292,7 @@ class wp_slimstat_db {
 				break;
 		}
 
-		if ( !empty( $where[ 1 ] ) ) {
+		if ( isset( $where[ 1 ] ) ) {
 			return $GLOBALS[ 'wpdb' ]->prepare( $where[ 0 ], $where[ 1 ] );
 		}
 		else {
@@ -452,11 +453,7 @@ class wp_slimstat_db {
 		}
 
 		// Temporarily disable any filters on date_i18n
-		$date_i18n_filters = array();
-		if ( !empty( $GLOBALS[ 'wp_filter' ][ 'date_i18n' ] ) ) {
-			$date_i18n_filters = $GLOBALS[ 'wp_filter' ][ 'date_i18n' ];
-			remove_all_filters( 'date_i18n' );
-		}
+		wp_slimstat::toggle_date_i18n_filters( false );
 
 		// Let's calculate our time range, based on date filters
 		if ( empty( $filters_normalized[ 'date' ][ 'interval' ] ) && empty( $filters_normalized[ 'date' ][ 'interval_hours' ] ) && empty( $filters_normalized[ 'date' ][ 'interval_minutes' ] ) ) {
@@ -540,7 +537,8 @@ class wp_slimstat_db {
 
 			// Swap boundaries if we're going back in time
 			if ( $filters_normalized[ 'date' ][ 'interval_direction' ] == 'minus' ) {
-				list( $filters_normalized[ 'utime' ][ 'start' ], $filters_normalized[ 'utime' ][ 'end' ] ) = array( $filters_normalized[ 'utime' ][ 'end' ] + 86400, $filters_normalized[ 'utime' ][ 'start' ] + 86400 );
+				$adjustment = ( abs( $filters_normalized[ 'utime' ][ 'start' ] - $filters_normalized[ 'utime' ][ 'end' ] ) < 86400 ) ? 0 : 86400; 
+				list( $filters_normalized[ 'utime' ][ 'start' ], $filters_normalized[ 'utime' ][ 'end' ] ) = array( $filters_normalized[ 'utime' ][ 'end' ] + $adjustment, $filters_normalized[ 'utime' ][ 'start' ] + $adjustment );
 			}
 
 			$filters_normalized[ 'utime' ][ 'end' ]--;
@@ -565,11 +563,7 @@ class wp_slimstat_db {
 		}
 
 		// Restore filters on date_i18n
-		foreach ($date_i18n_filters as $i18n_priority => $i18n_func_list) {
-			foreach ($i18n_func_list as $func_name => $func_args) {
-				add_filter('date_i8n', $func_args[ 'function' ], $i18n_priority, $func_args[ 'accepted_args' ]);
-			}
-		}
+		wp_slimstat::toggle_date_i18n_filters( true );
 
 		return $filters_normalized;
 	}
@@ -688,15 +682,19 @@ class wp_slimstat_db {
 		}
 
 		// Build the SQL query
-		$group_by_string = "GROUP BY {$group_by[0]}(CONVERT_TZ(FROM_UNIXTIME(dt), @@session.time_zone, '+00:00')), {$group_by[1]}(CONVERT_TZ(FROM_UNIXTIME(dt), @@session.time_zone, '+00:00'))";
+		$group_by_string = "{$group_by[0]}(CONVERT_TZ(FROM_UNIXTIME(dt), @@session.time_zone, '+00:00')), {$group_by[1]}(CONVERT_TZ(FROM_UNIXTIME(dt), @@session.time_zone, '+00:00'))";
 		$sql = "
 			SELECT dt, {$_args[ 'data1' ]} first_metric, {$_args[ 'data2' ]} second_metric
 			FROM {$GLOBALS['wpdb']->prefix}slim_stats
 			WHERE {$_args[ 'where' ]} $previous_time_range
-			$group_by_string";
+			GROUP BY $group_by_string";
 
 		// Get the data
-		$results = self::get_results( $sql, 'blog_id', '', $group_by_string, 'SUM(first_metric) AS first_metric, SUM(second_metric) AS second_metric' );
+		$results = self::get_results(
+				$sql,
+				'dt',
+				'',
+				$group_by_string, 'SUM(first_metric) AS first_metric, SUM(second_metric) AS second_metric' );
 
 		// Fill the output array
 		$output[ 'current' ][ 'label' ] = '';
@@ -800,6 +798,9 @@ class wp_slimstat_db {
 		if ( $_column != '*' ) {
 			$columns .= ', ip, dt';
 		}
+		else {
+			$columns = 'id, ip, other_ip, username, country, referer, resource, searchterms, plugins, notes, visit_id, server_latency, page_performance, browser, browser_version, browser_type, platform, language, user_agent, resolution, screen_width, screen_height, content_type, category, author, content_id, outbound_resource, dt_out, dt';
+		}
 
 		if ( !empty( $_more_columns ) ) {
 			$columns .= ', ' . $_more_columns;
@@ -885,9 +886,9 @@ class wp_slimstat_db {
 			GROUP BY $_as_column $_having
 			ORDER BY counthits DESC
 			LIMIT 0, " . self::$filters_normalized[ 'misc' ][ 'limit_results' ], 
-			( ( !empty( $_as_column ) && $_as_column != $_column ) ? $_as_column : $_column ).', blog_id',
+			( ( !empty( $_as_column ) && $_as_column != $_column ) ? $_as_column : $_column ),
 			'counthits DESC',
-			$_column,
+			( ( !empty( $_as_column ) && $_as_column != $_column ) ? $_as_column : $_column ),
 			'SUM(counthits) AS counthits' );
 	}
 

@@ -54,8 +54,6 @@ function weixin_robot_qrcode_page(){
 	    <?php weixin_robot_qrcode_list(); ?>
 		<?php weixin_robot_qrcode_add(); ?>
 
-		<?php wpjam_confim_delete_script(); ?>
-
 	</div>
 <?php
 }
@@ -142,7 +140,7 @@ function weixin_robot_qrcode_add(){
 
 	?>
 	<form method="post" action="<?php echo admin_url('admin.php?page='.$plugin_page.'&edit&id='.$id); ?>" enctype="multipart/form-data" id="form">
-		<?php wpjam_admin_display_fields($form_fields); ?>
+		<?php wpjam_form_fields($form_fields); ?>
 		<?php wp_nonce_field('weixin_robot','weixin_robot_qrcode_nonce'); ?>
 		<input type="hidden" name="action" value="edit" />
 		<p class="submit"><input class="button-primary" type="submit" value="　　<?php echo $id?'修改':'新增';?>　　" /></p>
