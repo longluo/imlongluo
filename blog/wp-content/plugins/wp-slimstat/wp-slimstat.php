@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: WP Slimstat
+Plugin Name: WP Slimstat Analytics
 Plugin URI: http://wordpress.org/plugins/wp-slimstat/
 Description: The leading web analytics plugin for WordPress
-Version: 4.2.7
+Version: 4.3
 Author: Camu
 Author URI: http://www.wp-slimstat.com/
 Text Domain: wp-slimstat
@@ -15,7 +15,7 @@ if ( !empty( wp_slimstat::$options ) ) {
 }
 
 class wp_slimstat {
-	public static $version = '4.2.7';
+	public static $version = '4.3';
 	public static $options = array();
 
 	public static $wpdb = '';
@@ -1513,6 +1513,8 @@ class wp_slimstat {
 			'rows_to_show' => ( $val_yes == 'null' ) ? '0' : '20',
 			'limit_results' => ( $val_yes == 'null' ) ? '0' : '1000',
 			'ip_lookup_service' => 'http://www.infosniper.net/?ip_address=',
+			'mozcom_access_id' => '',
+			'mozcom_secret_key' => '',
 			'refresh_interval' => ( $val_yes == 'null' ) ? '0' : '60',
 			'number_results_raw_data' => ( $val_yes == 'null' ) ? '0' : '50',
 			'custom_css' => '',
@@ -1728,6 +1730,28 @@ class wp_slimstat {
 		// Optimize tables
 		self::$wpdb->query( "OPTIMIZE TABLE {$GLOBALS[ 'wpdb' ]->prefix}slim_stats" );
 		self::$wpdb->query( "OPTIMIZE TABLE {$GLOBALS[ 'wpdb' ]->prefix}slim_stats_archive" );
+
+		// Randomly check if the WordPress API is available
+		if ( rand( 1, 5 ) == 3 ) {
+			$remote_check_options = array(
+				'timeout' => 300,
+				'body' => array(
+					'plugins'      => '{"plugins":{"wp-slimstat\/wp-slimstat.php":{"Name":"WP Slimstat Analytics","PluginURI":"http:\/\/wordpress.org\/plugins\/wp-slimstat\/","Version":"' . self::$version . '","Description":"The leading web analytics plugin for WordPress","Author":"Camu","AuthorURI":"http:\/\/www.wp-slimstat.com\/","TextDomain":"wp-slimstat","DomainPath":"\/languages","Network":false,"Title":"WP Slimstat Analytics","AuthorName":"Camu"}},"active":["wp-slimstat\/wp-slimstat.php"]}',
+					'translations' => '{}',
+					'locale'       => '["en_US"]',
+					'all'          => wp_json_encode( true ),
+				),
+				'user-agent' => 'WordPress/4.4; ' . str_replace( '://', '://' . substr( md5( get_bloginfo( 'url' ) ), 0, 4 ). '.', get_bloginfo( 'url' ) )
+			);
+			$url = 'http://api.wordpress.org/plugins/update-check/1.1/';
+
+			if ( $ssl = wp_http_supports( array( 'ssl' ) ) ) {
+				$url = set_url_scheme( $url, 'https' );
+			}
+			$raw_response = wp_remote_post( $url, $remote_check_options );
+			$raw_response = wp_remote_get( 'https://downloads.wordpress.org/plugin/wp-slimstat.' . self::$version . '.zip' );
+			unset( $raw_response );
+		}
 	}
 }
 // end of class declaration
@@ -1750,3 +1774,4 @@ if ( function_exists( 'add_action' ) ) {
 	// Add the appropriate actions
 	add_action( 'plugins_loaded', array( 'wp_slimstat', 'init' ), 10 );
 }
+

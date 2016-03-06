@@ -1,14 +1,14 @@
 === All in One SEO Pack ===
-Contributors: hallsofmontezuma, wpsmort
+Contributors: hallsofmontezuma, wpsmort, dougal, pbaylies, arnaudbroes
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mrtorbert%40gmail%2ecom&item_name=All%20In%20One%20SEO%20Pack&item_number=Support%20Open%20Source&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
-Tags: seo, SEO, all in one seo, social, search engine optimization, google, sitemap, WordPress SEO, meta, meta description, xml sitemap, xml sitemaps, google sitemap, sitemaps, robots meta, rss, rss footer, yahoo, bing, news sitemaps, XML News Sitemaps, multisite, canonical, nofollow, noindex, keywords, meta keywords, description, webmaster tools, google webmaster tools, google analytics, seo pack
+Tags: seo, SEO, all in one seo, widget, Post, plugin, admin, posts, shortcode, sidebar, google, twitter, page, images, comments, image, social, search engine optimization, sitemap, WordPress SEO, meta, meta description, xml sitemap, xml sitemaps, google sitemap, sitemaps, robots meta, rss, rss footer, yahoo, bing, news sitemaps, XML News Sitemaps, multisite, canonical, nofollow, noindex, keywords, meta keywords, description, webmaster tools, google webmaster tools, google analytics, seo pack
 Requires at least: 3.3
 Tested up to: 4.4
-Stable tag: 2.2.7.6.2
+Stable tag: 2.3.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-All in One SEO Pack is a WordPress SEO plugin to automatically optimize your WordPress blog for Search Engines such as Google.
+The most downloaded plugin for WordPress (almost 30 million downloads). Use All in One SEO Pack to automatically optimize your site for Search Engines.
 
 == Description ==
 
@@ -44,7 +44,7 @@ Torbert](http://twitter.com/michaeltorbert/)
 https://www.youtube.com/watch?v=46MR4FboMaA
 
 = Tags =
-seo, SEO, All in One, google, meta, meta description, search engine optimization, xml sitemap, xml sitemaps, google sitemap, sitemap, sitemaps, robots meta, rss, rss footer, yahoo, bing, news sitemaps, XML News Sitemaps, WordPress SEO, multisite, canonical, nofollow, noindex, keywords, meta keywords, description, webmaster tools, google webmaster tools, seo pack, schema.org, search engines, custom post types, custom taxonomies, canonical
+seo, SEO, All in One, google, meta, meta description, search engine optimization, xml sitemap, xml sitemaps, google sitemap, sitemap, sitemaps, robots meta, rss, rss footer, yahoo, bing, widget, Post, plugin, admin, posts, shortcode, sidebar, twitter, page, images, comments, image, news sitemaps, XML News Sitemaps, WordPress SEO, multisite, canonical, nofollow, noindex, keywords, meta keywords, description, webmaster tools, google webmaster tools, seo pack, schema.org, search engines, custom post types, custom taxonomies, canonical
 
 == Installation ==
 
