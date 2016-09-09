@@ -1,0 +1,128 @@
+msgid ""
+msgstr "MIME-Version: 1.0\n"
+
+#. Name.
+msgid "All in One SEO Pack"
+msgstr ""
+
+#. Short description.
+msgid "All in One SEO Pack is a WordPress SEO plugin to automatically optimize your WordPress blog for Search Engines such as Google."
+msgstr ""
+
+#. Found in description list item.
+msgid "XML Sitemap support - submit your sitemap to Google and Bing and improve your SEO"
+msgstr ""
+
+#. Found in description list item.
+msgid "Google Analytics support"
+msgstr ""
+
+#. Found in description list item.
+msgid "Support for SEO on Custom Post Types"
+msgstr ""
+
+#. Found in description list item.
+msgid "Advanced Canonical URLs"
+msgstr ""
+
+#. Found in description list item.
+msgid "Fine tune Page Navigational Links "
+msgstr ""
+
+#. Found in description list item.
+msgid "Built-in API so other plugins/themes can access and extend functionality"
+msgstr ""
+
+#. Found in description list item.
+msgid "ONLY plugin to provide SEO Integration for WP e-Commerce sites"
+msgstr ""
+
+#. Found in description list item.
+msgid "Nonce Security built into All in One SEO Pack"
+msgstr ""
+
+#. Found in description list item.
+msgid "Support for CMS-style WordPress installations"
+msgstr ""
+
+#. Found in description list item.
+msgid "Automatically optimizes your <strong>titles</strong> for Google and other search engines"
+msgstr ""
+
+#. Found in description list item.
+msgid "Generates <strong>META tags automatically</strong>"
+msgstr ""
+
+#. Found in description list item.
+msgid "Avoids the typical duplicate content found on WordPress blogs"
+msgstr ""
+
+#. Found in description list item.
+msgid "For beginners, you don't even have to look at the options, it works out-of-the-box. Just install."
+msgstr ""
+
+#. Found in description list item.
+msgid "For advanced users, you can fine-tune everything to optimize your SEO"
+msgstr ""
+
+#. Found in description list item.
+msgid "You can override any title and set any META description and any META keywords you want."
+msgstr ""
+
+#. Found in description list item.
+msgid "Compatibility with many other plugins"
+msgstr ""
+
+#. Found in description paragraph.
+msgid "All in One SEO Pack <strong>Optimizes</strong> your WordPress blog for SEO (<strong>Search Engine Optimization</strong>)."
+msgstr ""
+
+#. Found in description paragraph.
+msgid "<strong><a href=\"http://semperplugins.com/plugins/all-in-one-seo-pack-pro-version/\">Upgrade to Pro Version</a></strong>"
+msgstr ""
+
+#. Found in description paragraph.
+msgid "<a href=\"http://semperplugins.com/support/\">Premium Support</a>"
+msgstr ""
+
+#. Found in description paragraph, installation paragraph.
+msgid "<strong>If upgrading, please back up your database first!</strong>"
+msgstr ""
+
+#. Found in description paragraph.
+msgid ""
+"Follow me on Twitter to keep up with the latest updates <a href=\"http://twitter.com/michaeltorbert/\">Michael\n"
+"Torbert</a>"
+msgstr ""
+
+#. Found in installation list item.
+msgid "Activate the plugin through the 'Plugins' menu in WordPress"
+msgstr ""
+
+#. Found in installation list item.
+msgid "Visit your SEO options (<em>All in One SEO - General Settings</em>)"
+msgstr ""
+
+#. Found in installation list item.
+msgid "Configure any options as desired, and then enable the plugin"
+msgstr ""
+
+#. Found in installation paragraph.
+msgid ""
+"You can use the built in installer and upgrader, or you can install the plugin\n"
+"manually."
+msgstr ""
+
+#. Found in changelog paragraph.
+msgid "All in One SEO Pack <a href=\"http://semperfiwebdesign.com/documentation/all-in-one-seo-pack/all-in-one-seo-pack-release-history/\">Changelog</a>"
+msgstr ""
+
+#. Found in faq paragraph.
+msgid ""
+"Please read these <strong><a href=\"http://semperfiwebdesign.com/documentation/all-in-one-seo-pack/all-in-one-seo-faq/\">FAQs</a></strong> before requesting support for SEO from the\n"
+"<strong><a href=\"http://semperplugins.com/support/\">All in One SEO Pack Support Forum</a></strong>"
+msgstr ""
+
+#. Found in faq paragraph.
+msgid "<a href=\"http://semperfiwebdesign.com/documentation/all-in-one-seo-pack/translations-for-all-in-one-seo-pack/\">Translations</a>"
+msgstr ""
