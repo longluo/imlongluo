@@ -1,3 +1,5 @@
+
+# BEGIN WordPress
 <IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /blog/
@@ -7,22 +9,4 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /blog/index.php [L]
 </IfModule>
 
-# nginx rewrite rule
-rewrite ^(.*)/archiver/((fid|tid)-[w-]+.html)$ $1/archiver/index.php?$2 last;
-rewrite ^(.*)/forum-([0-9]+)-([0-9]+).html$ $1/forumdisplay.php?fid=$2&page=$3 last;
-rewrite ^(.*)/thread-([0-9]+)-([0-9]+)-([0-9]+).html$ $1/viewthread.php?tid=$2&extra=page%3D$4&page=$3 last;
-rewrite ^(.*)/profile-(username|uid)-(.+).html$ $1/viewpro.php?$2=$3 last;
-rewrite ^(.*)/space-(username|uid)-(.+).html$ $1/space.php?$2=$3 last;
-rewrite ^(.*)/tag-(.+).html$ $1/tag.php?name=$2 last;
-# end nginx rewrite rule
-
-# nginx rewrite rule 
-rewrite ^(.*?)/article/.*?-(\d+)-(\d+)\.html$   $1/show.html?id=$2&page=$3      break; 
-rewrite ^(.*?)/category/.*?-(\d+)-(\d+)\.html$  $1/list.html?id=$2&page=$3      break; 
-rewrite ^(.*?)/tag/([^/]+)/?$   $1/tag.html?w=$2        break; 
-rewrite ^(.*?)/tag/([^/]+)/(\d+)$       $1/tag.html?w=$2&page=$3       break; 
-# end nginx rewrite rule
-
-
-
-
+# END WordPress

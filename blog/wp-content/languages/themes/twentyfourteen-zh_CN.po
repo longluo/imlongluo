@@ -2,10 +2,10 @@
 # This file is distributed under the GNU General Public License v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Twenty Fourteen 1.6\n"
+"Project-Id-Version: Twenty Fourteen 1.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/twentyfourteen\n"
-"POT-Creation-Date: 2015-12-12 22:25+0000\n"
-"PO-Revision-Date: 2015-12-12 22:25+0000\n"
+"POT-Creation-Date: 2016-04-17 02:34+0000\n"
+"PO-Revision-Date: 2016-04-17 02:34+0000\n"
 "Last-Translator: Jimmy Xu <me@jimmyxu.org>\n"
 "Language-Team: WordPress China\n"
 "Language: zh_CN\n"
@@ -13,7 +13,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 
 #: 404.php:17
 msgid "Not Found"
@@ -87,19 +87,19 @@ msgstr "、"
 
 #: content-aside.php:37 content-audio.php:37 content-gallery.php:37
 #: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:194
+#: content-video.php:37 content.php:38 inc/widgets.php:215
 msgid "Leave a comment"
 msgstr "发表回复"
 
 #: content-aside.php:37 content-audio.php:37 content-gallery.php:37
 #: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:194
+#: content-video.php:37 content.php:38 inc/widgets.php:215
 msgid "1 Comment"
 msgstr "1条评论"
 
 #: content-aside.php:37 content-audio.php:37 content-gallery.php:37
 #: content-image.php:37 content-link.php:37 content-quote.php:37
-#: content-video.php:37 content.php:38 inc/widgets.php:194
+#: content-video.php:37 content.php:38 inc/widgets.php:215
 msgid "% Comments"
 msgstr "%条评论"
 
@@ -161,51 +161,51 @@ msgstr "顶部主菜单"
 msgid "Secondary menu in left sidebar"
 msgstr "左边栏中的次要菜单"
 
-#: functions.php:171
+#: functions.php:174
 msgid "Primary Sidebar"
 msgstr "主边栏"
 
-#: functions.php:173
+#: functions.php:176
 msgid "Main sidebar that appears on the left."
 msgstr "出现在左侧的主边栏。"
 
-#: functions.php:180
+#: functions.php:183
 msgid "Content Sidebar"
 msgstr "内容边栏"
 
-#: functions.php:182
+#: functions.php:185
 msgid "Additional sidebar that appears on the right."
 msgstr "出现在右侧的附加边栏。"
 
-#: functions.php:189
+#: functions.php:192
 msgid "Footer Widget Area"
 msgstr "页脚挂件区"
 
-#: functions.php:191
+#: functions.php:194
 msgid "Appears in the footer section of the site."
 msgstr "在网站页脚区域出现。"
 
 #. Translators: If there are characters in your language that are not supported
 #. by Lato, translate this to 'off'. Do not translate into your own language.
-#: functions.php:213
+#: functions.php:216
 msgctxt "Lato font: on or off"
 msgid "on"
 msgstr "on"
 
-#: functions.php:258
+#: functions.php:261
 msgid "Previous"
 msgstr "上一"
 
-#: functions.php:259
+#: functions.php:262
 msgid "Next"
 msgstr "下一"
 
-#: functions.php:376
+#: functions.php:379
 msgid "%d Article"
 msgid_plural "%d Articles"
 msgstr[0] "%d篇文章"
 
-#: functions.php:495
+#: functions.php:498
 msgid "Page %s"
 msgstr "第%s页"
 
@@ -235,27 +235,27 @@ msgid ""
 "version %s. Please upgrade and try again."
 msgstr "Twenty Fourteen要求WordPress 3.6版或以上，您在运行%s版。请升级并重试。"
 
-#: inc/customizer.php:24
+#: inc/customizer.php:37
 msgid "Site Title Color"
 msgstr "站点标题颜色"
 
-#: inc/customizer.php:27
+#: inc/customizer.php:40
 msgid "Display Site Title &amp; Tagline"
 msgstr "显示站点标题与副标题"
 
-#: inc/customizer.php:31 inc/customizer.php:32
+#: inc/customizer.php:44 inc/customizer.php:45
 msgid "May only be visible on wide screens."
 msgstr "可能仅在宽屏幕上可见。"
 
-#: inc/customizer.php:34 inc/customizer.php:35
+#: inc/customizer.php:47 inc/customizer.php:48
 msgid "Background may only be visible on wide screens."
 msgstr "背景可能只在宽屏幕上可见。"
 
-#: inc/customizer.php:40 inc/featured-content.php:403
+#: inc/customizer.php:53 inc/featured-content.php:403
 msgid "Featured Content"
 msgstr "特色内容"
 
-#: inc/customizer.php:41 inc/featured-content.php:404
+#: inc/customizer.php:54 inc/featured-content.php:404
 msgid ""
 "Use a <a href=\"%1$s\">tag</a> to feature your posts. If no posts match the "
 "tag, <a href=\"%2$s\">sticky posts</a> will be displayed instead."
@@ -263,30 +263,30 @@ msgstr ""
 "使用<a href=\"%1$s\">标签</a>来选出特色内容。如果标签未匹配任何文章，<a href="
 "\"%2$s\">置顶文章</a>会被显示。"
 
-#: inc/customizer.php:42 inc/customizer.php:108 inc/featured-content.php:405
+#: inc/customizer.php:55 inc/customizer.php:145 inc/featured-content.php:405
 #: inc/featured-content.php:414 inc/featured-content.php:474
 msgctxt "featured content default tag slug"
 msgid "featured"
 msgstr "特色"
 
-#: inc/customizer.php:56
+#: inc/customizer.php:69
 msgid "Layout"
 msgstr "布局"
 
-#: inc/customizer.php:60
+#: inc/customizer.php:73
 msgid "Grid"
 msgstr "网格"
 
-#: inc/customizer.php:61
+#: inc/customizer.php:74
 msgid "Slider"
 msgstr "滑块"
 
 #. Theme Name of the plugin/theme
-#: inc/customizer.php:105
+#: inc/customizer.php:142
 msgid "Twenty Fourteen"
 msgstr "Twenty Fourteen"
 
-#: inc/customizer.php:108
+#: inc/customizer.php:145
 msgid ""
 "The home page features your choice of up to 6 posts prominently displayed in "
 "a grid or slider, controlled by a <a href=\"%1$s\">tag</a>; you can change "
@@ -298,7 +298,7 @@ msgstr ""
 "签</a>控制；您可在 <a href=\"%2$s\">“外观”&rarr;“自定义”</a>屏幕中修改标签和"
 "样式。如果标签未匹配任何文章，<a href=\"%2$s\">置顶文章</a>会被显示。"
 
-#: inc/customizer.php:109
+#: inc/customizer.php:146
 msgid ""
 "Enhance your site design by using <a href=\"%s\">Featured Images</a> for "
 "posts you&rsquo;d like to stand out (also known as post thumbnails). This "
@@ -310,7 +310,7 @@ msgstr ""
 "图），这可让您将图片关联到文章，而无需在文章中插入该图片。Twenty Fourteen在文"
 "章与页面的标题之上显示特色图片，也会在主页的特色内容区显示。"
 
-#: inc/customizer.php:110
+#: inc/customizer.php:147
 msgid ""
 "For an in-depth tutorial, and more tips and tricks, visit the <a href=\"%s"
 "\">Twenty Fourteen documentation</a>."
@@ -368,86 +368,86 @@ msgid ""
 "Gallery, and Link posts."
 msgstr "使用此挂件来列出您最近的旁白、引用、视频、音频、图片、画廊和链接文章。"
 
-#: inc/widgets.php:54 taxonomy-post_format.php:33
+#: inc/widgets.php:75 taxonomy-post_format.php:33
 msgid "Images"
 msgstr "图片"
 
-#: inc/widgets.php:55
+#: inc/widgets.php:76
 msgid "More images"
 msgstr "更多图片"
 
-#: inc/widgets.php:58 taxonomy-post_format.php:36
+#: inc/widgets.php:79 taxonomy-post_format.php:36
 msgid "Videos"
 msgstr "视频"
 
-#: inc/widgets.php:59
+#: inc/widgets.php:80
 msgid "More videos"
 msgstr "更多视频"
 
-#: inc/widgets.php:62 taxonomy-post_format.php:39
+#: inc/widgets.php:83 taxonomy-post_format.php:39
 msgid "Audio"
 msgstr "音频"
 
-#: inc/widgets.php:63
+#: inc/widgets.php:84
 msgid "More audio"
 msgstr "更多音频"
 
-#: inc/widgets.php:66 taxonomy-post_format.php:42
+#: inc/widgets.php:87 taxonomy-post_format.php:42
 msgid "Quotes"
 msgstr "引用"
 
-#: inc/widgets.php:67
+#: inc/widgets.php:88
 msgid "More quotes"
 msgstr "更多引用"
 
-#: inc/widgets.php:70 taxonomy-post_format.php:45
+#: inc/widgets.php:91 taxonomy-post_format.php:45
 msgid "Links"
 msgstr "链接"
 
-#: inc/widgets.php:71
+#: inc/widgets.php:92
 msgid "More links"
 msgstr "更多链接"
 
-#: inc/widgets.php:74 taxonomy-post_format.php:48
+#: inc/widgets.php:95 taxonomy-post_format.php:48
 msgid "Galleries"
 msgstr "画廊"
 
-#: inc/widgets.php:75
+#: inc/widgets.php:96
 msgid "More galleries"
 msgstr "更多画廊"
 
-#: inc/widgets.php:79 taxonomy-post_format.php:30
+#: inc/widgets.php:100 taxonomy-post_format.php:30
 msgid "Asides"
 msgstr "旁白"
 
-#: inc/widgets.php:80
+#: inc/widgets.php:101
 msgid "More asides"
 msgstr "更多旁白"
 
-#: inc/widgets.php:127 inc/widgets.php:172
+#: inc/widgets.php:148 inc/widgets.php:193
 msgid "Continue reading <span class=\"meta-nav\">&rarr;</span>"
 msgstr "继续阅读 <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/widgets.php:162
+#: inc/widgets.php:183
 msgid "This gallery contains <a href=\"%1$s\" rel=\"bookmark\">%2$s photo</a>."
 msgid_plural ""
 "This gallery contains <a href=\"%1$s\" rel=\"bookmark\">%2$s photos</a>."
 msgstr[0] "此画廊包含<a href=\"%1$s\" rel=\"bookmark\">%2$s张图片</a>。"
 
 #. translators: used with More archives link
-#: inc/widgets.php:206
+#: inc/widgets.php:227
 msgid "%s <span class=\"meta-nav\">&rarr;</span>"
 msgstr "%s <span class=\"meta-nav\">&rarr;</span>"
 
-#: inc/widgets.php:255
+#: inc/widgets.php:276
 msgid "Title:"
 msgstr "标题："
 
-#: inc/widgets.php:258
+#: inc/widgets.php:279
 msgid "Number of posts to show:"
 msgstr "显示文章的数目："
 
-#: inc/widgets.php:261
+#: inc/widgets.php:282
 msgid "Post format to show:"
 msgstr "显示文章的格式："
 
