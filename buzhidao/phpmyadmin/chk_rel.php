@@ -1,25 +1,27 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
+ * Displays status of phpMyAdmin configuration storage
  *
- * @package phpMyAdmin
+ * @package PhpMyAdmin
  */
 
-/**
- * Gets some core libraries
- */
-require_once './libraries/common.inc.php';
-require_once './libraries/header.inc.php';
+require_once 'libraries/common.inc.php';
 
+// If request for creating all PMA tables.
+if (isset($_REQUEST['create_pmadb'])) {
+    PMA_fixPMATables($GLOBALS['db']);
+}
 
-/**
- * Gets the relation settings
- */
-$cfgRelation = PMA_getRelationsParam(TRUE);
+$cfgRelation = PMA_getRelationsParam();
+// If request for creating missing PMA tables.
+if (isset($_REQUEST['fix_pmadb'])) {
+    PMA_fixPMATables($cfgRelation['db']);
+}
 
+$response = PMA_Response::getInstance();
+$response->addHTML(
+    PMA_getRelationsParamDiagnostic($cfgRelation)
+);
 
-/**
- * Displays the footer
- */
-require './libraries/footer.inc.php';
 ?>

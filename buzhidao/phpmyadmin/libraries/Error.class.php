@@ -3,8 +3,12 @@
 /**
  * Holds class PMA_Error
  *
- * @package phpMyAdmin
+ * @package PhpMyAdmin
  */
+
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
 /**
  * base class
@@ -14,7 +18,7 @@ require_once './libraries/Message.class.php';
 /**
  * a single error
  *
- * @package phpMyAdmin
+ * @package PhpMyAdmin
  */
 class PMA_Error extends PMA_Message
 {
@@ -24,6 +28,7 @@ class PMA_Error extends PMA_Message
      * @var array
      */
     static public $errortype = array (
+        0                    => 'Internal error',
         E_ERROR              => 'Error',
         E_WARNING            => 'Warning',
         E_PARSE              => 'Parsing Error',
@@ -46,6 +51,7 @@ class PMA_Error extends PMA_Message
      * @var array
      */
     static public $errorlevel = array (
+        0                    => 'error',
         E_ERROR              => 'error',
         E_WARNING            => 'error',
         E_PARSE              => 'error',
@@ -63,46 +69,40 @@ class PMA_Error extends PMA_Message
     );
 
     /**
-     * The file in which the error occured
+     * The file in which the error occurred
      *
      * @var string
      */
-    protected $_file = '';
+    protected $file = '';
 
     /**
-     * The line in which the error occured
+     * The line in which the error occurred
      *
      * @var integer
      */
-    protected $_line = 0;
+    protected $line = 0;
 
     /**
      * Holds the backtrace for this error
      *
      * @var array
      */
-    protected $_backtrace = array();
+    protected $backtrace = array();
 
     /**
      * Unique id
      *
      * @var string
      */
-    protected $_hash = null;
+    protected $hash = null;
 
     /**
      * Constructor
      *
-     * @uses    debug_backtrace()
-     * @uses    PMA_Error::setNumber()
-     * @uses    PMA_Error::setMessage()
-     * @uses    PMA_Error::setFile()
-     * @uses    PMA_Error::setLine()
-     * @uses    PMA_Error::setBacktrace()
-     * @param   integer $errno
-     * @param   string  $errstr
-     * @param   string  $errfile
-     * @param   integer $errline
+     * @param integer $errno   error number
+     * @param string  $errstr  error message
+     * @param string  $errfile file
+     * @param integer $errline line
      */
     public function __construct($errno, $errstr, $errfile, $errline)
     {
@@ -112,9 +112,9 @@ class PMA_Error extends PMA_Message
         $this->setLine($errline);
 
         $backtrace = debug_backtrace();
-        // remove last two calls: debug_backtrace() and handleError()
-        unset($backtrace[0]);
-        unset($backtrace[1]);
+        // remove last three calls:
+        // debug_backtrace(), handleError() and addError()
+        $backtrace = array_slice($backtrace, 3);
 
         $this->setBacktrace($backtrace);
     }
@@ -122,105 +122,112 @@ class PMA_Error extends PMA_Message
     /**
      * sets PMA_Error::$_backtrace
      *
-     * @uses    PMA_Error::$_backtrace to set it
-     * @param   array $backtrace
+     * @param array $backtrace backtrace
+     *
+     * @return void
+     *
+     * @todo This function should store only processed backtrace as full
+     *       backtrace requires too much memory (especially with Response
+     *       object included). It could probably store only printable
+     *       representation as created by getBacktraceDisplay or some
+     *       intermediate form.
      */
     public function setBacktrace($backtrace)
     {
-        $this->_backtrace = $backtrace;
+        $this->backtrace = $backtrace;
     }
 
     /**
      * sets PMA_Error::$_line
      *
-     * @uses    PMA_Error::$_line to set it
-     * @param   integer $line
+     * @param integer $line the line
+     *
+     * @return void
      */
     public function setLine($line)
     {
-        $this->_line = $line;
+        $this->line = $line;
     }
 
     /**
      * sets PMA_Error::$_file
      *
-     * @uses    PMA_Error::$_file to set it
-     * @uses    PMA_Error::relPath()
-     * @param   string $file
+     * @param string $file the file
+     *
+     * @return void
      */
     public function setFile($file)
     {
-        $this->_file = PMA_Error::relPath($file);
+        $this->file = PMA_Error::relPath($file);
     }
 
 
     /**
-     * returns unique PMA_Error::$_hash, if not exists it will be created
+     * returns unique PMA_Error::$hash, if not exists it will be created
      *
-     * @uses    PMA_Error::$_hash as return value and to set it if required
-     * @uses    PMA_Error::getNumber()
-     * @uses    PMA_Error::getMessage()
-     * @uses    PMA_Error::getFile()
-     * @uses    PMA_Error::getLine()
-     * @uses    PMA_Error::getBacktrace()
-     * @uses    md5()
-     * @param   string $file
-     * @return  string PMA_Error::$_hash
+     * @return string PMA_Error::$hash
      */
     public function getHash()
     {
-        if (null === $this->_hash) {
-            $this->_hash = md5(
+        try {
+            $backtrace = serialize($this->getBacktrace());
+        } catch(Exception $e) {
+            $backtrace = '';
+        }
+        if ($this->hash === null) {
+            $this->hash = md5(
                 $this->getNumber() .
                 $this->getMessage() .
                 $this->getFile() .
                 $this->getLine() .
-                serialize($this->getBacktrace())
+                $backtrace
             );
         }
 
-        return $this->_hash;
+        return $this->hash;
     }
 
     /**
-     * returns PMA_Error::$_backtrace
+     * returns PMA_Error::$_backtrace for first $count frames
+     * pass $count = -1 to get full backtrace.
+     * The same can be done by not passing $count at all.
      *
-     * @uses    PMA_Error::$_backtrace as return value
-     * @return  array PMA_Error::$_backtrace
+     * @param integer $count Number of stack frames.
+     *
+     * @return array PMA_Error::$_backtrace
      */
-    public function getBacktrace()
+    public function getBacktrace($count = -1)
     {
-        return $this->_backtrace;
+        if ($count != -1) {
+            return array_slice($this->backtrace, 0, $count);
+        }
+        return $this->backtrace;
     }
 
     /**
-     * returns PMA_Error::$_file
+     * returns PMA_Error::$file
      *
-     * @uses    PMA_Error::$_file as return value
-     * @return  string PMA_Error::$_file
+     * @return string PMA_Error::$file
      */
     public function getFile()
     {
-        return $this->_file;
+        return $this->file;
     }
 
     /**
-     * returns PMA_Error::$_line
+     * returns PMA_Error::$line
      *
-     * @uses    PMA_Error::$_line as return value
-     * @return  integer PMA_Error::$_line
+     * @return integer PMA_Error::$line
      */
     public function getLine()
     {
-        return $this->_line;
+        return $this->line;
     }
 
     /**
      * returns type of error
      *
-     * @uses    PMA_Error::$errortype
-     * @uses    PMA_Error::getNumber()
-     * @return  string  type of error
+     * @return string  type of error
      */
     public function getType()
     {
@@ -230,9 +237,7 @@ class PMA_Error extends PMA_Message
     /**
      * returns level of error
      *
-     * @uses    PMA_Error::$$errorlevel
-     * @uses    PMA_Error::getNumber()
-     * @return  string  level of error
+     * @return string  level of error
      */
     public function getLevel()
     {
@@ -242,21 +247,18 @@ class PMA_Error extends PMA_Message
     /**
      * returns title prepared for HTML Title-Tag
      *
-     * @uses    PMA_Error::getTitle()
-     * @uses    htmlspecialchars()
-     * @uses    substr()
-     * @return  string   HTML escaped and truncated title
+     * @return string   HTML escaped and truncated title
      */
     public function getHtmlTitle()
     {
-        return htmlspecialchars(substr($this->getTitle(), 0, 100));
+        return htmlspecialchars(
+            /*overload*/mb_substr($this->getTitle(), 0, 100)
+        );
     }
 
     /**
      * returns title for error
      *
-     * @uses    PMA_Error::getType()
-     * @uses    PMA_Error::getMessage()
      * @return string
      */
     public function getTitle()
@@ -265,102 +267,155 @@ class PMA_Error extends PMA_Message
     }
 
     /**
-     * Display HTML backtrace
+     * Get HTML backtrace
      *
-     * @uses    PMA_Error::getBacktrace()
-     * @uses    PMA_Error::relPath()
-     * @uses    PMA_Error::displayArg()
-     * @uses    count()
+     * @return string
      */
-    public function displayBacktrace()
+    public function getBacktraceDisplay()
     {
-        foreach ($this->getBacktrace() as $step) {
-            echo PMA_Error::relPath($step['file']) . '#' . $step['line'] . ': ';
-            if (isset($step['class'])) {
-                echo $step['class'] . $step['type'];
-            }
-            echo $step['function'] . '(';
-            if (isset($step['args']) && (count($step['args']) > 1)) {
-                echo "<br />\n";
-                foreach ($step['args'] as $arg) {
-                    echo "\t";
-                    $this->displayArg($arg, $step['function']);
-                    echo ',' . "<br />\n";
-                }
-            } elseif (isset($step['args']) && (count($step['args']) > 0)) {
-                foreach ($step['args'] as $arg) {
-                    $this->displayArg($arg, $step['function']);
-                }
-            }
-            echo ')' . "<br />\n";
-        }
+        return PMA_Error::formatBacktrace(
+            $this->getBacktrace(),
+            "<br />\n",
+            "<br />\n"
+        );
     }
 
     /**
-     * Display a single function argument
-     * if $function is one of include/require the $arg is converted te relative path
+     * return formatted backtrace field
      *
-     * @uses    PMA_Error::relPath()
-     * @uses    in_array()
-     * @uses    gettype()
-     * @param string $arg
-     * @param string $function
+     * @param array  $backtrace Backtrace data
+     * @param string $separator Arguments separator to use
+     * @param string $lines     Lines separator to use
+     *
+     * @return string formatted backtrace
+     * @static
      */
-    protected function displayArg($arg, $function)
+    static function formatBacktrace($backtrace, $separator, $lines)
     {
+        $retval = '';
+
+        foreach ($backtrace as $step) {
+            if (isset($step['file']) && isset($step['line'])) {
+                $retval .= PMA_Error::relPath($step['file'])
+                    . '#' . $step['line'] . ': ';
+            }
+            if (isset($step['class'])) {
+                $retval .= $step['class'] . $step['type'];
+            }
+            $retval .= PMA_Error::getFunctionCall($step, $separator);
+            $retval .= $lines;
+        }
+
+        return $retval;
+    }
+
+    /**
+     * Formats function call in a backtrace
+     *
+     * @param array  $step      backtrace step
+     * @param string $separator Arguments separator to use
+     *
+     * @return string
+     * @static
+     */
+    static function getFunctionCall($step, $separator)
+    {
+        $retval = $step['function'] . '(';
+        if (isset($step['args'])) {
+            if (count($step['args']) > 1) {
+                $retval .= $separator;
+                foreach ($step['args'] as $arg) {
+                    $retval .= "\t";
+                    $retval .= PMA_Error::getArg($arg, $step['function']);
+                    $retval .= ',' . $separator;
+                }
+            } elseif (count($step['args']) > 0) {
+                foreach ($step['args'] as $arg) {
+                    $retval .= PMA_Error::getArg($arg, $step['function']);
+                }
+            }
+        }
+        $retval .= ')';
+        return $retval;
+    }
+
+    /**
+     * Get a single function argument
+     *
+     * if $function is one of include/require
+     * the $arg is converted to a relative path
+     *
+     * @param string $arg      argument to process
+     * @param string $function function name
+     *
+     * @return string
+     * @static
+     */
+    static function getArg($arg, $function)
+    {
+        $retval = '';
         $include_functions = array(
             'include',
             'include_once',
             'require',
             'require_once',
         );
+        $connect_functions = array(
+            'mysql_connect',
+            'mysql_pconnect',
+            'mysqli_connect',
+            'mysqli_real_connect',
+            'connect',
+            '_realConnect'
+        );
 
         if (in_array($function, $include_functions)) {
-            echo PMA_Error::relPath($arg);
+            $retval .= PMA_Error::relPath($arg);
+        } elseif (in_array($function, $connect_functions)
+            && getType($arg) === 'string'
+        ) {
+            $retval .= getType($arg) . ' ********';
         } elseif (is_scalar($arg)) {
-            echo gettype($arg) . ' ' . htmlspecialchars($arg);
+            $retval .= getType($arg) . ' '
+                . htmlspecialchars(var_export($arg, true));
         } else {
-            echo gettype($arg);
+            $retval .= getType($arg);
         }
+
+        return $retval;
     }
 
     /**
-     * Displays the error in HTML
+     * Gets the error as string of HTML
      *
-     * @uses    PMA_Error::getLevel()
-     * @uses    PMA_Error::getType()
-     * @uses    PMA_Error::getMessage()
-     * @uses    PMA_Error::displayBacktrace()
-     * @uses    PMA_Error::isDisplayed()
+     * @return string
      */
-    public function display()
+    public function getDisplay()
     {
-        echo '<div class="' . $this->getLevel() . '">';
-        if (! $this->isUserError()) {
-            echo '<strong>' . $this->getType() . '</strong>';
-            echo ' in ' . $this->getFile() . '#' . $this->getLine();
-            echo "<br />\n";
-        }
-        echo $this->getMessage();
-        if (! $this->isUserError()) {
-            echo "<br />\n";
-            echo "<br />\n";
-            echo "<strong>Backtrace</strong><br />\n";
-            echo "<br />\n";
-            echo $this->displayBacktrace();
-        }
-        echo '</div>';
         $this->isDisplayed(true);
+        $retval = '<div class="' . $this->getLevel() . '">';
+        if (! $this->isUserError()) {
+            $retval .= '<strong>' . $this->getType() . '</strong>';
+            $retval .= ' in ' . $this->getFile() . '#' . $this->getLine();
+            $retval .= "<br />\n";
+        }
+        $retval .= $this->getMessage();
+        if (! $this->isUserError()) {
+            $retval .= "<br />\n";
+            $retval .= "<br />\n";
+            $retval .= "<strong>Backtrace</strong><br />\n";
+            $retval .= "<br />\n";
+            $retval .= $this->getBacktraceDisplay();
+        }
+        $retval .= '</div>';
+
+        return $retval;
     }
 
     /**
      * whether this error is a user error
      *
-     * @uses    E_USER_WARNING
-     * @uses    E_USER_ERROR
-     * @uses    E_USER_NOTICE
-     * @uses    PMA_Error::getNumber()
-     * @return  boolean
+     * @return boolean
      */
     public function isUserError()
     {
@@ -370,48 +425,46 @@ class PMA_Error extends PMA_Message
     /**
      * return short relative path to phpMyAdmin basedir
      *
-     * prevent path disclusore in error message,
-     * and make users feel save to submit error reports
+     * prevent path disclosure in error message,
+     * and make users feel safe to submit error reports
      *
+     * @param string $dest path to be shorten
+     *
+     * @return string shortened path
      * @static
-     * @uses    PHP_OS()
-     * @uses    __FILE__()
-     * @uses    realpath()
-     * @uses    substr()
-     * @uses    explode()
-     * @uses    dirname()
-     * @uses    implode()
-     * @uses    count()
-     * @uses    array_pop()
-     * @uses    str_replace()
-     * @param   string $dest  path to be shorten
-     * @return  string shortened path
      */
     static function relPath($dest)
     {
         $dest = realpath($dest);
 
         if (substr(PHP_OS, 0, 3) == 'WIN') {
-            $path_separator = '\\';
+            $separator = '\\';
         } else {
-            $path_separator = '/';
+            $separator = '/';
         }
 
-        $Ahere = explode($path_separator, realpath(dirname(__FILE__) . $path_separator . '..'));
-        $Adest = explode($path_separator, $dest);
+        $Ahere = explode(
+            $separator,
+            realpath(__DIR__ . $separator . '..')
+        );
+        $Adest = explode($separator, $dest);
 
         $result = '.';
         // && count ($Adest)>0 && count($Ahere)>0 )
-        while (implode($path_separator, $Adest) != implode($path_separator, $Ahere)) {
+        while (implode($separator, $Adest) != implode($separator, $Ahere)) {
             if (count($Ahere) > count($Adest)) {
                 array_pop($Ahere);
-                $result .= $path_separator . '..';
+                $result .= $separator . '..';
             } else {
                 array_pop($Adest);
             }
         }
-        $path = $result . str_replace(implode($path_separator, $Adest), '', $dest);
-        return str_replace($path_separator . $path_separator, $path_separator, $path);
+        $path = $result . str_replace(implode($separator, $Adest), '', $dest);
+        return str_replace(
+            $separator . $separator,
+            $separator,
+            $path
+        );
     }
 }
 ?>

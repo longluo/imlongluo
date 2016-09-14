@@ -11,15 +11,10 @@
  * It has been extracted from the lex.h file in the MySQL BK tree
  * (around 4.0.2) as well as the MySQL documentation.
  *
- * Note: before adding a value in the arrays, ensure that you respect
- * proper sorting, especially with underscores. And don't forget to
- * update the _cnt variable at the end of each array.
- * (It's slower to have PHP do the count).
- *
  * It's easier to use only uppercase for proper sorting. In case of
  * doubt, use the test case to verify.
  *
- * @package phpMyAdmin
+ * @package PhpMyAdmin
  */
 if (! defined('PHPMYADMIN')) {
     exit;
@@ -39,18 +34,18 @@ $PMA_SQPdata_function_name = array (
     'ADDTIME',
     'AES_DECRYPT',
     'AES_ENCRYPT',
-    'AREA',                     // Area() polygon-property-functions.html
-    'ASBINARY',                 // AsBinary()
+    'AREA',                     // polygon-property-functions.html
+    'ASBINARY',
     'ASCII',
     'ASIN',
-    'ASTEXT',                   // AsText()
+    'ASTEXT',
     'ATAN',
     'ATAN2',
     'AVG',
-    'BDMPOLYFROMTEXT',          // BdMPolyFromText()
-    'BDMPOLYFROMWKB',           // BdMPolyFromWKB()
-    'BDPOLYFROMTEXT',           // BdPolyFromText()
-    'BDPOLYFROMWKB',            // BdPolyFromWKB()
+    'BDMPOLYFROMTEXT',
+    'BDMPOLYFROMWKB',
+    'BDPOLYFROMTEXT',
+    'BDPOLYFROMWKB',
     'BENCHMARK',
     'BIN',
     'BIT_AND',
@@ -58,12 +53,12 @@ $PMA_SQPdata_function_name = array (
     'BIT_LENGTH',
     'BIT_OR',
     'BIT_XOR',                  // group-by-functions.html
-    'BOUNDARY',                 // Boundary() general-geometry-property-functions.html
-    'BUFFER',                   // Buffer()
+    'BOUNDARY',                 // general-geometry-property-functions.html
+    'BUFFER',
     'CAST',
     'CEIL',
     'CEILING',
-    'CENTROID',                 // Centroid() multipolygon-property-functions.html
+    'CENTROID',                 // multipolygon-property-functions.html
     'CHAR',                     // string-functions.html
     'CHARACTER_LENGTH',
     'CHARSET',                  // information-functions.html
@@ -75,16 +70,16 @@ $PMA_SQPdata_function_name = array (
     'CONCAT',
     'CONCAT_WS',
     'CONNECTION_ID',
-    'CONTAINS',                 // Contains()
+    'CONTAINS',
     'CONV',
     'CONVERT',
     'CONVERT_TZ',
-    'CONVEXHULL',               // ConvexHull()
+    'CONVEXHULL',
     'COS',
     'COT',
     'COUNT',
     'CRC32',                    // mathematical-functions.html
-    'CROSSES',                  // Crosses()
+    'CROSSES',
     'CURDATE',
     'CURRENT_DATE',
     'CURRENT_TIME',
@@ -108,21 +103,21 @@ $PMA_SQPdata_function_name = array (
     'DEGREES',
     'DES_DECRYPT',
     'DES_ENCRYPT',
-    'DIFFERENCE',               // Difference()
-    'DIMENSION',                // Dimension() general-geometry-property-functions.html
-    'DISJOINT',                 // Disjoint()
-    'DISTANCE',                 // Distance()
+    'DIFFERENCE',
+    'DIMENSION',                // general-geometry-property-functions.html
+    'DISJOINT',
+    'DISTANCE',
     'ELT',
     'ENCODE',
     'ENCRYPT',
-    'ENDPOINT',                 // EndPoint() linestring-property-functions.html
-    'ENVELOPE',                 // Envelope() general-geometry-property-functions.html
-    'EQUALS',                   // Equals()
+    'ENDPOINT',                 // linestring-property-functions.html
+    'ENVELOPE',                 // general-geometry-property-functions.html
+    'EQUALS',
     'EXP',
     'EXPORT_SET',
-    'EXTERIORRING',             // ExteriorRing() polygon-property-functions.html
+    'EXTERIORRING',             // polygon-property-functions.html
     'EXTRACT',
-    'EXTRACTVALUE',             // ExtractValue() xml-functions.html
+    'EXTRACTVALUE',             // xml-functions.html
     'FIELD',
     'FIND_IN_SET',
     'FLOOR',
@@ -130,20 +125,20 @@ $PMA_SQPdata_function_name = array (
     'FOUND_ROWS',
     'FROM_DAYS',
     'FROM_UNIXTIME',
-    'GEOMCOLLFROMTEXT',         // GeomCollFromText()
-    'GEOMCOLLFROMWKB',          // GeomCollFromWKB()
-    'GEOMETRYCOLLECTION',       // GeometryCollection()
-    'GEOMETRYCOLLECTIONFROMTEXT',   // GeometryCollectionFromText()
-    'GEOMETRYCOLLECTIONFROMWKB',    // GeometryCollectionFromWKB()
-    'GEOMETRYFROMTEXT',         // GeometryFromText()
-    'GEOMETRYFROMWKB',          // GeometryFromWKB()
-    'GEOMETRYN',                // GeometryN() geometrycollection-property-functions.html
-    'GEOMETRYTYPE',             // GeometryType() general-geometry-property-functions.html
-    'GEOMFROMTEXT',             // GeomFromText()
-    'GEOMFROMWKB',              // GeomFromWKB()
+    'GEOMCOLLFROMTEXT',
+    'GEOMCOLLFROMWKB',
+    'GEOMETRYCOLLECTION',
+    'GEOMETRYCOLLECTIONFROMTEXT',
+    'GEOMETRYCOLLECTIONFROMWKB',
+    'GEOMETRYFROMTEXT',
+    'GEOMETRYFROMWKB',
+    'GEOMETRYN',                // geometrycollection-property-functions.html
+    'GEOMETRYTYPE',             // general-geometry-property-functions.html
+    'GEOMFROMTEXT',
+    'GEOMFROMWKB',
     'GET_FORMAT',
     'GET_LOCK',
-    'GLENGTH',                  // GLength() linestring-property-functions.html
+    'GLENGTH',                  // linestring-property-functions.html
     'GREATEST',
     'GROUP_CONCAT',
     'GROUP_UNIQUE_USERS',
@@ -155,15 +150,15 @@ $PMA_SQPdata_function_name = array (
     'INET_NTOA',
     'INSERT',                   // string-functions.html
     'INSTR',
-    'INTERIORRINGN',            // InteriorRingN() polygon-property-functions.html
-    'INTERSECTION',             // Intersection()
-    'INTERSECTS',               // Intersects()
+    'INTERIORRINGN',            // polygon-property-functions.html
+    'INTERSECTION',
+    'INTERSECTS',
     'INTERVAL',
-    'ISCLOSED',                 // IsClosed() multilinestring-property-functions.html
-    'ISEMPTY',                  // IsEmpty() general-geometry-property-functions.html
+    'ISCLOSED',                 // multilinestring-property-functions.html
+    'ISEMPTY',                  // general-geometry-property-functions.html
     'ISNULL',
-    'ISRING',                   // IsRing() linestring-property-functions.html
-    'ISSIMPLE',                 // IsSimple() general-geometry-property-functions.html
+    'ISRING',                   // linestring-property-functions.html
+    'ISSIMPLE',                 // general-geometry-property-functions.html
     'IS_FREE_LOCK',
     'IS_USED_LOCK',             // miscellaneous-functions.html
     'LAST_DAY',
@@ -172,11 +167,11 @@ $PMA_SQPdata_function_name = array (
     'LEAST',
     'LEFT',
     'LENGTH',
-    'LINEFROMTEXT',             // LineFromText()
-    'LINEFROMWKB',              // LineFromWKB()
-    'LINESTRING',               // LineString()
-    'LINESTRINGFROMTEXT',       // LineStringFromText()
-    'LINESTRINGFROMWKB',        // LineStringFromWKB()
+    'LINEFROMTEXT',
+    'LINEFROMWKB',
+    'LINESTRING',
+    'LINESTRINGFROMTEXT',
+    'LINESTRINGFROMWKB',
     'LN',
     'LOAD_FILE',
     'LOCALTIME',
@@ -193,61 +188,61 @@ $PMA_SQPdata_function_name = array (
     'MAKE_SET',
     'MASTER_POS_WAIT',
     'MAX',
-    'MBRCONTAINS',              // MBRContains()
-    'MBRDISJOINT',              // MBRDisjoint()
-    'MBREQUAL',                 // MBREqual()
-    'MBRINTERSECTS',            // MBRIntersects()
-    'MBROVERLAPS',              // MBROverlaps()
-    'MBRTOUCHES',               // MBRTouches()
-    'MBRWITHIN',                // MBRWithin()
+    'MBRCONTAINS',
+    'MBRDISJOINT',
+    'MBREQUAL',
+    'MBRINTERSECTS',
+    'MBROVERLAPS',
+    'MBRTOUCHES',
+    'MBRWITHIN',
     'MD5',
     'MICROSECOND',
     'MID',
     'MIN',
     'MINUTE',
-    'MLINEFROMTEXT',            // MLineFromText()
-    'MLINEFROMWKB',             // MLineFromWKB()
+    'MLINEFROMTEXT',
+    'MLINEFROMWKB',
     'MOD',
     'MONTH',
     'MONTHNAME',
-    'MPOINTFROMTEXT',           // MPointFromText()
-    'MPOINTFROMWKB',            // MPointFromWKB()
-    'MPOLYFROMTEXT',            // MPolyFromText()
-    'MPOLYFROMWKB',             // MPolyFromWKB()
-    'MULTILINESTRING',          // MultiLineString()
-    'MULTILINESTRINGFROMTEXT',  // MultiLineStringFromText()
-    'MULTILINESTRINGFROMWKB',   // MultiLineStringFromWKB()
-    'MULTIPOINT',               // MultiPoint()
-    'MULTIPOINTFROMTEXT',       // MultiPointFromText()
-    'MULTIPOINTFROMWKB',        // MultiPointFromWKB()
-    'MULTIPOLYGON',             // MultiPolygon()
-    'MULTIPOLYGONFROMTEXT',     // MultiPolygonFromText()
-    'MULTIPOLYGONFROMWKB',      // MultiPolygonFromWKB()
+    'MPOINTFROMTEXT',
+    'MPOINTFROMWKB',
+    'MPOLYFROMTEXT',
+    'MPOLYFROMWKB',
+    'MULTILINESTRING',
+    'MULTILINESTRINGFROMTEXT',
+    'MULTILINESTRINGFROMWKB',
+    'MULTIPOINT',
+    'MULTIPOINTFROMTEXT',
+    'MULTIPOINTFROMWKB',
+    'MULTIPOLYGON',
+    'MULTIPOLYGONFROMTEXT',
+    'MULTIPOLYGONFROMWKB',
     'NAME_CONST',               // NAME_CONST()
-    'NOW',                      // NOW()
+    'NOW',
     'NULLIF',
-    'NUMGEOMETRIES',            // NumGeometries() geometrycollection-property-functions.html
-    'NUMINTERIORRINGS',         // NumInteriorRings() polygon-property-functions.html
-    'NUMPOINTS',                // NumPoints() linestring-property-functions.html
+    'NUMGEOMETRIES',            // geometrycollection-property-functions.html
+    'NUMINTERIORRINGS',         // polygon-property-functions.html
+    'NUMPOINTS',                // linestring-property-functions.html
     'OCT',
     'OCTET_LENGTH',
     'OLD_PASSWORD',
     'ORD',
-    'OVERLAPS',                 // Overlaps()
+    'OVERLAPS',
     'PASSWORD',
     'PERIOD_ADD',
     'PERIOD_DIFF',
     'PI',
-    'POINT',                    // Point()
-    'POINTFROMTEXT',            // PointFromText()
-    'POINTFROMWKB',             // PointFromWKB()
-    'POINTN',                   // PointN() inestring-property-functions.html
-    'POINTONSURFACE',           // PointOnSurface() multipolygon-property-functions.html
-    'POLYFROMTEXT',             // PolyFromText()
-    'POLYFROMWKB',              // PolyFromWKB()
-    'POLYGON',                  // Polygon()
-    'POLYGONFROMTEXT',          // PolygonFromText()
-    'POLYGONFROMWKB',           // PolygonFromWKB()
+    'POINT',
+    'POINTFROMTEXT',
+    'POINTFROMWKB',
+    'POINTN',                   // inestring-property-functions.html
+    'POINTONSURFACE',           // multipolygon-property-functions.html
+    'POLYFROMTEXT',
+    'POLYFROMWKB',
+    'POLYGON',
+    'POLYGONFROMTEXT',
+    'POLYGONFROMWKB',
     'POSITION',
     'POW',
     'POWER',
@@ -255,7 +250,7 @@ $PMA_SQPdata_function_name = array (
     'QUOTE',
     'RADIANS',
     'RAND',
-    'RELATED',                  // Related()
+    'RELATED',
     'RELEASE_LOCK',
     'REPEAT',
     'REPLACE',                  // string-functions.html
@@ -278,7 +273,7 @@ $PMA_SQPdata_function_name = array (
     'SPACE',
     'SQRT',
     'SRID',                     // general-geometry-property-functions.html
-    'STARTPOINT',               // StartPoint() linestring-property-functions.html
+    'STARTPOINT',               // linestring-property-functions.html
     'STD',
     'STDDEV',
     'STDDEV_POP',               // group-by-functions.html
@@ -291,7 +286,7 @@ $PMA_SQPdata_function_name = array (
     'SUBSTRING_INDEX',
     'SUBTIME',
     'SUM',
-    'SYMDIFFERENCE',            // SymDifference()
+    'SYMDIFFERENCE',
     'SYSDATE',
     'SYSTEM_USER',
     'TAN',
@@ -302,7 +297,7 @@ $PMA_SQPdata_function_name = array (
     'TIMESTAMPDIFF',
     'TIME_FORMAT',
     'TIME_TO_SEC',
-    'TOUCHES',                  // Touches()
+    'TOUCHES',
     'TO_DAYS',
     'TRIM',
     'TRUNCATE',                 // mathematical-functions.html
@@ -312,7 +307,7 @@ $PMA_SQPdata_function_name = array (
     'UNHEX',                    // string-functions.html
     'UNIQUE_USERS',
     'UNIX_TIMESTAMP',
-    'UPDATEXML',                // UpdateXML() xml-functions.html
+    'UPDATEXML',                // xml-functions.html
     'UPPER',
     'USER',
     'UTC_DATE',
@@ -326,18 +321,12 @@ $PMA_SQPdata_function_name = array (
     'WEEK',
     'WEEKDAY',
     'WEEKOFYEAR',
-    'WITHIN',                   // Within()
+    'WITHIN',
     'X',                        // point-property-functions.html
     'Y',                        // point-property-functions.html
     'YEAR',
     'YEARWEEK'
 );
-/**
- * $PMA_SQPdata_function_name_cnt = count($PMA_SQPdata_function_name);
- *
- * @global integer MySQL attributes count
- */
-$PMA_SQPdata_function_name_cnt = 298;
 
 /**
  * @global array MySQL attributes
@@ -374,17 +363,12 @@ $PMA_SQPdata_column_attrib = array (
     'VARYING',
     'ZEROFILL'
 );
-/**
- * $PMA_SQPdata_column_attrib_cnt = count($PMA_SQPdata_column_attrib);
- *
- * @global integer MySQL attributes count
- */
-$PMA_SQPdata_column_attrib_cnt = 30;
 
 /**
- * words that are reserved by MySQL and may not be used as identifiers without quotes
+ * words that are reserved by MySQL and may not be used as identifiers without
+ * quotes
  *
- * @see http://dev.mysql.com/doc/refman/5.1/en/reserved-words.html
+ * @see http://dev.mysql.com/doc/refman/5.5/en/reserved-words.html
  *
  * @global array MySQL reserved words
  */
@@ -407,11 +391,13 @@ $PMA_SQPdata_reserved_word = array (
     'AUTO_INCREMENT',
     'AVG_ROW_LENGTH',
     'BACKUP',
+    'BEFORE',
     'BEGIN',
     'BETWEEN',
     'BINLOG',
     'BOTH',
     'BY',
+    'CALL',
     'CASCADE',
     'CASE',
     'CHANGE',
@@ -440,6 +426,7 @@ $PMA_SQPdata_reserved_word = array (
     'DAY_HOUR',
     'DAY_MINUTE',
     'DAY_SECOND',
+    'DECLARE',
     'DEFINER',
     'DELAYED',
     'DELAY_KEY_WRITE',
@@ -455,7 +442,9 @@ $PMA_SQPdata_reserved_word = array (
     'DUMPFILE',
     'DUPLICATE',
     'DYNAMIC',
+    'EACH',
     'ELSE',
+    'ELSEIF',
     'ENCLOSED',
     'END',
     'ENGINE',
@@ -465,8 +454,10 @@ $PMA_SQPdata_reserved_word = array (
     'EVENTS',
     'EXECUTE',
     'EXISTS',
+    'EXIT',
     'EXPLAIN',
     'EXTENDED',
+    'FALSE',
     'FAST',
     'FIELDS',
     'FILE',
@@ -482,6 +473,7 @@ $PMA_SQPdata_reserved_word = array (
     'FUNCTION',
     'GEMINI',
     'GEMINI_SPIN_RETRIES',
+    'GENERAL',
     'GLOBAL',
     'GRANT',
     'GRANTS',
@@ -496,11 +488,13 @@ $PMA_SQPdata_reserved_word = array (
     'IDENTIFIED',
     'IF',
     'IGNORE',
+    'IGNORE_SERVER_IDS',
     'IN',
     'INDEX',
     'INDEXES',
     'INFILE',
     'INNER',
+    'INOUT',
     'INSERT',
     'INSERT_ID',
     'INSERT_METHOD',
@@ -528,6 +522,7 @@ $PMA_SQPdata_reserved_word = array (
     'LOW_PRIORITY',
     'MARIA',                // 5.1 ?
     'MASTER_CONNECT_RETRY',
+    'MASTER_HEARTBEAT_PERIOD',
     'MASTER_HOST',
     'MASTER_LOG_FILE',
     'MASTER_LOG_POS',
@@ -535,6 +530,7 @@ $PMA_SQPdata_reserved_word = array (
     'MASTER_PORT',
     'MASTER_USER',
     'MATCH',
+    'MAXVALUE',
     'MAX_CONNECTIONS_PER_HOUR',
     'MAX_QUERIES_PER_HOUR',
     'MAX_ROWS',
@@ -546,6 +542,7 @@ $PMA_SQPdata_reserved_word = array (
     'MINUTE_SECOND',
     'MIN_ROWS',
     'MODE',
+    'MODIFIES',
     'MODIFY',
     'MONTH',
     'MRG_MYISAM',
@@ -564,6 +561,7 @@ $PMA_SQPdata_reserved_word = array (
     'OPTIONALLY',
     'OR',
     'ORDER',
+    'OUT',
     'OUTER',
     'OUTFILE',
     'PACK_KEYS',
@@ -586,6 +584,7 @@ $PMA_SQPdata_reserved_word = array (
     'RAID_TYPE',
     'RANGE',                // 5.1
     'READ',
+    'READS',
     'READ_ONLY',            // 5.1
     'READ_WRITE',           // 5.1
     'REFERENCES',
@@ -597,6 +596,7 @@ $PMA_SQPdata_reserved_word = array (
     'REPLACE',
     'REPLICATION',
     'RESET',
+    'RESIGNAL',
     'RESTORE',
     'RESTRICT',
     'RETURN',
@@ -617,7 +617,9 @@ $PMA_SQPdata_reserved_word = array (
     'SHARE',
     'SHOW',
     'SHUTDOWN',
+    'SIGNAL',
     'SLAVE',
+    'SLOW',
     'SONAME',
     'SOUNDS',                   // string-functions.html
     'SQL',
@@ -657,6 +659,7 @@ $PMA_SQPdata_reserved_word = array (
     'TO',
     'TRAILING',
     'TRANSACTIONAL',    // 5.1 ?
+    'TRIGGER',
     'TRUE',
     'TRUNCATE',
     'TYPE',
@@ -680,204 +683,108 @@ $PMA_SQPdata_reserved_word = array (
     'XOR',
     'YEAR_MONTH'
 );
-/**
- * $PMA_SQPdata_reserved_word_cnt = count($PMA_SQPdata_reserved_word);
- *
- * @global integer MySQL reserved words count
- */
-$PMA_SQPdata_reserved_word_cnt = 288;
 
 /**
- * words forbidden to be used as column or table name wihtout quotes
- * as seen in http://dev.mysql.com/doc/mysql/en/reserved-words.html
+ * words forbidden to be used as column or table name without quotes
+ * as seen in http://dev.mysql.com/doc/refman/5.6/en/reserved-words.html
  *
  * @global array MySQL forbidden words
  */
 $PMA_SQPdata_forbidden_word = array (
-    'ACCESSIBLE',       // 5.1
-    'ACTION',
+    'ACCESSIBLE',
     'ADD',
-    'AFTER',
-    'AGAINST',
-    'AGGREGATE',
-    'ALGORITHM',
     'ALL',
     'ALTER',
     'ANALYZE',
     'AND',
-    'ANY',
     'AS',
     'ASC',
-    'ASCII',
     'ASENSITIVE',
-    'AUTO_INCREMENT',
-    'AVG',
-    'AVG_ROW_LENGTH',
-    'BACKUP',
-    'BDB',
     'BEFORE',
-    'BEGIN',
-    'BERKELEYDB',
     'BETWEEN',
     'BIGINT',
     'BINARY',
-    'BINLOG',
-    'BIT',
     'BLOB',
-    'BOOL',
-    'BOOLEAN',
     'BOTH',
-    'BTREE',
     'BY',
-    'BYTE',
-    'CACHE',
     'CALL',
     'CASCADE',
-    'CASCADED',
     'CASE',
-    'CHAIN',
     'CHANGE',
-    'CHANGED',
     'CHAR',
     'CHARACTER',
-    'CHARSET',
     'CHECK',
-    'CHECKSUM',
-    'CIPHER',
-    'CLOSE',
     'COLLATE',
-    'COLLATION',
     'COLUMN',
-    'COLUMNS',
-    'COMMENT',
-    'COMMIT',
-    'COMMITTED',
-    'COMPACT',
-    'COMPRESSED',
-    'CONCURRENT',
     'CONDITION',
-    'CONNECTION',
-    'CONSISTENT',
     'CONSTRAINT',
-    'CONTAINS',
     'CONTINUE',
     'CONVERT',
     'CREATE',
     'CROSS',
-    'CUBE',
     'CURRENT_DATE',
     'CURRENT_TIME',
     'CURRENT_TIMESTAMP',
     'CURRENT_USER',
     'CURSOR',
-    'DATA',
     'DATABASE',
     'DATABASES',
-    'DATE',
-    'DATETIME',
-    'DAY',
     'DAY_HOUR',
     'DAY_MICROSECOND',
     'DAY_MINUTE',
     'DAY_SECOND',
-    'DEALLOCATE',
     'DEC',
     'DECIMAL',
     'DECLARE',
     'DEFAULT',
-    'DEFINER',
     'DELAYED',
-    'DELAY_KEY_WRITE',
     'DELETE',
     'DESC',
     'DESCRIBE',
-    'DES_KEY_FILE',
     'DETERMINISTIC',
-    'DIRECTORY',
-    'DISABLE',
-    'DISCARD',
     'DISTINCT',
     'DISTINCTROW',
     'DIV',
-    'DO',
     'DOUBLE',
     'DROP',
     'DUAL',
-    'DUMPFILE',
-    'DUPLICATE',
-    'DYNAMIC',
     'EACH',
     'ELSE',
     'ELSEIF',
-    'ENABLE',
     'ENCLOSED',
-    'END',
-    'ENGINE',
-    'ENGINES',
-    'ENUM',
-    'ERRORS',
-    'ESCAPE',
     'ESCAPED',
-    'EVENTS',
-    'EXECUTE',
     'EXISTS',
     'EXIT',
-    'EXPANSION',
     'EXPLAIN',
-    'EXTENDED',
     'FALSE',
-    'FAST',
     'FETCH',
-    'FIELDS',
-    'FILE',
-    'FIRST',
-    'FIXED',
     'FLOAT',
     'FLOAT4',
     'FLOAT8',
-    'FLUSH',
     'FOR',
     'FORCE',
     'FOREIGN',
-    'FOUND',
-    'FRAC_SECOND',
     'FROM',
-    'FULL',
     'FULLTEXT',
-    'FUNCTION',
-    'GEOMETRY',
-    'GEOMETRYCOLLECTION',
-    'GET_FORMAT',
-    'GLOBAL',
-    'GOTO',
+    'GENERAL',
+    'GET',
     'GRANT',
-    'GRANTS',
     'GROUP',
-    'HANDLER',
-    'HASH',
     'HAVING',
-    'HELP',
     'HIGH_PRIORITY',
-    'HOSTS',
-    'HOUR',
     'HOUR_MICROSECOND',
     'HOUR_MINUTE',
     'HOUR_SECOND',
-    'IDENTIFIED',
     'IF',
     'IGNORE',
-    'IMPORT',
+    'IGNORE_SERVER_IDS',
     'IN',
     'INDEX',
-    'INDEXES',
     'INFILE',
     'INNER',
-    'INNOBASE',
-    'INNODB',
     'INOUT',
     'INSENSITIVE',
     'INSERT',
-    'INSERT_METHOD',
     'INT',
     'INT1',
     'INT2',
@@ -887,104 +794,50 @@ $PMA_SQPdata_forbidden_word = array (
     'INTEGER',
     'INTERVAL',
     'INTO',
-    'INVOKER',
-    'IO_THREAD',
+    'IO_AFTER_GTIDS',
+    'IO_BEFORE_GTIDS',
     'IS',
-    'ISOLATION',
-    'ISSUER',
     'ITERATE',
     'JOIN',
     'KEY',
     'KEYS',
     'KILL',
-    'LABEL',
-    'LANGUAGE',
-    'LAST',
     'LEADING',
     'LEAVE',
-    'LEAVES',
     'LEFT',
     'LIKE',
     'LIMIT',
-    'LINEAR',               // 5.1
+    'LINEAR',
     'LINES',
-    'LINESTRING',
     'LOAD',
-    'LOCAL',
     'LOCALTIME',
     'LOCALTIMESTAMP',
     'LOCK',
-    'LOCKS',
-    'LOGS',
     'LONG',
     'LONGBLOB',
     'LONGTEXT',
     'LOOP',
     'LOW_PRIORITY',
-    'MASTER',
-    'MASTER_CONNECT_RETRY',
-    'MASTER_HOST',
-    'MASTER_LOG_FILE',
-    'MASTER_LOG_POS',
-    'MASTER_PASSWORD',
-    'MASTER_PORT',
-    'MASTER_SERVER_ID',
-    'MASTER_SSL',
-    'MASTER_SSL_CA',
-    'MASTER_SSL_CAPATH',
-    'MASTER_SSL_CERT',
-    'MASTER_SSL_CIPHER',
-    'MASTER_SSL_KEY',
-    'MASTER_USER',
+    'MASTER_BIND',
+    'MASTER_HEARTBEAT_PERIOD',
+    'MASTER_SSL_VERIFY_SERVER_CERT',
     'MATCH',
-    'MAX_CONNECTIONS_PER_HOUR',
-    'MAX_QUERIES_PER_HOUR',
-    'MAX_ROWS',
-    'MAX_UPDATES_PER_HOUR',
-    'MAX_USER_CONNECTIONS',
-    'MEDIUM',
+    'MAXVALUE',
     'MEDIUMBLOB',
     'MEDIUMINT',
     'MEDIUMTEXT',
-    'MERGE',
-    'MICROSECOND',
     'MIDDLEINT',
-    'MIGRATE',
-    'MINUTE',
     'MINUTE_MICROSECOND',
     'MINUTE_SECOND',
-    'MIN_ROWS',
     'MOD',
-    'MODE',
     'MODIFIES',
-    'MODIFY',
-    'MONTH',
-    'MULTILINESTRING',
-    'MULTIPOINT',
-    'MULTIPOLYGON',
-    'MUTEX',
-    'NAME',
-    'NAMES',
-    'NATIONAL',
     'NATURAL',
-    'NCHAR',
-    'NDB',
-    'NDBCLUSTER',
-    'NEW',
-    'NEXT',
-    'NO',
-    'NONE',
     'NOT',
     'NO_WRITE_TO_BINLOG',
     'NULL',
     'NUMERIC',
-    'NVARCHAR',
-    'OFFSET',
-    'OLD_PASSWORD',
     'ON',
-    'ONE',
     'ONE_SHOT',
-    'OPEN',
     'OPTIMIZE',
     'OPTION',
     'OPTIONALLY',
@@ -993,196 +846,90 @@ $PMA_SQPdata_forbidden_word = array (
     'OUT',
     'OUTER',
     'OUTFILE',
-    'PACK_KEYS',
-    'PARTIAL',
-    'PASSWORD',
-    'PHASE',
-    'POINT',
-    'POLYGON',
+    'PARTITION',
     'PRECISION',
-    'PREPARE',
-    'PREV',
     'PRIMARY',
-    'PRIVILEGES',
     'PROCEDURE',
-    'PROCESSLIST',
     'PURGE',
-    'QUARTER',
-    'QUERY',
-    'QUICK',
-    'RAID0',
-    'RAID_CHUNKS',
-    'RAID_CHUNKSIZE',
-    'RAID_TYPE',
-    'RANGE',                // 5.1
+    'RANGE',
     'READ',
     'READS',
-    'READ_ONLY',            // 5.1
-    'READ_WRITE',           // 5.1
+    'READ_WRITE',
     'REAL',
-    'RECOVER',
-    'REDUNDANT',
     'REFERENCES',
     'REGEXP',
-    'RELAY_LOG_FILE',
-    'RELAY_LOG_POS',
-    'RELAY_THREAD',
     'RELEASE',
-    'RELOAD',
     'RENAME',
-    'REPAIR',
     'REPEAT',
-    'REPEATABLE',
     'REPLACE',
-    'REPLICATION',
     'REQUIRE',
-    'RESET',
-    'RESTORE',
+    'RESIGNAL',
     'RESTRICT',
-    'RESUME',
     'RETURN',
-    'RETURNS',
     'REVOKE',
     'RIGHT',
     'RLIKE',
-    'ROLLBACK',
-    'ROLLUP',
-    'ROUTINE',
-    'ROW',
-    'ROWS',
-    'ROW_FORMAT',
-    'RTREE',
-    'SAVEPOINT',
     'SCHEMA',
     'SCHEMAS',
-    'SECOND',
     'SECOND_MICROSECOND',
-    'SECURITY',
     'SELECT',
     'SENSITIVE',
     'SEPARATOR',
-    'SERIAL',
-    'SERIALIZABLE',
-    'SESSION',
     'SET',
-    'SHARE',
     'SHOW',
-    'SHUTDOWN',
-    'SIGNED',
-    'SIMPLE',
-    'SLAVE',
+    'SIGNAL',
+    'SLOW',
     'SMALLINT',
-    'SNAPSHOT',
-    'SOME',
-    'SONAME',
-    'SOUNDS',
     'SPATIAL',
     'SPECIFIC',
     'SQL',
     'SQLEXCEPTION',
     'SQLSTATE',
     'SQLWARNING',
+    'SQL_AFTER_GTIDS',
+    'SQL_BEFORE_GTIDS',
     'SQL_BIG_RESULT',
-    'SQL_BUFFER_RESULT',
-    'SQL_CACHE',
     'SQL_CALC_FOUND_ROWS',
-    'SQL_NO_CACHE',
     'SQL_SMALL_RESULT',
-    'SQL_THREAD',
-    'SQL_TSI_DAY',
-    'SQL_TSI_FRAC_SECOND',
-    'SQL_TSI_HOUR',
-    'SQL_TSI_MINUTE',
-    'SQL_TSI_MONTH',
-    'SQL_TSI_QUARTER',
-    'SQL_TSI_SECOND',
-    'SQL_TSI_WEEK',
-    'SQL_TSI_YEAR',
     'SSL',
-    'START',
     'STARTING',
-    'STATUS',
-    'STOP',
-    'STORAGE',
     'STRAIGHT_JOIN',
-    'STRING',
-    'STRIPED',
-    'SUBJECT',
-    'SUPER',
-    'SUSPEND',
     'TABLE',
-    'TABLES',
-    'TABLESPACE',
-    'TEMPORARY',
-    'TEMPTABLE',
     'TERMINATED',
-    'TEXT',
     'THEN',
-    'TIME',
-    'TIMESTAMP',
-    'TIMESTAMPADD',
-    'TIMESTAMPDIFF',
     'TINYBLOB',
     'TINYINT',
     'TINYTEXT',
     'TO',
     'TRAILING',
-    'TRANSACTION',
     'TRIGGER',
-    'TRIGGERS',
     'TRUE',
-    'TRUNCATE',
-    'TYPE',
-    'TYPES',
-    'UNCOMMITTED',
-    'UNDEFINED',
     'UNDO',
-    'UNICODE',
     'UNION',
     'UNIQUE',
-    'UNKNOWN',
     'UNLOCK',
     'UNSIGNED',
-    'UNTIL',
     'UPDATE',
     'USAGE',
     'USE',
-    'USER',
-    'USER_RESOURCES',
-    'USE_FRM',
     'USING',
     'UTC_DATE',
     'UTC_TIME',
     'UTC_TIMESTAMP',
-    'VALUE',
     'VALUES',
     'VARBINARY',
     'VARCHAR',
     'VARCHARACTER',
-    'VARIABLES',
     'VARYING',
-    'VIEW',
-    'WARNINGS',
-    'WEEK',
     'WHEN',
     'WHERE',
     'WHILE',
     'WITH',
-    'WORK',
     'WRITE',
-    'X509',
-    'XA',
     'XOR',
-    'YEAR',
     'YEAR_MONTH',
     'ZEROFILL'
 );
-/**
- * count($PMA_SQPdata_forbidden_word);
- *
- * @global integer MySQL forbidden words count
- */
-$PMA_SQPdata_forbidden_word_cnt = 482;
 
 /**
  * the MySQL column/data types
@@ -1235,7 +982,7 @@ $PMA_SQPdata_column_type = array (
     'POINT',                // spatial
     'POLYGON',              // spatial
     'REAL',
-    'SERIAL',               // alias for BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY
+    'SERIAL',               // alias
     'SET',
     'SMALLINT',
     'TEXT',
@@ -1248,11 +995,5 @@ $PMA_SQPdata_column_type = array (
     'VARCHAR',
     'YEAR'
 );
-/**
- * $PMA_SQPdata_column_type_cnt = count($PMA_SQPdata_column_type);
- *
- * @global integer MySQL column types count
- */
-$PMA_SQPdata_column_type_cnt = 54;
 
 ?>

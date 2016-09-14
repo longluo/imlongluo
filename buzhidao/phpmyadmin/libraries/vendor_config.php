@@ -2,13 +2,16 @@
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * File for vendor customisation, you can change here paths or some behaviour,
- * which vendors such as Linux distibutions might want to change.
+ * which vendors such as Linux distributions might want to change.
  *
  * For changing this file you should know what you are doing. For this reason
  * options here are not part of normal configuration.
  *
- * @package phpMyAdmin
+ * @package PhpMyAdmin
  */
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
 /**
  * Path to changelog file, can be gzip compressed. Useful when you want to
@@ -32,6 +35,11 @@ define('SETUP_CONFIG_FILE', './config/config.inc.php');
  * file will be generated.
  */
 define('SETUP_DIR_WRITABLE', true);
+
+/**
+ * Directory where SQL scripts to create/upgrade configuration storage reside.
+ */
+define('SQL_DIR', './sql/');
 
 /**
  * Directory where configuration files are stored.
@@ -65,4 +73,21 @@ define('VERSION_CHECK_DEFAULT', true);
  * eg. /usr/share/php/gettext/gettext.inc.
  */
 define('GETTEXT_INC', './libraries/php-gettext/gettext.inc');
+/**
+ * Path to tcpdf.php file. Useful when you want to use system tcpdf,
+ * eg. /usr/share/php/tcpdf/tcpdf.php.
+ */
+define('TCPDF_INC', './libraries/tcpdf/tcpdf.php');
+
+/**
+ * Path to the phpseclib. Useful when you want to use system phpseclib.
+ */
+define('PHPSECLIB_INC_DIR', './libraries/phpseclib/');
+
+/**
+ * Avoid referring to nonexistent files (causes warnings when open_basedir
+ * is used)
+ */
+define('K_PATH_IMAGES', '');
+
 ?>

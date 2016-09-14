@@ -1,8 +1,9 @@
 <?php
+/* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
  * Server create and edit view
  *
- * @package phpMyAdmin-setup
+ * @package PhpMyAdmin-Setup
  */
 
 if (!defined('PHPMYADMIN')) {
@@ -18,15 +19,16 @@ require_once './setup/lib/form_processing.lib.php';
 
 require './libraries/config/setup.forms.php';
 
-$mode = filter_input(INPUT_GET, 'mode');
-$id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
+$mode = isset($_GET['mode']) ? $_GET['mode'] : null;
+$id = PMA_isValid($_GET['id'], 'numeric') ? $_GET['id'] : null;
 
-$cf = ConfigFile::getInstance();
+$cf = $GLOBALS['ConfigFile'];
 $server_exists = !empty($id) && $cf->get("Servers/$id") !== null;
 
 if ($mode == 'edit' && $server_exists) {
     $page_title = __('Edit server')
-        . ' ' . $id . ' <small>(' . htmlspecialchars($cf->getServerDSN($id)) . ')</small>';
+        . ' ' . $id
+        . ' <small>(' . htmlspecialchars($cf->getServerDSN($id)) . ')</small>';
 } elseif ($mode == 'remove' && $server_exists) {
     $cf->removeServer($id);
     header('Location: index.php');
@@ -40,9 +42,9 @@ if ($mode == 'edit' && $server_exists) {
 if (isset($page_title)) {
     echo '<h2>' . $page_title . '</h2>';
 }
-$form_display = new FormDisplay();
+$form_display = new FormDisplay($cf);
 foreach ($forms['Servers'] as $form_name => $form) {
     $form_display->registerForm($form_name, $form, $id);
 }
-process_formset($form_display);
+PMA_Process_formset($form_display);
 ?>

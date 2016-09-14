@@ -793,7 +793,7 @@ foreach ($able as $key=>$value) {
 		$phpSelf = $_SERVER[PHP_SELF] ? $_SERVER[PHP_SELF] : $_SERVER[SCRIPT_NAME];
 		$disFuns=get_cfg_var("disable_functions");
 		?>
-    <?php echo (false!==eregi("phpinfo",$disFuns))? '<font color="red">×</font>' :"<a href='$phpSelf?act=phpinfo' target='_blank'>PHPINFO</a>";?>
+    <?php echo (0!==preg_match("/phpinfo/i",$disFuns))? '<font color="red">×</font>' :"<a href='$phpSelf?act=phpinfo' target='_blank'>PHPINFO</a>";?>
     </td>
     <td width="32%">PHP版本（php_version）：</td>
     <td width="18%"><?php echo PHP_VERSION;?></td>
@@ -1036,16 +1036,7 @@ else
   <tr><th colspan="4" class="th_2">数据库支持</th></tr>
   <tr>
     <td width="32%">MySQL 数据库：</td>
-    <td width="18%"><?php echo isfun("mysql_close");?>
-    <?php
-    if(function_exists("mysql_get_server_info")) {
-        $s = @mysql_get_server_info();
-        $s = $s ? '&nbsp; mysql_server 版本：'.$s : '';
-	    $c = '&nbsp; mysql_client 版本：'.@mysql_get_client_info();
-        echo $s;
-    }
-    ?>
-	</td>
+    <td width="18%"><?php echo isfun("mysqli_close");?></td>
     <td width="32%">ODBC 数据库：</td>
     <td width="18%"><?php echo isfun("odbc_close");?></td>
   </tr>
@@ -1088,7 +1079,6 @@ else
 </table>
 
 <form action="<?php echo $_SERVER[PHP_SELF]."#bottom";?>" method="post">
-
 <!--MySQL数据库连接检测-->
 <table width="100%" cellpadding="3" cellspacing="0" align="center">
 	<tr><th colspan="3" class="th_2">MySQL数据库连接检测</th></tr>
@@ -1107,8 +1097,8 @@ else
 </table>
   <?php
   if ($_POST['act'] == 'MySQL检测') {
-  	if(function_exists("mysql_close")==1) {
-  		$link = @mysql_connect($host.":".$port,$login,$password);
+  	if(function_exists("mysqli_close")==1) {
+  		$link = @mysqli_connect($host,$login,$password,"",$port);
   		if ($link){
   			echo "<script>alert('连接到MySql数据库正常')</script>";
   		} else {
@@ -1119,7 +1109,6 @@ else
   	}
   }
 	?>
-	
 <!--函数检测-->
 <table width="100%" cellpadding="3" cellspacing="0" align="center">
 	<tr><th colspan="3" class="th_4">函数检测</th></tr>
@@ -1139,7 +1128,6 @@ else
   }
   ?>
 </table>
-
 <!--邮件发送检测-->
 <table width="100%" cellpadding="3" cellspacing="0" align="center">
   <tr><th colspan="3" class="th_5">邮件发送检测</th></tr>
@@ -1160,12 +1148,13 @@ else
   ?>
 </table>
 </form>
-
 <a id="bottom"></a>
+
 <div id="footer">
-	Copyright &copy; 2005 - 2014 <a href="http://www.imlongluo.com" target="_blank">Long Luo</a><br />This Prober was based on Yahei Prober.<br />
-	<?php $run_time = sprintf('%0.4f', microtime_float() - $time_start);?>
+&copy; 2012 <a href="http://lnmp.org" target="_blank">LNMP一键安装包</a><br />This Prober was based on Yahei Prober.<br />
+<?php $run_time = sprintf('%0.4f', microtime_float() - $time_start);?>
 Processed in <?php echo $run_time?> seconds. <?php echo memory_usage();?> memory usage.
+
 </div>
 
 </div>

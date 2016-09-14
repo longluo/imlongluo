@@ -1,19 +1,25 @@
 <?php
 /* vim: set expandtab sw=4 ts=4 sts=4: */
 /**
+ * The Innobase storage engine
  *
- * @package phpMyAdmin-Engines
+ * @package PhpMyAdmin-Engines
  */
+if (! defined('PHPMYADMIN')) {
+    exit;
+}
 
 /**
  *
  */
-include_once './libraries/engines/innodb.lib.php';
+require_once './libraries/engines/innodb.lib.php';
 
 /**
+ * The Innobase storage engine
  *
- * @package phpMyAdmin-Engines
+ * @package PhpMyAdmin-Engines
  */
-class PMA_StorageEngine_innobase extends PMA_StorageEngine_innodb {}
-
+class PMA_StorageEngine_Innobase extends PMA_StorageEngine_Innodb
+{
+}
 ?>
