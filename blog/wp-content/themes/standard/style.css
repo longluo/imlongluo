@@ -4,11 +4,10 @@ Theme URI: http://standardtheme.com
 Version: 3.1.3
 Description: Standard is a sleek, exacting product designed for uncluttered and sophisticated presentation of your content on desktop and mobile devices.
 Tags: blog, professional, clean, minimal, simple, black, white, one-column, two-columns, left-sidebar, right-sidebar, fixed-width, responsive-width, custom-background, custom-header, custom-menu, editor-style, featured-images, full-width-template, rtl-language-support, sticky-post, theme-options, translation-ready
-Author: Long Luo
-Author URI: http://www.imlongluo.com
-	Copyright: (c) 2005 - 2013 Long Luo.
-	License: GNU General Public License v2.0
-	License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Author: 8BIT
+Author URI: http://8bit.io
+License: GNU General Public License v2.0
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 */
 
 /*
@@ -40,22 +39,15 @@ Author URI: http://www.imlongluo.com
 
 
 /* ------------------------------------------------------------------------ 1. Misc */
-/* Modify begin by longluo @2013/12/16 for content articles. */
+
 body * { 
 	word-wrap: break-word;
 	-ms-word-wrap: break-word;
-	margin: 0px; 
-	padding: 0px;
-	font-size: 14px;
-	line-height: 18px;
 }
-/* Modify end by longluo @2013/12/16. */
 
 img {
 	max-width: 100%;
 	height: auto;
-	border: none;
-	background: none;
 }
 
 .fl {
@@ -199,7 +191,6 @@ h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
   color: #bfbfbf;
 }
 
-/*
 h1 small {
   font-size: 18px;
 }
@@ -216,63 +207,12 @@ h2 small {
 h6 {
   text-transform: inherit;
 }
-*/
 
-h1 {
-  font-size: 2em;
-}
+/* links */ 
 
-h1 small {
-  font-size: 1.8em;
+a { 
+	color: #4d8b97;
 }
-
-h2 {
-  font-size: 1.8em;
-  line-height: 2.2em;
-}
-
-h2 small {
-  font-size: 1.4em;
-}
-
-h3 {
-  font-size: 1.6em;
-}
-
-h4 {
-  font-size: 1.2em;
-}
-
-h5 {
-  font-size: 1em;
-}
-
-h6 {
-  font-size: 0.8em;
-  text-transform: inherit;
-}
-
-/*************************************
-	Links
-**************************************/
-/* Modify begin by longluo @2013/12/16. for links. */
-a {
-	color: #FA7F42;
-	/*
-	text-decoration: underline;
-	*/
-}
-
-a:visited {
-  color: #3088ff;
-  text-decoration: none;
-}
-	
-a:hover{
-	text-decoration: underline;
-	color: #0A4E97;
-}
-/* Modify end for links. */
 
 abbr, tla, acronym {
 	cursor: help;
@@ -484,7 +424,7 @@ body {
 
 #site-description {
 	color: #7a7a7a;
-	font-size: 16px;
+	font-size: 14px;
 }
 
 #header-image img, #header-image a img {
@@ -566,7 +506,6 @@ body {
 
 .post p {
 	margin-bottom: 20px;
-	line-height: 22px;
 }
 
 .entry-content img {
@@ -2255,7 +2194,3 @@ ul#sitemap-posts ul {
 	}
 
 }
-
-/* import mine css File @2014/01/15 */
-@import url("custom.css");
-

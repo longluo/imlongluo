@@ -53,18 +53,16 @@
 						</div><!-- /#footer-links -->			
 						<?php $global_options = get_option( 'standard_theme_global_options' ); ?>		
 						<div id="credit">
-						
 							<?php $standard_url = strlen( trim( $global_options['affiliate_code'] ) ) == 0 ? 'http://standardtheme.com/?utm_source=standard-theme&amp;utm_medium=footer&amp;utm_content=wp-org&amp;utm_campaign=Standard%2BFooter' : $global_options['affiliate_code'];
 							$eightbit_url = 'http://8bit.io/?utm_source=standard-theme&amp;utm_medium=footer&amp;utm_content=wp-org&amp;utm_campaign=Standard%2BFooter';
 							?>
 							
 							<?php if( null != get_page_by_path( 'privacy-policy' ) && 0 != get_page_by_path( 'privacy-policy' )->ID && 'publish' == get_page_by_path( 'privacy-policy' )->post_status ) { ?>							
-								//<?php printf( __( '&copy; %1$s %2$s &mdash; %3$s &mdash; %4$s by %5$s', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '">' . get_bloginfo( 'name' ) . '</a>', '<a href="' . get_permalink( get_page_by_path( 'privacy-policy' )->ID ) . '">Privacy Policy</a>', '<a href="' . $standard_url . '" target="_blank">Standard</a>', '<a href="' . $eightbit_url . '" target="_blank">8BIT</a>' ); ?>
 								<?php printf( __( '&copy; %1$s %2$s &mdash; %3$s &mdash; %4$s by %5$s', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '">' . get_bloginfo( 'name' ) . '</a>', '<a href="' . get_permalink( get_page_by_path( 'privacy-policy' )->ID ) . '">Privacy Policy</a>', '<a href="' . $standard_url . '" target="_blank">Standard</a>', '<a href="' . $eightbit_url . '" target="_blank">8BIT</a>' ); ?>
 							<?php } else { ?>
-								<?php printf( __( 'Copyright &copy; 2013 &mdash; %1$s %2$s', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '" target="_blank"> Long Luo </a>' ); ?>
+								<?php printf( __( '&copy; %1$s %2$s &mdash; %3$s by %4$s', 'standard' ), date( 'Y' ), '<a href="' . home_url() . '">' . get_bloginfo( 'name' ) . '</a>', '<a href="' . $standard_url . '" target="_blank">Standard</a>', '<a href="' . $eightbit_url . '" target="_blank">8BIT</a>' ); ?>
 							<?php } // end if/else ?>
-
+							
 						</div><!-- /#credits -->
 					</div><!--/span12-->
 				</div><!-- /row -->
@@ -72,19 +70,5 @@
 		</div><!-- /#sub-floor -->
 	</div><!-- /#footer -->
 	<?php wp_footer(); ?>
-
-	<!-- Baidu Statistics -->
-	<div style="display:none;">
-	<script type="text/javascript">
-	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb4c6c0df76415ca14358f56e0f957de1' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	</div>
-
-	<!-- CNZZ Statistics -->
-	<div style="display:none;">
-	<script src="http://s22.cnzz.com/z_stat.php?id=1000135599&web_id=1000135599" language="JavaScript"></script>
-	</div>
-	
 	</body>
 </html>
