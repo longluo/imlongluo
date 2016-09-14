@@ -4,7 +4,7 @@ if ( !function_exists( 'add_action' ) ) {
 	exit(0);
 }
 
-if ( wp_slimstat::$options[ 'async_load' ] == 'yes' && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) ) {
+if ( wp_slimstat::$settings[ 'async_load' ] == 'yes' && ( !defined( 'DOING_AJAX' ) || !DOING_AJAX ) ) {
 	return '';
 }
 
@@ -23,7 +23,7 @@ $all_results = wp_slimstat_db::get_recent( wp_slimstat_reports::$reports_info[ '
 $results = array_slice(
 	$all_results,
 	wp_slimstat_db::$filters_normalized[ 'misc' ][ 'start_from' ],
-	wp_slimstat::$options[ 'number_results_raw_data' ]
+	wp_slimstat::$settings[ 'number_results_raw_data' ]
 );
 
 // Echo the debug message
@@ -43,24 +43,26 @@ if ($count_page_results == 0){
 else {
 	
 	// Pagination
-	echo wp_slimstat_reports::report_pagination( $count_page_results, $count_all_results, true, wp_slimstat::$options[ 'number_results_raw_data' ] );
+	echo wp_slimstat_reports::report_pagination( $count_page_results, $count_all_results, true, wp_slimstat::$settings[ 'number_results_raw_data' ] );
 
 	// Show delete button? (only those who can access the settings can see it)
-	$current_user_can_delete = ( current_user_can( wp_slimstat::$options[ 'capability_can_admin' ] ) && !is_network_admin() );
+	$current_user_can_delete = ( current_user_can( wp_slimstat::$settings[ 'capability_can_admin' ] ) && !is_network_admin() );
 	$delete_row = '';
 
 	// Loop through the results
-	for($i=0; $i<$count_page_results; $i++){
-		$host_by_ip = $results[$i]['ip'];
-		if (wp_slimstat::$options['convert_ip_addresses'] == 'yes'){
-			$gethostbyaddr = gethostbyaddr( $results[$i]['ip'] );
-			if ($gethostbyaddr != $host_by_ip && !empty($gethostbyaddr)) $host_by_ip .= ', '.$gethostbyaddr;
+	for ( $i=0; $i < $count_page_results; $i++ ) {
+		$host_by_ip = $results[ $i ][ 'ip' ];
+		if ( wp_slimstat::$settings[ 'convert_ip_addresses' ] == 'yes' ) {
+			$gethostbyaddr = gethostbyaddr( $results[ $i ][ 'ip' ] );
+			if ( $gethostbyaddr != $host_by_ip && !empty( $gethostbyaddr ) ) {
+				$host_by_ip .= ', ' . $gethostbyaddr;
+			}
 		}
 		
-		$date_time = "<i class='spaced slimstat-font-clock' title='".__( 'Date and Time', 'wp-slimstat' )."'></i> " . date_i18n( wp_slimstat::$options[ 'date_format' ] . ' ' . wp_slimstat::$options[ 'time_format' ], $results[ $i ][ 'dt' ], true );
+		$date_time = "<i class='spaced slimstat-font-clock' title='".__( 'Date and Time', 'wp-slimstat' )."'></i> " . date_i18n( wp_slimstat::$settings[ 'date_format' ] . ' ' . wp_slimstat::$settings[ 'time_format' ], $results[ $i ][ 'dt' ], true );
 
 		// Print visit header?
-		if ($i == 0 || $results[$i-1]['visit_id'] != $results[$i]['visit_id'] || ($results[$i]['visit_id'] == 0 && ($results[$i-1]['ip'] != $results[$i]['ip'] || $results[$i-1]['browser'] != $results[$i]['browser'] || $results[$i-1]['platform'] != $results[$i]['platform']))){
+		if ( $i == 0 || $results[ $i - 1 ][ 'visit_id' ] != $results[ $i ][ 'visit_id' ] || ( $results[ $i ][ 'visit_id' ] == 0 && ( $results[ $i - 1 ][ 'ip' ] != $results[ $i ][ 'ip' ] || $results[ $i - 1 ][ 'browser' ] != $results[ $i ][ 'browser' ] || $results[ $i - 1 ][ 'platform' ] != $results[ $i ][ 'platform' ] || $results[ $i - 1 ][ 'username' ] != $results[ $i ][ 'username' ] ) ) ) {
 
 			// Color-coded headers
 			$highlight_row = !empty($results[$i]['searchterms'])?' is-search-engine':(($results[$i]['browser_type'] != 1)?' is-direct':'');
@@ -70,7 +72,7 @@ else {
 
 			// Browser
 			if ($results[$i]['browser_version'] == 0) $results[$i]['browser_version'] = '';
-			$browser_title = (wp_slimstat::$options['show_complete_user_agent_tooltip'] == 'no')?"{$results[$i]['browser']} {$results[$i]['browser_version']}":$results[$i]['user_agent'];
+			$browser_title = ( wp_slimstat::$settings[ 'show_complete_user_agent_tooltip' ] != 'yes' ) ? "{$results[ $i ][ 'browser' ]} {$results[ $i ][ 'browser_version' ]}" : $results[ $i ][ 'user_agent' ];
 			$browser_icon = $plugin_url.'/images/browsers/other-browsers-and-os.png';
 			if (in_array($results[$i]['browser'], $supported_browser_icons)){
 				$browser_icon = $plugin_url.'/images/browsers/'.sanitize_title($results[$i]['browser']).'.png';
@@ -101,8 +103,8 @@ else {
 				$ip_address = "<a class='slimstat-filter-link' href='".wp_slimstat_reports::fs_url('ip equals '.$results[$i]['ip'])."'>$host_by_ip</a>";
 			}
 			else{
-				$display_user_name = $results[$i]['username'];
-				if (wp_slimstat::$options['show_display_name'] == 'yes' && strpos($results[$i]['notes'], 'user:') !== false){
+				$display_user_name = $results[ $i ][ 'username' ];
+				if ( wp_slimstat::$settings[ 'show_display_name' ] == 'yes' && strpos( $results[ $i ][ 'notes' ], 'user:' ) !== false ) {
 					$display_real_name = get_user_by('login', $results[$i]['username']);
 					if (is_object($display_real_name)) $display_user_name = $display_real_name->display_name;
 				}
@@ -111,14 +113,17 @@ else {
 				$highlight_row = (strpos( $results[$i]['notes'], 'user:') !== false)?' is-known-user':' is-known-visitor';
 				
 			}
-			if (!empty(wp_slimstat::$options['ip_lookup_service'])){
-				$ip_address = "<a class='slimstat-font-location-1 whois' href='".wp_slimstat::$options['ip_lookup_service']."{$results[$i]['ip']}' target='_blank' title='WHOIS: {$results[$i]['ip']}'></a> $ip_address";
+			if ( !empty( wp_slimstat::$settings[ 'ip_lookup_service' ] ) ) {
+				$ip_address = "<a class='slimstat-font-location-1 whois' href='" . wp_slimstat::$settings[ 'ip_lookup_service' ] . "{$results[ $i ][ 'ip' ]}' target='_blank' title='WHOIS: {$results[ $i ][ 'ip' ]}'></a> $ip_address";
 			}
 
 			// Originating IP Address
-			$other_ip_address = '';
-			if (!empty($results[$i]['other_ip'])){
+			$other_ip_address = intval( $results[ $i ][ 'other_ip' ] );
+			if ( !empty( $other_ip_address ) ) {
 				$other_ip_address = "<a class='slimstat-filter-link' href='".wp_slimstat_reports::fs_url('other_ip equals '.$results[$i]['other_ip'])."'>(".__('Originating IP','wp-slimstat').": {$results[$i]['other_ip']})</a>";
+			}
+			else {
+				$other_ip_address = '';
 			}
 
 			// Plugins
@@ -151,18 +156,33 @@ else {
 			}
 			$results[$i]['resource'] = "<a class='slimstat-font-logout' target='_blank' title='".htmlentities(__('Open this URL in a new window','wp-slimstat'), ENT_QUOTES, 'UTF-8')."' href='".$base_url.htmlentities($results[$i]['resource'], ENT_QUOTES, 'UTF-8')."'></a> $base_url<a class='slimstat-filter-link' href='".wp_slimstat_reports::fs_url('resource equals ' . htmlentities($results[$i]['resource'], ENT_QUOTES, 'UTF-8') ) . "'>".wp_slimstat_reports::get_resource_title( $results[$i][ 'resource' ], $results[$i][ 'category' ] ).'</a>';
 		}
-		else{
+		else {
+			if ( !empty( $results[$i][ 'notes' ] ) ) {
+				$exploded_notes = explode( ';', $results[$i][ 'notes' ] );
+				foreach ( $exploded_notes as $a_note ) {
+					if ( strpos( $a_note, 'results:') !== false ) {
+						$search_terms_info = $results[ $i ][ 'searchterms' ] . ' (' . $a_note . ')';
+						break;
+					}
+				}
+			}
 			$results[$i]['resource'] = __('Local search results page','wp-slimstat');
 		}
 
+		if ( empty( $search_terms_info ) ) {
+			$search_terms_info = wp_slimstat_reports::get_search_terms_info( $results[ $i ][ 'searchterms' ], $results[ $i ][ 'referer' ] );
+		}
+
 		// Search Terms, with link to original SERP, and Outbound Resource
-		$search_terms_info = wp_slimstat_reports::get_search_terms_info( $results[ $i ][ 'searchterms' ], $results[ $i ][ 'referer' ] );
 		if ( !empty( $search_terms_info ) ) {
 			$results[$i]['searchterms'] = "<i class='spaced slimstat-font-search' title='" . __( 'Search Terms', 'wp-slimstat' ) . "'></i> $search_terms_info";
 		}
 		else {
 			$results[$i]['searchterms'] = '';
 		}
+
+		// Let's reset this variable for the next item
+		$search_terms_info = '';
 
 		// Server Latency and Page Speed
 		$performance = '';
@@ -185,14 +205,26 @@ else {
 			$domain = parse_url( $results[ $i ] [ 'referer' ] );
 			$domain = !empty( $domain[ 'host' ] ) ? $domain[ 'host' ] : '';
 			$results[$i][ 'referer' ] = (!empty($results[$i]['referer']) && empty($results[$i]['searchterms']))?"<a class='spaced slimstat-font-login' target='_blank' title='".htmlentities(__('Open this referrer in a new window','wp-slimstat'), ENT_QUOTES, 'UTF-8')."' href='{$results[$i]['referer']}'></a> $domain":'';
-			$results[$i][ 'outbound_resource' ] = ( !empty( $results[ $i ][ 'outbound_resource' ] ) ) ? "<a class='inline-icon spaced slimstat-font-logout' target='_blank' title='".htmlentities( __( 'Open this outbound link in a new window', 'wp-slimstat' ), ENT_QUOTES, 'UTF-8' ) . "' href='{$results[$i]['outbound_resource']}'></a> {$results[$i]['outbound_resource']}" : '';
 			$results[$i][ 'content_type' ] = !empty($results[$i]['content_type'])?"<i class='spaced slimstat-font-doc' title='".__('Content Type','wp-slimstat')."'></i> <a class='slimstat-filter-link' href='".wp_slimstat_reports::fs_url('content_type equals '.$results[$i]['content_type'])."'>{$results[$i]['content_type']}</a> ":'';
+
+			// The Outbound Links field might contain more than one link
+			if ( !empty( $results[ $i ][ 'outbound_resource' ] ) ) {
+				$exploded_outbound_resources = explode( ';;;', $results[ $i ][ 'outbound_resource' ] );
+				$results[$i][ 'outbound_resource' ] = '';
+				foreach ( $exploded_outbound_resources as $a_resource ) {
+					$results[ $i ][ 'outbound_resource' ] .= "<a class='inline-icon spaced slimstat-font-logout' target='_blank' title='".htmlentities( __( 'Open this outbound link in a new window', 'wp-slimstat' ), ENT_QUOTES, 'UTF-8' ) . "' href='{$a_resource}'></a> {$a_resource}";
+				}
+			}
+			else {
+				$results[$i][ 'outbound_resource' ] = '';
+			}
 
 			if ( $current_user_can_delete ){
 				$delete_row = "<a class='slimstat-delete-entry slimstat-font-cancel' data-pageview-id='{$results[$i]['id']}' title='".htmlentities(__('Delete this pageview','wp-slimstat'), ENT_QUOTES, 'UTF-8')."' href='#'></a>";
 			}
 
 			// Login / Logout Event
+			$login_logout = '';
 			if ( strpos( $results[ $i ][ 'notes' ], 'loggedin:' ) !== false ) {
 				$exploded_notes = explode( ';', $results[ $i ][ 'notes' ] );
 				foreach ( $exploded_notes as $a_note ) {
@@ -200,17 +232,17 @@ else {
 						continue;
 					}
 
-					$login_logout = "<i class='slimstat-font-user-plus spaced' title='" . __( 'User Logged In', 'wp-slimstat' ) . "'></i> " . str_replace( 'loggedin:', '', $a_note );
+					$login_logout .= "<i class='slimstat-font-user-plus spaced' title='" . __( 'User Logged In', 'wp-slimstat' ) . "'></i> " . str_replace( 'loggedin:', '', $a_note );
 				}
 			}
-			else if ( strpos( $results[ $i ][ 'notes' ], 'loggedout:' ) !== false ) {
+			if ( strpos( $results[ $i ][ 'notes' ], 'loggedout:' ) !== false ) {
 				$exploded_notes = explode( ';', $results[ $i ][ 'notes' ] );
 				foreach ( $exploded_notes as $a_note ) {
 					if ( strpos( $a_note, 'loggedout:' ) === false ) {
 						continue;
 					}
 
-					$login_logout = "<i class='slimstat-font-user-times spaced' title='" . __( 'User Logged Out', 'wp-slimstat' ) . "'></i> " . str_replace( 'loggedout:', '', $a_note );
+					$login_logout .= "<i class='slimstat-font-user-times spaced' title='" . __( 'User Logged Out', 'wp-slimstat' ) . "'></i> " . str_replace( 'loggedout:', '', $a_note );
 				}
 			}
 		}
@@ -222,7 +254,7 @@ else {
 	}
 	
 	// Pagination
-	if ($count_page_results > 20){
-		echo wp_slimstat_reports::report_pagination( $count_page_results, $count_all_results, true, wp_slimstat::$options[ 'number_results_raw_data' ] );
+	if ( $count_page_results > 20 ) {
+		echo wp_slimstat_reports::report_pagination( $count_page_results, $count_all_results, true, wp_slimstat::$settings[ 'number_results_raw_data' ] );
 	}
 }

@@ -10,25 +10,25 @@ wp_slimstat_reports::init();
 if (!empty($_REQUEST['action'])){
 	switch ($_REQUEST['action']){
 		case 'activate-indexes':
-			wp_slimstat::$wpdb->query("ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD INDEX {$GLOBALS['wpdb']->prefix}stats_resource_idx(resource(20))");
-			wp_slimstat::$wpdb->query("ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD INDEX {$GLOBALS['wpdb']->prefix}stats_browser_idx(browser(10))");
-			wp_slimstat::$wpdb->query("ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD INDEX {$GLOBALS['wpdb']->prefix}stats_searchterms_idx(searchterms(15))");
-			wp_slimstat_admin::show_alert_message(__('Congrats! Slimstat is now optimized for <a href="http://www.youtube.com/watch?v=ygE01sOhzz0" target="_blank">ludicrous speed</a>.','wp-slimstat'), 'wp-ui-highlight below-h2');
+			wp_slimstat::$wpdb->query( "ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD INDEX {$GLOBALS['wpdb']->prefix}stats_resource_idx( resource( 20 ) )" );
+			wp_slimstat::$wpdb->query( "ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD INDEX {$GLOBALS['wpdb']->prefix}stats_browser_idx( browser( 10 ) )" );
+			wp_slimstat::$wpdb->query( "ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats ADD INDEX {$GLOBALS['wpdb']->prefix}stats_searchterms_idx( searchterms( 15 ) )" );
+			wp_slimstat_admin::show_alert_message( __( 'Congratulations! Slimstat Analytics is now optimized for <a href="http://www.youtube.com/watch?v=ygE01sOhzz0" target="_blank">ludicrous speed</a>.', 'wp-slimstat' ), 'wp-ui-highlight below-h2' );
 			break;
 
 		case 'activate-sql-debug-mode':
-			wp_slimstat::$options[ 'show_sql_debug' ] = 'yes';
+			wp_slimstat::$settings[ 'show_sql_debug' ] = 'yes';
 			break;
 
 		case 'deactivate-indexes':
 			wp_slimstat::$wpdb->query("ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats DROP INDEX {$GLOBALS['wpdb']->prefix}stats_resource_idx");
 			wp_slimstat::$wpdb->query("ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats DROP INDEX {$GLOBALS['wpdb']->prefix}stats_browser_idx");
 			wp_slimstat::$wpdb->query("ALTER TABLE {$GLOBALS['wpdb']->prefix}slim_stats DROP INDEX {$GLOBALS['wpdb']->prefix}stats_searchterms_idx");
-			wp_slimstat_admin::show_alert_message(__('Indexing has been disabled. Enjoy the extra database space!','wp-slimstat'), 'wp-ui-highlight below-h2');
+			wp_slimstat_admin::show_alert_message( __( 'Indexing has been disabled. Enjoy the extra database space!', 'wp-slimstat' ), 'wp-ui-highlight below-h2' );
 			break;
 
 		case 'deactivate-sql-debug-mode':
-			wp_slimstat::$options[ 'show_sql_debug' ] = 'no';
+			wp_slimstat::$settings[ 'show_sql_debug' ] = 'no';
 			break;
 
 		case 'delete-records':
@@ -60,17 +60,17 @@ if (!empty($_REQUEST['action'])){
 			break;
 
 		case 'import-settings':
-			$new_options = @unserialize(stripslashes($_POST['import-slimstat-settings']));
-			$new_options = array_intersect_key($new_options, wp_slimstat::$options);
-			if (!empty($new_options)){
-				foreach ($new_options as $a_option_name => $a_option_value){
-					wp_slimstat::$options[$a_option_name] = $a_option_value;
+			$new_settings = @unserialize( stripslashes( $_POST[ 'import-slimstat-settings' ] ) );
+			$new_settings = array_intersect_key( $new_settings, wp_slimstat::$settings );
+			if ( !empty( $new_settings ) ) {
+				foreach ( $new_settings as $a_setting_name => $a_setting_value ) {
+					wp_slimstat::$settings[ $a_setting_name ] = $a_setting_value;
 				}
 			}
 			break;
 
 		case 'reset-tracker-status':
-			wp_slimstat::$options[ 'last_tracker_error' ] = array();
+			wp_slimstat::$settings[ 'last_tracker_error' ] = array();
 			break;
 
 		case 'restore-views':
@@ -93,16 +93,16 @@ if (!empty($_REQUEST['action'])){
 			break;
 
 		case 'truncate-archive':
-			wp_slimstat::$wpdb->query("DELETE tsa FROM {$GLOBALS['wpdb']->prefix}slim_stats_archive tsa");
-			wp_slimstat::$wpdb->query("OPTIMIZE TABLE {$GLOBALS['wpdb']->prefix}slim_stats_archive");
-			wp_slimstat_admin::show_alert_message(__('All the archived records were successfully deleted.','wp-slimstat'), 'wp-ui-highlight below-h2');
+			wp_slimstat::$wpdb->query( "DELETE tsa FROM {$GLOBALS[ 'wpdb' ]->prefix}slim_stats_archive tsa" );
+			wp_slimstat::$wpdb->query( "OPTIMIZE TABLE {$GLOBALS[ 'wpdb' ]->prefix}slim_stats_archive" );
+			wp_slimstat_admin::show_alert_message( __( 'All the archived records were successfully deleted.', 'wp-slimstat' ), 'wp-ui-highlight below-h2' );
 			break;
 
 		case 'truncate-table':
-			wp_slimstat::$wpdb->query("DELETE te FROM {$GLOBALS['wpdb']->prefix}slim_events te");
-			wp_slimstat::$wpdb->query("OPTIMIZE TABLE {$GLOBALS['wpdb']->prefix}slim_events");
-			wp_slimstat::$wpdb->query("DELETE t1 FROM {$GLOBALS['wpdb']->prefix}slim_stats t1");
-			wp_slimstat::$wpdb->query("OPTIMIZE TABLE {$GLOBALS['wpdb']->prefix}slim_stats");
+			wp_slimstat::$wpdb->query( "DELETE te FROM {$GLOBALS[ 'wpdb' ]->prefix}slim_events te" );
+			wp_slimstat::$wpdb->query( "OPTIMIZE TABLE {$GLOBALS[ 'wpdb' ]->prefix}slim_events" );
+			wp_slimstat::$wpdb->query( "DELETE t1 FROM {$GLOBALS[ 'wpdb' ]->prefix}slim_stats t1" );
+			wp_slimstat::$wpdb->query( "OPTIMIZE TABLE {$GLOBALS[ 'wpdb' ]->prefix}slim_stats" );
 			wp_slimstat_admin::show_alert_message( __( 'All the records were successfully deleted.', 'wp-slimstat' ), 'wp-ui-highlight below-h2' );
 			break;
 
@@ -112,14 +112,18 @@ if (!empty($_REQUEST['action'])){
 }
 
 // Retrieve some information about the tables used by Slimstat
-$check_index = wp_slimstat::$wpdb->get_results("SHOW INDEX FROM {$GLOBALS['wpdb']->prefix}slim_stats WHERE Key_name = 'stats_resource_idx'");
+$check_index = wp_slimstat::$wpdb->get_results( "SHOW INDEX FROM {$GLOBALS[ 'wpdb' ]->prefix}slim_stats WHERE Key_name = '{$GLOBALS[ 'wpdb' ]->prefix}stats_resource_idx'" );
 $details_wp_slim_tables = array_merge(
-	wp_slimstat::$wpdb->get_results("SHOW TABLE STATUS LIKE '{$GLOBALS['wpdb']->prefix}slim_stats'", ARRAY_A),
-	wp_slimstat::$wpdb->get_results("SHOW TABLE STATUS LIKE '{$GLOBALS['wpdb']->prefix}slim_events'", ARRAY_A),
-	wp_slimstat::$wpdb->get_results("SHOW TABLE STATUS LIKE '{$GLOBALS['wpdb']->prefix}slim_stats_archive'", ARRAY_A)
+	wp_slimstat::$wpdb->get_results( "SHOW TABLE STATUS LIKE '{$GLOBALS[ 'wpdb' ]->prefix}slim_stats'", ARRAY_A ),
+	wp_slimstat::$wpdb->get_results( "SHOW TABLE STATUS LIKE '{$GLOBALS[ 'wpdb' ]->prefix}slim_events'", ARRAY_A ),
+	wp_slimstat::$wpdb->get_results( "SHOW TABLE STATUS LIKE '{$GLOBALS[ 'wpdb' ]->prefix}slim_stats_archive'", ARRAY_A ),
+	wp_slimstat::$wpdb->get_results( "SHOW TABLE STATUS LIKE '{$GLOBALS[ 'wpdb' ]->prefix}slim_events_archive'", ARRAY_A )
 );
 $have_innodb = wp_slimstat::$wpdb->get_results("SHOW VARIABLES LIKE 'have_innodb'", ARRAY_A);
 $suffixes = array('bytes', 'KB', 'MB', 'GB', 'TB');
+$slim_stats_4_exists = wp_slimstat::$wpdb->get_col( "SHOW TABLES LIKE '{$GLOBALS[ 'wpdb' ]->prefix}slim_stats_4'", 0 );
+$slim_stats_3_exists = wp_slimstat::$wpdb->get_col( "SHOW TABLES LIKE '{$GLOBALS[ 'wpdb' ]->prefix}slim_stats_3'", 0 );
+$slim_browsers_exists =wp_slimstat::$wpdb->get_col( "SHOW TABLES LIKE '{$GLOBALS[ 'wpdb' ]->prefix}slim_browsers'", 0 );
 ?>
 
 <table class="form-table widefat">
@@ -130,12 +134,12 @@ $suffixes = array('bytes', 'KB', 'MB', 'GB', 'TB');
 	<tr>
 		<th scope="row"><?php _e('Tracker Status','wp-slimstat') ?></th>
 		<td>
-			<?php echo ( !empty( wp_slimstat::$options[ 'last_tracker_error' ] ) && is_array( wp_slimstat::$options[ 'last_tracker_error' ] ) ) ? '<strong>[' . date_i18n( wp_slimstat::$options[ 'date_format' ], wp_slimstat::$options[ 'last_tracker_error' ][ 2 ], true ) . ' ' . date_i18n( wp_slimstat::$options[ 'time_format' ], wp_slimstat::$options[ 'last_tracker_error' ][ 2 ], true ) . '] ' . wp_slimstat::$options[ 'last_tracker_error' ][ 0 ] . ' ' . wp_slimstat::$options[ 'last_tracker_error' ][ 1 ] . '</strong><a class="slimstat-delete-entry slimstat-font-cancel" title="' . htmlentities( __( 'Reset the tracker status', 'wp-slimstat' ), ENT_QUOTES, 'UTF-8' ) . '" href="' . wp_slimstat_admin::$config_url.$current_tab . '&amp;action=reset-tracker-status"></a>' : __( 'No Errors so far', 'wp-slimstat' ); ?>
+			<?php echo ( !empty( wp_slimstat::$settings[ 'last_tracker_error' ][ 1 ] ) && !empty( wp_slimstat::$settings[ 'last_tracker_error' ][ 2 ] ) ) ? '<strong>[' . date_i18n( wp_slimstat::$settings[ 'date_format' ], wp_slimstat::$settings[ 'last_tracker_error' ][ 2 ], true ) . ' ' . date_i18n( wp_slimstat::$settings[ 'time_format' ], wp_slimstat::$settings[ 'last_tracker_error' ][ 2 ], true ) . '] ' . wp_slimstat::$settings[ 'last_tracker_error' ][ 0 ] . ' ' . wp_slimstat::$settings[ 'last_tracker_error' ][ 1 ] . '</strong><a class="slimstat-delete-entry slimstat-font-cancel" title="' . htmlentities( __( 'Reset the tracker status', 'wp-slimstat' ), ENT_QUOTES, 'UTF-8' ) . '" href="' . wp_slimstat_admin::$config_url.$current_tab . '&amp;action=reset-tracker-status"></a>' : __( 'So far so good.', 'wp-slimstat' ); ?>
 			<span class="description"><?php _e('The information here above is useful to troubleshoot issues with the tracker. It includes both <strong>errors</strong>, which are returned when the tracker could not record a pageview and are indicative of some kind of malfunction, and <strong>notices</strong>, which explain the reason why the most recent pageview was not recorded, based on your settings (filters, blackslists, etc). Please include the message here above when sending a support request.','wp-slimstat') ?></span>
 		</td>
 	</tr>
 	<tr  class="alternate">
-		<?php if ( wp_slimstat::$options[ 'show_sql_debug' ] != 'yes' ): ?>
+		<?php if ( wp_slimstat::$settings[ 'show_sql_debug' ] != 'yes' ): ?>
 		<th scope="row">
 			<a class="button-secondary" href="<?php echo wp_slimstat_admin::$config_url.$current_tab ?>&amp;action=activate-sql-debug-mode"><?php _e("Enable SQL Debug",'wp-slimstat'); ?></a>
 		</th>
@@ -251,7 +255,7 @@ $suffixes = array('bytes', 'KB', 'MB', 'GB', 'TB');
 			
 	</tr>
 	<tr>
-		<td colspan="2" class="slimstat-options-section-header"><?php _e('Import and Export','wp-slimstat') ?></td>
+		<td colspan="2" class="slimstat-options-section-header"><?php _e('Configuration String','wp-slimstat') ?></td>
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -259,7 +263,7 @@ $suffixes = array('bytes', 'KB', 'MB', 'GB', 'TB');
 			<form action="<?php echo wp_slimstat_admin::$config_url.$current_tab ?>" method="post">
 				<?php wp_nonce_field( 'maintenance_wp_slimstat', 'maintenance_wp_slimstat_nonce', true, true ) ?>
 				<input type="hidden" name="action" value="import-settings" />
-				<textarea name="import-slimstat-settings" style="width:100%" rows="5" onClick="this.select();"><?php echo serialize(wp_slimstat::$options) ?></textarea><br/>
+				<textarea name="import-slimstat-settings" style="width:100%" rows="5" onClick="this.select();"><?php echo serialize( wp_slimstat::$settings ) ?></textarea><br/>
 				<input type="submit" value="<?php _e('Import','wp-slimstat') ?>" class="button-secondary"
 					onclick="return(confirm('<?php _e('Are you sure you want to OVERWRITE your current settings?','wp-slimstat'); ?>'))">
 			</form>
@@ -287,6 +291,13 @@ $suffixes = array('bytes', 'KB', 'MB', 'GB', 'TB');
 					<td>".$a_table['Data_length_with_suffix'].' ('.number_format($a_table['Rows'], 0).' '.__('records','wp-slimstat').')</td>
 				  </tr>';
 		}
+		$i++;
+		if ( !empty( $slim_stats_4_exists ) || !empty( $slim_stats_3_exists ) || !empty( $slim_browsers_exists ) ):
 	?>
+	<tr<?php echo (($i%2==0)?' class="alternate"':'') ?>>
+		<th scope="row"><?php _e( 'Old Tables', 'wp-slimstat' ) ?></th>
+		<td><?php printf( __( 'It looks like your database was upgraded from a version prior to 4.0. Our upgrade procedure follows a conservative approach, and does not automatically perform any garbage collection. In other words, the old tables, leftovers of the upgrade, are not deleted from the database. This allows our users to easily roll back to a working state in case of problems. However, if everything is working as expected (tracker and reports), you may want to log into phpMyAdmin and remove the following tables, if they exist: %s. When in doubt, do not hesitate to contact us for help.', 'wp-slimstat' ), "<code>{$GLOBALS['wpdb']->prefix}slim_browsers</code>, <code>{$GLOBALS['wpdb']->prefix}slim_content_info</code>, <code>{$GLOBALS['wpdb']->prefix}slim_outbound</code>, <code>{$GLOBALS['wpdb']->prefix}slim_screenres</code>, <code>{$GLOBALS['wpdb']->prefix}slim_stats_3</code>, <code>{$GLOBALS['wpdb']->prefix}slim_stats_4</code>, <code>{$GLOBALS['wpdb']->prefix}slim_stats_archive_3</code>, <code>{$GLOBALS['wpdb']->prefix}slim_stats_archive_4</code>" ) ?></td>
+	</tr>
+	<?php endif; ?>
 </tbody>
 </table>

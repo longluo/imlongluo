@@ -4,6 +4,7 @@
 class wp_slimstat_db {
 	// Filters
 	public static $columns_names = array();
+	public static $operator_names = array();
 	public static $filters_normalized = array();
 
 	// Number and date formats
@@ -23,7 +24,7 @@ class wp_slimstat_db {
 	 */
 	public static function init( $_filters = '' ){
 		// Decimal and thousand separators
-		if ( wp_slimstat::$options[ 'use_european_separators' ] == 'no' ){
+		if ( wp_slimstat::$settings[ 'use_european_separators' ] == 'no' ){
 			self::$formats[ 'decimal' ] = '.';
 			self::$formats[ 'thousand' ] = ',';
 		}
@@ -35,7 +36,6 @@ class wp_slimstat_db {
 
 		// List of supported filters and their friendly names
 		self::$columns_names = array(
-			'no_filter_selected_1' => array( '&nbsp;', 'none' ),
 			'browser' => array( __( 'Browser', 'wp-slimstat' ), 'varchar' ),
 			'country' => array( __( 'Country Code', 'wp-slimstat' ), 'varchar' ),
 			'ip' => array( __( 'IP Address', 'wp-slimstat' ), 'varchar' ),
@@ -47,7 +47,7 @@ class wp_slimstat_db {
 			'username' => array( __( 'Visitor\'s Username', 'wp-slimstat' ), 'varchar' ),
 			'outbound_resource' => array( __( 'Outbound Link', 'wp-slimstat' ), 'varchar' ),
 			'page_performance' => array( __( 'Page Speed', 'wp-slimstat' ), 'int' ),
-			'no_filter_selected_2' => array( '&nbsp;', 'none' ),
+			'no_filter_selected_2' => array( '', 'none' ),
 			'no_filter_selected_3' => array( __( '-- Advanced filters --', 'wp-slimstat' ), 'none' ),
 			'plugins' => array( __( 'Browser Capabilities', 'wp-slimstat' ), 'varchar' ),
 			'browser_version' => array( __( 'Browser Version', 'wp-slimstat' ), 'varchar' ),
@@ -64,6 +64,25 @@ class wp_slimstat_db {
 			'screen_height' => array( __( 'Screen Height', 'wp-slimstat' ), 'int' ),
 			'resolution' => array( __( 'Viewport Size', 'wp-slimstat' ), 'varchar' ),
 			'visit_id' => array( __( 'Visit ID', 'wp-slimstat' ), 'int' )
+		);
+
+		// List of supported filters and their friendly names
+		self::$operator_names = array(
+			'equals' => __( 'equals', 'wp-slimstat' ),
+			'is_not_equal_to' => __( 'is not equal to', 'wp-slimstat' ),
+			'contains' => __( 'contains', 'wp-slimstat' ),
+			'includes_in_set' => __( 'is included in', 'wp-slimstat' ),
+			'does_not_contain' => __( 'does not contain', 'wp-slimstat' ),
+			'starts_with' => __( 'starts with', 'wp-slimstat' ),
+			'ends_with' => __( 'ends with', 'wp-slimstat' ),
+			'sounds_like' => __( 'sounds like', 'wp-slimstat' ),
+			'is_greater_than' => __( 'is greater than', 'wp-slimstat' ),
+			'is_less_than' => __( 'is less than', 'wp-slimstat' ),
+			'between' => __( 'is between (x,y)', 'wp-slimstat' ),
+			'matches' => __( 'matches', 'wp-slimstat' ),
+			'does_not_match' => __( 'does not match', 'wp-slimstat' ),
+			'is_empty' => __( 'is empty', 'wp-slimstat' ),
+			'is_not_empty' => __( 'is not empty', 'wp-slimstat' ),
 		);
 
 		// The following filters will not be displayed in the dropdown
@@ -86,6 +105,7 @@ class wp_slimstat_db {
 			'language_calculated' => array( __( 'Language', 'wp-slimstat' ), 'varchar' ),
 			'platform_calculated' => array( __( 'Operating System', 'wp-slimstat' ), 'varchar' ),
 			'resource_calculated' => array( __( 'Permalink', 'wp-slimstat' ), 'varchar' ),
+			'referer_calculated' => array( __( 'Referer', 'wp-slimstat' ), 'varchar' ),
 			'metric' => array( __( 'Metric', 'wp-slimstat' ), 'varchar' ),
 			'value' => array( __( 'Value', 'wp-slimstat' ), 'varchar' ),
 			'tooltip' => array( __( 'Notes', 'wp-slimstat' ), 'varchar' ),
@@ -303,7 +323,7 @@ class wp_slimstat_db {
 	public static function get_results( $_sql = '', $_select_no_aggregate_values = '', $_order_by = '', $_group_by = '', $_aggregate_values_add = '' ) {
 		$_sql = apply_filters( 'slimstat_get_results_sql', $_sql, $_select_no_aggregate_values, $_order_by, $_group_by, $_aggregate_values_add );
 
-		if ( wp_slimstat::$options[ 'show_sql_debug' ] == 'yes' ) {
+		if ( wp_slimstat::$settings[ 'show_sql_debug' ] == 'yes' ) {
 			self::$debug_message .= "<p class='debug'>$_sql</p>";
 		}
 
@@ -313,7 +333,7 @@ class wp_slimstat_db {
 	public static function get_var( $_sql = '', $_aggregate_value = '' ) {
 		$_sql = apply_filters( 'slimstat_get_var_sql', $_sql, $_aggregate_value );
 
-		if ( wp_slimstat::$options[ 'show_sql_debug' ] == 'yes' ) {
+		if ( wp_slimstat::$settings[ 'show_sql_debug' ] == 'yes' ) {
 			self::$debug_message .= "<p class='debug'>$_sql</p>";
 		}
 
@@ -329,7 +349,7 @@ class wp_slimstat_db {
 			),
 			'misc' => $_init_misc?array(
 				'direction' => 'DESC',
-				'limit_results' => wp_slimstat::$options[ 'limit_results' ],
+				'limit_results' => wp_slimstat::$settings[ 'limit_results' ],
 				'start_from' => 0
 			) : array(),
 			'utime' => array(
@@ -444,6 +464,13 @@ class wp_slimstat_db {
 					case 'start_from':
 						$filters_normalized[ 'misc' ][ $a_filter[ 1 ] ] = str_replace( '\\', '', htmlspecialchars_decode( $a_filter[ 3 ] ) );
 						break;
+
+					case 'content_id':
+						if ( !empty( $a_filter[ 3 ] ) && $a_filter[ 3 ] == 'current' && !empty( $GLOBALS[ 'post' ]->ID ) ) {
+							$filters_normalized[ 'columns' ][ $a_filter[ 1 ] ] = array( $a_filter[ 2 ], $GLOBALS[ 'post' ]->ID );
+							break;
+						}
+						// no break here: if value IS numeric, go to the default parser here below
 
 					default:
 						$filters_normalized[ 'columns' ][ $a_filter[ 1 ] ] = array( $a_filter[ 2 ], isset( $a_filter[ 3 ] ) ? str_replace( '\\', '', htmlspecialchars_decode( $a_filter[ 3 ] ) ) : '' );
@@ -635,7 +662,7 @@ class wp_slimstat_db {
 		switch (self::$filters_normalized[ 'utime' ][ 'type' ]) {
 			case 'H':
 				$previous[ 'start' ] = self::$filters_normalized[ 'utime' ][ 'start' ] - 3600;
-				$label_date_format = wp_slimstat::$options[ 'time_format' ];
+				$label_date_format = wp_slimstat::$settings[ 'time_format' ];
 				$group_by = array( 'HOUR', 'MINUTE', 'i' );
 				$values_in_interval = array( 59, 59, 0, 60 ); 
 				break;
@@ -808,7 +835,6 @@ class wp_slimstat_db {
 
 		$_where = self::get_combined_where( $_where, $_column, $_use_date_filters );
 
-		//if ( $_column == 'id' || $_column == '*' ) {
 		$results = self::get_results( "
 			SELECT $columns
 			FROM {$GLOBALS['wpdb']->prefix}slim_stats
@@ -824,22 +850,6 @@ class wp_slimstat_db {
 		}
 
 		return $results;
-
-		//}
-		//else {
-		//	return self::get_results( "
-		//		SELECT t1.*
-		//		FROM (
-		//			SELECT $_column, MAX(id) maxid
-		//			FROM {$GLOBALS['wpdb']->prefix}slim_stats
-		//			WHERE $_where
-		//			GROUP BY $_as_column $_having
-		//		) AS ts1 INNER JOIN {$GLOBALS['wpdb']->prefix}slim_stats t1 ON ts1.maxid = t1.id
-		//		ORDER BY t1.dt DESC
-		//		LIMIT 0, " . self::$filters_normalized[ 'misc' ][ 'limit_results' ],
-		//		( ( !empty( $_as_column ) && $_as_column != $_column ) ? $_as_column : $_column ).', blog_id',
-		//		't1.dt DESC' );
-		//}
 	}
 
 	public static function get_recent_events() {
@@ -858,6 +868,21 @@ class wp_slimstat_db {
 			WHERE $where
 			ORDER BY te.dt DESC"
 		);
+	}
+
+	public static function get_recent_outbound() {
+		$mixed_outbound_resources = self::get_recent( 'outbound_resource' );
+		$clean_outbound_resources = array();
+
+		foreach ( $mixed_outbound_resources as $a_mixed_resource ) {
+			$exploded_resources = explode( ';;;', $a_mixed_resource[ 'outbound_resource' ] );
+			foreach ( $exploded_resources as $a_exploded_resource ) {
+				$a_mixed_resource[ 'outbound_resource' ] = $a_exploded_resource;
+				$clean_outbound_resources[] = $a_mixed_resource;
+			}
+		}
+
+		return $clean_outbound_resources;
 	}
 
 	public static function get_top( $_column = 'id', $_where = '', $_having = '', $_use_date_filters = true, $_as_column = '' ){
@@ -946,6 +971,31 @@ class wp_slimstat_db {
 			GROUP BY te.notes, te.type
 			ORDER BY counthits DESC"
 		);
+	}
+
+	public static function get_top_outbound() {
+		$mixed_outbound_resources = self::get_recent( 'outbound_resource' );
+		$clean_outbound_resources = array();
+
+		foreach ( $mixed_outbound_resources as $a_mixed_resource ) {
+			$exploded_resources = explode( ';;;', $a_mixed_resource[ 'outbound_resource' ] );
+			foreach ( $exploded_resources as $a_exploded_resource ) {
+				$clean_outbound_resources[] = $a_exploded_resource;
+			}
+		}
+
+		$clean_outbound_resources = array_count_values( $clean_outbound_resources );
+		arsort( $clean_outbound_resources );
+
+		$sorted_outbound_resources = array();
+		foreach ( $clean_outbound_resources as $a_resource => $a_count ) {
+			$sorted_outbound_resources[] = array(
+				'outbound_resource' => $a_resource,
+				'counthits' => $a_count
+			);
+		}
+
+		return $sorted_outbound_resources;
 	}
 
 	protected static function array_column( $input = array(), $columns = array() ) {

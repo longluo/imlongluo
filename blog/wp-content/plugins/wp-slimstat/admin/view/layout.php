@@ -40,7 +40,7 @@
 	$already_seen = array();
 
 	$current_user = wp_get_current_user();
-	$page_location = ( wp_slimstat::$options[ 'use_separate_menu' ] == 'yes' ) ? 'slimstat' : 'admin';
+	$page_location = ( wp_slimstat::$settings[ 'use_separate_menu' ] == 'yes' ) ? 'slimstat' : 'admin';
 ?>
 
 <div class="wrap slimstat-layout">
@@ -54,6 +54,10 @@
 <h2 class="slimstat-options-section-header"><?php echo wp_slimstat_admin::$screens_info[ $a_location_id ][ 'title' ] ?></h2>
 <div id="<?php echo $a_location_id ?>-sortables" class="meta-box-sortables"><?php
 	foreach( $a_location_list as $a_report_id ) {
+		if ( empty( wp_slimstat_reports::$reports_info[ $a_report_id ] ) ) {
+			continue;
+		}
+
 		if ( !in_array( $a_report_id, $already_seen ) ) {
 			$already_seen[] = $a_report_id;
 			$icon = 'docs';

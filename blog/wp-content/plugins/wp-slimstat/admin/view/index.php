@@ -3,36 +3,25 @@
 <div class="wrap slimstat">
 	<h2><?php echo wp_slimstat_admin::$screens_info[ $_GET[ 'page' ] ][ 'title' ] ?></h2>
 
+	<div class="notice slimstat-notice slimstat-tooltip-content" style="background-color:#ffa;border:0;padding:10px"><?php _e( '<strong>AdBlock browser extension detected</strong> - If you see this notice, it means that your browser is not loading our stylesheet and/or Javascript files correctly. This could be caused by an overzealous ad blocker feature enabled in your browser (AdBlock Plus and friends). <a href="https://slimstat.freshdesk.com/support/solutions/articles/12000000414-the-reports-are-not-being-rendered-correctly-or-buttons-do-not-work" target="_blank">Please make sure to add an exception</a> to your configuration and allow the browser to load these assets.', 'wp-slimstat' ); ?></div>
+
 	<form action="<?php echo wp_slimstat_reports::fs_url(); ?>" method="post" id="slimstat-filters-form">
 		<fieldset id="slimstat-filters"><?php
-			$filter_name_html = '<select name="f" id="slimstat-filter-name">';
-			foreach (wp_slimstat_db::$columns_names as $a_filter_label => $a_filter_info){
+			$filter_name_html = '<select name="f" id="slimstat-filter-name"><option value="" disabled selected>' . __( 'Filter', 'wp-slimstat' ) . '</option>';
+			foreach ( wp_slimstat_db::$columns_names as $a_filter_label => $a_filter_info ) {
 				$filter_name_html .= "<option value='$a_filter_label'>{$a_filter_info[0]}</option>";
 			}
 			$filter_name_html .= '</select>';
 
-			$filter_operator_html = '
-				<select name="o" id="slimstat-filter-operator">
-					<option value="equals">'.__('equals','wp-slimstat').'</option>
-					<option value="is_not_equal_to">'.__('is not equal to','wp-slimstat').'</option>
-					<option value="contains">'.__('contains','wp-slimstat').'</option>
-					<option value="includes_in_set">'.__('is included in','wp-slimstat').'</option>
-					<option value="does_not_contain">'.__('does not contain','wp-slimstat').'</option>
-					<option value="starts_with">'.__('starts with','wp-slimstat').'</option>
-					<option value="ends_with">'.__('ends with','wp-slimstat').'</option>
-					<option value="sounds_like">'.__('sounds like','wp-slimstat').'</option>
-					<option value="is_greater_than">'.__('is greater than','wp-slimstat').'</option>
-					<option value="is_less_than">'.__('is less than','wp-slimstat').'</option>
-					<option value="between">'.__('is between (x,y)','wp-slimstat').'</option>
-					<option value="matches">'.__('matches','wp-slimstat').'</option>
-					<option value="does_not_match">'.__('does not match','wp-slimstat').'</option>
-					<option value="is_empty">'.__('is empty','wp-slimstat').'</option>
-					<option value="is_not_empty">'.__('is not empty','wp-slimstat').'</option>
-				</select>';
+			$filter_operator_html = '<select name="o" id="slimstat-filter-operator">';
+			foreach ( wp_slimstat_db::$operator_names as $a_operator_label => $a_operator_name ){
+				$filter_operator_html .= "<option value='$a_operator_label'>$a_operator_name</option>";
+			}
+			$filter_operator_html .= '</select>';
 			
 			$filter_value_html = '<input type="text" class="text" name="v" id="slimstat-filter-value" value="" size="20">';
 			
-			if (wp_slimstat::$options['enable_sov'] == 'yes'){
+			if (wp_slimstat::$settings['enable_sov'] == 'yes'){
 				echo $filter_value_html.$filter_operator_html.$filter_name_html;
 			}
 			else{
@@ -51,15 +40,15 @@
 		<fieldset id="slimstat-date-filters" class="wp-ui-highlight">
 			<a href="#"><?php
 				if (!empty(wp_slimstat_db::$filters_normalized['date']['hour']) || !empty(wp_slimstat_db::$filters_normalized['date']['interval_hours'])){
-					echo gmdate(wp_slimstat::$options['date_format'].' '.wp_slimstat::$options['time_format'], wp_slimstat_db::$filters_normalized['utime']['start']).' - ';
-					$end_format = (date('Ymd', wp_slimstat_db::$filters_normalized['utime']['start']) != date('Ymd', wp_slimstat_db::$filters_normalized['utime']['end']))?wp_slimstat::$options['date_format'].' '.wp_slimstat::$options['time_format']:wp_slimstat::$options['time_format'];
-					echo gmdate($end_format, wp_slimstat_db::$filters_normalized['utime']['end']);
+					echo gmdate( wp_slimstat::$settings[ 'date_format' ] . ' ' . wp_slimstat::$settings[ 'time_format' ], wp_slimstat_db::$filters_normalized['utime']['start']).' - ';
+					$end_format = (date('Ymd', wp_slimstat_db::$filters_normalized['utime']['start']) != date('Ymd', wp_slimstat_db::$filters_normalized['utime']['end']))?wp_slimstat::$settings[ 'date_format' ] . ' ' . wp_slimstat::$settings[ 'time_format' ] : wp_slimstat::$settings[ 'time_format' ];
+					echo gmdate( $end_format, wp_slimstat_db::$filters_normalized[ 'utime' ][ 'end' ] );
 				}
 				else if (!empty(wp_slimstat_db::$filters_normalized['date']['day']) && empty(wp_slimstat_db::$filters_normalized['date']['interval'])){
-					echo ucwords(gmdate(wp_slimstat::$options['date_format'], wp_slimstat_db::$filters_normalized['utime']['start']));
+					echo ucwords(gmdate(wp_slimstat::$settings['date_format'], wp_slimstat_db::$filters_normalized['utime']['start']));
 				}
 				else{
-					echo ucwords(gmdate(wp_slimstat::$options['date_format'], wp_slimstat_db::$filters_normalized['utime']['start']).' - '.gmdate(wp_slimstat::$options['date_format'], wp_slimstat_db::$filters_normalized['utime']['end']));
+					echo ucwords( gmdate( wp_slimstat::$settings[ 'date_format' ], wp_slimstat_db::$filters_normalized[ 'utime' ][ 'start' ] ) . ' - ' . gmdate( wp_slimstat::$settings[ 'date_format' ], wp_slimstat_db::$filters_normalized[ 'utime' ][ 'end' ] ) );
 				}
 			?></a>
 			<span>
@@ -128,11 +117,15 @@
 		<?php endif; endforeach; ?>
 	</form>
 	<?php
-		if ( !file_exists( wp_slimstat::$maxmind_path ) && ( empty( wp_slimstat::$options[ 'no_maxmind_warning' ] ) || wp_slimstat::$options[ 'no_maxmind_warning' ] != 'yes' ) ) {
+		if ( !file_exists( wp_slimstat::$maxmind_path ) && ( empty( wp_slimstat::$settings[ 'no_maxmind_warning' ] ) || wp_slimstat::$settings[ 'no_maxmind_warning' ] != 'yes' ) ) {
 			wp_slimstat_admin::show_alert_message( sprintf( __( "Install MaxMind's <a href='%s'>GeoLite DB</a> to determine your visitors' country of origin.", 'wp-slimstat' ), self::$config_url . '6' ) . '<a id="slimstat-hide-geolite-notice" class="slimstat-font-cancel slimstat-float-right" title="Hide this notice" href="#"></a>', 'wp-ui-notification below-h2' );
 		}
 
-		$filters_html = wp_slimstat_reports::get_filters_html(wp_slimstat_db::$filters_normalized['columns']);
+		if ( wp_slimstat::$advanced_cache_exists && ( empty( wp_slimstat::$settings[ 'no_caching_warning' ] ) || wp_slimstat::$settings[ 'no_caching_warning' ] != 'yes' ) && ( empty( wp_slimstat::$settings[ 'javascript_mode' ] ) || wp_slimstat::$settings[ 'javascript_mode' ] != 'yes' ) ) {
+			wp_slimstat_admin::show_alert_message( sprintf( __( "A caching plugin has been detected on your website. Please <a href='%s' target='_blank'>make sure to configure</a> Slimstat Analytics accordingly, to get accurate information.", 'wp-slimstat' ), 'https://slimstat.freshdesk.com/support/solutions/articles/5000528524-i-am-using-w3-total-cache-or-wp-super-cache-hypercache-etc-and-it-looks-like-slimstat-is-not-tra' ) . '<a id="slimstat-hide-caching-notice" class="slimstat-font-cancel slimstat-float-right" title="Hide this notice" href="#"></a>', 'wp-ui-notification below-h2' );
+		}
+
+		$filters_html = wp_slimstat_reports::get_filters_html( wp_slimstat_db::$filters_normalized[ 'columns' ] );
 		if (!empty($filters_html)){
 			echo "<div id='slimstat-current-filters'>$filters_html</div>";
 		}
@@ -142,6 +135,10 @@
 		<form method="get" action=""><input type="hidden" id="meta-box-order-nonce" name="meta-box-order-nonce" value="<?php echo wp_create_nonce('meta-box-order') ?>" /></form><?php
 
 		foreach( wp_slimstat_reports::$reports_info as $a_report_id => $a_report_info ) {
+			if ( !is_array( $a_report_info[ 'classes' ] ) ) {
+				continue;
+			}
+
 			wp_slimstat_reports::report_header( $a_report_id );
 
 			// Third party reports can add their own methods via the callback parameter
