@@ -28,6 +28,9 @@
 					<?php if ( have_posts() ) { ?>
 						<?php while ( have_posts() ) {
 							 the_post(); ?>
+							 
+							<?php if(function_exists('the_views')) { the_views(); } ?>
+
 							<div id="post-<?php the_ID(); ?> format-standard" <?php post_class( 'post' ); ?>>
 								<div class="post-header clearfix">
 									<h1 class="post-title entry-title"><?php the_title(); ?></h1>	

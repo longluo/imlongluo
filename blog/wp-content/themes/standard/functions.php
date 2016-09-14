@@ -3647,4 +3647,20 @@ function standard_is_current_version() {
 	return '3.1' == get_option( 'standard_theme_version' ) ? true : false;
 } // end standard_is_current_version
 
+
+/**
+ * Plugin Name: WPDX Replace Open Sans
+ * Description: Change the load address of Open Sans.
+ * Author:      Long Luo
+ * Version:     1.0
+ * License:     GPL
+ */
+function wpdx_replace_open_sans() {
+  wp_deregister_style('open-sans');
+  wp_register_style( 'open-sans', '//fonts.useso.com/css?family=Open+Sans:300italic,400italic,600italic,300,400,600' );
+  if(is_admin()) wp_enqueue_style( 'open-sans');
+}
+add_action( 'init', 'wpdx_replace_open_sans' );
+
+
 ?>
