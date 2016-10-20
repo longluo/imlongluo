@@ -17,9 +17,19 @@ class slim_browser {
 
 		if ( self::$browscap_exists ) {
 			wp_slimstat::update_browscap_database();
-			include_once( wp_slimstat::$browscap_path );
+			@include_once( wp_slimstat::$browscap_path );
 
-			self::$browser = slim_browscap_db::get_browser_from_browscap( self::$browser );
+			if ( function_exists( 'slimstat_get_browser_from_browscap' ) ) {
+				self::$browser = slimstat_get_browser_from_browscap( self::$browser, $browsers, $userAgents, $patterns, $properties );
+			}
+			else {
+				@unlink( wp_slimstat::$browscap_path );
+				wp_slimstat::update_browscap_database();
+
+				if ( function_exists( 'slimstat_get_browser_from_browscap' ) ) {
+					self::$browser = slimstat_get_browser_from_browscap( self::$browser, $browsers, $userAgents, $patterns, $properties );
+				}
+			}
 		}
 	}
 
