@@ -1423,6 +1423,9 @@ class wp_slimstat_reports {
 		$new_visitors = wp_slimstat_db::count_records_having( 'ip', 'visit_id > 0 AND browser_type <> 1', 'COUNT(visit_id) = 1' );
 		$new_visitors_rate = ( $total_human_hits > 0) ? ( 100 * $new_visitors / $total_human_hits ) : 0;
 		$metrics_per_visit = wp_slimstat_db::get_max_and_average_pages_per_visit();
+		if ( empty( $metrics_per_visit[ 0 ] ) ) {
+			 $metrics_per_visit[ 0 ] = array( 'avghits' => 0, 'maxhits' => 0);
+		}
 		if ( intval( $new_visitors_rate ) > 99 ) {
 			$new_visitors_rate = '100';
 		}
@@ -1904,10 +1907,10 @@ class wp_slimstat_reports {
 			}
 		}
 		if (!empty($filters_html)){
-			$filters_html = "<ul class='slimstat-filter-list'>$filters_html</ul><a href='#' id='slimstat-save-filter' class='slimstat-filter-action-button button-secondary' data-filter-array='".htmlentities(serialize($_filters_array), ENT_QUOTES, 'UTF-8')."'>".__('Save','wp-slimstat')."</a>";
+			$filters_html = "<ul class='slimstat-filter-list'>$filters_html</ul><a href='#' id='slimstat-save-filter' class='slimstat-filter-action-button button-secondary noslimstat' data-filter-array='".htmlentities(serialize($_filters_array), ENT_QUOTES, 'UTF-8')."'>".__('Save','wp-slimstat')."</a>";
 		}
 		if(count($filters_dropdown) > 1){
-			$filters_html .= '<a href="'.self::fs_url().'" id="slimstat-remove-all-filters" class="button-secondary slimstat-filter-action-button">'.__('Reset All','wp-slimstat').'</a>';
+			$filters_html .= '<a href="'.self::fs_url().'" id="slimstat-remove-all-filters" class="button-secondary slimstat-filter-action-button noslimstat">'.__('Reset All','wp-slimstat').'</a>';
 		}
 		$filters_html .= '';
 
